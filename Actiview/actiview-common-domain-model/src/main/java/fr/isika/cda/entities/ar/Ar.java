@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import fr.isika.cda.entities.common.ArConfigEnum;
+
 @Entity
 @Table(name = "activity_rate")
 public class Ar implements Serializable{

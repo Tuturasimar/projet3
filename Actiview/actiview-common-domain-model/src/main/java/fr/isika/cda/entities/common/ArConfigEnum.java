@@ -1,4 +1,4 @@
-package fr.isika.cda.entities.ar;
+package fr.isika.cda.entities.common;
 
 public enum ArConfigEnum {
 	

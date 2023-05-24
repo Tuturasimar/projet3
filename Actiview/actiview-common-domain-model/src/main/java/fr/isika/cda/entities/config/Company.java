@@ -24,9 +24,6 @@ public class Company implements Serializable {
 	private String adress;
 	private StatusEnum status;
 
-	public long getCompanyId() {
-		return companyId;
-	}
 
 	public void setCompanyId(long companyId) {
 		this.companyId = companyId;

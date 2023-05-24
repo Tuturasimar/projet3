@@ -30,9 +30,6 @@ public class Contract implements Serializable {
 	private LocalDate updatedAt;
 	private LocalDate canBeChangedAt;
 
-	public long getContractId() {
-		return contractId;
-	}
 
 	public void setContractId(long contractId) {
 		this.contractId = contractId;

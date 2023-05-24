@@ -25,9 +25,6 @@ public class Feature implements Serializable {
 	private float price;
 	private int nbOfOptions;
 
-	public long getFeatureId() {
-		return featureId;
-	}
 
 	public void setFeatureId(long featureId) {
 		this.featureId = featureId;

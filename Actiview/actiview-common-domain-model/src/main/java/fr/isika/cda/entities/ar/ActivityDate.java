@@ -8,6 +8,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +31,9 @@ public class ActivityDate implements Serializable {
 	private PartDayEnum partOfDay;
 	
 	private boolean remote;
+	
+	@ManyToOne 
+	public ArActivity arActivity;
 
 	public LocalDate getDate() {
 		return date;

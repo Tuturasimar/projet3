@@ -2,18 +2,21 @@ package fr.isika.cda.entities.ar;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
 
 import fr.isika.cda.entities.common.ArConfigEnum;
 
 @Entity
-@Table(name = "activity_rate")
 public class Ar implements Serializable{
 
 	/**
@@ -33,6 +36,12 @@ public class Ar implements Serializable{
 	
 	@Enumerated(EnumType.STRING)
 	private ArConfigEnum arConfig;
+	
+	@OneToMany 
+	//Avoids the formation of an intermediate table in BDD
+	//Create a foreign key ar_id in the table arActivity
+	@JoinColumn(name="ar_id")
+	public List<ArActivity> arActivities = new LinkedList<>();
 
 	public LocalDate getCreatedAt() {
 		return createdAt;

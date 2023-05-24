@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import fr.isika.cda.entities.common.StatusEnum;
 
@@ -29,8 +31,11 @@ public class Contract implements Serializable {
 	private LocalDate createdAt;
 	private LocalDate updatedAt;
 	private LocalDate canBeChangedAt;
-
-
+	
+	@OneToOne
+	@JoinColumn(name="featureId")
+	private Feature feature;
+	
 	public void setContractId(long contractId) {
 		this.contractId = contractId;
 	}

@@ -12,18 +12,18 @@ import javax.persistence.Table;
 import fr.isika.cda.entities.common.JobEnum;
 
 @Entity
-
+@Table(name = "user_data")
 public class UserData {
 
 	@Id
 	@GeneratedValue
 	private Long userId;
-	
+
 	private String lastname;
 	private String firstname;
 	private LocalDate birthday;
 	private String email;
-	
+
 	@Enumerated(EnumType.STRING)
 	private JobEnum jobEnum;
 
@@ -71,5 +71,5 @@ public class UserData {
 		return userId;
 	}
 	
-	
+
 }

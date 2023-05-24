@@ -10,12 +10,13 @@ import fr.isika.cda.entities.common.ClassContextEnum;
 
 @Entity
 public class Notification {
+
 	@Id
 	@GeneratedValue
 	private Long userId;
-	
+
 	private String messageContent;
-	
+
 	@Enumerated(EnumType.STRING)
 	private ClassContextEnum classContext;
 
@@ -38,6 +39,5 @@ public class Notification {
 	public Long getUserId() {
 		return userId;
 	}
-	
-	
+
 }

@@ -1,7 +1,8 @@
 package fr.isika.cda.entities.common;
 
 public enum RoleTypeEnum {
-ADMIN,
+ADMINESN,
 MANAGER,
-CONSULTANT
+SALARIE,
+SUPERADMIN
 }

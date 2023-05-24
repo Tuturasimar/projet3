@@ -16,4 +16,16 @@ public class RoleUser {
 	private Long userId;
 	@Enumerated(EnumType.STRING)
 	private RoleTypeEnum roleTypeEnum;
+	
+	public RoleTypeEnum getRoleTypeEnum() {
+		return roleTypeEnum;
+	}
+	public void setRoleTypeEnum(RoleTypeEnum roleTypeEnum) {
+		this.roleTypeEnum = roleTypeEnum;
+	}
+	public Long getUserId() {
+		return userId;
+	}
+	
+	
 }

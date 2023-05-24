@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +20,9 @@ public class SupportingDoc implements Serializable{
 	@Id
 	@GeneratedValue
 	private Long id;
+	
+	@ManyToOne
+	private ArActivity arActivity;
 
 	public Long getId() {
 		return id;

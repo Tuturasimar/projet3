@@ -17,7 +17,7 @@ public class UserData {
 
 	@Id
 	@GeneratedValue
-	private Long userId;
+	private Long id;
 	
 	private String lastname;
 	private String firstname;
@@ -67,8 +67,8 @@ public class UserData {
 		this.jobEnum = jobEnum;
 	}
 
-	public Long getUserId() {
-		return userId;
+	public Long getId() {
+		return id;
 	}
 	
 	

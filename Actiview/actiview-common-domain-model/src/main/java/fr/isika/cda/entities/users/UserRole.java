@@ -15,7 +15,7 @@ public class UserRole {
 
 	@Id
 	@GeneratedValue
-	private Long userId;
+	private Long id;
 
 	@Enumerated(EnumType.STRING)
 	private RoleTypeEnum roleTypeEnum;
@@ -28,8 +28,8 @@ public class UserRole {
 		this.roleTypeEnum = roleTypeEnum;
 	}
 
-	public Long getUserId() {
-		return userId;
+	public Long getId() {
+		return id;
 	}
 
 }

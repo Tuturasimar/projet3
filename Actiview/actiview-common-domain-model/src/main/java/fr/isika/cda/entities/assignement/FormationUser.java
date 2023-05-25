@@ -1,4 +1,4 @@
-package fr.isika.cda.entities.formation;
+package fr.isika.cda.entities.assignement;
 
 import java.io.Serializable;
 

@@ -25,7 +25,7 @@ public abstract class Activity {
 
 	@Id
 	@GeneratedValue
-	protected Long activityId;
+	protected Long id;
 
 	@Column(unique = true)
 	protected String labelActivity;

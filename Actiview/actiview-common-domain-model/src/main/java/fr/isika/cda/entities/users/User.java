@@ -26,7 +26,7 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private Long userId;
+	private Long id;
 
 	private String login;
 	private String password;
@@ -39,8 +39,8 @@ public class User implements Serializable {
 	@JoinColumn(name="user_id")
 	public List<Ar> ars = new LinkedList<>();
 
-	public Long getUserId() {
-		return userId;
+	public Long getId() {
+		return id;
 	}
 
 	public String getLogin() {

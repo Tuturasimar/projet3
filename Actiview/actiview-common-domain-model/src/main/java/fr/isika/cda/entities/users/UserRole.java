@@ -5,20 +5,25 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.ManyToOne;
+
 
 import fr.isika.cda.entities.common.RoleTypeEnum;
 
 @Entity
-@Table(name = "user_role_details")
+
 public class UserRole {
 
 	@Id
 	@GeneratedValue
 	private Long id;
 
+
 	@Enumerated(EnumType.STRING)
 	private RoleTypeEnum roleTypeEnum;
+
+	@ManyToOne
+	private User user;
 
 	public RoleTypeEnum getRoleTypeEnum() {
 		return roleTypeEnum;
@@ -30,6 +35,7 @@ public class UserRole {
 
 	public Long getId() {
 		return id;
+
 	}
 
 }

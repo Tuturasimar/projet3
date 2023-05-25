@@ -34,13 +34,14 @@ public class User implements Serializable {
 
 	@Enumerated(EnumType.STRING)
 	private StatusEnum status;
-	
+
 	@OneToMany
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	public List<Ar> ars = new LinkedList<>();
 
 	public Long getId() {
 		return id;
+
 	}
 
 	public String getLogin() {
@@ -71,5 +72,4 @@ public class User implements Serializable {
 		this.status = status;
 	}
 
-	
 }

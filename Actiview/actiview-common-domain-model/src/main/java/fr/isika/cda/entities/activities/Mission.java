@@ -11,7 +11,7 @@ import fr.isika.cda.entities.common.MissionTypeEnum;
 import fr.isika.cda.entities.common.StatusEnum;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "id_activity")
+@PrimaryKeyJoinColumn(name = "activity_id")
 public class Mission extends Activity {
 
 	private LocalDate missionStart;

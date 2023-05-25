@@ -3,8 +3,10 @@ package fr.isika.cda.entities.formation;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import fr.isika.cda.entities.common.StatusEnum;
 import fr.isika.cda.entities.users.User;
@@ -20,8 +22,15 @@ public class MissionUser implements Serializable {
 	
 	@Id
 	@GeneratedValue
-	private long colorConfigId;
-    private User user;
+	private long id;
+	
+	@OneToOne
+    public User user;
+	
+	@OneToOne
+	public UserFeedback userFeedback;
+	
+	@Enumerated
     private StatusEnum missionState;
     private float adr;
 

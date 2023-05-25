@@ -9,7 +9,7 @@ import fr.isika.cda.entities.common.FormationStatusEnum;
 import fr.isika.cda.entities.common.LocationFormationEnum;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "id_activity")
+@PrimaryKeyJoinColumn(name = "activity_id")
 public class Formation extends Activity {
 
 	private int nbOfDays;

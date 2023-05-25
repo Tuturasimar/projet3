@@ -26,7 +26,7 @@ public class ContractOptions implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="optionId")
-	private Option option;
+	private Options option;
 	
 
 }

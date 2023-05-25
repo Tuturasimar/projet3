@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "id_activity")
+@PrimaryKeyJoinColumn(name = "activity_id")
 public class CustomActivity extends Activity {
 
 }

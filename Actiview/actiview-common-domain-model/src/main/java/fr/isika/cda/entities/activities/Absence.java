@@ -8,7 +8,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import fr.isika.cda.entities.common.AbsenceTypeEnum;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "id_activity")
+@PrimaryKeyJoinColumn(name = "activity_id")
 public class Absence extends Activity {
 
 	@Enumerated(EnumType.STRING)

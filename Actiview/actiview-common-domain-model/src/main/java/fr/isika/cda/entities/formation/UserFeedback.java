@@ -16,23 +16,13 @@ public class UserFeedback implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private long userFeedbackId;
-    private MissionUser missionUser;
+	private long id;
+	
     private String comment;
     private int gradeMission;
     private int gradeManager;
     private int gradeClientRelation;
     private int gradeUserComfort;
-
-    
-
-    public MissionUser getMissionUser() {
-        return missionUser;
-    }
-
-    public void setMissionUser(MissionUser missionUser) {
-        this.missionUser = missionUser;
-    }
 
     public String getComment() {
         return comment;

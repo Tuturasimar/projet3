@@ -17,6 +17,7 @@ public class MissionUser implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	
 	@Id
 	@GeneratedValue
 	private long colorConfigId;

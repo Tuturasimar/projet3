@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -26,6 +28,8 @@ public class Contract implements Serializable {
 	private char label;
 	private float price;
 	private String description;
+	
+	@Enumerated(EnumType.STRING)
 	private StatusEnum status;
 
 	private LocalDate createdAt;

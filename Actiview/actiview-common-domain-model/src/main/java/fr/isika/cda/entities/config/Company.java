@@ -3,6 +3,8 @@ package fr.isika.cda.entities.config;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -49,6 +51,7 @@ public class Company implements Serializable {
 		return status;
 	}
 
+	@Enumerated(EnumType.STRING)
 	public void setStatus(StatusEnum status) {
 		this.status = status;
 	}

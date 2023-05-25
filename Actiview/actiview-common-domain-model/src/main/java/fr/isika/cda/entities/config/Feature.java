@@ -3,6 +3,8 @@ package fr.isika.cda.entities.config;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -21,7 +23,10 @@ public class Feature implements Serializable {
 	private long featureId;
 
 	private int nbOfCollaborators;
+	
+	@Enumerated(EnumType.STRING)
 	private ArConfigEnum arConfig;
+	
 	private float price;
 	private int nbOfOptions;
 

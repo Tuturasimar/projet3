@@ -5,6 +5,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import fr.isika.cda.entities.common.ClassContextEnum;
 
@@ -13,12 +14,16 @@ public class Notification {
 
 	@Id
 	@GeneratedValue
-	private Long userId;
+	private Long Id;
 
 	private String messageContent;
 
 	@Enumerated(EnumType.STRING)
 	private ClassContextEnum classContext;
+
+	@ManyToOne
+	private User user;
+	// creating a foreign key
 
 	public String getMessageContent() {
 		return messageContent;
@@ -36,8 +41,8 @@ public class Notification {
 		this.classContext = classContext;
 	}
 
-	public Long getUserId() {
-		return userId;
+	public Long getId() {
+		return Id;
 	}
 
 }

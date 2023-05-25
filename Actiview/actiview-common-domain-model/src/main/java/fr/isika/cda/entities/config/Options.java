@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Option  implements Serializable{
+public class Options  implements Serializable{
 
 	/**
 	 * 

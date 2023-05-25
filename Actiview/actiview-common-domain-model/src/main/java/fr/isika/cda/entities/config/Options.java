@@ -16,14 +16,14 @@ public class Options  implements Serializable{
 	
 	@Id
 	@GeneratedValue
-	private long optionId;
+	private long id;
 	
 	private String label;
 	private String description;
 	private float price;
 	
-	public long getOptionId() {
-		return optionId;
+	public long getId() {
+		return id;
 	}
 
 	public String getDescription() {

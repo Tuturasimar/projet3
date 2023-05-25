@@ -16,7 +16,7 @@ public class ColorConfig implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private long colorConfigId;
+	private long id;
 
 	private String primaryColor;
 	private String secondaryColor;
@@ -55,8 +55,8 @@ public class ColorConfig implements Serializable {
 		this.fontColor = fontColor;
 	}
 
-	public void setColorConfigId(long colorConfigId) {
-		this.colorConfigId = colorConfigId;
+	public long getId() {
+		return id;
 	}
 
 }

@@ -18,22 +18,43 @@ public class Config implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private long configId;
+	private long id;
 
 	@OneToOne
-	@JoinColumn(name="colorConfigId")
+	@JoinColumn(name="colorconfig_id")
 	private ColorConfig colorConfig;
 
 	@OneToOne
-	@JoinColumn(name="fontConfigId")
+	@JoinColumn(name="fontConfig_id")
 	private FontConfig fontConfig;
 
 	@OneToOne
-	@JoinColumn(name="imageConfigId")
+	@JoinColumn(name="imageConfig_id")
 	private ImageConfig imageConfig;
 	
 	@OneToOne
-	@JoinColumn(name="companyId")
+	@JoinColumn(name="company_id")
 	private Company company;
 
+	public long getId() {
+		return id;
+	}
+
+	public ColorConfig getColorConfig() {
+		return colorConfig;
+	}
+
+	public FontConfig getFontConfig() {
+		return fontConfig;
+	}
+
+	public ImageConfig getImageConfig() {
+		return imageConfig;
+	}
+
+	public Company getCompany() {
+		return company;
+	}
+
+	
 }

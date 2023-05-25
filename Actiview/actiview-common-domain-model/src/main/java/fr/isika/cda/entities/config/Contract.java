@@ -23,7 +23,7 @@ public class Contract implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private long contractId;
+	private long id;
 
 	private char label;
 	private float price;
@@ -37,11 +37,17 @@ public class Contract implements Serializable {
 	private LocalDate canBeChangedAt;
 	
 	@OneToOne
-	@JoinColumn(name="featureId")
+	@JoinColumn(name="feature_id")
 	private Feature feature;
 	
-	public void setContractId(long contractId) {
-		this.contractId = contractId;
+
+
+	public long getId() {
+		return id;
+	}
+
+	public Feature getFeature() {
+		return feature;
 	}
 
 	public char getLabel() {

@@ -18,15 +18,27 @@ public class ContractOptions implements Serializable{
 	
 	@Id
 	@GeneratedValue
-	private long contractOptionsId;
+	private long id;
 	
 	@ManyToOne
-	@JoinColumn(name="contractId")
+	@JoinColumn(name="contract_id")
 	private Contract contract;
 	
 	@ManyToOne
-	@JoinColumn(name="optionId")
+	@JoinColumn(name="option_id")
 	private Options option;
+
+	public long getId() {
+		return id;
+	}
+
+	public Contract getContract() {
+		return contract;
+	}
+
+	public Options getOption() {
+		return option;
+	}
 	
 
 }

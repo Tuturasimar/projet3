@@ -20,7 +20,7 @@ public class Feature implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private long featureId;
+	private long id;
 
 	private int nbOfCollaborators;
 	
@@ -31,8 +31,10 @@ public class Feature implements Serializable {
 	private int nbOfOptions;
 
 
-	public void setFeatureId(long featureId) {
-		this.featureId = featureId;
+
+
+	public long getId() {
+		return id;
 	}
 
 	public int getNbOfCollaborators() {

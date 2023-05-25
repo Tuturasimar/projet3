@@ -16,7 +16,7 @@ public class FontConfig implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private long fontConfigId;
+	private long id;
 
 	private String fontFamily;
 
@@ -28,8 +28,9 @@ public class FontConfig implements Serializable {
 		this.fontFamily = fontFamily;
 	}
 
-	public void setFontConfigId(long fontConfigId) {
-		this.fontConfigId = fontConfigId;
+	public long getId() {
+		return id;
 	}
+
 
 }

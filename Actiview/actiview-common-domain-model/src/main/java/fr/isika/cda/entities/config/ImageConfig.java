@@ -16,7 +16,7 @@ public class ImageConfig implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private long imageConfigId;
+	private long id;
 
 	private String logo;
 	private String banner;
@@ -37,8 +37,9 @@ public class ImageConfig implements Serializable {
 		this.banner = banner;
 	}
 
-	public void setImageConfigId(long imageConfigId) {
-		this.imageConfigId = imageConfigId;
+	public long getId() {
+		return id;
 	}
+
 
 }

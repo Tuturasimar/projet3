@@ -7,6 +7,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import fr.isika.cda.entities.common.StatusEnum;
 
@@ -20,15 +22,24 @@ public class Company implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private long companyId;
+	private long id;
 
 	private String name;
 	private String adress;
 	private StatusEnum status;
+	
+	@OneToOne
+	@JoinColumn(name="contract_id")
+	private Contract contract;
 
 
-	public void setCompanyId(long companyId) {
-		this.companyId = companyId;
+
+	public long getId() {
+		return id;
+	}
+
+	public Contract getContract() {
+		return contract;
 	}
 
 	public String getName() {

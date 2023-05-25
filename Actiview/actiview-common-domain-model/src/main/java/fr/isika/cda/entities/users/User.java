@@ -21,7 +21,7 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private Long userId;
+	private Long Id;
 
 	private String login;
 	private String password;
@@ -30,8 +30,8 @@ public class User implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private StatusEnum status;
 
-	public Long getUserId() {
-		return userId;
+	public Long getId() {
+		return Id;
 	}
 
 	public String getLogin() {
@@ -62,5 +62,4 @@ public class User implements Serializable {
 		this.status = status;
 	}
 
-	
 }

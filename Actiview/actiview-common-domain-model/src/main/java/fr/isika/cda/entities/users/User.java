@@ -39,6 +39,10 @@ public class User implements Serializable {
 	@JoinColumn(name = "user_id")
 	public List<Ar> ars = new LinkedList<>();
 
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
 	public Long getId() {
 		return id;
 

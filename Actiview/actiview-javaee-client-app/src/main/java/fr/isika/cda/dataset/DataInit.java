@@ -20,28 +20,32 @@ public class DataInit {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@PostConstruct
 	public void init() {
-		
+
 		// Mock donnée User
 		User user = new User();
 		user.setCreatedAt(LocalDate.now());
 		
+		em.persist(user);
+
 		// Mock donnée d'un CRA
-				Ar ar = new Ar();
-				ar.setCreatedAt(LocalDate.now());
-				ar.setArConfig(ArConfigEnum.MONTH);
-				ar.setStateArEnum(StateAr.DRAFT);
-				ar.setUpdatedAt(LocalDate.now());
-				ar.setUser(user);
-				
-				// Mock donnée d'une activity
-				Mission mission = new Mission();
-				mission.setCreatorId(1L);
-				
-				em.persist(user);
-				em.persist(ar);
-				em.persist(mission);
+		Ar ar = new Ar();
+		ar.setCreatedAt(LocalDate.now());
+		ar.setArConfig(ArConfigEnum.MONTH);
+		ar.setStateArEnum(StateAr.DRAFT);
+		ar.setUpdatedAt(LocalDate.now());
+		ar.setUserId(user.getId());
+		
+		em.persist(ar);
+
+
+		// Mock donnée d'une activity
+		Mission mission = new Mission();
+		mission.setCreatorId(1L);
+
+		em.persist(mission);
+		
 	}
 }

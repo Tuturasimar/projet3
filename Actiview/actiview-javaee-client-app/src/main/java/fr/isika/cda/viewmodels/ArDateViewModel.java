@@ -10,6 +10,22 @@ public class ArDateViewModel {
 	private PartDayEnum partOfDay;
 	private boolean remote;
 	
+	private Long arId;
+	
+	private Long activityId;
+	
+	public Long getArId() {
+		return arId;
+	}
+	public void setArId(Long arId) {
+		this.arId = arId;
+	}
+	public Long getActivityId() {
+		return activityId;
+	}
+	public void setActivityId(Long activityId) {
+		this.activityId = activityId;
+	}
 	public LocalDate getDate() {
 		return date;
 	}

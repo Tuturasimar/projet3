@@ -2,10 +2,9 @@ package fr.isika.cda.repository;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 
-import fr.isika.cda.entities.activities.Activity;
-import fr.isika.cda.entities.ar.Ar;
 import fr.isika.cda.entities.ar.ArActivity;
 
 @Stateless
@@ -16,20 +15,35 @@ import fr.isika.cda.entities.ar.ArActivity;
  * @author Trévor
  *
  */
+@NamedQuery(name = "findArActivityByForeignKeyId", query = "SELECT ara FROM ar_activity ara WHERE activity_id = :activityId AND ar_id = :arId")
 public class ArActivityRepository {
 
 	@PersistenceContext
 	private EntityManager em;
 
-	public ArActivity register(Ar ar, Activity Activity) {
+	public Long register(Long arId, Long activityId) {
 
 		ArActivity arActivity = new ArActivity();
-		arActivity.setAr(ar);
-		arActivity.setActivity(Activity);
+		arActivity.setArId(arId);
+		arActivity.setActivityId(activityId);;
 
 		em.persist(arActivity);
 
-		return arActivity;
+		return arActivity.getId();
 
+	}
+	
+
+	public ArActivity alreadyExist(Long arId, Long activityId) {
+
+		ArActivity arActivity = em.createNamedQuery("findArActivityByForeignKeyId", ArActivity.class)
+				.setParameter(arId.toString(), activityId.toString()).getSingleResult();
+
+		if(arActivity != null) {
+			return arActivity;
+		}
+		
+		return null;
+		
 	}
 }

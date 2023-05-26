@@ -3,10 +3,12 @@ package fr.isika.cda.entities.ar;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,7 +24,7 @@ public class ActivityDate implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private LocalDate date;
@@ -33,7 +35,19 @@ public class ActivityDate implements Serializable {
 	private boolean remote;
 	
 	@ManyToOne 
+	@JoinColumn(name = "ar_activity_id", insertable = false, updatable = false)
 	public ArActivity arActivity;
+	
+	@Column(name="ar_activity_id")
+	private Long arActivityId;
+
+	public Long getArActivityId() {
+		return arActivityId;
+	}
+
+	public void setArActivityId(Long arActivityId) {
+		this.arActivityId = arActivityId;
+	}
 
 	public LocalDate getDate() {
 		return date;

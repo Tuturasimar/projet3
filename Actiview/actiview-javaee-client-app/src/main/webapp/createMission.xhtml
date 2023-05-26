@@ -3,7 +3,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	template="/WEB-INF/templates/default.xhtml">
+	template="/WEB-INF/templates/default.xhtml"
+                xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="header">
 		<h1>Créer une mission</h1>
@@ -17,20 +18,20 @@
 		<h:panelGrid>
 		
 		<h:outputLabel id="missionLabel" value="Nom de la mission : "/>
-		<h:inputText id="missionTxt" value=""/>
+		<h:inputText id="missionTxt" />
 		
 		<h:outputLabel id="typeMissionLabel" value ="Type de mission : "/>
-		<h:selectOneMenu id="typeMissionTxt" value="" var="itemEnum">
+		<h:selectOneMenu id="typeMissionTxt"  var="itemEnum">
 		
 		</h:selectOneMenu>
 		
-		<h:outputLabel id="missionStartLabel" value="Date de début de la mission" />
-		<h:inputText id="missionStartTxt" value="">
-		<f:convertDateTime pattern="dd/MM/yyyy" /></h:inputText>
+		<p:outputLabel id="missionStartLabel" value="Date de début de la mission : " />
+		<p:calendar id="missionStartTxt" value="#{registerMission.missionVm.missionStart}" showOn="button">
+		</p:calendar>
 		
-		<h:outputLabel id="missionEndLabel" value="Date de fin de la mission" />
-		<h:inputText id="missionEndTxt" value="">
-		<f:convertDateTime pattern="dd/MM/yyyy" /></h:inputText>
+		<p:outputLabel id="missionEndLabel" value="Date de fin de la mission : " />
+		<p:calendar id="missionEndTxt" value="#{registerMission.missionVm.missionEnd}" showOn="button">
+		</p:calendar>
 		
 		<h:commandButton value="Register" action="#{registerMission.register()}"/>
 		<h:commandButton value="Clear" action="#{registerMission.clear()}"/>

@@ -18,11 +18,11 @@
 		<h:panelGrid>
 		
 		<h:outputLabel id="missionLabel" value="Nom de la mission : "/>
-		<h:inputText id="missionTxt" />
+		<h:inputText id="missionTxt" value="#{registerMission.missionVm.labelActivity}"/>
 		
 		<h:outputLabel id="typeMissionLabel" value ="Type de mission : "/>
-		<h:selectOneMenu id="typeMissionTxt"  var="itemEnum">
-		
+		<h:selectOneMenu id="typeMissionTxt" value="#{registerMission.missionVm.missionType}">
+		<f:selectItems value="#{data.missionType}"></f:selectItems>
 		</h:selectOneMenu>
 		
 		<p:outputLabel id="missionStartLabel" value="Date de début de la mission : " />

@@ -19,8 +19,10 @@ public class Mission extends Activity {
 	
 	@Enumerated(EnumType.STRING)
 	private MissionTypeEnum missionType;
+	
 	@Enumerated(EnumType.STRING)
 	private StatusEnum missionState;
+	
 	public LocalDate getMissionStart() {
 		return missionStart;
 	}

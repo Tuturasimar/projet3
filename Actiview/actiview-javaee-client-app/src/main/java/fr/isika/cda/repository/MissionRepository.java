@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import fr.isika.cda.entities.activities.Mission;
+import fr.isika.cda.entities.common.StatusEnum;
 import fr.isika.cda.viewmodels.MissionViewModel;
 
 @Stateless
@@ -15,9 +16,14 @@ public class MissionRepository {
 	
 	public Long register(MissionViewModel missionVm) {
 		Mission mission = new Mission();
+		mission.setLabelActivity(missionVm.getLabelActivity());
 		mission.setMissionStart(missionVm.getMissionStart());
 		mission.setMissionEnd(missionVm.getMissionEnd());
+		mission.setMissionType(missionVm.getMissionType());
+		mission.setMissionState(StatusEnum.ACTIVE);
+		mission.setStatus(StatusEnum.ACTIVE);
 		em.persist(mission);
-		return 1L;
+		
+		return mission.getId();
 	}
 }

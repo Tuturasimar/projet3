@@ -1,5 +1,7 @@
 package fr.isika.cda.repository;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,5 +27,9 @@ public class MissionRepository {
 		em.persist(mission);
 		
 		return mission.getId();
+	}
+	
+	public List<Mission> findAllMissions() {
+		return em.createQuery("SELECT m FROM Mission m", Mission.class).getResultList();
 	}
 }

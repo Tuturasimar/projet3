@@ -32,4 +32,11 @@ public class MissionRepository {
 	public List<Mission> findAllMissions() {
 		return em.createQuery("SELECT m FROM Mission m", Mission.class).getResultList();
 	}
+	
+	public void updateMission(MissionViewModel missionVm, Long id) {
+		Mission mission = new Mission();
+		em.createQuery("SELECT * FROM Mission WHERE id=" + id);
+		
+		em.persist(mission);
+	}
 }

@@ -35,19 +35,8 @@ public class ActivityDate implements Serializable {
 	private boolean remote;
 	
 	@ManyToOne 
-	@JoinColumn(name = "ar_activity_id", insertable = false, updatable = false)
+	@JoinColumn(name = "ar_activity_id")
 	public ArActivity arActivity;
-	
-	@Column(name="ar_activity_id")
-	private Long arActivityId;
-
-	public Long getArActivityId() {
-		return arActivityId;
-	}
-
-	public void setArActivityId(Long arActivityId) {
-		this.arActivityId = arActivityId;
-	}
 
 	public LocalDate getDate() {
 		return date;

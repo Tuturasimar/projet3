@@ -11,6 +11,7 @@ import fr.isika.cda.repository.ActivityDateRepository;
 import fr.isika.cda.repository.ArActivityRepository;
 import fr.isika.cda.viewmodels.ArDateViewModel;
 
+
 @ManagedBean
 public class RegisterActivityDateFromArBean {
 

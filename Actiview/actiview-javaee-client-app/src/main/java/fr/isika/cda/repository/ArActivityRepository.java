@@ -3,8 +3,12 @@ package fr.isika.cda.repository;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NamedQuery;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
+import fr.isika.cda.entities.activities.Activity;
+import fr.isika.cda.entities.ar.Ar;
 import fr.isika.cda.entities.ar.ArActivity;
 
 @Stateless
@@ -15,7 +19,9 @@ import fr.isika.cda.entities.ar.ArActivity;
  * @author Trévor
  *
  */
+
 @NamedQuery(name = "findArActivityByForeignKeyId", query = "SELECT ara FROM ar_activity ara WHERE activity_id = :activityId AND ar_id = :arId")
+
 public class ArActivityRepository {
 
 	@PersistenceContext
@@ -24,26 +30,42 @@ public class ArActivityRepository {
 	public Long register(Long arId, Long activityId) {
 
 		ArActivity arActivity = new ArActivity();
-		arActivity.setArId(arId);
-		arActivity.setActivityId(activityId);;
+		
+		Ar ar = em.getReference(Ar.class, arId);
+		Activity activity = em.getReference(Activity.class, activityId);
+		
+		arActivity.setAr(ar);
+		arActivity.setActivity(activity);
 
 		em.persist(arActivity);
 
 		return arActivity.getId();
 
 	}
-	
 
 	public ArActivity alreadyExist(Long arId, Long activityId) {
 
-		ArActivity arActivity = em.createNamedQuery("findArActivityByForeignKeyId", ArActivity.class)
-				.setParameter(arId.toString(), activityId.toString()).getSingleResult();
+		String arIdString = arId.toString();
+		String activityIdString = activityId.toString();
+		
+		ArActivity arActivity = null;
+		
+		try {
+			Query query = em.createQuery(
+					"SELECT ara FROM ArActivity ara WHERE activity_id = :activityId AND ar_id = :arId");
+			query.setParameter("activityId", activityIdString);
+			query.setParameter("arId", arIdString);
 
-		if(arActivity != null) {
+			arActivity = (ArActivity) query.getSingleResult();
+		} catch(NoResultException nre) {
+			
+		}
+
+		if (arActivity != null) {
 			return arActivity;
 		}
-		
+
 		return null;
-		
+
 	}
 }

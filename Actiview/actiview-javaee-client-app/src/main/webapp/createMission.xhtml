@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="header">
+		<h1>Créer une mission</h1>
+	</ui:define>
+
+	<ui:define name="content">
+	<h:form>
+		
+		<h2>Création d'une mission</h2>
+		
+		<h:panelGrid>
+		
+		<h:outputLabel id="missionLabel" value="Nom de la mission : "/>
+		<h:inputText id="missionTxt" value=""/>
+		
+		<h:outputLabel id="typeMissionLabel" value ="Type de mission : "/>
+		<h:selectOneMenu id="typeMissionTxt" value="" var="itemEnum">
+		
+		</h:selectOneMenu>
+		
+		<h:outputLabel id="missionStartLabel" value="Date de début de la mission" />
+		<h:inputText id="missionStartTxt" value="">
+		<f:convertDateTime pattern="dd/MM/yyyy" /></h:inputText>
+		
+		<h:outputLabel id="missionEndLabel" value="Date de fin de la mission" />
+		<h:inputText id="missionEndTxt" value="">
+		<f:convertDateTime pattern="dd/MM/yyyy" /></h:inputText>
+		
+		<h:commandButton value="Register" action="#{registerMission.register()}"/>
+		<h:commandButton value="Clear" action="#{registerMission.clear()}"/>
+		
+		</h:panelGrid>
+		<ul>
+			<li>
+				<h:link outcome="index.xhtml">Index</h:link>
+			</li>
+			
+			
+		</ul>
+
+	</h:form>
+	</ui:define>
+</ui:composition>

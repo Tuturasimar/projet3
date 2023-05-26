@@ -11,10 +11,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
 import fr.isika.cda.entities.common.ArConfigEnum;
+import fr.isika.cda.entities.users.User;
 
 @Entity
 public class Ar implements Serializable{
@@ -37,11 +39,16 @@ public class Ar implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private ArConfigEnum arConfig;
 	
-	@OneToMany 
-	//Avoids the formation of an intermediate table in BDD
-	//Create a foreign key ar_id in the table arActivity
-	@JoinColumn(name="ar_id")
-	public List<ArActivity> arActivities = new LinkedList<>();
+	@ManyToOne
+	private User user;
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public LocalDate getCreatedAt() {
 		return createdAt;

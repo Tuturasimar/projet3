@@ -26,11 +26,35 @@ public class ArActivity implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="activity_id")
-	public Activity activity;
+	private Activity activity;
+	
+	@ManyToOne
+	@JoinColumn(name="ar_id")
+	private Ar ar;
 	
 
 	public Long getId() {
 		return id;
+	}
+
+
+	public Activity getActivity() {
+		return activity;
+	}
+
+
+	public void setActivity(Activity activity) {
+		this.activity = activity;
+	}
+
+
+	public Ar getAr() {
+		return ar;
+	}
+
+
+	public void setAr(Ar ar) {
+		this.ar = ar;
 	}
 	
 	

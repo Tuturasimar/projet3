@@ -59,6 +59,14 @@ public class ActivityDate implements Serializable {
 		this.remote = remote;
 	}
 
+	public ArActivity getArActivity() {
+		return arActivity;
+	}
+
+	public void setArActivity(ArActivity arActivity) {
+		this.arActivity = arActivity;
+	}
+
 	public Long getId() {
 		return id;
 	}

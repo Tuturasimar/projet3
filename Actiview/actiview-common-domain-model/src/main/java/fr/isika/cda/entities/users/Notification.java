@@ -14,7 +14,7 @@ public class Notification {
 
 	@Id
 	@GeneratedValue
-	private Long Id;
+	private Long id;
 
 	private String messageContent;
 
@@ -42,7 +42,7 @@ public class Notification {
 	}
 
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 }

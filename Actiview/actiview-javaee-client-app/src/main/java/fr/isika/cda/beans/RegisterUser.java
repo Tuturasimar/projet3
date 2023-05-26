@@ -15,11 +15,17 @@ public class RegisterUser {
 	@Inject
 	private UserRepository userRepo;
 
+	/**
+	 * Appelle la méthode registerUser de UserRepository pour enregistrer le user (et les tables liées (UserData et UserRole) en bdd
+	 * Connectée en front au bouton Valider du formulaire
+	 */
 	public void registerUser() {
 		Long id = userRepo.registerUser(userViewModel);
 		System.out.println("Id du user créé : "+ id);
 	}
-	
+	/**
+	 * Vide les champs du formulaire en front
+	 */
 	public void clear() {
 		userViewModel = new UserViewModel();
 	}

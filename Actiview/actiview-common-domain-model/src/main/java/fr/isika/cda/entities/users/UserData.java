@@ -2,10 +2,12 @@ package fr.isika.cda.entities.users;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -17,7 +19,7 @@ import fr.isika.cda.entities.common.JobEnum;
 public class UserData {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String lastname;
@@ -29,8 +31,19 @@ public class UserData {
 	private JobEnum jobEnum;
 
 	@OneToOne
-	@JoinColumn(name = "userId", unique = true, nullable = false)
+	@JoinColumn(name = "user_id", unique = true, nullable = false, insertable = false, updatable = false)
 	private User user;
+	
+	@Column(name="user_id")
+	private Long userId ;
+	
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 
 	public String getLastname() {
 		return lastname;

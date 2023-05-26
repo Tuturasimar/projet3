@@ -11,12 +11,21 @@ import fr.isika.cda.entities.common.StatusEnum;
 
 public class UserViewModel {
 
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
 	// Données de la table User
 	private String login;
 	private String password;
 	private LocalDate createdAt;
 	private StatusEnum status;
-	public List<Ar> ars = new LinkedList<>();
+	private List<Ar> ars = new LinkedList<>();
+	private Long managerId;
 
 	// Données de la table Userdata
 	private String lastname;
@@ -24,11 +33,13 @@ public class UserViewModel {
 	private LocalDate birthday;
 	private String email;
 	private JobEnum jobEnum;
+	// utilisée à la fois pour la table UserData et UserRole
+	private Long userId;
 
 	// Donnée de la table UserRole
 	private RoleTypeEnum roleTypeEnum;
 
-	//Getters & Setters
+	// Getters & Setters
 	public String getLogin() {
 		return login;
 	}
@@ -117,11 +128,20 @@ public class UserViewModel {
 		this.roleTypeEnum = roleTypeEnum;
 	}
 
+	public Long getManagerId() {
+		return managerId;
+	}
+
+	public void setManagerId(Long managerId) {
+		this.managerId = managerId;
+	}
+
 	@Override
 	public String toString() {
 		return "UserViewModel [login=" + login + ", password=" + password + ", createdAt=" + createdAt + ", status="
-				+ status + ", ars=" + ars + ", lastname=" + lastname + ", firstname=" + firstname + ", birthday="
-				+ birthday + ", email=" + email + ", jobEnum=" + jobEnum + ", roleTypeEnum=" + roleTypeEnum + "]";
+				+ status + ", ars=" + ars + ", managerId=" + managerId + ", lastname=" + lastname + ", firstname="
+				+ firstname + ", birthday=" + birthday + ", email=" + email + ", jobEnum=" + jobEnum + ", roleTypeEnum="
+				+ roleTypeEnum + "]";
 	}
 
 }

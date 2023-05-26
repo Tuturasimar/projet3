@@ -16,6 +16,11 @@ public class UserRepository {
 	@PersistenceContext
 	private EntityManager em;
 
+	/**
+	 * Enregistre en bdd un User avec ses tables associées UserData et UserRole
+	 * @param userVM
+	 * @return
+	 */
 	public Long registerUser(UserViewModel userVM) {
 		
 		User user = new User();
@@ -23,19 +28,27 @@ public class UserRepository {
 		user.setPassword(userVM.getPassword());
 		user.setCreatedAt(userVM.getCreatedAt());
 		user.setStatus(StatusEnum.ACTIVE);
-
+		user.setManagerId(userVM.getManagerId());
+		
+		em.persist(user);
+		
 		UserData data = new UserData();
 		data.setFirstname(userVM.getFirstname());
 		data.setLastname(userVM.getLastname());
 		data.setBirthday(userVM.getBirthday());
 		data.setEmail(userVM.getEmail());
 		data.setJobEnum(userVM.getJobEnum());
-
+		data.setUserId(userVM.getUserId());
+		
+		em.persist(data);
+		
 		UserRole role = new UserRole();
 		role.setRoleTypeEnum(userVM.getRoleTypeEnum());
-
-		// nécessite d'ajouter une cascade pour la persistence
-		em.persist(user);
+		role.setUser_id(userVM.getUserId());
+		
+		em.persist(role);
+		
+		// nécessite d'ajouter une cascade pour la persistence dans toutes les tables (User, UserData et UserRole)
 
 		return user.getId();
 	}

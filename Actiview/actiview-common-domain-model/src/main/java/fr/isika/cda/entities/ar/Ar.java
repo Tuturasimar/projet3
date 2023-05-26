@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -42,6 +43,9 @@ public class Ar implements Serializable{
 	//Create a foreign key ar_id in the table arActivity
 	@JoinColumn(name="ar_id")
 	public List<ArActivity> arActivities = new LinkedList<>();
+	
+	@Column(name="user_id")
+	private Long userId ;
 
 	public LocalDate getCreatedAt() {
 		return createdAt;

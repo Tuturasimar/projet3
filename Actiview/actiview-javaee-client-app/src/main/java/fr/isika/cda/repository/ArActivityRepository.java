@@ -27,6 +27,12 @@ public class ArActivityRepository {
 	@PersistenceContext
 	private EntityManager em;
 
+	/**
+	 * Méthode de création d'un ArActivity
+	 * @param arId id du Ar associé
+	 * @param activityId id de l'Activity associée
+	 * @return Long (l'id de l'Ar nouvellement créé)
+	 */
 	public Long register(Long arId, Long activityId) {
 
 		ArActivity arActivity = new ArActivity();
@@ -43,6 +49,12 @@ public class ArActivityRepository {
 
 	}
 
+	/**
+	 * Méthode vérifiant l'existence d'un ArActivity
+	 * @param arId L'id de l'Ar actuel
+	 * @param activityId L'id de l'Activity associée
+	 * @return arActivity (s'il le trouve) , sinon null
+	 */
 	public ArActivity alreadyExist(Long arId, Long activityId) {
 
 		String arIdString = arId.toString();

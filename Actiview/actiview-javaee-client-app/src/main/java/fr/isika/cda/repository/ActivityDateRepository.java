@@ -65,12 +65,21 @@ public class ActivityDateRepository {
 		return null;
 	}
 
+	/**
+	 * Méthode allant chercher toutes les ActivityDate en fonction de l'id d'un Ar
+	 * @param arId L'id de l'Ar que l'on souhaite
+	 * @return Une liste d'ActivityDate
+	 */
 	public List<ActivityDate> getAllActivityDateByArId(Long arId) {
 
 		try {
 
+			// Exemple d'une requête avec triple jointure
 			Query query = em.createQuery(
-					"SELECT ad FROM ActivityDate ad JOIN ad.arActivity ara JOIN ara.ar ar WHERE ar.id = :arId");
+					"SELECT ad FROM ActivityDate ad "   // On utilise un alias pour ne pas devoir réécrire ActivityDate
+					+ "JOIN ad.arActivity ara "			// Jointure + alias. arActivity est un attribut d'ActivityDate
+					+ "JOIN ara.ar ar "					// ar est un attribut d'ArActivity
+					+ "WHERE ar.id = :arId");
 			query.setParameter("arId", arId);
 
 			@SuppressWarnings("unchecked")

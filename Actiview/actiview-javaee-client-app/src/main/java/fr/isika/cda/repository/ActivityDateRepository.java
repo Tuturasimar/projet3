@@ -79,7 +79,8 @@ public class ActivityDateRepository {
 					"SELECT ad FROM ActivityDate ad "   // On utilise un alias pour ne pas devoir réécrire ActivityDate
 					+ "JOIN ad.arActivity ara "			// Jointure + alias. arActivity est un attribut d'ActivityDate
 					+ "JOIN ara.ar ar "					// ar est un attribut d'ArActivity
-					+ "WHERE ar.id = :arId");
+					+ "WHERE ar.id = :arId "
+					+ "ORDER BY ad.date ASC");
 			query.setParameter("arId", arId);
 
 			@SuppressWarnings("unchecked")

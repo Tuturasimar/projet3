@@ -4,12 +4,14 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.ar.ActivityDate;
 import fr.isika.cda.repository.ActivityDateRepository;
 
 @ManagedBean
+@ViewScoped
 public class ShowActivityDatesFromArBean {
 	
 	private List<ActivityDate> activityDates;

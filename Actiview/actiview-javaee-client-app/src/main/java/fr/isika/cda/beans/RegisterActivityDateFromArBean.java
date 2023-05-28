@@ -1,24 +1,32 @@
 package fr.isika.cda.beans;
 
-import java.time.LocalDate;
+
+import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.ar.ArActivity;
-import fr.isika.cda.entities.ar.PartDayEnum;
 import fr.isika.cda.repository.ActivityDateRepository;
 import fr.isika.cda.repository.ArActivityRepository;
 import fr.isika.cda.viewmodels.ArDateViewModel;
 
-@ManagedBean
 /**
  * Bean qui gère la création des ActivityDate
  * 
  * @author Trévor
  *
  */
-public class RegisterActivityDateFromArBean {
+@ManagedBean
+@SessionScoped
+public class RegisterActivityDateFromArBean implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private ArDateViewModel arDateVm = new ArDateViewModel();
 
@@ -27,6 +35,18 @@ public class RegisterActivityDateFromArBean {
 
 	@Inject
 	private ActivityDateRepository activityDateRepository;
+	
+	public ArDateViewModel getArDateVm() {
+		return arDateVm;
+	}
+
+	public void setArDateVm(ArDateViewModel arDateVm) {
+		this.arDateVm = arDateVm;
+	}
+	
+	public void ajaxListener(AjaxBehaviorEvent event) {
+		System.out.println(arDateVm);
+	}
 
 	/**
 	 * 
@@ -35,8 +55,6 @@ public class RegisterActivityDateFromArBean {
 	public void addDate() {
 
 		// Mock donnée pour tester
-		arDateVm.setDate(LocalDate.now());
-		arDateVm.setPartOfDay(PartDayEnum.ALLDAY);
 		arDateVm.setRemote(false);
 		arDateVm.setArId(1L);
 		arDateVm.setActivityId(1L);
@@ -63,6 +81,7 @@ public class RegisterActivityDateFromArBean {
 			// l'activityDate
 			activityDateRepository.createActivityDate(arDateVm, id);
 		}
+				
 	}
 	
 	public void checkExistingActivityDate() {

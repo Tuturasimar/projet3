@@ -1,5 +1,6 @@
 package fr.isika.cda.repository;
 
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NamedQuery;
@@ -56,17 +57,14 @@ public class ArActivityRepository {
 	 * @return arActivity (s'il le trouve) , sinon null
 	 */
 	public ArActivity alreadyExist(Long arId, Long activityId) {
-
-		String arIdString = arId.toString();
-		String activityIdString = activityId.toString();
 		
 		ArActivity arActivity = null;
 		
 		try {
 			Query query = em.createQuery(
 					"SELECT ara FROM ArActivity ara WHERE activity_id = :activityId AND ar_id = :arId");
-			query.setParameter("activityId", activityIdString);
-			query.setParameter("arId", arIdString);
+			query.setParameter("activityId", activityId);
+			query.setParameter("arId", arId);
 
 			arActivity = (ArActivity) query.getSingleResult();
 		} catch(NoResultException nre) {
@@ -78,6 +76,7 @@ public class ArActivityRepository {
 		}
 
 		return null;
-
 	}
+	
+	
 }

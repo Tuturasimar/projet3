@@ -9,7 +9,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import fr.isika.cda.entities.activities.Mission;
+import fr.isika.cda.entities.ar.ActivityDate;
 import fr.isika.cda.entities.ar.Ar;
+import fr.isika.cda.entities.ar.ArActivity;
+import fr.isika.cda.entities.ar.PartDayEnum;
 import fr.isika.cda.entities.ar.StateAr;
 import fr.isika.cda.entities.common.ArConfigEnum;
 import fr.isika.cda.entities.users.User;
@@ -46,6 +49,20 @@ public class DataInit {
 		mission.setCreatorId(1L);
 
 		em.persist(mission);
+		
+		ArActivity arActivity = new ArActivity();
+		arActivity.setAr(ar);
+		arActivity.setActivity(mission);
+		
+		em.persist(arActivity);
+		
+		ActivityDate activityDate = new ActivityDate();
+		activityDate.setArActivity(arActivity);
+		activityDate.setDate(LocalDate.now());
+		activityDate.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate.setRemote(false);
+		
+		em.persist(activityDate);
 		
 	}
 }

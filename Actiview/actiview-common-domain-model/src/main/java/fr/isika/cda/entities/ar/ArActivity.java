@@ -33,7 +33,7 @@ public class ArActivity implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="ar_id")
 	private Ar ar;
-
+	
 	public Long getId() {
 		return id;
 	}

@@ -23,12 +23,12 @@
 				showIcon="true" />
 			<h:commandButton id="addDate"
 				action="#{registerActivityDateFromArBean.addDate()}" value="Test">
-				<f:ajax execute="@form" render="dateTab"></f:ajax>
+				<f:ajax execute="@form" render="dateTab" event="click"></f:ajax>
 			</h:commandButton>
 		</h:form>
 
 		<h:dataTable id="dateTab"
-			value="#{showActivityDatesFromArBean.activityDates}"
+			value="#{registerActivityDateFromArBean.activityDates}"
 			var="activityDate">
 			<h:column>
 				<f:facet name="header">Date</f:facet>

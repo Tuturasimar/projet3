@@ -2,12 +2,15 @@ package fr.isika.cda.beans;
 
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 
+import fr.isika.cda.entities.ar.ActivityDate;
 import fr.isika.cda.entities.ar.ArActivity;
 import fr.isika.cda.repository.ActivityDateRepository;
 import fr.isika.cda.repository.ArActivityRepository;
@@ -20,7 +23,7 @@ import fr.isika.cda.viewmodels.ArDateViewModel;
  *
  */
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class RegisterActivityDateFromArBean implements Serializable {
 
 	/**
@@ -29,6 +32,8 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private ArDateViewModel arDateVm = new ArDateViewModel();
+	
+	private List<ActivityDate> activityDates;
 
 	@Inject
 	private ArActivityRepository arActivityRepo;
@@ -39,6 +44,14 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	public ArDateViewModel getArDateVm() {
 		return arDateVm;
 	}
+	
+	public List<ActivityDate> getActivityDates() {
+		return activityDates;
+	}
+
+	public void setActivityDates(List<ActivityDate> activityDates) {
+		this.activityDates = activityDates;
+	}
 
 	public void setArDateVm(ArDateViewModel arDateVm) {
 		this.arDateVm = arDateVm;
@@ -46,6 +59,12 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	
 	public void ajaxListener(AjaxBehaviorEvent event) {
 		System.out.println(arDateVm);
+	}
+	
+	@PostConstruct
+	public void getAllActivityDates() {
+		// 1L pour tester
+		activityDates = activityDateRepository.getAllActivityDateByArId(1L);
 	}
 
 	/**
@@ -81,6 +100,8 @@ public class RegisterActivityDateFromArBean implements Serializable {
 			// l'activityDate
 			activityDateRepository.createActivityDate(arDateVm, id);
 		}
+		
+		getAllActivityDates();
 				
 	}
 	

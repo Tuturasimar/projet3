@@ -8,6 +8,8 @@ import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import fr.isika.cda.entities.activities.Absence;
+import fr.isika.cda.entities.activities.Formation;
 import fr.isika.cda.entities.activities.Mission;
 import fr.isika.cda.entities.ar.ActivityDate;
 import fr.isika.cda.entities.ar.Ar;
@@ -47,8 +49,21 @@ public class DataInit {
 		// Mock donnée d'une activity
 		Mission mission = new Mission();
 		mission.setCreatorId(1L);
+		mission.setLabelActivity("Mission Test");
 
 		em.persist(mission);
+		
+		Absence absence = new Absence();
+		absence.setCreatorId(1L);
+		absence.setLabelActivity("Absence Test");
+		
+		em.persist(absence);
+		
+		Formation formation = new Formation();
+		formation.setCreatorId(1L);
+		formation.setLabelActivity("Formation Test");
+		
+		em.persist(formation);
 		
 		// Mock donnée d'une ArActivity
 		

@@ -20,12 +20,14 @@ public class ArDateViewModel {
 	public void setArId(Long arId) {
 		this.arId = arId;
 	}
+	
 	public Long getActivityId() {
 		return activityId;
 	}
 	public void setActivityId(Long activityId) {
 		this.activityId = activityId;
 	}
+
 	public LocalDate getDate() {
 		return date;
 	}

@@ -14,6 +14,11 @@ import fr.isika.cda.repository.ActivityRepository;
 
 @ManagedBean
 @ViewScoped
+/**
+ * Bean pour récupérer et afficher l'ensemble des activités
+ * @author Trévor
+ *
+ */
 public class ShowActivityBean implements Serializable {
 
 	/**
@@ -27,6 +32,10 @@ public class ShowActivityBean implements Serializable {
 	private ActivityRepository activityRepo;
 	
 	@PostConstruct
+	/**
+	 * Méthode pour obtenir l'ensemble des activités sans contrainte (test)
+	 * A changer quand les attributions seront opérationnelles
+	 */
 	public void getAllActivities() {
 		activities = activityRepo.getAllActivities();
 	}

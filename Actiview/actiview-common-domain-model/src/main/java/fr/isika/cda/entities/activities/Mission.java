@@ -21,5 +21,32 @@ public class Mission extends Activity {
 	private MissionTypeEnum missionType;
 	@Enumerated(EnumType.STRING)
 	private StatusEnum missionState;
+	
+	public LocalDate getMissionStart() {
+		return missionStart;
+	}
+	public void setMissionStart(LocalDate missionStart) {
+		this.missionStart = missionStart;
+	}
+	public LocalDate getMissionEnd() {
+		return missionEnd;
+	}
+	public void setMissionEnd(LocalDate missionEnd) {
+		this.missionEnd = missionEnd;
+	}
+	public MissionTypeEnum getMissionType() {
+		return missionType;
+	}
+	public void setMissionType(MissionTypeEnum missionType) {
+		this.missionType = missionType;
+	}
+	public StatusEnum getMissionState() {
+		return missionState;
+	}
+	public void setMissionState(StatusEnum missionState) {
+		this.missionState = missionState;
+	}
+	
+	
 
 }

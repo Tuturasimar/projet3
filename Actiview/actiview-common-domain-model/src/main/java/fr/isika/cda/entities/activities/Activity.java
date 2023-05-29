@@ -60,6 +60,14 @@ public abstract class Activity {
 	public Long getId() {
 		return id;
 	}
+
+	// Ce toString permet l'affichage dans une liste déroulante, ne pas supprimer
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(labelActivity);
+		return builder.toString();
+	}
 	
 	
 	

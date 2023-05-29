@@ -40,10 +40,6 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	@Inject
 	private ActivityDateRepository activityDateRepository;
 
-	public ArDateViewModel getArDateVm() {
-		return arDateVm;
-	}
-
 	public List<ActivityDate> getActivityDates() {
 		return activityDates;
 	}
@@ -51,10 +47,15 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	public void setActivityDates(List<ActivityDate> activityDates) {
 		this.activityDates = activityDates;
 	}
+	
+	public ArDateViewModel getArDateVm() {
+		return arDateVm;
+	}
 
 	public void setArDateVm(ArDateViewModel arDateVm) {
 		this.arDateVm = arDateVm;
 	}
+	
 
 	@PostConstruct
 	/**
@@ -73,7 +74,6 @@ public class RegisterActivityDateFromArBean implements Serializable {
 
 		// Mock donnée pour tester
 		arDateVm.setArId(1L);
-		arDateVm.setActivityId(1L);
 
 		// Avant l'ajout d'une nouvelle ActivityDate, on check l'ancienne
 		checkExistingActivityDate();

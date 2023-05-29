@@ -1,6 +1,5 @@
 package fr.isika.cda.beans;
 
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,6 +11,7 @@ import javax.inject.Inject;
 
 import fr.isika.cda.entities.ar.ActivityDate;
 import fr.isika.cda.entities.ar.ArActivity;
+import fr.isika.cda.entities.ar.PartDayEnum;
 import fr.isika.cda.repository.ActivityDateRepository;
 import fr.isika.cda.repository.ArActivityRepository;
 import fr.isika.cda.viewmodels.ArDateViewModel;
@@ -32,7 +32,7 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private ArDateViewModel arDateVm = new ArDateViewModel();
-	
+
 	private List<ActivityDate> activityDates;
 
 	@Inject
@@ -40,11 +40,11 @@ public class RegisterActivityDateFromArBean implements Serializable {
 
 	@Inject
 	private ActivityDateRepository activityDateRepository;
-	
+
 	public ArDateViewModel getArDateVm() {
 		return arDateVm;
 	}
-	
+
 	public List<ActivityDate> getActivityDates() {
 		return activityDates;
 	}
@@ -56,11 +56,11 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	public void setArDateVm(ArDateViewModel arDateVm) {
 		this.arDateVm = arDateVm;
 	}
-	
+
 	public void ajaxListener(AjaxBehaviorEvent event) {
 		System.out.println(arDateVm);
 	}
-	
+
 	@PostConstruct
 	public void getAllActivityDates() {
 		// 1L pour tester
@@ -77,15 +77,13 @@ public class RegisterActivityDateFromArBean implements Serializable {
 		arDateVm.setRemote(false);
 		arDateVm.setArId(1L);
 		arDateVm.setActivityId(1L);
-		
+
 		// Avant l'ajout d'une nouvelle ActivityDate, on check l'ancienne
 		checkExistingActivityDate();
-		
+
 		// Appel d'une méthode pour vérifier s'il existe déjà un ArActivity avec la même
 		// Id du Ar et de l'Activity
 		ArActivity arActivity = arActivityRepo.alreadyExist(arDateVm.getArId(), arDateVm.getActivityId());
-		
-		
 
 		// S'il existe
 		if (arActivity != null) {
@@ -100,20 +98,42 @@ public class RegisterActivityDateFromArBean implements Serializable {
 			// l'activityDate
 			activityDateRepository.createActivityDate(arDateVm, id);
 		}
-		
+
 		getAllActivityDates();
-				
+
 	}
-	
+
+	/**
+	 * Méthode permettant de vérifier les dates déjà existantes pour l'AR en cours, afin de supprimer les incohérences
+	 */
 	public void checkExistingActivityDate() {
-		
+
 		// Si le PartDay du nouveau est ALLDAY
-			// Requete pour obtenir une Liste des ActivityDate sur la même date (et même AR évidemment)
-			// Suppression des anciens
-				
-		// Sinon
-			// Vérifier si la date et le partDay sont identiques à une ActivityDate déjà en BDD (correspondant au même AR)
-			// Si oui
-				// Suppression de l'ancien
+		if (arDateVm.getPartOfDay() == PartDayEnum.ALLDAY) {
+			// On boucle sur la liste récupérée plus tôt qui contient toutes les
+			// activityDate
+			for (ActivityDate activityDate : activityDates) {
+				// Si les dates sont identiques
+				if (activityDate.getDate().equals(arDateVm.getDate())) {
+					// On supprime l'ancienne
+					activityDateRepository.delete(activityDate);
+				}
+			}
+		} else
+		// Si le PartDat est MORNING ou AFTERNOON
+		{
+			// On utilise un stream qui va filtrer la liste et stocker celui qui correspond
+			// dans une variable
+			ActivityDate activityDateToDelete = activityDates.stream()
+					.filter(activityDate -> arDateVm.getDate().equals(activityDate.getDate())
+							&& (arDateVm.getPartOfDay().equals(activityDate.getPartOfDay())
+									|| activityDate.getPartOfDay() == PartDayEnum.ALLDAY))
+					.findAny().orElse(null);
+			// Si la recherche a été fructueuse
+			if (activityDateToDelete != null) {
+				// On supprime l'ancien
+				activityDateRepository.delete(activityDateToDelete);
+			}
+		}
 	}
 }

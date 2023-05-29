@@ -94,5 +94,11 @@ public class ActivityDateRepository {
 
 		return null;
 	}
+	
+	public void delete(ActivityDate activityDate) {
+		
+		em.remove(em.contains(activityDate) ? activityDate : em.merge(activityDate));
+		
+	}
 
 }

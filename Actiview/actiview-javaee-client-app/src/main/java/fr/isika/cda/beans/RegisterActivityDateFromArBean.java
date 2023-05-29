@@ -6,7 +6,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.ar.ActivityDate;
@@ -57,11 +56,10 @@ public class RegisterActivityDateFromArBean implements Serializable {
 		this.arDateVm = arDateVm;
 	}
 
-	public void ajaxListener(AjaxBehaviorEvent event) {
-		System.out.println(arDateVm);
-	}
-
 	@PostConstruct
+	/**
+	 * Méthode qui va chercher toutes les dates liées à l'ID de l'Ar en cours
+	 */
 	public void getAllActivityDates() {
 		// 1L pour tester
 		activityDates = activityDateRepository.getAllActivityDateByArId(1L);
@@ -74,7 +72,6 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	public void addDate() {
 
 		// Mock donnée pour tester
-		arDateVm.setRemote(false);
 		arDateVm.setArId(1L);
 		arDateVm.setActivityId(1L);
 
@@ -99,6 +96,7 @@ public class RegisterActivityDateFromArBean implements Serializable {
 			activityDateRepository.createActivityDate(arDateVm, id);
 		}
 
+		// On rafraichit la nouvelle liste suite à l'ajout ou la suppression de plusieurs activityDate
 		getAllActivityDates();
 
 	}
@@ -120,10 +118,11 @@ public class RegisterActivityDateFromArBean implements Serializable {
 				}
 			}
 		} else
-		// Si le PartDat est MORNING ou AFTERNOON
+		// Si le PartDay est MORNING ou AFTERNOON 
 		{
 			// On utilise un stream qui va filtrer la liste et stocker celui qui correspond
 			// dans une variable
+			// Si la date est identique ET ( Si le PartDay est identique OU le PartDay de l'ancien est ALLDAY)
 			ActivityDate activityDateToDelete = activityDates.stream()
 					.filter(activityDate -> arDateVm.getDate().equals(activityDate.getDate())
 							&& (arDateVm.getPartOfDay().equals(activityDate.getPartOfDay())

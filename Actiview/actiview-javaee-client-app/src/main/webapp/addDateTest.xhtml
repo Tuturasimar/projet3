@@ -16,10 +16,13 @@
 	<ui:define name="content">
 		<h:form>
 			<h:selectOneMenu
+			id="partDayMenu"
 				value="#{registerActivityDateFromArBean.arDateVm.partOfDay}">
 				<f:selectItems value="#{enumData.partDay}"></f:selectItems>
 			</h:selectOneMenu>
-			<p:datePicker value="#{registerActivityDateFromArBean.arDateVm.date}"
+			<h:outputLabel value="Télétravail" for="remote" />
+			<h:selectBooleanCheckbox id="remote" value="#{registerActivityDateFromArBean.arDateVm.remote}" />
+			<p:datePicker id="datePicker" value="#{registerActivityDateFromArBean.arDateVm.date}"
 				showIcon="true" />
 			<h:commandButton id="addDate"
 				action="#{registerActivityDateFromArBean.addDate()}" value="Test">
@@ -34,9 +37,13 @@
 				<f:facet name="header">Date</f:facet>
 		#{activityDate.date}
 		</h:column>
-		<h:column>
-		<f:facet name="header">Partie de la journée</f:facet>
+			<h:column>
+				<f:facet name="header">Partie de la journée</f:facet>
 		#{activityDate.partOfDay}
+		</h:column>
+		<h:column>
+				<f:facet name="header">Télétravail</f:facet>
+		#{activityDate.remote ? "Oui" : "Non"}
 		</h:column>
 		</h:dataTable>
 	</ui:define>

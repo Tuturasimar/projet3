@@ -50,11 +50,15 @@ public class DataInit {
 
 		em.persist(mission);
 		
+		// Mock donnée d'une ArActivity
+		
 		ArActivity arActivity = new ArActivity();
 		arActivity.setAr(ar);
 		arActivity.setActivity(mission);
 		
 		em.persist(arActivity);
+		
+		// Mock donnée d'une ActivityDate
 		
 		ActivityDate activityDate = new ActivityDate();
 		activityDate.setArActivity(arActivity);

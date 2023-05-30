@@ -33,7 +33,9 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Mettre à jour</f:facet>
-				<h:commandButton action="#{registerMission.updateMission(mission.id)}" value="Update"/>
+				<h:form>
+					<h:commandButton action="#{editMission.showEditMission(mission.id)}" value="Update"/>
+				</h:form>
 			</h:column>
 		</h:dataTable>
 	</ui:define>

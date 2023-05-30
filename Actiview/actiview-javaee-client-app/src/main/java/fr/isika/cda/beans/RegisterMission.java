@@ -25,10 +25,7 @@ public class RegisterMission {
 		missionVm = new MissionViewModel();
 	}
 	
-	public void updateMission(Long id) {
-		System.out.println("La mission à mettre à jour est : " + id);
-	}
-
+	
 	public MissionViewModel getMissionVm() {
 		return missionVm;
 	}
@@ -36,7 +33,6 @@ public class RegisterMission {
 	public void setMissionVm(MissionViewModel missionVm) {
 		this.missionVm = missionVm;
 	}
-	
 	
 
 }

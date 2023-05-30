@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.users.User;
-import fr.isika.cda.entities.users.UserData;
+import fr.isika.cda.entities.users.UserRole;
 import fr.isika.cda.repository.UserRepository;
 
 @ManagedBean
@@ -27,9 +27,14 @@ public class ShowUserBean {
 		
 	}
 
-//	public UserData GetUserData(Long id) {
-//		return userRepo.GetUserDataByUserId(id);
-//	}
+	public String GetListUserRoleByUserId(Long id) {
+		List<UserRole> roles = userRepo.GetAllUserRolesByUserId(id);
+		String rolesString = "";
+		for(UserRole role : roles) {
+			rolesString += role.toStringLabel();
+		}
+		return rolesString;
+	}
 	
 	public List<User> getUsers() {
 		return users;

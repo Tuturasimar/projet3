@@ -91,7 +91,7 @@ public class UserRepository {
 
 	public List<UserRole> GetAllUserRolesByUserId(Long id) {
 		try {
-			Query query = em.createQuery("SELECT ur FROM UserRole ud" + "JOIN ur.User u " + "WHERE u.id = id");
+			Query query = em.createQuery("SELECT ur FROM UserRole ur JOIN ur.user u WHERE u.id = :id");
 			query.setParameter("id", id);
 
 			@SuppressWarnings("unchecked")

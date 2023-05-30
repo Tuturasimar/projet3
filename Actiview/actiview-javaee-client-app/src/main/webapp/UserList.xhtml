@@ -26,9 +26,32 @@
 				</h:outputText>
 			</h:column>
 			<h:column>
-				<f:facet name="header">email</f:facet>
+				<f:facet name="header">Email</f:facet>
 				#{user.userData.email}
 			</h:column>
+			<h:column>
+				<f:facet name="header">Prénom</f:facet>
+				#{user.userData.firstname}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Nom</f:facet>
+				#{user.userData.lastname}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Date de naissance</f:facet>
+				<h:outputText value="#{user.userData.birthday}">
+					<f:convertDateTime type="localDate" pattern="dd.MM.yyyy" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Poste</f:facet>
+				#{user.userData.jobEnum.label}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Rôle</f:facet>
+				#{showUserBean.GetListUserRoleByUserId(user.id)}
+			</h:column>
+			
 		</h:dataTable>
 		<h:link outcome="index.html">Index</h:link>
 		<h:link outcome="RegisterUserForm.html">Ajouter un utilisateur</h:link>

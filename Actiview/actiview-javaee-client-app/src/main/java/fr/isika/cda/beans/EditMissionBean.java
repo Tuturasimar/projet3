@@ -11,7 +11,7 @@ import fr.isika.cda.viewmodels.MissionViewModel;
 
 @ManagedBean
 @SessionScoped
-public class EditMission {
+public class EditMissionBean {
 
 	private EditMissionViewModel editMissionVm = new EditMissionViewModel();
 

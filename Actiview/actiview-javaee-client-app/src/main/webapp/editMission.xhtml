@@ -18,26 +18,26 @@
 		<h:panelGrid>
 		
 		<h:outputLabel id="missionLabel" value="Nom de la mission : "/>
-		<h:inputText id="missionTxt" value="#{editMission.editMissionVm.labelActivity}"/>
+		<h:inputText id="missionTxt" value="#{editMissionBean.editMissionVm.labelActivity}"/>
 		
 		<h:outputLabel id="typeMissionLabel" value ="Type de mission : "/>
-		<h:selectOneMenu id="typeMissionTxt" value="#{editMission.editMissionVm.missionType}">
+		<h:selectOneMenu id="typeMissionTxt" value="#{editMissionBean.editMissionVm.missionType}">
 		<f:selectItems value="#{data.missionType}"></f:selectItems>
 		</h:selectOneMenu>
 		
 		<p:outputLabel id="missionStartLabel" value="Date de début de la mission : " />
-		<p:calendar id="missionStartTxt" value="#{editMission.editMissionVm.missionStart}" showOn="button">
+		<p:calendar id="missionStartTxt" value="#{editMissionBean.editMissionVm.missionStart}" showOn="button">
 		</p:calendar>
 		
 		<p:outputLabel id="missionEndLabel" value="Date de fin de la mission : " />
-		<p:calendar id="missionEndTxt" value="#{editMission.editMissionVm.missionEnd}" showOn="button">
+		<p:calendar id="missionEndTxt" value="#{editMissionBean.editMissionVm.missionEnd}" showOn="button">
 		</p:calendar>
 		
 		
 		
 		<h:form>
-			<h:commandButton value="Edit" action="#{editMission.editMission()}"/>
-			<h:commandButton value="Clear" action="#{editMission.clear()}"/>
+			<h:commandButton value="Edit" action="#{editMissionBean.editMission()}"/>
+			<h:commandButton value="Clear" action="#{editMissionBean.clear()}"/>
 		</h:form>
 		</h:panelGrid>
 		<ul>

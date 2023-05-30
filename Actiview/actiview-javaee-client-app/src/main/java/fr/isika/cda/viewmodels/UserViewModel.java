@@ -1,31 +1,22 @@
 package fr.isika.cda.viewmodels;
 
 import java.time.LocalDate;
-import java.util.LinkedList;
-import java.util.List;
+import java.time.LocalDateTime;
 
-import fr.isika.cda.entities.ar.Ar;
 import fr.isika.cda.entities.common.JobEnum;
 import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.StatusEnum;
 
 public class UserViewModel {
 
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-
 	// Données de la table User
 	private String login;
 	private String password;
-	private LocalDate createdAt;
+	private LocalDateTime createdAt = LocalDateTime.now();
+	
 	private StatusEnum status;
-	private List<Ar> ars = new LinkedList<>();
-	private Long managerId;
+	
+	private String managerId;
 
 	// Données de la table Userdata
 	private String lastname;
@@ -33,11 +24,9 @@ public class UserViewModel {
 	private LocalDate birthday;
 	private String email;
 	private JobEnum jobEnum;
-	// utilisée à la fois pour la table UserData et UserRole
-	private Long userId;
-
-	// Donnée de la table UserRole
-	private RoleTypeEnum roleTypeEnum;
+	
+	// Donnée de la table UserRole (par défaut tout le monde est salarié, à surcharger plus tard)
+	private RoleTypeEnum roleTypeEnum = RoleTypeEnum.SALARIE;
 
 	// Getters & Setters
 	public String getLogin() {
@@ -56,28 +45,12 @@ public class UserViewModel {
 		this.password = password;
 	}
 
-	public LocalDate getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDate createdAt) {
-		this.createdAt = createdAt;
-	}
-
 	public StatusEnum getStatus() {
 		return status;
 	}
 
 	public void setStatus(StatusEnum status) {
 		this.status = status;
-	}
-
-	public List<Ar> getArs() {
-		return ars;
-	}
-
-	public void setArs(List<Ar> ars) {
-		this.ars = ars;
 	}
 
 	public String getLastname() {
@@ -128,20 +101,48 @@ public class UserViewModel {
 		this.roleTypeEnum = roleTypeEnum;
 	}
 
-	public Long getManagerId() {
+	public String getManagerId() {
 		return managerId;
 	}
-
-	public void setManagerId(Long managerId) {
+	public void setManagerId(String managerId) {
 		this.managerId = managerId;
 	}
 
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+	
 	@Override
 	public String toString() {
-		return "UserViewModel [login=" + login + ", password=" + password + ", createdAt=" + createdAt + ", status="
-				+ status + ", ars=" + ars + ", managerId=" + managerId + ", lastname=" + lastname + ", firstname="
-				+ firstname + ", birthday=" + birthday + ", email=" + email + ", jobEnum=" + jobEnum + ", roleTypeEnum="
-				+ roleTypeEnum + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("UserViewModel [login=");
+		builder.append(login);
+		builder.append(", password=");
+		builder.append(password);
+		builder.append(", createdAt=");
+		builder.append(createdAt);
+		builder.append(", status=");
+		builder.append(status);
+		builder.append(", managerId=");
+		builder.append(managerId);
+		builder.append(", lastname=");
+		builder.append(lastname);
+		builder.append(", firstname=");
+		builder.append(firstname);
+		builder.append(", birthday=");
+		builder.append(birthday);
+		builder.append(", email=");
+		builder.append(email);
+		builder.append(", jobEnum=");
+		builder.append(jobEnum);
+		builder.append(", roleTypeEnum=");
+		builder.append(roleTypeEnum);
+		builder.append("]");
+		return builder.toString();
 	}
+	
 
 }

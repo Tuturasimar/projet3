@@ -2,6 +2,8 @@ package fr.isika.cda.dataset;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
@@ -32,7 +34,7 @@ public class DataInit {
 
 		// Mock donnée User
 		User user = new User();
-		user.setCreatedAt(LocalDate.now());
+		user.setCreatedAt(LocalDateTime.now());
 		
 		em.persist(user);
 

@@ -13,56 +13,51 @@
 
 	<ui:define name="content">
 		<h:form>
-			<h:outputLabel id="loginLabel" value="Login" />
-			<p:inputText id="loginInput"
-				value="#{registerUser.userViewModel.login}" />
-
-			<h:outputLabel id="passwordLabel" value="Mot de passe" />
-			<p:password id="passwordInput"
-				value="#{registerUser.userViewModel.password}" />
-
-			<p:inputText type="hidden" id="createdAtInput"
-				value="#{registerUser.userViewModel.createdAt}" />
-
-			<p:inputText type="hidden" id="statusInput"
-				value="#{registerUser.userViewModel.status}" />
-
-			<h:outputLabel id="firstnameLabel" value="Prénom" />
-			<p:inputText id="firstnameInput"
-				value="#{registerUser.userViewModel.firstname}" />
-
-			<h:outputLabel id="nameLabel" value="Nom de famille" />
-			<p:inputText id="nameInput"
-				value="#{registerUser.userViewModel.lastname}" />
-
-			<h:outputLabel id="emailLabel" value="Email" />
-			<p:inputText id="emailInput"
-				value="#{registerUser.userViewModel.email}" />
-
-			<h:outputLabel id="birthdayLabel" value="Date de naissance" />
-			<p:calendar id="birhdayInput" value="#{registerUser.userViewModel.birthday}" showOn="button"/>
-
-			<h:outputLabel id="jobLabel" value="Poste" />
-			<p:selectOneMenu id="jobSelectMenu"
-				value="#{registerUser.userViewModel.jobEnum}">
-				<f:selectItem itemLabel="Selectionner un poste" itemValue="" />
-				<f:selectItem itemLabel="Développeur" itemValue="JobEnum.DEV" />
-				<f:selectItem itemLabel="Chef de projet"
-					itemValue="JobEnum.CHEF_DE_PROJET" />
-			</p:selectOneMenu>
-
-			<h:outputLabel id="managerLabel" value="Manager" />
-			<p:selectOneMenu id="managerSelectMenu"
-				value="#{registerUser.userViewModel.managerId}">
-				<f:selectItem itemLabel="Selectionner un manager" itemValue="" />
-				<f:selectItem itemLabel="Aucun Manager" itemValue="null" />
-			</p:selectOneMenu>
-
-			<p:commandButton value="Submit"
-				action="#{registerUser.registerUser()}" />
-			<p:commandButton value="Reset"
-				action="#{registerUser.clear()}" />
-
+			<h:panelGrid columns="3">
+			
+				<h:outputLabel id="loginLabel" value="Login" />
+				<p:inputText id="loginInput" value="#{registerUser.userViewModel.login}" />
+				<h:message for="loginInput"/>
+				
+				<h:outputLabel id="passwordLabel" value="Mot de passe" />
+				<p:password id="passwordInput" value="#{registerUser.userViewModel.password}" />
+				<h:message for="passwordInput"/>
+				
+				<h:outputLabel id="emailLabel" value="Email" />
+				<p:inputText id="emailInput" value="#{registerUser.userViewModel.email}" />
+				<h:message for="emailInput"/>
+				
+				<h:outputLabel id="firstnameLabel" value="Prénom" />
+				<p:inputText id="firstnameInput" value="#{registerUser.userViewModel.firstname}" />
+				<h:message for="firstnameInput"/>
+	
+				<h:outputLabel id="nameLabel" value="Nom de famille" />
+				<p:inputText id="nameInput" value="#{registerUser.userViewModel.lastname}" />
+				<h:message for="nameInput"/>
+				
+				<h:outputLabel id="birthdayLabel" value="Date de naissance" />
+				<p:datePicker id="birthdayInput" value="#{registerUser.userViewModel.birthday}" />
+				<h:message for="birthdayInput"/>
+				
+				<h:outputLabel id="jobLabel" value="Poste" />
+				<p:selectOneMenu id="jobSelectMenu" value="#{registerUser.userViewModel.jobEnum}">
+					<f:selectItem itemLabel="Sélectionner un poste" itemValue=""  noSelectionOption="true" />
+					<f:selectItems value="#{registerUser.jobEnumValues()}" var="job" itemLabel="#{job.label}" itemValue="#{job}" />
+				</p:selectOneMenu>
+				<h:message for="jobSelectMenu"/>
+				
+				<h:outputLabel id="managerLabel" value="Manager" />
+				<p:selectOneMenu id="managerSelectMenu"
+					value="#{registerUser.userViewModel.managerId}">
+					<f:selectItem itemLabel="Sélectionner un manager" itemValue="" noSelectionOption="true"/>
+					<f:selectItem itemLabel="Aucun Manager" itemValue="null" />
+				</p:selectOneMenu>
+				<h:message for="managerSelectMenu"/>
+				
+				<span></span>
+				<p:commandButton value="Submit" action="#{registerUser.registerUser()}" />
+				<p:commandButton value="Reset" action="#{registerUser.clear()}" />
+			</h:panelGrid>
 		</h:form>
 		<p>
 			<h:link outcome="index.html">Index</h:link>

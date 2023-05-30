@@ -4,6 +4,7 @@ package fr.isika.cda.beans;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
+import fr.isika.cda.entities.common.JobEnum;
 import fr.isika.cda.repository.UserRepository;
 import fr.isika.cda.viewmodels.UserViewModel;
 
@@ -30,6 +31,11 @@ public class RegisterUser {
 		userViewModel = new UserViewModel();
 	}
 
+	
+	public JobEnum[] jobEnumValues() {
+		return JobEnum.values();
+	}
+	
 	public UserViewModel getUserViewModel() {
 		return userViewModel;
 	}

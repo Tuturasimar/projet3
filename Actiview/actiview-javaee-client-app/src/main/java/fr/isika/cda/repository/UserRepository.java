@@ -13,6 +13,7 @@ import fr.isika.cda.viewmodels.UserViewModel;
 @Stateless
 public class UserRepository {
 
+	private static final Long MANAGER_ID_DEFAULT_NOT_FOUND = -1L;
 	@PersistenceContext
 	private EntityManager em;
 
@@ -28,7 +29,12 @@ public class UserRepository {
 		user.setPassword(userVM.getPassword());
 		user.setCreatedAt(userVM.getCreatedAt());
 		user.setStatus(StatusEnum.ACTIVE);
-		user.setManagerId(userVM.getManagerId());
+		
+		Long managerId = extractManagerId(userVM.getManagerId());
+		if( !MANAGER_ID_DEFAULT_NOT_FOUND.equals(managerId) ) {
+			User manager = em.find(User.class, managerId);
+			user.setManager(manager);
+		}
 		
 		em.persist(user);
 		
@@ -38,18 +44,27 @@ public class UserRepository {
 		data.setBirthday(userVM.getBirthday());
 		data.setEmail(userVM.getEmail());
 		data.setJobEnum(userVM.getJobEnum());
-		data.setUserId(userVM.getUserId());
+		data.setUser(user);
 		
 		em.persist(data);
 		
 		UserRole role = new UserRole();
 		role.setRoleTypeEnum(userVM.getRoleTypeEnum());
-		role.setUser_id(userVM.getUserId());
+		role.setUser(user);
 		
 		em.persist(role);
+		
 		
 		// nécessite d'ajouter une cascade pour la persistence dans toutes les tables (User, UserData et UserRole)
 
 		return user.getId();
+	}
+	
+	private Long extractManagerId(String value) {
+		try {
+		return Long.parseLong(value);
+		} catch(NumberFormatException e) {
+			return MANAGER_ID_DEFAULT_NOT_FOUND;
+		}
 	}
 }

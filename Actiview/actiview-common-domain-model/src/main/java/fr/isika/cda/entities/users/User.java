@@ -1,11 +1,11 @@
 package fr.isika.cda.entities.users;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -33,31 +33,26 @@ public class User implements Serializable {
 
 	private String login;
 	private String password;
-	private LocalDate createdAt;
+	private LocalDateTime createdAt;
 
 	@Enumerated(EnumType.STRING)
 	private StatusEnum status;
 
 	@ManyToOne
-	@JoinColumn(name="manager_id", insertable=false, updatable=false)
-	private User manager ;
-	
-	@Column(name="manager_id")
-	private Long managerId;
-	
-	
+	@JoinColumn(name = "fk_manager_id")
+	private User manager;
+
 	@OneToMany
-	@JoinColumn(name = "user_id", insertable=false, updatable=false)
-	//crée une colonne user_id dans la table ar
+	@JoinColumn(name = "fk_user_id")
+	// crée une colonne user_id dans la table ar
 	public List<Ar> ars = new LinkedList<>();
-	
+
 	public void setLogin(String login) {
 		this.login = login;
 	}
 
 	public Long getId() {
 		return id;
-
 	}
 
 	public String getLogin() {
@@ -72,11 +67,11 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public LocalDate getCreatedAt() {
+	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(LocalDate createdAt) {
+	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
 
@@ -88,12 +83,23 @@ public class User implements Serializable {
 		this.status = status;
 	}
 
-	public Long getManagerId() {
-		return managerId;
+	public User getManager() {
+		return manager;
 	}
 
-	public void setManagerId(Long managerId) {
-		this.managerId = managerId;
+	public void setManager(User manager) {
+		this.manager = manager;
 	}
-
+	
+	public List<Ar> getArs() {
+		return Collections.unmodifiableList(ars);
+	}
+	
+	/**
+	 * @param ar
+	 * @return
+	 */
+	public boolean addAr(Ar ar) {
+		return this.ars.add(ar);
+	}
 }

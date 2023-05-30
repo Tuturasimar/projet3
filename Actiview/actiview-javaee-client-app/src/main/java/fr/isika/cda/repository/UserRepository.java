@@ -13,6 +13,7 @@ import fr.isika.cda.entities.common.StatusEnum;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserData;
 import fr.isika.cda.entities.users.UserRole;
+import fr.isika.cda.viewmodels.EditUserViewModel;
 import fr.isika.cda.viewmodels.UserViewModel;
 
 @Stateless
@@ -62,21 +63,21 @@ public class UserRepository {
 		return user.getId();
 	}
 
-	public Long updateUser(Long id, UserViewModel userVM) {
-		UserData data = findDataByUserId(id);
-		data.setFirstname(userVM.getFirstname());
-		data.setLastname(userVM.getLastname());
-		data.setBirthday(userVM.getBirthday());
-		data.setEmail(userVM.getEmail());
-		data.setJobEnum(userVM.getJobEnum());
+	public Long updateUser(EditUserViewModel editUserVM) {
+		UserData data = findDataByUserId(editUserVM.getId());
+		data.setFirstname(editUserVM.getFirstname());
+		data.setLastname(editUserVM.getLastname());
+		data.setBirthday(editUserVM.getBirthday());
+		data.setEmail(editUserVM.getEmail());
+		data.setJobEnum(editUserVM.getJobEnum());
 		
 		em.persist(data);
 		
-		User user = findUserById(id);
-		user.setPassword(userVM.getPassword());
-		user.setStatus(userVM.getStatus());
+		User user = findUserById(editUserVM.getId());
+		user.setPassword(editUserVM.getPassword());
+		user.setStatus(editUserVM.getStatus());
 
-		Long managerId = extractManagerId(userVM.getManagerId());
+		Long managerId = extractManagerId(editUserVM.getManagerId());
 		if (!MANAGER_ID_DEFAULT_NOT_FOUND.equals(managerId)) {
 			User manager = em.find(User.class, managerId);
 			user.setManager(manager);
@@ -102,7 +103,7 @@ public class UserRepository {
 		return (User) query.getSingleResult();
 	}
 
-	private UserData findDataByUserId(Long id) {
+	public UserData findDataByUserId(Long id) {
 		Query query = em.createQuery("SELECT ud FROM UserData ud JOIN ud.user u WHERE u.id= :id");
 		query.setParameter("id", id);
 		return (UserData) query.getSingleResult();
@@ -127,4 +128,5 @@ public class UserRepository {
 		}
 		return null;
 	}
+
 }

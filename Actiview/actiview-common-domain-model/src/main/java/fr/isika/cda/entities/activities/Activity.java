@@ -3,7 +3,6 @@ package fr.isika.cda.entities.activities;
 
 
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -31,7 +30,9 @@ public abstract class Activity {
 	protected StatusEnum status;
 	
 	// id du manager ayant créé la mission
+
 	protected Long creatorId;
+
 
 	public String getLabelActivity() {
 		return labelActivity;
@@ -49,17 +50,20 @@ public abstract class Activity {
 		this.status = status;
 	}
 
+
 	public Long getCreatorId() {
 		return creatorId;
 	}
 
 	public void setCreatorId(Long creatorId) {
+
 		this.creatorId = creatorId;
 	}
 
 	public Long getId() {
 		return id;
 	}
+
 
 	// Ce toString permet l'affichage dans une liste déroulante, ne pas supprimer
 	@Override
@@ -70,6 +74,7 @@ public abstract class Activity {
 	}
 	
 	
+
 	
 	
 	

@@ -58,12 +58,18 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	
 
 	@PostConstruct
+	public void init() {
+		// On fixe l'ID de l'AR ici
+		
+		getAllActivityDates();
+	}
+	
 	/**
 	 * Méthode qui va chercher toutes les dates liées à l'ID de l'Ar en cours
 	 */
 	public void getAllActivityDates() {
 		// 1L pour tester
-		activityDates = activityDateRepository.getAllActivityDateByArId(1L);
+		activityDates = activityDateRepository.getAllActivityDateByArId(arDateVm.getArId());
 	}
 
 	/**
@@ -71,9 +77,6 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	 * Méthode permettant d'ajouter une date liée à une Ar_activity
 	 */
 	public void addDate() {
-
-		// Mock donnée pour tester
-		arDateVm.setArId(1L);
 
 		// Avant l'ajout d'une nouvelle ActivityDate, on check l'ancienne
 		checkExistingActivityDate();
@@ -135,4 +138,5 @@ public class RegisterActivityDateFromArBean implements Serializable {
 			}
 		}
 	}
+	
 }

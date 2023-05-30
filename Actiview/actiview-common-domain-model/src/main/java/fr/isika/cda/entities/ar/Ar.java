@@ -2,10 +2,6 @@ package fr.isika.cda.entities.ar;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 
 import fr.isika.cda.entities.common.ArConfigEnum;
@@ -42,20 +37,8 @@ public class Ar implements Serializable{
 	private ArConfigEnum arConfig;
 	
 	@ManyToOne
-	@JoinColumn(name="user_id", insertable = false, updatable = false)
+	@JoinColumn(name="fk_user_id")
 	private User user;
-	
-	@Column(name="user_id")
-	private Long userId;
-	
-	
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
 
 	public User getUser() {
 		return user;

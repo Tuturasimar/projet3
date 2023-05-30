@@ -47,5 +47,5 @@ public class ArDateViewModel {
 		this.remote = remote;
 	}
 	
-	
+
 }

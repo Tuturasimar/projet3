@@ -15,10 +15,11 @@ public class RegisterMission {
 	@Inject
 	private MissionRepository missionRepository;
 	
-	public void register() {
+	public String register() {
 		Long id = missionRepository.register(missionVm);
 		System.out.println("La mission a bien été créee avec l'id : " + id);
 		clear();
+		return "missionList.xhtml";
 	}
 	
 	public void clear() {

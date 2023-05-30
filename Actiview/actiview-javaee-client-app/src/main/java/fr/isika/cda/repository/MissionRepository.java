@@ -39,6 +39,7 @@ public class MissionRepository {
 		missionUpdate.setMissionEnd(missionVm.getMissionEnd());
 		missionUpdate.setMissionType(missionVm.getMissionType());
 		missionUpdate.setStatus(missionVm.getMissionState());
+		missionUpdate.setMissionState(missionVm.getMissionState());
 		return missionUpdate.getId(); 
 	}
 

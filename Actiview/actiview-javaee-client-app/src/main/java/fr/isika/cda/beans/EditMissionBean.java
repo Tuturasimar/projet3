@@ -23,6 +23,10 @@ public class EditMissionBean {
 			// mapper l'entité à modifier dans le editMissionVm
 			editMissionVm = new EditMissionViewModel(missionToUpdate.getId());
 			editMissionVm.setLabelActivity(missionToUpdate.getLabelActivity());
+			editMissionVm.setMissionStart(missionToUpdate.getMissionStart());
+			editMissionVm.setMissionEnd(missionToUpdate.getMissionEnd());
+			editMissionVm.setMissionState(missionToUpdate.getMissionState());
+			editMissionVm.setMissionType(missionToUpdate.getMissionType());
 		}
 		return "editMission.xhtml";
 	}

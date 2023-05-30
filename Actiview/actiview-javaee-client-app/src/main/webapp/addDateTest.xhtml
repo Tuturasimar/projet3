@@ -14,6 +14,7 @@
 	</ui:define>
 
 	<ui:define name="content">
+		
 		<h:form>
 			<h:selectOneMenu id="partDayMenu"
 				value="#{registerActivityDateFromArBean.arDateVm.partOfDay}">
@@ -35,7 +36,6 @@
 				<f:ajax execute="@form" render="dateTab" event="click"></f:ajax>
 			</h:commandButton>
 		</h:form>
-
 		<h:dataTable id="dateTab"
 			value="#{registerActivityDateFromArBean.activityDates}"
 			var="activityDate">

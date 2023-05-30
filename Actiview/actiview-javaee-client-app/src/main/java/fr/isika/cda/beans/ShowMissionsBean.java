@@ -19,7 +19,7 @@ public class ShowMissionsBean {
 	
 	@PostConstruct
 	public void initMissionList() {
-		missions = missionRepo.findAllMissions();
+		missions = missionRepo.findAll();
 	}
 
 	public MissionRepository getMissionRepo() {

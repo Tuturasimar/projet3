@@ -68,7 +68,11 @@ public class DataInit {
 		ar.setUpdatedAt(LocalDate.now());
 		ar.setUser(user);
 
+		Ar ar2 = new Ar();
+		ar2.setCreatedAt(LocalDate.of(2023, 04, 23));
+		
 		em.persist(ar);
+		em.persist(ar2);
 
 		// Mock donnée d'une activity
 		Mission mission = new Mission();

@@ -49,7 +49,6 @@ public class Ar implements Serializable{
 	private Long userId;
 	
 	
-
 	public Long getUserId() {
 		return userId;
 	}
@@ -65,7 +64,7 @@ public class Ar implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
-
+	
 	public LocalDate getCreatedAt() {
 		return createdAt;
 	}

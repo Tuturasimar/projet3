@@ -1,6 +1,8 @@
 package fr.isika.cda.dataset;
 
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
@@ -19,6 +21,7 @@ import fr.isika.cda.entities.ar.StateAr;
 import fr.isika.cda.entities.common.ArConfigEnum;
 import fr.isika.cda.entities.users.User;
 
+
 @Singleton
 @Startup
 public class DataInit {
@@ -31,7 +34,7 @@ public class DataInit {
 
 		// Mock donnée User
 		User user = new User();
-		user.setCreatedAt(LocalDate.now());
+		user.setCreatedAt(LocalDateTime.now());
 		
 		em.persist(user);
 
@@ -84,4 +87,5 @@ public class DataInit {
 		em.persist(activityDate);
 		
 	}
+
 }

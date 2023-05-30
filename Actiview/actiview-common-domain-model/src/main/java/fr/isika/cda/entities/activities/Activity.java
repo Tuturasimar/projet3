@@ -1,8 +1,5 @@
 package fr.isika.cda.entities.activities;
 
-
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-
 import fr.isika.cda.entities.common.StatusEnum;
 
 @Entity
@@ -28,7 +24,7 @@ public abstract class Activity {
 
 	@Enumerated(EnumType.STRING)
 	protected StatusEnum status;
-	
+
 	// id du manager ayant créé la mission
 
 	protected Long creatorId;
@@ -72,12 +68,5 @@ public abstract class Activity {
 		builder.append(labelActivity);
 		return builder.toString();
 	}
-	
-	
 
-	
-	
-	
-	
-	
 }

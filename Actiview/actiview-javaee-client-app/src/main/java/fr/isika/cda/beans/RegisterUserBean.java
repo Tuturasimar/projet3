@@ -23,6 +23,7 @@ public class RegisterUserBean {
 	public void registerUser() {
 		Long id = userRepo.registerUser(userViewModel);
 		System.out.println("Id du user créé : "+ id);
+		clear();
 	}
 	/**
 	 * Vide les champs du formulaire en front

@@ -4,13 +4,13 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-	
+
 <ui:composition template="/WEB-INF/templates/default.xhtml">
 
 	<ui:define name="Entete">
 		<h1 style="text-align: center">Liste des utilisateurs</h1>
 	</ui:define>
-	
+
 	<ui:define name="content">
 		<h:dataTable value="#{showUserBean.users}" var="user">
 			<h:column>
@@ -51,12 +51,13 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Rôle</f:facet>
-				#{showUserBean.GetListUserRoleByUserId(user.id)}
+				#{showUserBean.getListUserRoleByUserId(user.id)}
 			</h:column>
 			<h:column>
 				<f:facet name="header">Modifier</f:facet>
-				<h:commandButton action="#{UpdateUserBean.updateUser(user.id)}"
-					value="Modifier" />
+				<h:form>
+					<h:commandButton action="#{updateUserBean.showUpdateUser(user.id)}" value="Modifier" />
+				</h:form>
 			</h:column>
 		</h:dataTable>
 		<h:link outcome="index.html">Index</h:link>

@@ -27,8 +27,8 @@ public class ShowUserBean {
 		
 	}
 
-	public String GetListUserRoleByUserId(Long id) {
-		List<UserRole> roles = userRepo.GetAllUserRolesByUserId(id);
+	public String getListUserRoleByUserId(Long id) {
+		List<UserRole> roles = userRepo.getAllUserRolesByUserId(id);
 		String rolesString = "";
 		for(UserRole role : roles) {
 			rolesString += role.toStringLabel();

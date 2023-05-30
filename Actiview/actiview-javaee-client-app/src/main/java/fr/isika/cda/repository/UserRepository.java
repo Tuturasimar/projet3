@@ -112,7 +112,7 @@ public class UserRepository {
 		return em.createQuery("SELECT u FROM User u JOIN u.userData", User.class).getResultList();
 	}
 
-	public List<UserRole> GetAllUserRolesByUserId(Long id) {
+	public List<UserRole> getAllUserRolesByUserId(Long id) {
 		try {
 			Query query = em.createQuery("SELECT ur FROM UserRole ur JOIN ur.user u WHERE u.id = :id");
 			query.setParameter("id", id);

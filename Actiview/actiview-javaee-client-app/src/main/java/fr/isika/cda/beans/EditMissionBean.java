@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import fr.isika.cda.entities.activities.Mission;
 import fr.isika.cda.repository.MissionRepository;
 import fr.isika.cda.viewmodels.EditMissionViewModel;
-import fr.isika.cda.viewmodels.MissionViewModel;
 
 @ManagedBean
 @SessionScoped

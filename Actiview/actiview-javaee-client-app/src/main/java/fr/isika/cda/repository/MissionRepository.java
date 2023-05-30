@@ -8,11 +8,14 @@ import javax.persistence.PersistenceContext;
 
 import fr.isika.cda.entities.activities.Mission;
 import fr.isika.cda.entities.common.StatusEnum;
+import fr.isika.cda.viewmodels.EditMissionViewModel;
 import fr.isika.cda.viewmodels.MissionViewModel;
 
 @Stateless
 public class MissionRepository {
 
+	private static final String SELECT_MISSION_BY_ID_MISSION_PARAM = "SELECT m FROM Mission m WHERE m.id = :idMissionParam";
+	
 	@PersistenceContext
 	private EntityManager em;
 	
@@ -29,14 +32,27 @@ public class MissionRepository {
 		return mission.getId();
 	}
 	
-	public List<Mission> findAllMissions() {
+	public Long editMission(EditMissionViewModel missionVm, Long id) {
+		Mission missionUpdate = findById(id);
+		missionUpdate.setLabelActivity(missionVm.getLabelActivity());
+		missionUpdate.setMissionStart(missionVm.getMissionStart());
+		missionUpdate.setMissionEnd(missionVm.getMissionEnd());
+		missionUpdate.setMissionType(missionVm.getMissionType());
+		missionUpdate.setStatus(missionVm.getMissionState());
+		return missionUpdate.getId(); 
+	}
+
+	public List<Mission> findAll() {
 		return em.createQuery("SELECT m FROM Mission m", Mission.class).getResultList();
 	}
 	
-	public void updateMission(MissionViewModel missionVm, Long id) {
+	public Mission findById(Long id) {
 		Mission mission = new Mission();
-		em.createQuery("SELECT * FROM Mission WHERE id=" + id);
-		
-		em.persist(mission);
+		mission = em
+				.createQuery(SELECT_MISSION_BY_ID_MISSION_PARAM, Mission.class)
+				.setParameter("idMissionParam", id)
+				.getSingleResult();
+		return mission;
 	}
+	
 }

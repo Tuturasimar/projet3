@@ -1,14 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	template="/WEB-INF/templates/default.xhtml"
 	xmlns:p="http://primefaces.org/ui">
+	
+<ui:composition template="/WEB-INF/templates/default.xhtml">
 
-	<ui:define name="header">
+	<ui:define name="Entete">
 		<h1 style="text-align: center">Liste des utilisateurs</h1>
 	</ui:define>
+	
 	<ui:define name="content">
 		<h:dataTable value="#{showUserBean.users}" var="user">
 			<h:column>
@@ -51,9 +53,14 @@
 				<f:facet name="header">Rôle</f:facet>
 				#{showUserBean.GetListUserRoleByUserId(user.id)}
 			</h:column>
-			
+			<h:column>
+				<f:facet name="header">Modifier</f:facet>
+				<h:commandButton action="#{UpdateUserBean.updateUser(user.id)}"
+					value="Modifier" />
+			</h:column>
 		</h:dataTable>
 		<h:link outcome="index.html">Index</h:link>
 		<h:link outcome="RegisterUserForm.html">Ajouter un utilisateur</h:link>
 	</ui:define>
 </ui:composition>
+</html>

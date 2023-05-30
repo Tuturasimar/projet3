@@ -62,6 +62,32 @@ public class UserRepository {
 		return user.getId();
 	}
 
+	public Long updateUser(Long id, UserViewModel userVM) {
+		UserData data = findDataByUserId(id);
+		data.setFirstname(userVM.getFirstname());
+		data.setLastname(userVM.getLastname());
+		data.setBirthday(userVM.getBirthday());
+		data.setEmail(userVM.getEmail());
+		data.setJobEnum(userVM.getJobEnum());
+		
+		em.persist(data);
+		
+		User user = findUserById(id);
+		user.setPassword(userVM.getPassword());
+		user.setStatus(userVM.getStatus());
+
+		Long managerId = extractManagerId(userVM.getManagerId());
+		if (!MANAGER_ID_DEFAULT_NOT_FOUND.equals(managerId)) {
+			User manager = em.find(User.class, managerId);
+			user.setManager(manager);
+		}
+		user.setUserData(data);
+		
+		em.persist(user);
+
+		return user.getId();
+	}
+
 	private Long extractManagerId(String value) {
 		try {
 			return Long.parseLong(value);
@@ -70,23 +96,20 @@ public class UserRepository {
 		}
 	}
 
-	public List<User> findAllUsers() {
-		return em.createQuery("SELECT u FROM User u JOIN u.userData", User.class).getResultList();
+	public User findUserById(Long id) {
+		Query query = em.createQuery("SELECT u FROM User u WHERE u.id= :id");
+		query.setParameter("id", id);
+		return (User) query.getSingleResult();
 	}
 
-	public UserData GetUserDataByUserId(Long id) {
-		try {
-			Query query = em.createQuery("SELECT ud FROM UserData ud" + "JOIN ud.User u " + "WHERE u.id = id");
-			query.setParameter("id", id);
+	private UserData findDataByUserId(Long id) {
+		Query query = em.createQuery("SELECT ud FROM UserData ud JOIN ud.user u WHERE u.id= :id");
+		query.setParameter("id", id);
+		return (UserData) query.getSingleResult();
+	}
 
-			UserData data = (UserData) query.getSingleResult();
-
-			return data;
-
-		} catch (NoResultException nre) {
-
-		}
-		return null;
+	public List<User> findAllUsers() {
+		return em.createQuery("SELECT u FROM User u JOIN u.userData", User.class).getResultList();
 	}
 
 	public List<UserRole> GetAllUserRolesByUserId(Long id) {

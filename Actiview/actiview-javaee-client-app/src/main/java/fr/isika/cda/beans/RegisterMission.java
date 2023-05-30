@@ -15,20 +15,18 @@ public class RegisterMission {
 	@Inject
 	private MissionRepository missionRepository;
 	
-	public void register() {
+	public String register() {
 		Long id = missionRepository.register(missionVm);
 		System.out.println("La mission a bien été créee avec l'id : " + id);
 		clear();
+		return "missionList.xhtml";
 	}
 	
 	public void clear() {
 		missionVm = new MissionViewModel();
 	}
 	
-	public void updateMission(Long id) {
-		System.out.println("La mission à mettre à jour est : " + id);
-	}
-
+	
 	public MissionViewModel getMissionVm() {
 		return missionVm;
 	}
@@ -36,7 +34,6 @@ public class RegisterMission {
 	public void setMissionVm(MissionViewModel missionVm) {
 		this.missionVm = missionVm;
 	}
-	
 	
 
 }

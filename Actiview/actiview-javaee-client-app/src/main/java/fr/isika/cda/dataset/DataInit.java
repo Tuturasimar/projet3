@@ -44,9 +44,13 @@ public class DataInit {
 		ar.setArConfig(ArConfigEnum.MONTH);
 		ar.setStateArEnum(StateAr.DRAFT);
 		ar.setUpdatedAt(LocalDate.now());
-		ar.setUserId(user.getId());
+		ar.setUser(user);
+		
+		Ar ar2 = new Ar();
+		ar2.setCreatedAt(LocalDate.of(2023, 04, 23));
 		
 		em.persist(ar);
+		em.persist(ar2);
 
 
 		// Mock donnée d'une activity

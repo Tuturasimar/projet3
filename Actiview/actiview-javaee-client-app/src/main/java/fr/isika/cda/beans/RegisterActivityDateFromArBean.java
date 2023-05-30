@@ -3,9 +3,8 @@ package fr.isika.cda.beans;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.ar.ActivityDate;
@@ -22,7 +21,7 @@ import fr.isika.cda.viewmodels.ArDateViewModel;
  *
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class RegisterActivityDateFromArBean implements Serializable {
 
 	/**
@@ -56,14 +55,15 @@ public class RegisterActivityDateFromArBean implements Serializable {
 		this.arDateVm = arDateVm;
 	}
 	
-
-	@PostConstruct
+	
 	/**
 	 * Méthode qui va chercher toutes les dates liées à l'ID de l'Ar en cours
 	 */
-	public void getAllActivityDates() {
-		// 1L pour tester
-		activityDates = activityDateRepository.getAllActivityDateByArId(1L);
+	public String getAllActivityDates(Long arId) {
+		arDateVm.setArId(arId);
+		activityDates = activityDateRepository.getAllActivityDateByArId(arId);
+		
+		return "addDateTest";
 	}
 
 	/**
@@ -71,9 +71,6 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	 * Méthode permettant d'ajouter une date liée à une Ar_activity
 	 */
 	public void addDate() {
-
-		// Mock donnée pour tester
-		arDateVm.setArId(1L);
 
 		// Avant l'ajout d'une nouvelle ActivityDate, on check l'ancienne
 		checkExistingActivityDate();
@@ -97,7 +94,7 @@ public class RegisterActivityDateFromArBean implements Serializable {
 		}
 
 		// On rafraichit la nouvelle liste suite à l'ajout ou la suppression de plusieurs activityDate
-		getAllActivityDates();
+		getAllActivityDates(arDateVm.getArId());
 
 	}
 
@@ -135,4 +132,5 @@ public class RegisterActivityDateFromArBean implements Serializable {
 			}
 		}
 	}
+	
 }

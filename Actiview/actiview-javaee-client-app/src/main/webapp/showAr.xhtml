@@ -34,8 +34,9 @@
 
 				<p:outputLabel value="#{showArBean.arVm.ar.stateArEnum}"
 					id="arState" style="display: block" />
-
 			</p:fieldset>
+			
+			<h:commandButton action="#{registerActivityDateFromArBean.getAllActivityDates(showArBean.arVm.ar.id)}" value="Voir les détails" />
 
 		</h:form>
 	</ui:define>

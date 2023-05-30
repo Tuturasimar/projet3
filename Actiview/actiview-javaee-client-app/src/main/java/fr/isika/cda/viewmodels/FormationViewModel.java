@@ -8,26 +8,17 @@ import fr.isika.cda.entities.common.LocationFormationEnum;
 public class FormationViewModel {
 
 	
-	private LocalDate formationStart;
-	private LocalDate formationEnd;
-	
+	private int nbOfDays;
 	private String labelFormation;
-	
 	private FormationStatusEnum formationState;
-	
 	private LocationFormationEnum locationFormation;
 	
-	public LocalDate getFormationStart() {
-		return formationStart;
+	
+	public int getNbOfDays() {
+		return nbOfDays;
 	}
-	public void setFormationStart(LocalDate formationStart) {
-		this.formationStart = formationStart;
-	}
-	public LocalDate getFormationEnd() {
-		return formationEnd;
-	}
-	public void setFormationEnd(LocalDate formationEnd) {
-		this.formationEnd = formationEnd;
+	public void setNbOfDays(int nbOfDays) {
+		this.nbOfDays = nbOfDays;
 	}
 	public String getLabelFormation() {
 		return labelFormation;

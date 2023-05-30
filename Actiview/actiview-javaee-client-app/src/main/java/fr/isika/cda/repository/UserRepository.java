@@ -1,10 +1,13 @@
 package fr.isika.cda.repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import fr.isika.cda.entities.common.StatusEnum;
 import fr.isika.cda.entities.users.User;
@@ -21,52 +24,84 @@ public class UserRepository {
 
 	/**
 	 * Enregistre en bdd un User avec ses tables associées UserData et UserRole
+	 * 
 	 * @param userVM
 	 * @return
 	 */
 	public Long registerUser(UserViewModel userVM) {
-		
-		User user = new User();
-		user.setLogin(userVM.getLogin());
-		user.setPassword(userVM.getPassword());
-		user.setCreatedAt(LocalDateTime.now());
-		user.setStatus(StatusEnum.ACTIVE);
-		
-		Long managerId = extractManagerId(userVM.getManagerId());
-		if( !MANAGER_ID_DEFAULT_NOT_FOUND.equals(managerId) ) {
-			User manager = em.find(User.class, managerId);
-			user.setManager(manager);
-		}
-		
-		em.persist(user);
-		
 		UserData data = new UserData();
 		data.setFirstname(userVM.getFirstname());
 		data.setLastname(userVM.getLastname());
 		data.setBirthday(userVM.getBirthday());
 		data.setEmail(userVM.getEmail());
 		data.setJobEnum(userVM.getJobEnum());
-		data.setUser(user);
-		
+
 		em.persist(data);
-		
+
+		User user = new User();
+		user.setLogin(userVM.getLogin());
+		user.setPassword(userVM.getPassword());
+		user.setCreatedAt(LocalDateTime.now());
+		user.setStatus(StatusEnum.ACTIVE);
+		user.setUserData(data);
+
+		Long managerId = extractManagerId(userVM.getManagerId());
+		if (!MANAGER_ID_DEFAULT_NOT_FOUND.equals(managerId)) {
+			User manager = em.find(User.class, managerId);
+			user.setManager(manager);
+		}
+
+		em.persist(user);
+
 		UserRole role = new UserRole();
 		role.setRoleTypeEnum(userVM.getRoleTypeEnum());
 		role.setUser(user);
-		
+
 		em.persist(role);
-		
-		
-		// nécessite d'ajouter une cascade pour la persistence dans toutes les tables (User, UserData et UserRole)
 
 		return user.getId();
 	}
-	
+
 	private Long extractManagerId(String value) {
 		try {
-		return Long.parseLong(value);
-		} catch(NumberFormatException e) {
+			return Long.parseLong(value);
+		} catch (NumberFormatException e) {
 			return MANAGER_ID_DEFAULT_NOT_FOUND;
 		}
+	}
+
+	public List<User> findAllUsers() {
+		return em.createQuery("SELECT u FROM User u JOIN u.userData", User.class).getResultList();
+	}
+
+	public UserData GetUserDataByUserId(Long id) {
+		try {
+			Query query = em.createQuery("SELECT ud FROM UserData ud" + "JOIN ud.User u " + "WHERE u.id = id");
+			query.setParameter("id", id);
+
+			UserData data = (UserData) query.getSingleResult();
+
+			return data;
+
+		} catch (NoResultException nre) {
+
+		}
+		return null;
+	}
+
+	public List<UserRole> GetAllUserRolesByUserId(Long id) {
+		try {
+			Query query = em.createQuery("SELECT ur FROM UserRole ud" + "JOIN ur.User u " + "WHERE u.id = id");
+			query.setParameter("id", id);
+
+			@SuppressWarnings("unchecked")
+			List<UserRole> roles = query.getResultList();
+
+			return roles;
+
+		} catch (NoResultException nre) {
+
+		}
+		return null;
 	}
 }

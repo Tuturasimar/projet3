@@ -33,7 +33,10 @@
 		<p:calendar id="missionEndTxt" value="#{editMissionBean.editMissionVm.missionEnd}" showOn="button">
 		</p:calendar>
 		
-		
+		<h:outputLabel id="typeStatusEnumLabel" value ="Etat de la mission : "/>
+		<h:selectOneMenu id="typeStatusEnumTxt" value="#{editMissionBean.editMissionVm.missionState}">
+		<f:selectItems value="#{data.statusEnum}"></f:selectItems>
+		</h:selectOneMenu>
 		
 		<h:form>
 			<h:commandButton value="Edit" action="#{editMissionBean.editMission()}"/>

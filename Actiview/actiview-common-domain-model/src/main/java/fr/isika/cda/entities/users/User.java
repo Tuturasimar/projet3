@@ -96,7 +96,8 @@ public class User implements Serializable {
 	}
 	
 	/**
-	 * @param ar
+	 * Il faut utiliser cette méthode pour pouvoir ajouter un cra dans la liste et non faire un user.GetArs.add
+	 * @param ar le cra à ajouter
 	 * @return
 	 */
 	public boolean addAr(Ar ar) {

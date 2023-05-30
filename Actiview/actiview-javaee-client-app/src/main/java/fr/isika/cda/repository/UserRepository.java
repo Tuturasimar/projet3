@@ -1,5 +1,7 @@
 package fr.isika.cda.repository;
 
+import java.time.LocalDateTime;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,7 +29,7 @@ public class UserRepository {
 		User user = new User();
 		user.setLogin(userVM.getLogin());
 		user.setPassword(userVM.getPassword());
-		user.setCreatedAt(userVM.getCreatedAt());
+		user.setCreatedAt(LocalDateTime.now());
 		user.setStatus(StatusEnum.ACTIVE);
 		
 		Long managerId = extractManagerId(userVM.getManagerId());

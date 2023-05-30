@@ -14,11 +14,12 @@
 	</ui:define>
 
 	<ui:define name="content">
-		
+
 		<h:form>
 			<h:selectOneMenu id="partDayMenu"
 				value="#{registerActivityDateFromArBean.arDateVm.partOfDay}">
-				<f:selectItems value="#{enumData.partDay}"></f:selectItems>
+				<f:selectItems value="#{enumData.partDay}" var="enum"
+					itemValue="#{enum}" itemLabel="#{enum.label}"></f:selectItems>
 			</h:selectOneMenu>
 			<h:selectOneMenu id="activityMenu"
 				value="#{registerActivityDateFromArBean.arDateVm.activityId}">
@@ -45,7 +46,7 @@
 		</h:column>
 			<h:column>
 				<f:facet name="header">Partie de la journée</f:facet>
-		#{activityDate.partOfDay}
+		#{activityDate.partOfDay.label}
 		</h:column>
 			<h:column>
 				<f:facet name="header">Télétravail</f:facet>

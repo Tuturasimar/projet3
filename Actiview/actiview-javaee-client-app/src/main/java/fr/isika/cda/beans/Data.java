@@ -17,5 +17,7 @@ public class Data {
 	public StatusEnum[] getStatusEnum() {
 		return StatusEnum.values();
 	}
+	
+	
 
 }

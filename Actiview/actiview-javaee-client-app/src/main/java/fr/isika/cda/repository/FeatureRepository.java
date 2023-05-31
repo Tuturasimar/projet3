@@ -6,16 +6,18 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import fr.isika.cda.entities.config.Options;
+import fr.isika.cda.entities.config.Feature;
+
 
 @Stateless
-public class OptionsRepository {
+public class FeatureRepository {
 
 	@PersistenceContext
 	private EntityManager em;
 
-	public List<Options> findAll() {
+	public List<Feature> findAll() {
 
-		return em.createQuery("SELECT o FROM Options o", Options.class).getResultList();
+		return em.createQuery("SELECT f FROM Feature f", Feature.class).getResultList();
 	}
+
 }

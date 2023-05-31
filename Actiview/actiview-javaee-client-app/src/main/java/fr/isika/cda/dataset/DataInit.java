@@ -21,6 +21,7 @@ import fr.isika.cda.entities.ar.StateAr;
 import fr.isika.cda.entities.common.ArConfigEnum;
 import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.StatusEnum;
+import fr.isika.cda.entities.config.Feature;
 import fr.isika.cda.entities.config.Options;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserRole;
@@ -124,6 +125,37 @@ public class DataInit {
 		option3.setPrice(200);
 		
 		em.persist(option3);
+		
+		
+		// Mock données Features(Forfait Basique, Premium, Ultimate)
+		
+		Feature feature1 = new Feature();
+		feature1.setLabel("Forfait BASIQUE");
+		feature1.setNbOfCollaborators(50);
+		feature1.setArConfig(ArConfigEnum.MONTH);
+		feature1.setPrice(200);
+		feature1.setNbOfOptions(1);
+		
+		em.persist(feature1);
+		
+		Feature feature2 = new Feature();
+		feature2.setLabel("Forfait PREMIUM");
+		feature2.setNbOfCollaborators(100);
+		feature2.setArConfig(ArConfigEnum.MONTH);
+		feature2.setPrice(375);
+		feature2.setNbOfOptions(2);
+		
+		em.persist(feature2);
+		
+		Feature feature3 = new Feature();
+		feature3.setLabel("Forfait ULTIMATE");
+		feature3.setNbOfCollaborators(200);
+		feature3.setArConfig(ArConfigEnum.MONTH);
+		feature3.setPrice(666);
+		feature3.setNbOfOptions(3);
+		
+		em.persist(feature3);
+		
 	}
 
 }

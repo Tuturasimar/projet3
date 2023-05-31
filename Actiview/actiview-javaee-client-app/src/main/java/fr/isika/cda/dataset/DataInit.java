@@ -46,6 +46,7 @@ public class DataInit {
 		data.setJobEnum(JobEnum.DEV);
 
 		em.persist(data);
+		
 		// Mock donnée User
 		User user = new User();
 		user.setLogin("tutu");
@@ -62,17 +63,17 @@ public class DataInit {
 
 		em.persist(role);
 
-
-		user.setLogin("actiview");
-		user.setPassword("111");
-		user.setStatus(StatusEnum.ACTIVE);
+		User user2 = new User();
+		user2.setLogin("actiview");
+		user2.setPassword("111");
+		user2.setStatus(StatusEnum.ACTIVE);
 		
-		UserRole role = new UserRole();
-		role.setRoleTypeEnum(RoleTypeEnum.ADMINESN);
-		role.setUser(user);
+		UserRole role2 = new UserRole();
+		role2.setRoleTypeEnum(RoleTypeEnum.ADMINESN);
+		role2.setUser(user);
 		
-		em.persist(user);
-		em.persist(role);
+		em.persist(user2);
+		em.persist(role2);
 		
 
 		// Mock donnée d'un CRA

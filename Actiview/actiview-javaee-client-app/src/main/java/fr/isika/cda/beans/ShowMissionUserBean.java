@@ -19,9 +19,20 @@ public class ShowMissionUserBean {
 
 	private List<MissionUser> missionsUser;
 
+	private final StatusEnum ACTIVE = StatusEnum.ACTIVE;
+	private final StatusEnum INACTIVE = StatusEnum.INACTIVE;
+
+	public StatusEnum getACTIVE() {
+		return ACTIVE;
+	}
+
+	public StatusEnum getINACTIVE() {
+		return INACTIVE;
+	}
+
 	@PostConstruct
 	public void init() {
-		
+
 		missionsUser = missionUserRepo.getAllMissionUserByManagerLogin(SessionUtils.getUserLoginFromSession());
 	}
 
@@ -32,18 +43,22 @@ public class ShowMissionUserBean {
 	public void setMissionsUser(List<MissionUser> missionsUser) {
 		this.missionsUser = missionsUser;
 	}
-	
-	public String desactivateAffectation(Long id) {
+
+	public String changeAffectation(Long id) {
 		MissionUser missionUser = missionUserRepo.findMissionUserById(id);
-		
-		if(missionUser != null) {
-			missionUser.setMissionState(StatusEnum.INACTIVE);
+
+		if (missionUser != null) {
+			if(missionUser.getMissionState() == StatusEnum.ACTIVE) {
+				missionUser.setMissionState(StatusEnum.INACTIVE);
+			} else {
+				missionUser.setMissionState(StatusEnum.ACTIVE);
+			}
 			missionUserRepo.updateMissionUser(missionUser);
 		}
 		init();
-		
+
 		return "missionUserList";
 	}
-	
-	
+
+
 }

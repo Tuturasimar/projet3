@@ -50,8 +50,13 @@
 				<f:facet name="header">Commandes</f:facet>
 				<h:form>
 					<h:commandButton
-						action="#{showMissionUserBean.desactivateAffectation(missionUser.id)}"
-						value="Désactiver" />
+						action="#{showMissionUserBean.changeAffectation(missionUser.id)}"
+						value="Désactiver"
+						rendered="#{missionUser.missionState == showMissionUserBean.ACTIVE}" />
+					<h:commandButton
+						action="#{showMissionUserBean.changeAffectation(missionUser.id)}"
+						value="Activer"
+						rendered="#{missionUser.missionState == showMissionUserBean.INACTIVE}" />
 				</h:form>
 			</h:column>
 		</h:dataTable>

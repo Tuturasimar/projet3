@@ -44,4 +44,7 @@ public class UserRole {
 		this.user = user;
 	}
 	
+	public String toStringLabel() {
+		return roleTypeEnum.getLabel();
+	}
 }

@@ -37,8 +37,9 @@ public class Ar implements Serializable{
 	private ArConfigEnum arConfig;
 	
 	@ManyToOne
-	@JoinColumn(name="fk_user_id")
+	@JoinColumn(name="user_id")
 	private User user;
+	
 
 	public User getUser() {
 		return user;

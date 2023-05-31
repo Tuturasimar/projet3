@@ -9,7 +9,7 @@ import fr.isika.cda.repository.UserRepository;
 import fr.isika.cda.viewmodels.UserViewModel;
 
 @ManagedBean
-public class RegisterUser {
+public class RegisterUserBean {
 	
 	private UserViewModel userViewModel = new UserViewModel();
 	

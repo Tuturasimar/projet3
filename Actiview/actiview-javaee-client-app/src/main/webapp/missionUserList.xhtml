@@ -7,10 +7,11 @@
 	template="/WEB-INF/templates/default.xhtml">
 
 	<ui:define name="Entete">
-		<h1 style="text-align:center">Liste des affectations de missions</h1>
+		<h1 style="text-align: center">Liste des affectations de missions</h1>
 	</ui:define>
-	
+
 	<ui:define name="content">
+	<h:link outcome="createNewMissionUser.xhtml">Nouvelle affectation</h:link>
 		<h:dataTable value="#{showMissionUserBean.missionsUser}"
 			var="missionUser">
 			<h:column>
@@ -26,8 +27,24 @@
 				#{missionUser.mission.labelActivity}
 			</h:column>
 			<h:column>
+				<f:facet name="header">Date de début</f:facet>
+				<h:outputText value="#{missionUser.mission.missionStart}">
+					<f:convertDateTime type="localDate" pattern="dd.MM.yyyy" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Date de fin</f:facet>
+				<h:outputText value="#{missionUser.mission.missionEnd}">
+					<f:convertDateTime type="localDate" pattern="dd.MM.yyyy" />
+				</h:outputText>
+			</h:column>
+			<h:column>
 				<f:facet name="header">Statut</f:facet>
 				#{missionUser.missionState.label}
+			</h:column>
+			<h:column>
+				<f:facet name="header">TJM</f:facet>
+			#{missionUser.adr}
 			</h:column>
 		</h:dataTable>
 	</ui:define>

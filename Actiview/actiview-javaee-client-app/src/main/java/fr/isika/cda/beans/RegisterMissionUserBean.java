@@ -1,0 +1,91 @@
+package fr.isika.cda.beans;
+
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
+
+
+import fr.isika.cda.entities.activities.Mission;
+import fr.isika.cda.entities.users.User;
+import fr.isika.cda.repository.MissionRepository;
+import fr.isika.cda.repository.MissionUserRepository;
+import fr.isika.cda.repository.UserFeedBackRepository;
+import fr.isika.cda.repository.UserRepository;
+import fr.isika.cda.utils.SessionUtils;
+import fr.isika.cda.viewmodels.MissionUserViewModel;
+
+@ManagedBean
+@SessionScoped
+public class RegisterMissionUserBean {
+
+	@Inject
+	MissionUserRepository missionUserRepo;
+	
+	@Inject
+	UserFeedBackRepository userFeedbackRepo;
+	
+	@Inject
+	UserRepository userRepo;
+	
+	@Inject
+	MissionRepository missionRepo;
+	
+	private List<User> users;
+	
+	private List<Mission> missions;
+	
+	private MissionUserViewModel missionUserVm  = new MissionUserViewModel();
+	
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public List<Mission> getMissions() {
+		return missions;
+	}
+
+	public void setMissions(List<Mission> missions) {
+		this.missions = missions;
+	}
+
+	public MissionUserViewModel getMissionUserVm() {
+		return missionUserVm;
+	}
+
+	public void setMissionUserVm(MissionUserViewModel missionUserVm) {
+		this.missionUserVm = missionUserVm;
+	}
+
+	@PostConstruct
+	public void init() {
+		// Chercher la liste des users qui ont comme managerId celui connecté
+		// TODO : rendre dynamique l'id
+		String login = SessionUtils.getUserLoginFromSession();
+		
+		users = userRepo.findUserByManagerLogin(login);
+		
+		// Chercher la liste des missions actives
+		missions = missionRepo.getAllActiveMissions();
+	}
+	
+	public String register() {
+		
+		Long id = userFeedbackRepo.createBlankOne();
+		missionUserVm.setUserFeedbackId(id);
+
+		missionUserRepo.register(missionUserVm);
+		
+		return "missionUserList";
+	}
+	
+	
+	
+	
+}

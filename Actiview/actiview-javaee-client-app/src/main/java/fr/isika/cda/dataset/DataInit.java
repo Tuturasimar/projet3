@@ -20,6 +20,7 @@ import fr.isika.cda.entities.ar.StateAr;
 import fr.isika.cda.entities.assignement.MissionUser;
 import fr.isika.cda.entities.common.ArConfigEnum;
 import fr.isika.cda.entities.common.JobEnum;
+import fr.isika.cda.entities.common.MissionTypeEnum;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserData;
 import fr.isika.cda.entities.users.UserRole;
@@ -120,8 +121,30 @@ public class DataInit {
 		Mission mission = new Mission();
 		mission.setCreatorId(1L);
 		mission.setLabelActivity("Mission Test");
+		mission.setMissionStart(LocalDate.of(2023, 4, 23));
+		mission.setMissionEnd(LocalDate.of(2024, 6, 6));
+		mission.setStatus(StatusEnum.ACTIVE);
+		mission.setMissionType(MissionTypeEnum.TMC);
+		
+		Mission mission2 = new Mission();
+		mission2.setCreatorId(1L);
+		mission2.setLabelActivity("Ancienne mission");
+		mission2.setMissionStart(LocalDate.of(2022, 4, 23));
+		mission2.setMissionEnd(LocalDate.of(2023, 4, 25));
+		mission2.setStatus(StatusEnum.INACTIVE);
+		mission2.setMissionType(MissionTypeEnum.TMC);
+		
+		Mission mission3 = new Mission();
+		mission3.setCreatorId(1L);
+		mission3.setLabelActivity("Mission forfait");
+		mission3.setMissionStart(LocalDate.of(2023, 4, 23));
+		mission3.setMissionEnd(LocalDate.of(2026, 6, 6));
+		mission3.setStatus(StatusEnum.ACTIVE);
+		mission3.setMissionType(MissionTypeEnum.FPC);
 
 		em.persist(mission);
+		em.persist(mission2);
+		em.persist(mission3);
 
 		Absence absence = new Absence();
 		absence.setCreatorId(1L);

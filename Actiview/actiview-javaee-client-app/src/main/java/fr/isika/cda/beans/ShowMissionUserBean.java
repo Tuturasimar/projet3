@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import fr.isika.cda.entities.assignement.MissionUser;
 import fr.isika.cda.repository.MissionUserRepository;
+import fr.isika.cda.utils.SessionUtils;
 
 @ManagedBean
 public class ShowMissionUserBean {
@@ -19,8 +20,8 @@ public class ShowMissionUserBean {
 
 	@PostConstruct
 	public void init() {
-		// TODO : Changer l'id par celui connecté (manager)
-		missionsUser = missionUserRepo.getAllMissionUserByManagerId(1L);
+		
+		missionsUser = missionUserRepo.getAllMissionUserByManagerLogin(SessionUtils.getUserLoginFromSession());
 	}
 
 	public List<MissionUser> getMissionsUser() {

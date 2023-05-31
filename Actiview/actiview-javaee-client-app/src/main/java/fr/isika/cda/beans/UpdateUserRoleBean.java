@@ -1,7 +1,8 @@
 package fr.isika.cda.beans;
 
-import java.util.ArrayList;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -29,17 +30,16 @@ public class UpdateUserRoleBean {
 	public String showUpdateUserRole(Long id) {
 		//liste des userRole qui sont récupérés à partir de l'id du user
 		List<UserRole> rolesToUpdate =  userRepo.getAllUserRolesByUserId(id);
+			
 		
-		//nouvelle liste de roleType qui va servir à l'affichage des roles existants
-		List<RoleTypeEnum> roleTypesToUpdate = new ArrayList<RoleTypeEnum>();
+		// Java 8 Stream API
+		// on prend les roles, on fait un flux parallele dessus puis on map chaque role à l'enum et on collecte le tout
+		List<RoleTypeEnum> roleTypesFromRoles = rolesToUpdate.parallelStream()
+				.map(role -> role.getRoleTypeEnum())
+				.collect(Collectors.toList());
 		
-		//On récupère les roleType existant que l'on ajoute à la nouvelle liste
-		for (UserRole roleToUpdate : rolesToUpdate) {
-			RoleTypeEnum roleType = roleToUpdate.getRoleTypeEnum();
-			roleTypesToUpdate.add(roleType);
-		}
 		updateUserRoleVM = new UpdateUserRoleViewModel(id);
-		updateUserRoleVM.setRoleTypes(roleTypesToUpdate);
+		updateUserRoleVM.setRoleTypes(roleTypesFromRoles);
 		return "UpdateUserRole.xhtml";
 	}
 	

@@ -26,7 +26,6 @@ import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.StatusEnum;
 import fr.isika.cda.entities.config.Options;
 
-
 @Singleton
 @Startup
 public class DataInit {
@@ -46,7 +45,7 @@ public class DataInit {
 		data.setJobEnum(JobEnum.DEV);
 
 		em.persist(data);
-		
+
 		// Mock donnée User
 		User user = new User();
 		user.setLogin("tutu");
@@ -67,14 +66,61 @@ public class DataInit {
 		user2.setLogin("actiview");
 		user2.setPassword("111");
 		user2.setStatus(StatusEnum.ACTIVE);
-		
+
 		UserRole role2 = new UserRole();
 		role2.setRoleTypeEnum(RoleTypeEnum.ADMINESN);
-		role2.setUser(user);
-		
+		role2.setUser(user2);
+
 		em.persist(user2);
 		em.persist(role2);
+
+		// Mock données pour deux manager (pour tester le getManager)
+		UserData dataManager1 = new UserData();
+		dataManager1.setFirstname("Bob");
+		dataManager1.setLastname("LeManager");
+		dataManager1.setBirthday(LocalDate.now());
+		dataManager1.setEmail("bob.lemanager@actiview.com");
+		dataManager1.setJobEnum(JobEnum.DEV);
+		em.persist(dataManager1);
 		
+		User userManager1 = new User();
+		userManager1.setLogin("boblemanager");
+		userManager1.setPassword("bobob");
+		userManager1.setCreatedAt(LocalDateTime.now());
+		userManager1.setStatus(StatusEnum.ACTIVE);
+		userManager1.setUserData(dataManager1);
+		em.persist(userManager1);
+
+		UserRole roleManager1 = new UserRole();
+		roleManager1.setRoleTypeEnum(RoleTypeEnum.MANAGER);
+		roleManager1.setUser(userManager1);
+		em.persist(roleManager1);
+		
+		UserData dataManager2 = new UserData();
+		dataManager2.setFirstname("Lucie");
+		dataManager2.setLastname("Fer");
+		dataManager2.setBirthday(LocalDate.now());
+		dataManager2.setEmail("lucie.fer@actiview.com");
+		dataManager2.setJobEnum(JobEnum.CHEF_DE_PROJET);
+		em.persist(dataManager2);
+		
+		User userManager2 = new User();
+		userManager2.setLogin("luciefer");
+		userManager2.setPassword("lulu");
+		userManager2.setCreatedAt(LocalDateTime.now());
+		userManager2.setStatus(StatusEnum.ACTIVE);
+		userManager2.setUserData(dataManager2);
+		em.persist(userManager2);
+
+		UserRole roleManager2 = new UserRole();
+		roleManager2.setRoleTypeEnum(RoleTypeEnum.SALARIE);
+		roleManager2.setUser(userManager2);
+		em.persist(roleManager2);
+		
+		UserRole role2Manager2 = new UserRole();
+		role2Manager2.setRoleTypeEnum(RoleTypeEnum.MANAGER);
+		role2Manager2.setUser(userManager2);
+		em.persist(role2Manager2);
 
 		// Mock donnée d'un CRA
 		Ar ar = new Ar();
@@ -86,7 +132,7 @@ public class DataInit {
 
 		Ar ar2 = new Ar();
 		ar2.setCreatedAt(LocalDate.of(2023, 04, 23));
-		
+
 		em.persist(ar);
 		em.persist(ar2);
 
@@ -126,13 +172,13 @@ public class DataInit {
 		activityDate.setRemote(false);
 
 		em.persist(activityDate);
-		
+
 		// Mock donnée OptionsForfait
 		Options option1 = new Options();
 		option1.setLabel("customColor");
 		option1.setDescription("cadre pour choisir une couleur");
 		option1.setPrice(20);
-		
+
 		em.persist(option1);
 	}
 

@@ -145,20 +145,19 @@ public class UserRepository {
 		return em.createQuery("SELECT u FROM User u JOIN u.userData", User.class).getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<UserRole> getAllUserRolesByUserId(Long id) {
-		try {
-			Query query = em.createQuery("SELECT ur FROM UserRole ur JOIN ur.user u WHERE u.id = :id");
-			query.setParameter("id", id);
-
-			@SuppressWarnings("unchecked")
-			List<UserRole> roles = query.getResultList();
-
-			return roles;
-
-		} catch (NoResultException nre) {
-
-		}
-		return null;
+		Query query = em.createQuery("SELECT ur FROM UserRole ur JOIN ur.user u WHERE u.id = :id", UserRole.class);
+		query.setParameter("id", id);
+		return query.getResultList();
+	}
+	
+	public List<User> getAllManagers() {
+		Query query = em.createQuery("SELECT u FROM UserRole ur JOIN ur.user u WHERE ur.roleTypeEnum = MANAGER");
+		
+		List<User> managers = query.getResultList();
+		
+		return managers;
 	}
 
 	/**

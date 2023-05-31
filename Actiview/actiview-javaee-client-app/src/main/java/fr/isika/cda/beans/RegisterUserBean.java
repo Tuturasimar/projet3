@@ -5,11 +5,12 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.common.JobEnum;
+import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.repository.UserRepository;
 import fr.isika.cda.viewmodels.UserViewModel;
 
 @ManagedBean
-public class RegisterUser {
+public class RegisterUserBean {
 	
 	private UserViewModel userViewModel = new UserViewModel();
 	
@@ -31,6 +32,9 @@ public class RegisterUser {
 		userViewModel = new UserViewModel();
 	}
 
+	public RoleTypeEnum[] roleTypeEnumValues() {
+		return RoleTypeEnum.values();
+	}
 	
 	public JobEnum[] jobEnumValues() {
 		return JobEnum.values();

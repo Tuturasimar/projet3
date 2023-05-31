@@ -39,6 +39,7 @@ public class Ar implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="fk_user_id")
 	private User user;
+	
 
 	public User getUser() {
 		return user;

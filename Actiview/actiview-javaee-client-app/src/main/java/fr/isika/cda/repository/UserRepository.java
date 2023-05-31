@@ -175,4 +175,11 @@ public class UserRepository {
 				.setParameter("loginParam", loginVm.getLogin()).setParameter("passwordParam", loginVm.getPassword())
 				.getSingleResult();
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<User> findUserByManagerLogin(String login) {
+		Query query = em.createQuery("SELECT u FROM User u WHERE u.manager.login = :login");
+		query.setParameter("login", login);
+		return  query.getResultList();
+	}
 }

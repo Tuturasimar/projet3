@@ -37,9 +37,15 @@ public class FormationUser implements Serializable {
     @Enumerated(EnumType.STRING)
     private StatusEnum formationState;
 
+    
+
    
 
-    public User getUser() {
+    public FormationUser(String string) {
+		
+	}
+
+	public User getUser() {
         return user;
     }
 

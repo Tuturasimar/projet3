@@ -7,6 +7,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import fr.isika.cda.entities.assignement.MissionUser;
 import fr.isika.cda.entities.common.MissionTypeEnum;
 import fr.isika.cda.entities.common.StatusEnum;
 
@@ -17,12 +18,17 @@ public class Mission extends Activity {
 	private LocalDate missionStart;
 	private LocalDate missionEnd;
 	
+	Mission Mission = new Mission("Maintenance informatique");
+	
 	@Enumerated(EnumType.STRING)
 	private MissionTypeEnum missionType;
 	
 	@Enumerated(EnumType.STRING)
 	private StatusEnum missionState;
 	
+	public Mission(String string) {
+
+	}
 	public LocalDate getMissionStart() {
 		return missionStart;
 	}

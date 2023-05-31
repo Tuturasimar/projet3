@@ -30,13 +30,20 @@ public class MissionUser implements Serializable {
 	@OneToOne
 	public UserFeedback userFeedback;
 	
+	
+	
 	@Enumerated
     private StatusEnum missionState;
     private float adr;
 
     
 
-    public User getUser() {
+
+    public MissionUser(String string) {
+		
+	}
+
+	public User getUser() {
         return user;
     }
 

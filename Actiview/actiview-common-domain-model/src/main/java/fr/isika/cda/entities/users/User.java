@@ -17,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import fr.isika.cda.entities.activities.Formation;
+import fr.isika.cda.entities.activities.Mission;
 import fr.isika.cda.entities.ar.Ar;
 import fr.isika.cda.entities.common.StatusEnum;
 
@@ -35,6 +37,14 @@ public class User implements Serializable {
 	private String login;
 	private String password;
 	private LocalDateTime createdAt;
+    private List<Mission> missions;
+    private List<Formation> formations;
+    private Mission mission;
+    private Formation formation;
+
+    User user = new User();
+    
+
 
 	@Enumerated(EnumType.STRING)
 	private StatusEnum status;
@@ -116,6 +126,33 @@ public class User implements Serializable {
 	public void setUserData(UserData userData) {
 		this.userData = userData;
 	}
+	
+	public void assignMission(Mission mission) {
+        missions.add(mission);
+    }
 
+    // Méthode pour attribuer une formation à l'utilisateur
+    public void assignFormation(Formation formation) {
+        formations.add(formation);
+    }
 
+    
+    public List<Mission> getMissions() {
+        return missions;
+    }
+
+    public List<Formation> getFormations() {
+        return formations;
+    }
+    
+    public void setMission(Mission mission) {
+        this.mission = mission;
+    }
+
+    public void setFormation(Formation formation) {
+        this.formation = formation;
+    }
 }
+
+
+

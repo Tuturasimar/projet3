@@ -5,6 +5,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import fr.isika.cda.entities.assignement.FormationUser;
 import fr.isika.cda.entities.common.FormationStatusEnum;
 import fr.isika.cda.entities.common.LocationFormationEnum;
 
@@ -15,11 +16,15 @@ public class Formation extends Activity {
 	private int nbOfDays;
 	private String location;
 	private String description;
+	
+	Formation formation = new Formation("Développeur Java");
 
 	@Enumerated(EnumType.STRING)
 	private FormationStatusEnum formationStatus;
 	@Enumerated(EnumType.STRING)
 	private LocationFormationEnum locationFormation;
+	public Formation(String string) {
+	}
 	public int getNbOfDays() {
 		return nbOfDays;
 	}

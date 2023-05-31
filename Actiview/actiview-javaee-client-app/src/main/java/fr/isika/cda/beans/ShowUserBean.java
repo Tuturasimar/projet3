@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.users.User;
@@ -12,15 +11,12 @@ import fr.isika.cda.entities.users.UserRole;
 import fr.isika.cda.repository.UserRepository;
 
 @ManagedBean
-@SessionScoped
 public class ShowUserBean {
 	
 	@Inject
 	private UserRepository userRepo;
 	
 	private List<User> users;
-	
-	
 	
 	//récupère tous les Users de la bdd (pas de jointures avec User Data et UserRole)
 	@PostConstruct

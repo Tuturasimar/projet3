@@ -103,8 +103,14 @@ public class UserRepository {
 		return (User) query.getSingleResult();
 	}
 
+	public User findUserWithManagerById(Long id) {
+		Query query = em.createQuery("SELECT u FROM User u LEFT JOIN FETCH u.manager WHERE u.id = :id");
+		query.setParameter("id", id);
+		return (User) query.getSingleResult();
+	}
+	
 	public UserData findDataByUserId(Long id) {
-		Query query = em.createQuery("SELECT ud FROM UserData ud JOIN ud.user u WHERE u.id = :id");
+		Query query = em.createQuery("SELECT ud FROM User u JOIN u.userData ud WHERE u.id = :id");
 		query.setParameter("id", id);
 		return (UserData) query.getSingleResult();
 	}

@@ -16,7 +16,8 @@
 			<h:panelGrid columns="3">
 							
 				<h:outputLabel id="passwordLabel" value="Mot de passe" />
-				<p:password id="passwordInput" value="#{updateUserBean.updateUserViewModel.password}" />
+				<p:password id="passwordInput" value="#{updateUserBean.updateUserViewModel.password}" toggleMask="true" redisplay="true" 
+					feedback="true" promptLabel="Veuillez saisir votre mot de passe ..." />
 				<h:message for="passwordInput"/>
 				
 				<h:outputLabel id="emailLabel" value="Email" />
@@ -38,7 +39,7 @@
 				<h:outputLabel id="jobLabel" value="Poste" />
 				<p:selectOneMenu id="jobSelectMenu" value="#{updateUserBean.updateUserViewModel.jobEnum}">
 					<f:selectItem itemLabel="Sélectionner un poste" itemValue=""  noSelectionOption="true" />
-					<f:selectItems value="#{registerUser.jobEnumValues()}" var="job" itemLabel="#{job.label}" itemValue="#{job}" />
+					<f:selectItems value="#{updateUserBean.jobEnumValues()}" var="job" itemLabel="#{job.label}" itemValue="#{job}" />
 				</p:selectOneMenu>
 				<h:message for="jobSelectMenu"/>
 				

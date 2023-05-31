@@ -18,7 +18,7 @@ import fr.isika.cda.viewmodels.ImageConfigViewModel;
 
 @ManagedBean
 @SessionScoped
-public class FileUploadBean {
+public class PersonalizationBean {
 
 	@Inject
 	private ImageConfigRepository imgConfigRepo;

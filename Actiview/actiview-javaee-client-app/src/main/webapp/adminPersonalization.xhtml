@@ -22,7 +22,7 @@
 		
 		<div class="cardLogo">
 		<h:form enctype="multipart/form-data">
-			<p:fileUpload listener="#{fileUploadBean.uploadLogo}" 
+			<p:fileUpload listener="#{personalizationBean.uploadLogo}" 
 							mode="advanced" 
 							dragDropSupport="false"
 			                update="messages" />
@@ -33,7 +33,7 @@
 		
 		<div class="cardBanner">
 		<h:form enctype="multipart/form-data">
-			<p:fileUpload listener="#{fileUploadBean.uploadBanner}" 
+			<p:fileUpload listener="#{personalizationBean.uploadBanner}" 
 							mode="advanced" 
 							dragDropSupport="false"
 			                update="messages" />
@@ -41,7 +41,7 @@
 		</div>
 		
 		<h:form id="configSpaceForm">
-			<h:commandButton action="#{fileUploadBean.save()}" value="Save" />
+			<h:commandButton action="#{personalizationBean.save()}" value="Save" />
 		</h:form>
 		
 		

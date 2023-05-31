@@ -18,31 +18,34 @@
 		
 		<h2>Choisissez un logo : </h2>
 		
-		<p:growl id ="logo" showDetail="true"></p:growl>
+		<p:growl id ="messages" showDetail="true"></p:growl>
 		
 		<div class="cardLogo">
 		<h:form enctype="multipart/form-data">
-			<p:fileUpload value="#{fileUploadBean.file}" mode="simple" skinSimple="true"></p:fileUpload>
-			<p:commandButton value="Submit" ajax="false" action="#{fileUploadBean.upload()}" ></p:commandButton>
+			<p:fileUpload listener="#{fileUploadBean.uploadLogo}" 
+							mode="advanced" 
+							dragDropSupport="false"
+			                update="messages" />
 		</h:form>
 		</div>
 		
 		<h2>Choisissez une bannière : </h2>
 		
-		<p:growl id="banner" showDetail="true"></p:growl>
-		
 		<div class="cardBanner">
 		<h:form enctype="multipart/form-data">
-			<p:fileUpload value="#{fileUploadBean.file}" mode="simple" skinSimple="true"></p:fileUpload>
-			<p:commandButton value="Submit" ajax="false" action="#{fileUploadBean.upload()}"></p:commandButton>
+			<p:fileUpload listener="#{fileUploadBean.uploadBanner}" 
+							mode="advanced" 
+							dragDropSupport="false"
+			                update="messages" />
 		</h:form>
 		</div>
 		
-		<h:panelGrid>
+		<h:form id="configSpaceForm">
+			<h:commandButton action="#{fileUploadBean.save()}" value="Save" />
+		</h:form>
 		
 		
-		</h:panelGrid>
-	
-
+		
+		
 	</ui:define>
 	</ui:composition>

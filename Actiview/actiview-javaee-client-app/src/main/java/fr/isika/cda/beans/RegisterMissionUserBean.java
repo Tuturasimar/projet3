@@ -7,7 +7,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
-
 import fr.isika.cda.entities.activities.Mission;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.repository.MissionRepository;
@@ -23,22 +22,22 @@ public class RegisterMissionUserBean {
 
 	@Inject
 	MissionUserRepository missionUserRepo;
-	
+
 	@Inject
 	UserFeedBackRepository userFeedbackRepo;
-	
+
 	@Inject
 	UserRepository userRepo;
-	
+
 	@Inject
 	MissionRepository missionRepo;
-	
+
 	private List<User> users;
-	
+
 	private List<Mission> missions;
-	
-	private MissionUserViewModel missionUserVm  = new MissionUserViewModel();
-	
+
+	private MissionUserViewModel missionUserVm = new MissionUserViewModel();
+
 	public List<User> getUsers() {
 		return users;
 	}
@@ -68,24 +67,30 @@ public class RegisterMissionUserBean {
 		// Chercher la liste des users qui ont comme managerId celui connecté
 		// TODO : rendre dynamique l'id
 		String login = SessionUtils.getUserLoginFromSession();
-		
+
 		users = userRepo.findUserByManagerLogin(login);
-		
+
 		// Chercher la liste des missions actives
 		missions = missionRepo.getAllActiveMissions();
-	}
-	
-	public String register() {
-		
-		Long id = userFeedbackRepo.createBlankOne();
-		missionUserVm.setUserFeedbackId(id);
 
-		missionUserRepo.register(missionUserVm);
-		
-		return "missionUserList";
 	}
-	
-	
-	
-	
+
+	public String register() {
+
+		// On vérifie que cette affectation n'existe pas déjà
+		if (!missionUserRepo.checkExistingMissionUser(missionUserVm)) {
+			Long id = userFeedbackRepo.createBlankOne();
+			missionUserVm.setUserFeedbackId(id);
+
+			missionUserRepo.register(missionUserVm);
+
+			// TODO ajout d'une notification
+		} else {
+			// TODO ajout d'une notification "La mission a déjà été attribuée pour cet
+			// utilisateur"
+		}
+		return "missionUserList";
+
+	}
+
 }

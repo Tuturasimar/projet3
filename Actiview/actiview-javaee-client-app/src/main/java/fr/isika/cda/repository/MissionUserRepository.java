@@ -16,6 +16,7 @@ import fr.isika.cda.viewmodels.MissionUserViewModel;
 
 /**
  * Repository pour interagir avec les affectations de missions dans la BDD
+ * 
  * @author Trévor
  *
  */
@@ -24,27 +25,37 @@ public class MissionUserRepository {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@SuppressWarnings("unchecked")
-	public List<MissionUser> getAllMissionUserByManagerLogin(String managerLogin){
-		Query query =  em.createQuery("SELECT mu FROM MissionUser mu JOIN mu.user u JOIN mu.mission mi WHERE u.manager.login = :login");
+	public List<MissionUser> getAllMissionUserByManagerLogin(String managerLogin) {
+		Query query = em.createQuery(
+				"SELECT mu FROM MissionUser mu JOIN mu.user u JOIN mu.mission mi WHERE u.manager.login = :login");
 		query.setParameter("login", managerLogin);
-		
+
 		return query.getResultList();
 	}
 
-
 	public void register(MissionUserViewModel missionUserVm) {
-		
+
 		MissionUser missionUser = new MissionUser();
 		missionUser.setAdr(missionUserVm.getAdr());
 		missionUser.setMission(em.getReference(Mission.class, missionUserVm.getMissionId()));
 		missionUser.setMissionState(StatusEnum.ACTIVE);
 		missionUser.setUser(em.getReference(User.class, missionUserVm.getUserId()));
 		missionUser.setUserFeedback(em.getReference(UserFeedback.class, missionUserVm.getUserFeedbackId()));
-		
+
 		em.persist(missionUser);
-		
+
+	}
+
+	public boolean checkExistingMissionUser(MissionUserViewModel missionUserVm) {
+
+		Query query = em
+				.createQuery("SELECT mu FROM MissionUser mu WHERE mu.user.id = :userId AND mu.mission.id = :missionId");
+		query.setParameter("userId", missionUserVm.getUserId());
+		query.setParameter("missionId", missionUserVm.getMissionId());
+
+		return query.getSingleResult() != null ? true : false;
 	}
 
 }

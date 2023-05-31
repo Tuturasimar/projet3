@@ -21,6 +21,7 @@ import fr.isika.cda.entities.ar.StateAr;
 import fr.isika.cda.entities.common.ArConfigEnum;
 import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.StatusEnum;
+import fr.isika.cda.entities.config.Options;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserRole;
 
@@ -101,6 +102,13 @@ public class DataInit {
 		
 		em.persist(activityDate);
 		
+		// Mock donnée OptionsForfait
+		Options option1 = new Options();
+		option1.setLabel("customColor");
+		option1.setDescription("cadre pour choisir une couleur");
+		option1.setPrice(20);
+		
+		em.persist(option1);
 	}
 
 }

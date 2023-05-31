@@ -19,7 +19,9 @@ import fr.isika.cda.entities.ar.PartDayEnum;
 import fr.isika.cda.entities.ar.StateAr;
 import fr.isika.cda.entities.assignement.MissionUser;
 import fr.isika.cda.entities.common.ArConfigEnum;
+import fr.isika.cda.entities.common.FormationStatusEnum;
 import fr.isika.cda.entities.common.JobEnum;
+import fr.isika.cda.entities.common.LocationFormationEnum;
 import fr.isika.cda.entities.common.MissionTypeEnum;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserData;
@@ -155,8 +157,25 @@ public class DataInit {
 		Formation formation = new Formation();
 		formation.setCreatorId(1L);
 		formation.setLabelActivity("Formation Test");
+		formation.setDescription("C'est une formation test");
+		formation.setFormationStatus(FormationStatusEnum.FOLLOWED);
+		formation.setLocation("N'importe où");
+		formation.setLocationFormation(LocationFormationEnum.EXTERN);
+		formation.setNbOfDays(8);
+		formation.setStatus(StatusEnum.ACTIVE);
+		
+		Formation formation2 = new Formation();
+		formation2.setCreatorId(1L);
+		formation2.setLabelActivity("Autre formation");
+		formation2.setDescription("Pour tester des choses");
+		formation2.setFormationStatus(FormationStatusEnum.GIVEN);
+		formation2.setLocation("Chez nous");
+		formation2.setLocationFormation(LocationFormationEnum.INTERN);
+		formation2.setNbOfDays(5);
+		formation2.setStatus(StatusEnum.ACTIVE);
 
 		em.persist(formation);
+		em.persist(formation2);
 		
 		// Mock donnée de MissionUser
 		

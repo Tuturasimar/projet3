@@ -64,8 +64,7 @@ public class RegisterMissionUserBean {
 
 	@PostConstruct
 	public void init() {
-		// Chercher la liste des users qui ont comme managerId celui connecté
-		// TODO : rendre dynamique l'id
+		
 		String login = SessionUtils.getUserLoginFromSession();
 
 		users = userRepo.findUserByManagerLogin(login);

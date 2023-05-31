@@ -44,7 +44,9 @@ public class MissionUser implements Serializable {
     private StatusEnum missionState;
     private float adr;
 
-    
+    public long getId() {
+		return id;
+	}
 
     public User getUser() {
         return user;

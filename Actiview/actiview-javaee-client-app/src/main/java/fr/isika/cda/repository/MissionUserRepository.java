@@ -50,12 +50,25 @@ public class MissionUserRepository {
 
 	public boolean checkExistingMissionUser(MissionUserViewModel missionUserVm) {
 
-		Query query = em
-				.createQuery("SELECT mu FROM MissionUser mu WHERE mu.user.id = :userId AND mu.mission.id = :missionId");
-		query.setParameter("userId", missionUserVm.getUserId());
-		query.setParameter("missionId", missionUserVm.getMissionId());
+		try {
+			Query query = em.createQuery(
+					"SELECT mu FROM MissionUser mu WHERE mu.user.id = :userId AND mu.mission.id = :missionId");
+			query.setParameter("userId", missionUserVm.getUserId());
+			query.setParameter("missionId", missionUserVm.getMissionId());
 
-		return query.getSingleResult() != null ? true : false;
+			return query.getSingleResult() != null ? true : false;
+		} catch (Exception e) {
+			return false;
+		}
+
+	}
+
+	public MissionUser findMissionUserById(Long id) {
+		return (MissionUser) em.createQuery("SELECT mu FROM MissionUser mu WHERE id = " + id).getSingleResult();
+	}
+
+	public void updateMissionUser(MissionUser missionUser) {
+		em.merge(missionUser);
 	}
 
 }

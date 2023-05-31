@@ -18,7 +18,12 @@ import fr.isika.cda.entities.ar.ArActivity;
 import fr.isika.cda.entities.ar.PartDayEnum;
 import fr.isika.cda.entities.ar.StateAr;
 import fr.isika.cda.entities.common.ArConfigEnum;
+
+
+import fr.isika.cda.entities.config.Company;
+
 import fr.isika.cda.entities.common.JobEnum;
+
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserData;
 import fr.isika.cda.entities.users.UserRole;
@@ -127,6 +132,18 @@ public class DataInit {
 
 		em.persist(activityDate);
 		
+
+		//Mock donnée d'une ESN
+		
+		Company company = new Company();
+		company.setAdress("Je suis une adresse");
+		company.setName("BeMyTech");
+		company.setStatus(StatusEnum.ACTIVE);
+		
+		em.persist(company);
+		
+		
+
 		// Mock donnée OptionsForfait
 		Options option1 = new Options();
 		option1.setLabel("customColor");
@@ -134,6 +151,7 @@ public class DataInit {
 		option1.setPrice(20);
 		
 		em.persist(option1);
+
 	}
 
 }

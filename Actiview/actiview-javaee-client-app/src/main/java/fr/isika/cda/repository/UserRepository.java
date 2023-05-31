@@ -17,6 +17,7 @@ import fr.isika.cda.entities.users.UserData;
 import fr.isika.cda.entities.users.UserRole;
 import fr.isika.cda.viewmodels.UpdateUserViewModel;
 import fr.isika.cda.viewmodels.LoginViewModel;
+import fr.isika.cda.viewmodels.UpdateUserRoleViewModel;
 import fr.isika.cda.viewmodels.UserViewModel;
 
 @Stateless
@@ -57,9 +58,8 @@ public class UserRepository {
 
 		em.persist(user);
 
-		
 		List<RoleTypeEnum> roleTypes = new ArrayList<RoleTypeEnum>(userVM.getRoleTypes());
-		
+
 		for (RoleTypeEnum roleType : roleTypes) {
 			UserRole role = new UserRole();
 			role.setUser(user);
@@ -77,9 +77,9 @@ public class UserRepository {
 		data.setBirthday(updateUserVM.getBirthday());
 		data.setEmail(updateUserVM.getEmail());
 		data.setJobEnum(updateUserVM.getJobEnum());
-		
+
 		em.persist(data);
-		
+
 		User user = findUserById(updateUserVM.getId());
 		user.setPassword(updateUserVM.getPassword());
 		user.setStatus(updateUserVM.getStatus());
@@ -90,9 +90,28 @@ public class UserRepository {
 			user.setManager(manager);
 		}
 		user.setUserData(data);
-		
+
 		em.persist(user);
 
+		return user.getId();
+	}
+
+	public Long updateUserRole(UpdateUserRoleViewModel updateUserRoleVM) {
+		User user = findUserById(updateUserRoleVM.getUserId());
+		// On efface tous les userRole du user
+		List<UserRole> existingUserRoles = getAllUserRolesByUserId(user.getId());
+		for (UserRole existingUserRole : existingUserRoles) {
+			em.remove(existingUserRole);
+		}
+
+		// On recrée les nouveaux userRoles associés au user
+		List<RoleTypeEnum> roleTypes = new ArrayList<RoleTypeEnum>(updateUserRoleVM.getRoleTypes());
+		for (RoleTypeEnum roleType : roleTypes) {
+			UserRole role = new UserRole();
+			role.setUser(user);
+			role.setRoleTypeEnum(roleType);
+			em.persist(role);
+		}
 		return user.getId();
 	}
 
@@ -115,7 +134,7 @@ public class UserRepository {
 		query.setParameter("id", id);
 		return (User) query.getSingleResult();
 	}
-	
+
 	public UserData findDataByUserId(Long id) {
 		Query query = em.createQuery("SELECT ud FROM User u JOIN u.userData ud WHERE u.id = :id");
 		query.setParameter("id", id);
@@ -141,17 +160,19 @@ public class UserRepository {
 		}
 		return null;
 	}
+
 	/**
-	 * Returns a user with the given login data.
-	 * <br>
+	 * Returns a user with the given login data. <br>
 	 * If not found, returns <b>null</b>.
+	 * 
 	 * @param loginVm
 	 * @return
 	 */
 	public User checkIfUserExists(LoginViewModel loginVm) {
-		return em.createQuery("SELECT u FROM User u WHERE u.login = :loginParam AND u.password = :passwordParam", User.class)
-				.setParameter("loginParam", loginVm.getLogin())
-				.setParameter("passwordParam", loginVm.getPassword())
+		return em
+				.createQuery("SELECT u FROM User u WHERE u.login = :loginParam AND u.password = :passwordParam",
+						User.class)
+				.setParameter("loginParam", loginVm.getLogin()).setParameter("passwordParam", loginVm.getPassword())
 				.getSingleResult();
 	}
 }

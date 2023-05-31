@@ -12,20 +12,37 @@
 	
 	<ui:define name ="content">
 	
-	<h:form>
 		<h1>Bienvenue sur la page de personnalisation</h1>
 	
 		<h2>Pour commencer, choisissez un thème : </h2>
 		
 		<h2>Choisissez un logo : </h2>
 		
+		<p:growl id ="logo" showDetail="true"></p:growl>
+		
+		<div class="cardLogo">
+		<h:form enctype="multipart/form-data">
+			<p:fileUpload value="#{fileUploadBean.file}" mode="simple" skinSimple="true"></p:fileUpload>
+			<p:commandButton value="Submit" ajax="false" action="#{fileUploadBean.upload()}" ></p:commandButton>
+		</h:form>
+		</div>
+		
 		<h2>Choisissez une bannière : </h2>
+		
+		<p:growl id="banner" showDetail="true"></p:growl>
+		
+		<div class="cardBanner">
+		<h:form enctype="multipart/form-data">
+			<p:fileUpload value="#{fileUploadBean.file}" mode="simple" skinSimple="true"></p:fileUpload>
+			<p:commandButton value="Submit" ajax="false" action="#{fileUploadBean.upload()}"></p:commandButton>
+		</h:form>
+		</div>
 		
 		<h:panelGrid>
 		
 		
 		</h:panelGrid>
 	
-	</h:form>
+
 	</ui:define>
 	</ui:composition>

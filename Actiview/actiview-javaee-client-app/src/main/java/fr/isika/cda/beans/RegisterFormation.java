@@ -24,7 +24,7 @@ public class RegisterFormation {
 	public void clear() {
 		formationVm = new FormationViewModel();
 	}
-	public void updateMission(Long id) {
+	public void updateFormation(Long id) {
 		System.out.println("La formation à mettre à jour est : " + id);
 	}
 

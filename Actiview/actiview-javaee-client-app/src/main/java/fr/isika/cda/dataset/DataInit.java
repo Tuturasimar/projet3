@@ -21,6 +21,7 @@ import fr.isika.cda.entities.ar.StateAr;
 import fr.isika.cda.entities.common.ArConfigEnum;
 import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.StatusEnum;
+import fr.isika.cda.entities.config.Company;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserRole;
 
@@ -100,6 +101,16 @@ public class DataInit {
 		activityDate.setRemote(false);
 		
 		em.persist(activityDate);
+		
+		//Mock donnée d'une ESN
+		
+		Company company = new Company();
+		company.setAdress("Je suis une adresse");
+		company.setName("BeMyTech");
+		company.setStatus(StatusEnum.ACTIVE);
+		
+		em.persist(company);
+		
 		
 	}
 

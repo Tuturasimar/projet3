@@ -9,8 +9,10 @@
 	<ui:define name="header">
 		<h1 style="text-align: center">Liste des missions</h1>
 	</ui:define>
+
 	<ui:define name="content">
 		<h:dataTable value="#{showMissionsBean.missions}" var="mission">
+
 			<h:column>
 				<f:facet name="header">Nom</f:facet>
 				#{mission.labelActivity}
@@ -19,10 +21,12 @@
 				<f:facet name="header">Date de début</f:facet>
 				#{mission.missionStart}
 			</h:column>
+
 			<h:column>
 				<f:facet name="header">Date de fin</f:facet>
 				#{mission.missionEnd}
 			</h:column>
+
 			<h:column>
 				<f:facet name="header">Status</f:facet>
 				#{mission.status}
@@ -33,10 +37,16 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Mettre à jour</f:facet>
+
 				<h:form>
-					<h:commandButton action="#{editMissionBean.showEditMission(mission.id)}" value="Update"/>
+					<h:commandButton
+						action="#{editMissionBean.showEditMission(mission.id)}"
+						value="Update" />
 				</h:form>
+
 			</h:column>
+
 		</h:dataTable>
 	</ui:define>
+
 </ui:composition>

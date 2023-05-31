@@ -102,13 +102,28 @@ public class DataInit {
 		
 		em.persist(activityDate);
 		
-		// Mock donnée OptionsForfait
+		// Mock données Options(1,2,3)
+		
 		Options option1 = new Options();
-		option1.setLabel("customColor");
-		option1.setDescription("cadre pour choisir une couleur");
+		option1.setLabel("Personnalisation poussée");
+		option1.setDescription("Permet de définir n’importe quelle couleur pour l’application (couleur principale, secondaire, boutons)");
 		option1.setPrice(20);
 		
 		em.persist(option1);
+		
+		Options option2 = new Options();
+		option2.setLabel("FeedBack des missions (salarié)");
+		option2.setDescription("Permet aux salariés de votre ESN de transmettre au sein de l’application leur avis sur leur mission en cours.");
+		option2.setPrice(100);
+		
+		em.persist(option2);
+		
+		Options option3 = new Options();
+		option3.setLabel("Auto-Remplissage du CRA");
+		option3.setDescription("Permet le remplissage automatique du CRA, C’est très pratique !");
+		option3.setPrice(200);
+		
+		em.persist(option3);
 	}
 
 }

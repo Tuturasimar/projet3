@@ -7,34 +7,35 @@ import javax.inject.Inject;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserData;
 import fr.isika.cda.repository.UserRepository;
-import fr.isika.cda.viewmodels.EditUserViewModel;
+import fr.isika.cda.viewmodels.UpdateUserViewModel;
 
 @ManagedBean
 @SessionScoped
 public class UpdateUserBean {
 
-	private EditUserViewModel editUserViewModel;
+	private UpdateUserViewModel updateUserViewModel;
 
 	@Inject
 	private UserRepository userRepo;
 
 	public String showUpdateUser(Long id) {
-		User userToUpdate = userRepo.findUserById(id);
-		UserData userDataToUpdate = userRepo.findDataByUserId(id);
-		editUserViewModel = new EditUserViewModel(userToUpdate.getId());
-		editUserViewModel.setPassword(userToUpdate.getPassword());
-		editUserViewModel.setStatus(userToUpdate.getStatus());
-		editUserViewModel.setManagerId(userToUpdate.getManager().getId().toString()); // récupère l'id du manager en String
-		editUserViewModel.setEmail(userDataToUpdate.getEmail());
-		editUserViewModel.setFirstname(userDataToUpdate.getFirstname());
-		editUserViewModel.setLastname(userDataToUpdate.getLastname());
-		editUserViewModel.setBirthday(userDataToUpdate.getBirthday());
-		editUserViewModel.setJobEnum(userDataToUpdate.getJobEnum());
+//		User userToUpdate = userRepo.findUserById(id);
+//		UserData userDataToUpdate = userRepo.findDataByUserId(id);
+		
+//		updateUserViewModel = new UpdateUserViewModel(userToUpdate.getId());
+//		updateUserViewModel.setPassword(userToUpdate.getPassword());
+//		updateUserViewModel.setStatus(userToUpdate.getStatus());
+//		updateUserViewModel.setManagerId(userToUpdate.getManager().getId().toString()); // récupère l'id du manager en String
+//		updateUserViewModel.setEmail(userDataToUpdate.getEmail());
+//		updateUserViewModel.setFirstname(userDataToUpdate.getFirstname());
+//		updateUserViewModel.setLastname(userDataToUpdate.getLastname());
+//		updateUserViewModel.setBirthday(userDataToUpdate.getBirthday());
+//		updateUserViewModel.setJobEnum(userDataToUpdate.getJobEnum());
 		return "UpdateUserForm.xhtml";
 	}
 
 	public String updateUser(Long id) {
-		userRepo.updateUser(editUserViewModel);
+		userRepo.updateUser(updateUserViewModel);
 
 		return "UserList.xhtml";
 	}

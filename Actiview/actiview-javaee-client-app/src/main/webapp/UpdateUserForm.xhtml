@@ -16,27 +16,27 @@
 			<h:panelGrid columns="3">
 							
 				<h:outputLabel id="passwordLabel" value="Mot de passe" />
-				<p:password id="passwordInput" value="#{updateUserBean.userViewModel.password}" />
+				<p:password id="passwordInput" value="#{updateUserBean.updateUserViewModel.password}" />
 				<h:message for="passwordInput"/>
 				
 				<h:outputLabel id="emailLabel" value="Email" />
-				<p:inputText id="emailInput" value="#{updateUserBean.userViewModel.email}" />
+				<p:inputText id="emailInput" value="#{updateUserBean.updateUserViewModel.email}" />
 				<h:message for="emailInput"/>
 				
 				<h:outputLabel id="firstnameLabel" value="Prénom" />
-				<p:inputText id="firstnameInput" value="#{updateUserBean.userViewModel.firstname}" />
+				<p:inputText id="firstnameInput" value="#{updateUserBean.updateUserViewModel.firstname}" />
 				<h:message for="firstnameInput"/>
 	
 				<h:outputLabel id="nameLabel" value="Nom de famille" />
-				<p:inputText id="nameInput" value="#{updateUserBean.userViewModel.lastname}" />
+				<p:inputText id="nameInput" value="#{updateUserBean.updateUserViewModel.lastname}" />
 				<h:message for="nameInput"/>
 				
 				<h:outputLabel id="birthdayLabel" value="Date de naissance" />
-				<p:datePicker id="birthdayInput" value="#{updateUserBean.userViewModel.birthday}" />
+				<p:datePicker id="birthdayInput" value="#{updateUserBean.updateUserViewModel.birthday}" />
 				<h:message for="birthdayInput"/>
 				
 				<h:outputLabel id="jobLabel" value="Poste" />
-				<p:selectOneMenu id="jobSelectMenu" value="#{updateUserBean.userViewModel.jobEnum}">
+				<p:selectOneMenu id="jobSelectMenu" value="#{updateUserBean.updateUserViewModel.jobEnum}">
 					<f:selectItem itemLabel="Sélectionner un poste" itemValue=""  noSelectionOption="true" />
 					<f:selectItems value="#{registerUser.jobEnumValues()}" var="job" itemLabel="#{job.label}" itemValue="#{job}" />
 				</p:selectOneMenu>
@@ -44,7 +44,7 @@
 				
 				<h:outputLabel id="managerLabel" value="Manager" />
 				<p:selectOneMenu id="managerSelectMenu"
-					value="#{updateUserBean.userViewModel.managerId}">
+					value="#{updateUserBean.updateUserViewModel.managerId}">
 					<f:selectItem itemLabel="Sélectionner un manager" itemValue="" noSelectionOption="true"/>
 					<f:selectItem itemLabel="Aucun Manager" itemValue="null" />
 				</p:selectOneMenu>
@@ -52,7 +52,6 @@
 				
 				<span></span>
 				<p:commandButton value="Submit" action="#{updateUserBean.updateUser()}" />
-				<p:commandButton value="Reset" action="#{updateUserBean.clear()}" />
 			</h:panelGrid>
 		</h:form>
 		<p>

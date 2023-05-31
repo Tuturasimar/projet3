@@ -6,7 +6,7 @@ import fr.isika.cda.entities.common.JobEnum;
 import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.StatusEnum;
 
-public class EditUserViewModel {
+public class UpdateUserViewModel {
 
 	// Données de la table User
 	private Long id;
@@ -25,7 +25,7 @@ public class EditUserViewModel {
 	// surcharger plus tard)
 	private RoleTypeEnum roleTypeEnum = RoleTypeEnum.SALARIE;
 
-	public EditUserViewModel(Long id) {
+	public UpdateUserViewModel(Long id) {
 		this.id = id;
 	}
 

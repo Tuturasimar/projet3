@@ -1,5 +1,7 @@
 package fr.isika.cda.beans;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
@@ -7,6 +9,7 @@ import javax.inject.Inject;
 import fr.isika.cda.entities.common.JobEnum;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserData;
+import fr.isika.cda.entities.users.UserRole;
 import fr.isika.cda.repository.UserRepository;
 import fr.isika.cda.viewmodels.UpdateUserViewModel;
 
@@ -19,6 +22,11 @@ public class UpdateUserBean {
 	@Inject
 	private UserRepository userRepo;
 
+	/**
+	 * Méthode qui permet de renvoyer sur un formulaire de modification d'un user avec ses infos préremplies
+	 * @param id du userVM de la vue UserList qui sert à retrouver le user et le userData en bdd
+	 * @return la vue du formulaire de modification
+	 */
 	public String showUpdateUser(Long id) {
 		User userToUpdate = userRepo.findUserWithManagerById(id);
 		UserData userDataToUpdate = userRepo.findDataByUserId(id);
@@ -38,6 +46,10 @@ public class UpdateUserBean {
 		return "UpdateUserForm.xhtml";
 	}
 
+	/**
+	 * Méthode qui permet d'enregistrer la modification d'un user en bdd
+	 * @return la vue UserList
+	 */
 	public String updateUser() {
 		
 		Long id = updateUserViewModel.getId();
@@ -48,8 +60,31 @@ public class UpdateUserBean {
 		return "UserList.xhtml";
 	}
 	
+	/**
+	 * récupère la liste des job dans JobEnum
+	 * @return
+	 */
 	public JobEnum[] jobEnumValues() {
 		return JobEnum.values();
+	}
+	
+	/**
+	 * Méthode qui permet de renvoyer sur un formulaire de modification du rôle d'un user
+	 * @param id du userVM de la vue UserList qui sert à retrouver le user et le userData en bdd
+	 * @return la vue du formulaire de modif du userRole
+	 */
+	public String showUpdateUserRole(Long id) {
+		List<UserRole> rolesToUpdate =  userRepo.getAllUserRolesByUserId(id);
+		
+		return "UpdateUserRole.xhtml";
+	}
+	
+	/**
+	 * Méthode qui permet d'enregistrer la modification d'un userRole en bdd
+	 * @return la vue UserList
+	 */
+	public String updateUserRole() {
+		return "UserList.xhtml";
 	}
 
 	public UpdateUserViewModel getUpdateUserViewModel() {

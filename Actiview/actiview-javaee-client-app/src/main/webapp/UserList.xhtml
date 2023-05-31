@@ -59,6 +59,12 @@
 					<h:commandButton action="#{updateUserBean.showUpdateUser(user.id)}" value="Modifier" />
 				</h:form>
 			</h:column>
+			<h:column>
+				<f:facet name="header">Modifier son rôle</f:facet>
+				<h:form>
+					<h:commandButton action="#{updateUserBean.showUpdateUserRole(user.id)}" value="Modifier son rôle" />
+				</h:form>
+			</h:column>
 		</h:dataTable>
 		<h:link outcome="index.html">Index</h:link>
 		<h:link outcome="RegisterUserForm.html">Ajouter un utilisateur</h:link>

@@ -1,6 +1,7 @@
 package fr.isika.cda.repository;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -9,6 +10,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.StatusEnum;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserData;
@@ -55,11 +57,15 @@ public class UserRepository {
 
 		em.persist(user);
 
-		UserRole role = new UserRole();
-		role.setRoleTypeEnum(userVM.getRoleTypeEnum());
-		role.setUser(user);
-
-		em.persist(role);
+		
+		List<RoleTypeEnum> roleTypes = new ArrayList<RoleTypeEnum>(userVM.getRoleTypes());
+		
+		for (RoleTypeEnum roleType : roleTypes) {
+			UserRole role = new UserRole();
+			role.setUser(user);
+			role.setRoleTypeEnum(roleType);
+			em.persist(role);
+		}
 
 		return user.getId();
 	}

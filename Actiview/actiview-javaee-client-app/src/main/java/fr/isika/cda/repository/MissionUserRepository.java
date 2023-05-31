@@ -22,7 +22,7 @@ public class MissionUserRepository {
 	
 	@SuppressWarnings("unchecked")
 	public List<MissionUser> getAllMissionUserByManagerId(Long id){
-		Query query =  em.createQuery("SELECT mu FROM MissionUser mu JOIN mu.user u JOIN mu.mission mi WHERE u.fk_manager_id = :id");
+		Query query =  em.createQuery("SELECT mu FROM MissionUser mu JOIN mu.user u JOIN mu.mission mi WHERE u.manager.id = :id");
 		query.setParameter("id", id);
 		
 		return query.getResultList();

@@ -12,25 +12,27 @@ import fr.isika.cda.viewmodels.EditMissionViewModel;
 @SessionScoped
 public class EditMissionBean {
 
-	private EditMissionViewModel editMissionVm = new EditMissionViewModel();
+	private EditMissionViewModel editMissionVm;
 
 	@Inject
 	private MissionRepository missionRepository;
 
-	private Mission missionToUpdate;
-
-	public void clear() {
-		editMissionVm = new EditMissionViewModel();
-	}
-
 	public String showEditMission(Long id) {
-		missionToUpdate = missionRepository.findById(id);
+		Mission missionToUpdate = missionRepository.findById(id);
+		if(missionToUpdate != null) {
+			// mapper l'entité à modifier dans le editMissionVm
+			editMissionVm = new EditMissionViewModel(missionToUpdate.getId());
+			editMissionVm.setLabelActivity(missionToUpdate.getLabelActivity());
+			editMissionVm.setMissionStart(missionToUpdate.getMissionStart());
+			editMissionVm.setMissionEnd(missionToUpdate.getMissionEnd());
+			editMissionVm.setMissionState(missionToUpdate.getMissionState());
+			editMissionVm.setMissionType(missionToUpdate.getMissionType());
+		}
 		return "editMission.xhtml";
 	}
 
 	public String editMission() {
-		missionRepository.editMission(editMissionVm, missionToUpdate.getId());
-		clear();
+		missionRepository.editMission(editMissionVm);
 		return "missionList.xhtml";
 	}
 

@@ -13,12 +13,42 @@ import fr.isika.cda.entities.common.LocationFormationEnum;
 public class Formation extends Activity {
 
 	private int nbOfDays;
-	
+	private String location;
+	private String description;
+
 	@Enumerated(EnumType.STRING)
 	private FormationStatusEnum formationStatus;
 	@Enumerated(EnumType.STRING)
 	private LocationFormationEnum locationFormation;
-	
-	private String location;
-	private String description;
+	public int getNbOfDays() {
+		return nbOfDays;
+	}
+	public void setNbOfDays(int nbOfDays) {
+		this.nbOfDays = nbOfDays;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public FormationStatusEnum getFormationStatus() {
+		return formationStatus;
+	}
+	public void setFormationStatus(FormationStatusEnum formationStatus) {
+		this.formationStatus = formationStatus;
+	}
+	public LocationFormationEnum getLocationFormation() {
+		return locationFormation;
+	}
+	public void setLocationFormation(LocationFormationEnum locationFormation) {
+		this.locationFormation = locationFormation;
+	}
+
 }

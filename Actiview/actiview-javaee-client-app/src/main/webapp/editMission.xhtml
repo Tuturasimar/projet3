@@ -17,13 +17,13 @@
 		
 		<h:panelGrid>
 		
-		<h:outputLabel id="missionLabel" value="Nom de la mission : "/>
-		<h:inputText id="missionTxt" value="#{editMissionBean.editMissionVm.labelActivity}"/>
+		<p:outputLabel id="missionLabel" value="Nom de la mission : "/>
+		<p:inputText id="missionTxt" value="#{editMissionBean.editMissionVm.labelActivity}"/>
 		
-		<h:outputLabel id="typeMissionLabel" value ="Type de mission : "/>
-		<h:selectOneMenu id="typeMissionTxt" value="#{editMissionBean.editMissionVm.missionType}">
-		<f:selectItems value="#{data.missionType}"></f:selectItems>
-		</h:selectOneMenu>
+		<p:outputLabel id="typeMissionLabel" value ="Type de mission : "/>
+		<p:selectOneMenu id="typeMissionMenu" value="#{editMissionBean.editMissionVm.missionType}">
+		<f:selectItems value="#{data.missionType}" var="enum" itemValue="#{enum}" itemLabel="#{enum.label}"></f:selectItems>
+		</p:selectOneMenu>
 		
 		<p:outputLabel id="missionStartLabel" value="Date de début de la mission : " />
 		<p:calendar id="missionStartTxt" value="#{editMissionBean.editMissionVm.missionStart}" showOn="button">
@@ -33,15 +33,15 @@
 		<p:calendar id="missionEndTxt" value="#{editMissionBean.editMissionVm.missionEnd}" showOn="button">
 		</p:calendar>
 		
-		<h:outputLabel id="typeStatusEnumLabel" value ="Etat de la mission : "/>
-		<h:selectOneMenu id="typeStatusEnumTxt" value="#{editMissionBean.editMissionVm.missionState}">
+		<p:outputLabel id="typeStatusEnumLabel" value ="Etat de la mission : "/>
+		<p:selectOneMenu id="typeStatusEnumTxt" value="#{editMissionBean.editMissionVm.missionState}">
 		<f:selectItems value="#{data.statusEnum}"></f:selectItems>
-		</h:selectOneMenu>
+		</p:selectOneMenu>
 		
 		<h:form>
 			<h:commandButton value="Edit" action="#{editMissionBean.editMission()}"/>
-			<h:commandButton value="Clear" action="#{editMissionBean.clear()}"/>
 		</h:form>
+		
 		</h:panelGrid>
 		<ul>
 			<li>

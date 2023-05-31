@@ -33,10 +33,21 @@
 			<li><h:link outcome="addDateTest.xhtml">Test des dates</h:link></li>
 			
 			<li><h:link outcome="showAr.xhtml">Test du Cra</h:link></li>
+	
+	
+			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
+				<h:form>				
+					<li>
+						<h:commandLink action="#{loginBean.logout()}">Déconnexion (#{loginBean.loginVm.login})</h:commandLink>
+					</li>
+				</h:form>
+			</ui:fragment>
 			
-			<li><h:link outcome="LoginView.xhtml">Connexion</h:link></li>
-			
-
+			<ui:fragment rendered="#{not loginBean.isUserLoggedIn()}">				
+				<li>
+					<h:link outcome="LoginView.xhtml">Connexion</h:link>
+				</li>
+			</ui:fragment>
 		</ul>
 
 

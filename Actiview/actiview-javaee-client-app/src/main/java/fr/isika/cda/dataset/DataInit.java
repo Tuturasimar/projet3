@@ -19,7 +19,10 @@ import fr.isika.cda.entities.ar.ArActivity;
 import fr.isika.cda.entities.ar.PartDayEnum;
 import fr.isika.cda.entities.ar.StateAr;
 import fr.isika.cda.entities.common.ArConfigEnum;
+import fr.isika.cda.entities.common.RoleTypeEnum;
+import fr.isika.cda.entities.common.StatusEnum;
 import fr.isika.cda.entities.users.User;
+import fr.isika.cda.entities.users.UserRole;
 
 
 @Singleton
@@ -35,9 +38,17 @@ public class DataInit {
 		// Mock donnée User
 		User user = new User();
 		user.setCreatedAt(LocalDateTime.now());
+		user.setLogin("actiview");
+		user.setPassword("111");
+		user.setStatus(StatusEnum.ACTIVE);
+		
+		UserRole role = new UserRole();
+		role.setRoleTypeEnum(RoleTypeEnum.ADMINESN);
+		role.setUser(user);
 		
 		em.persist(user);
-
+		em.persist(role);
+		
 		// Mock donnée d'un CRA
 		Ar ar = new Ar();
 		ar.setCreatedAt(LocalDate.now());

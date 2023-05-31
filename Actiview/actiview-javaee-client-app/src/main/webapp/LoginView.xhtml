@@ -1,22 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 
-
-
-
-<h:form>
-
-<h:outputLabel value="login" for="login" />
-<h:inputText value="#{loginBean.loginVm.login}" id="login" />
+<h:form id="loginForm">
 	
-<h:outputLabel value="Mot de passe" for="password" />
-<h:inputSecret value="#{loginBean.loginVm.password}" id="password" />
+	<h:messages for="loginForm"/>
+	
+	<h:outputLabel value="login" for="login" />
+	<h:inputText value="#{loginBean.loginVm.login}" id="login" />
 
+	<h:outputLabel value="Mot de passe" for="password" />
+	<h:inputSecret value="#{loginBean.loginVm.password}" id="password" />
 
-<h:commandButton action="#{loginBean.login()}" value="valider" />
+	<h:commandButton action="#{loginBean.login()}" value="valider" />
 </h:form>
 
 </html>

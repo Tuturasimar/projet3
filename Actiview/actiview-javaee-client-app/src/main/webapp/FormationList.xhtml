@@ -3,8 +3,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	template="/WEB-INF/templates/default.xhtml"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
 
 	<ui:define name="header">
 		<h1 style="text-align: center">Liste des formations</h1>
@@ -17,7 +17,7 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Nombre de jours</f:facet>
-				#{formation.formationNbOfDays}
+				#{formation.nbOfDays}
 			</h:column>
 			
 			<h:column>
@@ -29,8 +29,10 @@
 				#{formation.formationType}
 			</h:column>
 			<h:column>
-				<f:facet name="header">Mettre à jour</f:facet>
-				<h:commandButton action="#{registerFormation.updateFormation(formation.id)}" value="Update"/>
+				<h:form id="actionsForm">
+					<f:facet name="header">Mettre à jour</f:facet>
+					<h:commandButton action="#{registerFormation.update(formation.id)}" value="Update"/>
+				</h:form>
 			</h:column>
 		</h:dataTable>
 	</ui:define>

@@ -14,6 +14,7 @@ import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserData;
 import fr.isika.cda.entities.users.UserRole;
 import fr.isika.cda.viewmodels.UpdateUserViewModel;
+import fr.isika.cda.viewmodels.LoginViewModel;
 import fr.isika.cda.viewmodels.UserViewModel;
 
 @Stateless
@@ -134,5 +135,17 @@ public class UserRepository {
 		}
 		return null;
 	}
-
+	/**
+	 * Returns a user with the given login data.
+	 * <br>
+	 * If not found, returns <b>null</b>.
+	 * @param loginVm
+	 * @return
+	 */
+	public User checkIfUserExists(LoginViewModel loginVm) {
+		return em.createQuery("SELECT u FROM User u WHERE u.login = :loginParam AND u.password = :passwordParam", User.class)
+				.setParameter("loginParam", loginVm.getLogin())
+				.setParameter("passwordParam", loginVm.getPassword())
+				.getSingleResult();
+	}
 }

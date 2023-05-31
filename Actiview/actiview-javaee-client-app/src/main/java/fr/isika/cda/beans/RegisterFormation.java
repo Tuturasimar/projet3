@@ -11,21 +11,22 @@ import fr.isika.cda.viewmodels.FormationViewModel;
 @ManagedBean
 public class RegisterFormation {
 
-	private FormationViewModel formationVm = new FormationViewModel();
 	@Inject
 	private FormationRepository formationRepository;
 	
+	private FormationViewModel formationVm = new FormationViewModel();
+
 	public void register() {
-		Long id = formationRepository.register(formationVm);
-		System.out.println("La formation a bien été créée avec l'id: " + id);
+		formationRepository.register(formationVm);
 		clear();
-		
 	}
+
 	public void clear() {
 		formationVm = new FormationViewModel();
 	}
-	public void updateMission(Long id) {
-		System.out.println("La formation à mettre à jour est : " + id);
+	
+	public void update(Long id) {
+		formationRepository.updateFormation(formationVm);
 	}
 
 	public FormationViewModel getFormationVm() {

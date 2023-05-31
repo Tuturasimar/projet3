@@ -19,11 +19,13 @@ import fr.isika.cda.entities.ar.PartDayEnum;
 import fr.isika.cda.entities.ar.StateAr;
 import fr.isika.cda.entities.common.ArConfigEnum;
 import fr.isika.cda.entities.common.JobEnum;
-import fr.isika.cda.entities.common.RoleTypeEnum;
-import fr.isika.cda.entities.common.StatusEnum;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserData;
 import fr.isika.cda.entities.users.UserRole;
+import fr.isika.cda.entities.common.RoleTypeEnum;
+import fr.isika.cda.entities.common.StatusEnum;
+import fr.isika.cda.entities.config.Options;
+
 
 @Singleton
 @Startup
@@ -59,6 +61,19 @@ public class DataInit {
 		role.setUser(user);
 
 		em.persist(role);
+
+
+		user.setLogin("actiview");
+		user.setPassword("111");
+		user.setStatus(StatusEnum.ACTIVE);
+		
+		UserRole role = new UserRole();
+		role.setRoleTypeEnum(RoleTypeEnum.ADMINESN);
+		role.setUser(user);
+		
+		em.persist(user);
+		em.persist(role);
+		
 
 		// Mock donnée d'un CRA
 		Ar ar = new Ar();
@@ -110,7 +125,14 @@ public class DataInit {
 		activityDate.setRemote(false);
 
 		em.persist(activityDate);
-
+		
+		// Mock donnée OptionsForfait
+		Options option1 = new Options();
+		option1.setLabel("customColor");
+		option1.setDescription("cadre pour choisir une couleur");
+		option1.setPrice(20);
+		
+		em.persist(option1);
 	}
 
 }

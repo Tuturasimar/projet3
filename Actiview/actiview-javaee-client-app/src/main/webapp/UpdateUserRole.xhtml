@@ -14,7 +14,7 @@
 	<ui:define name="content">
 		<h:form>
 			<h:panelGrid columns="3">
-							
+<!-- 				il faudrait une function en JS pour vérifier qu'au moins un role est coché 		 -->
 				<h:outputLabel id="roleLabel" value="Rôle"/>
 				<p:selectManyCheckbox id="roleCB" value="#{updateUserRoleBean.updateUserRoleVM.roleTypes}">
 					<f:selectItems value="#{updateUserRoleBean.roleTypeEnumValues()}" var="role" itemLabel="#{role.label}" itemValue="#{role}" />

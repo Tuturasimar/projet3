@@ -8,13 +8,20 @@ import fr.isika.cda.entities.common.StatusEnum;
 
 public class EditMissionViewModel {
 	
+	private final Long missionId;
+	
 	private LocalDate missionStart;
 	private LocalDate missionEnd;
 	private String labelActivity;
 	private MissionTypeEnum missionType;
 	private StatusEnum missionState;
 	
-	
+	public EditMissionViewModel(Long missionId) {
+		this.missionId = missionId;
+	}
+	public Long getMissionId() {
+		return missionId;
+	}
 	public LocalDate getMissionStart() {
 		return missionStart;
 	}

@@ -32,13 +32,14 @@ public class MissionRepository {
 		return mission.getId();
 	}
 	
-	public Long editMission(EditMissionViewModel missionVm, Long id) {
-		Mission missionUpdate = findById(id);
+	public Long editMission(EditMissionViewModel missionVm) {
+		Mission missionUpdate = findById(missionVm.getMissionId());
 		missionUpdate.setLabelActivity(missionVm.getLabelActivity());
 		missionUpdate.setMissionStart(missionVm.getMissionStart());
 		missionUpdate.setMissionEnd(missionVm.getMissionEnd());
 		missionUpdate.setMissionType(missionVm.getMissionType());
 		missionUpdate.setStatus(missionVm.getMissionState());
+		missionUpdate.setMissionState(missionVm.getMissionState());
 		return missionUpdate.getId(); 
 	}
 

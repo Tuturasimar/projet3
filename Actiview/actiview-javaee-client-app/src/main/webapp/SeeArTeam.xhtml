@@ -11,34 +11,44 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<!-- 	bouton mois précédent -->
 
-		<!-- 	Nom du mois en cours -->
+		<h:form id="selectArMonthForm">
+			<h:panelGroup id="dateView">
+				<p:datePicker id="month" view="month" lang="fr"
+					value="#{seeArTeamBean.arVm.date}" inline="true" pattern="MM/yyyy"
+					yearNavigator="true" yearRange="2020:2050">
+					<p:ajax event="dateSelect" listener="#{seeArTeamBean.getAr()}"
+						update=":arViewForm:rendu"></p:ajax>
+				</p:datePicker>
+			</h:panelGroup>
+		</h:form>
 
-		<!-- 	bouton mois suivant -->
-
-
-		<h:dataTable value="#{seeArTeamBean.ars}" var="ar">
-			<h:column>
-				<f:facet name="header">Nom</f:facet>
+		<h:form id="arViewForm">
+			<p:fieldset id="rendu" legend="CRA">
+				<h:dataTable value="#{seeArTeamBean.ars}" var="ar">
+					<h:column>
+						<f:facet name="header">Nom</f:facet>
 				#{ar.user.userData.lastname}
 				</h:column>
 
-			<h:column>
-				<f:facet name="header">Prénom</f:facet>
+					<h:column>
+						<f:facet name="header">Prénom</f:facet>
 				#{ar.user.userData.firstname}
 				</h:column>
 
-			<h:column>
-				<f:facet name="header">Etat du CRA</f:facet>
+					<h:column>
+						<f:facet name="header">Etat du CRA</f:facet>
 				#{ar.stateArEnum}
 				</h:column>
 
-			<!-- 			<h:column> -->
-			<!-- 				<f:facet name="header">Voir le CRA</f:facet> -->
-			<!-- 				<h:commandButton action="#{seeArTeamBean.showAr(ar.id)}" value="Consulter" rendered="#{ar.stateArEnum != seeArTeamBean.DRAFT}" /> -->
-			<!-- 			</h:column> -->
-
-		</h:dataTable>
+					<h:column>
+						<f:facet name="header">Voir le CRA</f:facet>
+						<h:commandButton action="#{seeArTeamBean.showAr(ar.id)}"
+							value="Consulter"
+							rendered="#{ar.stateArEnum != seeArTeamBean.DRAFT}" />
+					</h:column>
+				</h:dataTable>
+			</p:fieldset>
+		</h:form>
 	</ui:define>
 </ui:composition>

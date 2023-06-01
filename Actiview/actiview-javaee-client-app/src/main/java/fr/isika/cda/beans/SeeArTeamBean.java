@@ -14,6 +14,7 @@ import fr.isika.cda.entities.users.User;
 import fr.isika.cda.repository.ArRepository;
 import fr.isika.cda.repository.UserRepository;
 import fr.isika.cda.utils.SessionUtils;
+import fr.isika.cda.viewmodels.ArViewModel;
 
 @ManagedBean
 public class SeeArTeamBean {
@@ -26,6 +27,8 @@ public class SeeArTeamBean {
 
 	private List<User> employees = new ArrayList<User>();
 	private List<Ar> ars = new ArrayList<Ar>();
+
+	private ArViewModel arVm = new ArViewModel();
 
 	// Pour gérer facilement des conditions d'apparition côté front
 	private final StateAr DRAFT = StateAr.DRAFT;
@@ -47,31 +50,19 @@ public class SeeArTeamBean {
 					LocalDate.now().getYear());
 			ars.add(arToAdd);
 		}
-
 	}
 
-	/**
-	 * Méthode permettant d'afficher un tableau des cras de tous les salariés d'un
-	 * manager en fonction du mois et de l'année choisis
-	 * 
-	 * @param managerId : id du manager qui consulte la page (donc il faudra que
-	 *                  cette page ne soit accessible qu'à un manager)
-	 * @param month     : mois sélectionné (quand on arrive sur cette page, on est
-	 *                  en LocalDate.now() et on peut changer grâce à des boutons
-	 *                  mois précédent/suivant)
-	 * @param year      : année sélectionnée (quand on arrive sur cette page, on est
-	 *                  en LocalDate.now())
-	 * @return la page
-	 */
-//	public String showSeeArTeam(String login, int month, int year) {
-//		setEmployees(userRepo.getAllEmployeesByManagerLogin(login));
-//
-//		for (User employee : employees) {
-//			Ar arToAdd = arRepo.findArWithUserDataByUserAndCreatedAt(employee.getId(), month, year);
-//			ars.add(arToAdd);
-//		}
-//		return "SeeArTeam.xhtml";
-//	}
+	public void getAr() {
+		Long managerId = SessionUtils.getUserIdFromSession();
+		setEmployees(userRepo.getAllEmployeesByManagerId(managerId));
+
+		for (User employee : employees) {
+			Ar arToAdd = arRepo.findArWithUserDataByUserAndCreatedAt(employee.getId(), arVm.getDate().getMonthValue(),
+					arVm.getDate().getYear());
+			ars.add(arToAdd);
+		}
+
+	}
 
 	public List<User> getEmployees() {
 		return employees;
@@ -99,6 +90,14 @@ public class SeeArTeamBean {
 
 	public StateAr getVALIDATED() {
 		return VALIDATED;
+	}
+
+	public ArViewModel getArVm() {
+		return arVm;
+	}
+
+	public void setArVm(ArViewModel arVm) {
+		this.arVm = arVm;
 	}
 
 }

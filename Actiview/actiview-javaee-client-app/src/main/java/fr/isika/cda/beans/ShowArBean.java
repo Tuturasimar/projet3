@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.ar.Ar;
+import fr.isika.cda.entities.ar.StateAr;
 import fr.isika.cda.repository.ArRepository;
 import fr.isika.cda.utils.SessionUtils;
 import fr.isika.cda.viewmodels.ArViewModel;
@@ -75,6 +76,13 @@ public class ShowArBean implements Serializable {
 		}
 		return false;
 
+	}
+
+	public boolean isArADraft() {
+		if (arVm.getAr().getStateArEnum() == StateAr.DRAFT) {
+			return true;
+		}
+		return false;
 	}
 
 }

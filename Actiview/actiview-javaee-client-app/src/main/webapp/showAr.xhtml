@@ -42,11 +42,13 @@
 				<h:outputText value="Aucun Cra disponible pour ce mois"
 					rendered="#{!showArBean.hasSelectedAr()}" />
 
+				<h:commandButton
+					action="#{registerActivityDateFromArBean.getAllActivityDates(showArBean.arVm.ar.id)}"
+					value="Voir les détails" rendered="#{showArBean.hasSelectedAr()}" />
+
 			</p:fieldset>
 
-			<h:commandButton
-				action="#{registerActivityDateFromArBean.getAllActivityDates(showArBean.arVm.ar.id)}"
-				value="Voir les détails" rendered="#{showArBean.hasSelectedAr()}" />
+
 
 		</h:form>
 	</ui:define>

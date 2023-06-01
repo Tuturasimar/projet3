@@ -75,8 +75,9 @@ public class MissionUserRepository {
 	public List<Mission> findAllAffectedMissionsByUserId(Long id){
 		
 		try {
-			Query query = em.createQuery("SELECT m FROM MissionUser mu JOIN mu.mission m WHERE mu.user.id = :userId", Mission.class);
+			Query query = em.createQuery("SELECT m FROM MissionUser mu JOIN mu.mission m WHERE mu.user.id = :userId AND mu.missionState = :status", Mission.class);
 			query.setParameter("userId", id);
+			query.setParameter("status", StatusEnum.ACTIVE);
 			return query.getResultList();
 		} catch (Exception e) {
 			return null;

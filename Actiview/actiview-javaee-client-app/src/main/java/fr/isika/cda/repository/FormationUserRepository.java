@@ -65,8 +65,9 @@ public class FormationUserRepository {
 	@SuppressWarnings("unchecked")
 	public List<Formation> finAllAffectedFormationsByUserId(Long userConnectedId) {
 		try {
-			Query query = em.createQuery("SELECT f FROM FormationUser fu JOIN fu.formation m WHERE fu.user.id = :userId", Formation.class);
+			Query query = em.createQuery("SELECT f FROM FormationUser fu JOIN fu.formation f WHERE fu.user.id = :userId AND fu.formationState = :status", Formation.class);
 			query.setParameter("userId", userConnectedId);
+			query.setParameter("status", StatusEnum.ACTIVE);
 			return query.getResultList();
 		} catch (Exception e) {
 			return null;

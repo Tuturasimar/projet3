@@ -1,28 +1,20 @@
-package fr.isika.cda.entities.config;
+package fr.isika.cda.viewmodels;
 
-import java.io.Serializable;
+public class ColorConfigViewModel {
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity
-public class ColorConfig implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue
-	private long id;
-
+	private String backgroundColor;
 	private String buttonColor;
 	private String fontColor;
-	private String backgroundColor;
 	private String titleColor;
 	private String textColor;
+	
+	public String getBackgroundColor() {
+		return backgroundColor;
+	}
+	
+	public void setBackgroundColor(String backgroundColor) {
+		this.backgroundColor = backgroundColor;
+	}
 
 	public String getButtonColor() {
 		return buttonColor;
@@ -40,18 +32,6 @@ public class ColorConfig implements Serializable {
 		this.fontColor = fontColor;
 	}
 
-	public long getId() {
-		return id;
-	}
-
-	public String getBackgroundColor() {
-		return backgroundColor;
-	}
-
-	public void setBackgroundColor(String backgroundColor) {
-		this.backgroundColor = backgroundColor;
-	}
-
 	public String getTitleColor() {
 		return titleColor;
 	}
@@ -67,5 +47,6 @@ public class ColorConfig implements Serializable {
 	public void setTextColor(String textColor) {
 		this.textColor = textColor;
 	}
-
+	
+	
 }

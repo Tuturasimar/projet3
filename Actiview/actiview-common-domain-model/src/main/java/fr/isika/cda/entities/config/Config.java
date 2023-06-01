@@ -21,7 +21,7 @@ public class Config implements Serializable {
 	@GeneratedValue
 	private long id;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="colorconfig_id")
 	private ColorConfig colorConfig;
 
@@ -44,6 +44,10 @@ public class Config implements Serializable {
 	public ColorConfig getColorConfig() {
 		return colorConfig;
 	}
+	
+	public void setColorConfig(ColorConfig colorConfig) {
+		this.colorConfig = colorConfig;
+	}
 
 	public FontConfig getFontConfig() {
 		return fontConfig;
@@ -58,6 +62,15 @@ public class Config implements Serializable {
 	public Company getCompany() {
 		return company;
 	}
+	
+	public Config() {
+		// TODO Auto-generated constructor stub
+	}
 
+	public void setFontConfig(FontConfig fontConfig) {
+		this.fontConfig = fontConfig;
+	}
+
+	
 	
 }

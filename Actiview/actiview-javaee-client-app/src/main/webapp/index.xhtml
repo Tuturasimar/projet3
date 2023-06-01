@@ -1,13 +1,70 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html" lang="en">
+	xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head>
-	<title>::Index::</title>
-</h:head>
-<body>
-	<h1>Actiview JEE App Up and running ....</h1>
-</body>
+<ui:composition template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="Entete">
+		<h2 style="color: red">Vous faites du bon travail</h2>
+
+	</ui:define>
+
+	<ui:define name="content">
+		<h2>Index De La Page</h2>
+
+
+		<h2>Menu</h2>
+		<ul>
+
+
+			<li><h:link outcome="CreateFormation.xhtml">Créer une formation</h:link></li>
+
+			<li><h:link outcome="FormationList.xhtml">Voir les formations</h:link></li>
+
+			<li><h:link outcome="createMission.xhtml">Créer une mission</h:link></li>
+
+			<li><h:link outcome="missionList.xhtml">Voir les missions</h:link></li>
+
+			<li><h:link outcome="RegisterUserForm.xhtml">Formulaire Création d'un utilisateur</h:link></li>
+
+			<li><h:link outcome="UserList.xhtml">Listes des utilisateurs</h:link></li>
+
+			<li><h:link outcome="addDateTest.xhtml">Test des dates</h:link></li>
+
+			<li><h:link outcome="showAr.xhtml">Test du Cra</h:link></li>
+
+			<li><h:link outcome="missionUserList.xhtml">Affectations Missions</h:link></li>
+			
+			<li><h:link outcome="formationUserList.xhtml">Affectations Formations</h:link></li>
+			
+
+			<li><h:link outcome="adminPersonalization.xhtml">Personnalisation espace ESN</h:link></li>
+
+	
+
+			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
+				<h:form>
+					<li><h:commandLink action="#{loginBean.logout()}">Déconnexion (#{loginBean.loginVm.login})</h:commandLink>
+					</li>
+				</h:form>
+			</ui:fragment>
+
+			<ui:fragment rendered="#{not loginBean.isUserLoggedIn()}">
+				<li><h:link outcome="LoginView.xhtml">Connexion</h:link></li>
+			</ui:fragment>
+
+			<li><h:link outcome="OptionsList.xhtml">Voir les options</h:link></li>
+
+			<li><h:link outcome="FeatureList.xhtml">Voir la liste des forfaits</h:link></li>
+
+
+
+		</ul>
+
+
+	</ui:define>
+</ui:composition>
 </html>
+

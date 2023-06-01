@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" lang="en">
+
+<h:head>
+	<title>ActiView</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</h:head>
+
+<h:body>
+
+	<div id="container">
+
+		<div id="header"> 
+		<ui:insert name="Entete"></ui:insert>
+		
+		</div>
+
+		<div id="content">
+			<ui:insert name="content">
+                [Template content will be inserted here]
+         	</ui:insert>
+		</div>
+
+		<div id="footer">
+			<div>
+				<p>You have successfully deployed a Java EE 7 Enterprise
+					Application.</p>
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>

@@ -1,17 +1,53 @@
 package fr.isika.cda.entities.users;
 
-public enum UserRole {
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-	VISITOR ("Unregistred user"), USER("Regitered User"), MEMBER("Member"), ADMIN("Administrator");
+import fr.isika.cda.entities.common.RoleTypeEnum;
 
-	private final String label;
+@Entity
+public class UserRole {
 
-	private UserRole(final String label) {
-		this.label = label;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@Enumerated(EnumType.STRING)
+	private RoleTypeEnum roleTypeEnum;
+
+	@ManyToOne
+	@JoinColumn(name = "fk_user_id")
+	private User user;
+	
+	
+	//Getters & setters
+	public RoleTypeEnum getRoleTypeEnum() {
+		return roleTypeEnum;
 	}
 
-	public String getLabel() {
-		return label;
+	public void setRoleTypeEnum(RoleTypeEnum roleTypeEnum) {
+		this.roleTypeEnum = roleTypeEnum;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	//To string avec les label de l'énum
+	public String toStringLabel() {
+		return roleTypeEnum.getLabel();
+	}
 }

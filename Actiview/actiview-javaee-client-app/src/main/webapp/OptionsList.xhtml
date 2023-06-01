@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/default.xhtml">
+
+<ui:define name="Entete">
+		<h2 style="color: red; text-align: center">Liste des options disponible</h2>
+	</ui:define>
+
+	<ui:define name="header">
+		<h1 style="text-align:center">Liste des options</h1>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:dataTable value="#{showOptionsBean.options}" var="option">
+			<h:column>
+				<f:facet name="header">Nom</f:facet>
+		#{option.label}
+	</h:column>
+
+			<h:column>
+				<f:facet name="header">Description</f:facet>
+		#{option.description}
+	</h:column>
+
+			<h:column>
+				<f:facet name="header">Prix(euros)</f:facet>
+		#{option.price}
+	</h:column>
+
+		</h:dataTable>
+	</ui:define>
+</ui:composition>
+</html>

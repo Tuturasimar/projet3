@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="Entete">
+		<h2>View des CRAS</h2>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form id="selectArMonthForm">
+			<h:panelGroup id="dateView">
+				<p:datePicker id="month" view="month"
+					value="#{showArBean.arVm.date}" inline="true" pattern="MM/yyyy"
+					yearNavigator="true" yearRange="2020:2050">
+					<p:ajax event="dateSelect" listener="#{showArBean.getAr()}"
+						update=":arViewForm:rendu"></p:ajax>
+				</p:datePicker>
+			</h:panelGroup>
+		</h:form>
+
+		<h:form id="arViewForm">
+			<p:fieldset id="rendu" legend="CRA">
+				<p:outputLabel value="#{showArBean.arVm.ar.id}" id="arId"
+					style="display: block" />
+
+				<p:outputLabel value="#{showArBean.arVm.ar.createdAt}"
+					id="arCreatedAt" style="display: block" />
+
+				<p:outputLabel value="#{showArBean.arVm.ar.stateArEnum}"
+					id="arState" style="display: block" />
+			</p:fieldset>
+			
+			<h:commandButton action="#{registerActivityDateFromArBean.getAllActivityDates(showArBean.arVm.ar.id)}" value="Voir les détails" />
+
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>
+</html>

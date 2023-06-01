@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="header">
+		<h1 style="text-align: center">Liste des formations</h1>
+	</ui:define>
+	<ui:define name="content">
+		<h:dataTable value="#{showFormationsBean.formations}" var="formation">
+			<h:column>
+				<f:facet name="header">Nom</f:facet>
+				#{formation.labelFormation}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Nombre de jours</f:facet>
+				#{formation.nbOfDays}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Description</f:facet>
+				#{formation.status}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Localisation</f:facet>
+				#{formation.formationType}
+			</h:column>
+			<h:column>
+				<h:form id="actionsForm">
+					<f:facet name="header">Mettre à jour</f:facet>
+					<h:commandButton action="#{registerFormation.update(formation.id)}" value="Update"/>
+				</h:form>
+			</h:column>
+		</h:dataTable>
+	</ui:define>
+</ui:composition>

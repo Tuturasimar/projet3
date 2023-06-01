@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="header">
+		<h1>Modifier une mission</h1>
+	</ui:define>
+
+	<ui:define name="content">
+	<h:form>
+		
+		<h2>Modification d'une mission</h2>
+		
+		<h:panelGrid>
+		
+		<p:outputLabel id="missionLabel" value="Nom de la mission : "/>
+		<p:inputText id="missionTxt" value="#{editMissionBean.editMissionVm.labelActivity}"/>
+		
+		<p:outputLabel id="typeMissionLabel" value ="Type de mission : "/>
+		<p:selectOneMenu id="typeMissionMenu" value="#{editMissionBean.editMissionVm.missionType}">
+		<f:selectItems value="#{data.missionType}" var="enum" itemValue="#{enum}" itemLabel="#{enum.label}"></f:selectItems>
+		</p:selectOneMenu>
+		
+		<p:outputLabel id="missionStartLabel" value="Date de début de la mission : " />
+		<p:calendar id="missionStartTxt" value="#{editMissionBean.editMissionVm.missionStart}" showOn="button">
+		</p:calendar>
+		
+		<p:outputLabel id="missionEndLabel" value="Date de fin de la mission : " />
+		<p:calendar id="missionEndTxt" value="#{editMissionBean.editMissionVm.missionEnd}" showOn="button">
+		</p:calendar>
+		
+		<p:outputLabel id="typeStatusEnumLabel" value ="Etat de la mission : "/>
+		<p:selectOneMenu id="typeStatusEnumTxt" value="#{editMissionBean.editMissionVm.missionState}">
+		<f:selectItems value="#{data.statusEnum}"></f:selectItems>
+		</p:selectOneMenu>
+		
+		<h:form>
+			<h:commandButton value="Edit" action="#{editMissionBean.editMission()}"/>
+		</h:form>
+		
+		</h:panelGrid>
+		<ul>
+			<li>
+				<h:link outcome="index.xhtml">Index</h:link>
+			</li>
+			
+			
+		</ul>
+
+	</h:form>
+	</ui:define>
+</ui:composition>

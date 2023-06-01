@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="Entete">
+		<h2 style="color: red">test des dates</h2>
+
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+			<h:selectOneMenu id="partDayMenu"
+				value="#{registerActivityDateFromArBean.arDateVm.partOfDay}">
+				<f:selectItems value="#{enumData.partDay}" var="enum"
+					itemValue="#{enum}" itemLabel="#{enum.label}"></f:selectItems>
+			</h:selectOneMenu>
+			<h:selectOneMenu id="activityMenu"
+				value="#{registerActivityDateFromArBean.arDateVm.activityId}">
+				<f:selectItems value="#{showActivityBean.activities}" var="activity"
+					itemValue="#{activity.id}" itemLabel="#{activity.labelActivity}"></f:selectItems>
+			</h:selectOneMenu>
+			<h:outputLabel value="Télétravail" for="remote" />
+			<h:selectBooleanCheckbox id="remote"
+				value="#{registerActivityDateFromArBean.arDateVm.remote}" />
+			<p:datePicker id="datePicker"
+				value="#{registerActivityDateFromArBean.arDateVm.date}"
+				showIcon="true" />
+			<h:commandButton id="addDate"
+				action="#{registerActivityDateFromArBean.addDate()}" value="Test">
+				<f:ajax execute="@form" render="dateTab" event="click"></f:ajax>
+			</h:commandButton>
+		</h:form>
+		<h:dataTable id="dateTab"
+			value="#{registerActivityDateFromArBean.activityDates}"
+			var="activityDate">
+			<h:column>
+				<f:facet name="header">Date</f:facet>
+		#{activityDate.date}
+		</h:column>
+			<h:column>
+				<f:facet name="header">Partie de la journée</f:facet>
+		#{activityDate.partOfDay.label}
+		</h:column>
+			<h:column>
+				<f:facet name="header">Télétravail</f:facet>
+		#{activityDate.remote ? "Oui" : "Non"}
+		</h:column>
+			<h:column>
+				<f:facet name="header">Label</f:facet>
+		#{activityDate.arActivity.activity.labelActivity}
+		</h:column>
+		</h:dataTable>
+	</ui:define>
+</ui:composition>
+</html>

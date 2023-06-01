@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="Entete">
+		<h2 style="color: red; text-align: center">Liste des forfaits</h2>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:dataTable value="#{showFeaturesBean.feature}" var="feature">
+			<h:column>
+				<f:facet name="header">Forfait</f:facet>
+		#{feature.label}
+	</h:column>
+
+			<h:column>
+				<f:facet name="header">Nombre de collaborateurs Maximum</f:facet>
+		#{feature.nbOfCollaborators}
+	</h:column>
+
+			<h:column>
+				<f:facet name="header">Format du CRA</f:facet>
+		#{feature.arConfig.label}
+	</h:column>
+
+			<h:column>
+				<f:facet name="header">Nombre d'options</f:facet>
+		#{feature.nbOfOptions}
+	</h:column>
+
+			<h:column>
+				<f:facet name="header">Prix(euros)</f:facet>
+		#{feature.price}
+	</h:column>
+
+		</h:dataTable>
+	</ui:define>
+
+</ui:composition>
+
+</html>

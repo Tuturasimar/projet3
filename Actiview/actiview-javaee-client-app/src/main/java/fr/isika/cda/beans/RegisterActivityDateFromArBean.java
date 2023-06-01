@@ -133,4 +133,6 @@ public class RegisterActivityDateFromArBean implements Serializable {
 		}
 	}
 	
+
+	
 }

@@ -17,7 +17,11 @@ public class ColorConfigRepository {
 	public void save(ColorConfigViewModel colorConfigVm) {
 		ColorConfig colorConfig = new ColorConfig();
 		colorConfig.setBackgroundColor(colorConfigVm.getBackgroundColor());
-		
+		colorConfig.setTextColor(colorConfigVm.getTextColor());
+		colorConfig.setFontColor(colorConfigVm.getFontColor());
+		colorConfig.setButtonColor(colorConfigVm.getButtonColor());
+		colorConfig.setTitleColor(colorConfigVm.getTitleColor());
+	
 		Config config = new Config();
 		config.setColorConfig(colorConfig);
 		

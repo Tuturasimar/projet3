@@ -37,6 +37,10 @@ public class PersonalizationBean {
 	private UploadedFile banner;
 	
 	private String colorBackground;
+	private String colorTitle;
+	private String colorButton;
+	private String colorText;
+	
 	
 	public String save() {
 		imgConfigRepo.save(imgConfigVm);
@@ -61,19 +65,12 @@ public class PersonalizationBean {
 		return "adminPersonalizationColor.xhtml";
 	}
 	
-//	public String onPopupClosed(AjaxBehaviorEvent e) {
-//		ColorPicker picker = (ColorPicker) e.getComponent();
-//		String colorName = (String) picker.getValue();
-//		
-//		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Popup closed: " + picker.getValue(), null);
-//        FacesContext.getCurrentInstance().addMessage(null, msg);
-//        return colorName;
-//	}
-	
-    public void onColorChange(AjaxBehaviorEvent e) {
+    public String onColorChange(AjaxBehaviorEvent e) {
         ColorPicker picker = (ColorPicker) e.getComponent();
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Color changed: " + picker.getValue(), null);
+        String color = (String) picker.getValue();
         FacesContext.getCurrentInstance().addMessage(null, msg);
+        return color;
     }
 
 	private String uploadFile(FileUploadEvent e) {
@@ -109,6 +106,30 @@ public class PersonalizationBean {
 
 	public void setColorBackground(String colorBackground) {
 		this.colorBackground = colorBackground;
+	}
+
+	public String getColorTitle() {
+		return colorTitle;
+	}
+
+	public void setColorTitle(String colorTitle) {
+		this.colorTitle = colorTitle;
+	}
+
+	public String getColorButton() {
+		return colorButton;
+	}
+
+	public void setColorButton(String colorButton) {
+		this.colorButton = colorButton;
+	}
+
+	public String getColorText() {
+		return colorText;
+	}
+
+	public void setColorText(String colorText) {
+		this.colorText = colorText;
 	}
 	
 	

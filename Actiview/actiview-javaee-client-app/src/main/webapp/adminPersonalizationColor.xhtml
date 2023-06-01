@@ -30,15 +30,39 @@
 
 		<h2>Couleur du titre :</h2>
 
-		<div class="colorTitle"></div>
+		<div class="colorTitle">
+			<h:form>
+				<h5 class="mt-0">Popup</h5>
+				<p:colorPicker value="#{personalizationBean.colorTitle}">
+					<p:ajax listener="#{personalizationBean.onColorChange}"
+						process="@this" update="customizeColor" />
+				</p:colorPicker>
+			</h:form>
+		</div>
 
 		<h2>Couleur du texte :</h2>
 
-		<div class="colorText"></div>
+		<div class="colorText">
+			<h:form>
+				<h5 class="mt-0">Popup</h5>
+				<p:colorPicker value="#{personalizationBean.colorText}">
+					<p:ajax listener="#{personalizationBean.onColorChange}"
+						process="@this" update="customizeColor" />
+				</p:colorPicker>
+			</h:form>
+		</div>
 
 		<h2>Couleur des boutons :</h2>
 
-		<div class="colorButton"></div>
+		<div class="colorButton">
+			<h:form>
+				<h5 class="mt-0">Popup</h5>
+				<p:colorPicker value="#{personalizationBean.colorButton}">
+					<p:ajax listener="#{personalizationBean.onColorChange}"
+						process="@this" update="customizeColor" />
+				</p:colorPicker>
+			</h:form>
+		</div>
 
 		<h:form id="configSpaceColorForm">
 			<h:commandButton action="#{personalizationBean.saveColor()}"

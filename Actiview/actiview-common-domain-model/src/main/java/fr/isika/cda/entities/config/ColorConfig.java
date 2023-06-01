@@ -18,27 +18,11 @@ public class ColorConfig implements Serializable {
 	@GeneratedValue
 	private long id;
 
-	private String primaryColor;
-	private String secondaryColor;
 	private String buttonColor;
 	private String fontColor;
 	private String backgroundColor;
-
-	public String getPrimaryColor() {
-		return primaryColor;
-	}
-
-	public void setPrimaryColor(String primaryColor) {
-		this.primaryColor = primaryColor;
-	}
-
-	public String getSecondaryColor() {
-		return secondaryColor;
-	}
-
-	public void setSecondaryColor(String secondaryColor) {
-		this.secondaryColor = secondaryColor;
-	}
+	private String titleColor;
+	private String textColor;
 
 	public String getButtonColor() {
 		return buttonColor;
@@ -66,6 +50,22 @@ public class ColorConfig implements Serializable {
 
 	public void setBackgroundColor(String backgroundColor) {
 		this.backgroundColor = backgroundColor;
+	}
+
+	public String getTitleColor() {
+		return titleColor;
+	}
+
+	public void setTitleColor(String titleColor) {
+		this.titleColor = titleColor;
+	}
+
+	public String getTextColor() {
+		return textColor;
+	}
+
+	public void setTextColor(String textColor) {
+		this.textColor = textColor;
 	}
 
 }

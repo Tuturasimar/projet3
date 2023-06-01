@@ -46,9 +46,7 @@ public class ShowArBean implements Serializable {
 
 		if (ar != null) {
 			arVm.setAr(ar);
-		} else {
-			// Création d'un nouveau AR
-		}
+		} 
 	}
 
 	public void getAr() {
@@ -83,6 +81,14 @@ public class ShowArBean implements Serializable {
 			return true;
 		}
 		return false;
+	}
+	
+	public String arSentToValidation() {
+		arRepo.changeState(StateAr.INHOLD, arVm);
+		
+		getAr();
+		
+		return "showAr";
 	}
 
 }

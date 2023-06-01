@@ -1,6 +1,7 @@
 package fr.isika.cda.beans;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.users.User;
@@ -9,6 +10,7 @@ import fr.isika.cda.utils.SessionUtils;
 import fr.isika.cda.viewmodels.LoginViewModel;
 
 @ManagedBean
+@SessionScoped
 public class LoginBean {
 
 	@Inject

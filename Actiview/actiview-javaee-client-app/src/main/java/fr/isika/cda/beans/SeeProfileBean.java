@@ -23,6 +23,11 @@ public class SeeProfileBean {
 		return "SeeProfile.xhtml";
 	}
 	
+	public String showSeeProfile(String login) {
+		user = userRepo.findUserByLogin(login);
+		return "SeeProfile.xhtml";
+	}
+	
 	public String getListUserRoleByUserId(Long id) {
 		List<UserRole> roles = userRepo.getAllUserRolesByUserId(id);
 		String rolesString = "";

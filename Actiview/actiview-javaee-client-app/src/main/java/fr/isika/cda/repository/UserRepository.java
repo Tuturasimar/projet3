@@ -134,7 +134,6 @@ public class UserRepository {
 		return (User) query.getSingleResult();
 	}
 	
-	
 	public User findUserWithManagerById(Long id) {
 		Query query = em.createQuery("SELECT u FROM User u LEFT JOIN FETCH u.manager WHERE u.id = :id");
 		query.setParameter("id", id);

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="Entete">
+		<h1>Créer une nouvelle affectation de mission</h1>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+			<h:panelGrid columns="3">
+
+				<h:outputLabel value="Salarié" for="userMenu" />
+				<h:selectOneMenu id="userMenu"
+					value="#{registerMissionUserBean.missionUserVm.userId}">
+					<f:selectItem noSelectionOption="true"
+						itemLabel="Choisir un collaborateur" />
+					<f:selectItems value="#{registerMissionUserBean.users}" var="user"
+						itemValue="#{user.id}"
+						itemLabel="#{user.userData.firstname} #{user.userData.lastname}"></f:selectItems>
+				</h:selectOneMenu>
+				<h:message for="userMenu" />
+
+				<h:outputLabel value="Mission" for="missionMenu" />
+				<h:selectOneMenu
+					value="#{registerMissionUserBean.missionUserVm.missionId}"
+					id="missionMenu">
+					<f:selectItem noSelectionOption="true"
+						itemLabel="Choisir une mission" />
+					<f:selectItems value="#{registerMissionUserBean.missions}"
+						var="mission" itemValue="#{mission.id}"
+						itemLabel="#{mission.labelActivity}"></f:selectItems>
+					<f:ajax render="regie"></f:ajax>
+				</h:selectOneMenu>
+				<h:message for="missionMenu" />
+
+
+				<h:outputLabel value="Taux Journalier Moyen" for="tjmInput" />
+				<h:inputText id="adrInput"
+					value="#{registerMissionUserBean.missionUserVm.adr}" />
+				<h:message for="adrInput" />
+
+				<span></span>
+
+				<p:commandButton value="Submit"
+					action="#{registerMissionUserBean.register()}"></p:commandButton>
+
+			</h:panelGrid>
+		</h:form>
+
+
+	</ui:define>
+
+
+</ui:composition>

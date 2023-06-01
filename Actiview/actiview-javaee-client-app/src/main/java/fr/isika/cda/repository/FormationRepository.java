@@ -5,10 +5,12 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import fr.isika.cda.entities.activities.Formation;
 import fr.isika.cda.entities.common.FormationStatusEnum;
 import fr.isika.cda.entities.common.LocationFormationEnum;
+import fr.isika.cda.entities.common.StatusEnum;
 import fr.isika.cda.viewmodels.FormationViewModel;
 
 
@@ -31,7 +33,7 @@ public class FormationRepository {
 	}
 	
 	public List<Formation> findAllFormations() {
-		return em.createQuery("SELECT m FROM Formation f", Formation.class).getResultList();
+		return em.createQuery("SELECT f FROM Formation f", Formation.class).getResultList();
 	}
 	
 	public void updateFormation(FormationViewModel formationVm) {
@@ -40,5 +42,12 @@ public class FormationRepository {
 		formation.setLabelActivity(formationVm.getLabelFormation());
 
 		em.merge(formation);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Formation> getAllActiveFormations() {
+		Query query = em.createQuery("SELECT f FROM Formation f WHERE f.status = :active", Formation.class);
+		query.setParameter("active", StatusEnum.ACTIVE);
+		return query.getResultList();
 	}
 }

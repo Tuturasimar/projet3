@@ -25,7 +25,7 @@ public class EditMissionBean {
 			editMissionVm.setLabelActivity(missionToUpdate.getLabelActivity());
 			editMissionVm.setMissionStart(missionToUpdate.getMissionStart());
 			editMissionVm.setMissionEnd(missionToUpdate.getMissionEnd());
-			editMissionVm.setMissionState(missionToUpdate.getMissionState());
+			editMissionVm.setMissionState(missionToUpdate.getStatus());
 			editMissionVm.setMissionType(missionToUpdate.getMissionType());
 		}
 		return "editMission.xhtml";

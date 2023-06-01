@@ -25,9 +25,13 @@ public class SeeArTeamBean {
 	@Inject
 	private UserRepository userRepo;
 
+	//Liste des salariés du manager
 	private List<User> employees = new ArrayList<User>();
+	
+	//Liste des cras des salariés du manager pour le mois sélectionné
 	private List<Ar> ars = new ArrayList<Ar>();
 
+	//repris d'uneautre vue, set à stocker l'infos du mois et de l'année sélectionnés
 	private ArViewModel arVm = new ArViewModel();
 
 	// Pour gérer facilement des conditions d'apparition côté front
@@ -48,10 +52,16 @@ public class SeeArTeamBean {
 		for (User employee : employees) {
 			Ar arToAdd = arRepo.findArWithUserDataByUserAndCreatedAt(employee.getId(), LocalDate.now().getMonthValue(),
 					LocalDate.now().getYear());
-			ars.add(arToAdd);
+			if (arToAdd != null) {
+				ars.add(arToAdd);
+			}
 		}
 	}
 
+	/**
+	 * Méthode permettant d'afficher un tableau des cras de tous les salariés du manager
+	 * pour le mois et l'année sélectionnés
+	 */
 	public void getAr() {
 		Long managerId = SessionUtils.getUserIdFromSession();
 		setEmployees(userRepo.getAllEmployeesByManagerId(managerId));
@@ -59,11 +69,15 @@ public class SeeArTeamBean {
 		for (User employee : employees) {
 			Ar arToAdd = arRepo.findArWithUserDataByUserAndCreatedAt(employee.getId(), arVm.getDate().getMonthValue(),
 					arVm.getDate().getYear());
-			ars.add(arToAdd);
+			if (arToAdd != null) {
+				ars.add(arToAdd);
+			}
 		}
 
 	}
+	
 
+	//Getters & setters
 	public List<User> getEmployees() {
 		return employees;
 	}

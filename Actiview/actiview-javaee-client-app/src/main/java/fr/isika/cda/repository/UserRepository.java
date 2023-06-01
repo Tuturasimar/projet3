@@ -157,7 +157,7 @@ public class UserRepository {
 	
 	@SuppressWarnings({ "unchecked" })
 	public List<User> getAllEmployeesByManagerId(Long managerId) {
-		Query query = em.createQuery("SELECT u FROM User u JOIN u.userData LEFT JOIN FETCH u.manager WHERE u.id = :id")
+		Query query = em.createQuery("SELECT u FROM User u JOIN u.userData LEFT JOIN FETCH u.manager m WHERE m.id = :id")
 				.setParameter("id", managerId);		
 		return query.getResultList();
 	}

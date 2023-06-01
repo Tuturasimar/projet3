@@ -52,6 +52,14 @@
 
 			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
 				<h:form>
+					<li><h:commandLink
+							action="#{updatePasswordBean.showUpdatePassword(loginBean.loginVm.login)}">Modifier le mot de passe (#{loginBean.loginVm.login})</h:commandLink>
+					</li>
+				</h:form>
+			</ui:fragment>
+
+			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
+				<h:form>
 					<li><h:commandLink action="#{loginBean.logout()}">Déconnexion (#{loginBean.loginVm.login})</h:commandLink>
 					</li>
 				</h:form>

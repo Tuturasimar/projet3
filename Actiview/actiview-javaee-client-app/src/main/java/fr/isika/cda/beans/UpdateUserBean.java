@@ -38,7 +38,6 @@ public class UpdateUserBean {
 		UserData userDataToUpdate = userRepo.findDataByUserId(id);
 		
 		updateUserViewModel = new UpdateUserViewModel(userToUpdate.getId());
-		updateUserViewModel.setPassword(userToUpdate.getPassword());
 		updateUserViewModel.setStatus(userToUpdate.getStatus());
 		
 		String managerId = (userToUpdate.getManager() != null) ? String.valueOf(userToUpdate.getManager().getId()) : null;

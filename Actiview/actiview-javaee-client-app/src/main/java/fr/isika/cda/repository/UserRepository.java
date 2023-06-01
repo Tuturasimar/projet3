@@ -16,6 +16,7 @@ import fr.isika.cda.entities.users.UserData;
 import fr.isika.cda.entities.users.UserRole;
 import fr.isika.cda.viewmodels.UpdateUserViewModel;
 import fr.isika.cda.viewmodels.LoginViewModel;
+import fr.isika.cda.viewmodels.UpdatePasswordViewModel;
 import fr.isika.cda.viewmodels.UpdateUserRoleViewModel;
 import fr.isika.cda.viewmodels.UserViewModel;
 
@@ -80,7 +81,6 @@ public class UserRepository {
 		em.persist(data);
 
 		User user = findUserById(updateUserVM.getId());
-		user.setPassword(updateUserVM.getPassword());
 		user.setStatus(updateUserVM.getStatus());
 
 		Long managerId = extractManagerId(updateUserVM.getManagerId());
@@ -89,9 +89,18 @@ public class UserRepository {
 			user.setManager(manager);
 		}
 		user.setUserData(data);
-
+		
 		em.persist(user);
 
+		return user.getId();
+	}
+	
+	public Long updatePassword(UpdatePasswordViewModel updatePasswordVM) {
+		User user = findUserById(updatePasswordVM.getUserId());
+		user.setPassword(updatePasswordVM.getPassword());
+		
+		em.persist(user);
+		
 		return user.getId();
 	}
 
@@ -187,6 +196,8 @@ public class UserRepository {
 		query.setParameter("login", login);
 		return  query.getResultList();
 	}
+
+	
 
 	
 }

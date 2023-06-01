@@ -12,7 +12,6 @@ public class UpdateUserViewModel {
 
 	// Données de la table User
 	private Long id;
-	private String password;
 	private StatusEnum status;
 	private String managerId;
 
@@ -32,14 +31,6 @@ public class UpdateUserViewModel {
 
 	public Long getId() {
 		return id;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public StatusEnum getStatus() {

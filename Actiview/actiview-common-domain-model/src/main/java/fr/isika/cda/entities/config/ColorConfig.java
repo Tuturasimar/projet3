@@ -22,6 +22,7 @@ public class ColorConfig implements Serializable {
 	private String secondaryColor;
 	private String buttonColor;
 	private String fontColor;
+	private String backgroundColor;
 
 	public String getPrimaryColor() {
 		return primaryColor;
@@ -57,6 +58,14 @@ public class ColorConfig implements Serializable {
 
 	public long getId() {
 		return id;
+	}
+
+	public String getBackgroundColor() {
+		return backgroundColor;
+	}
+
+	public void setBackgroundColor(String backgroundColor) {
+		this.backgroundColor = backgroundColor;
 	}
 
 }

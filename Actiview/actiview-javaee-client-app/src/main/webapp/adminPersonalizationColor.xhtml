@@ -4,48 +4,49 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/templates/default.xhtml"
-                xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="header">
 		<h1>Page de personnalisation</h1>
 	</ui:define>
-	
-	<ui:define name ="content">
-	
+
+	<ui:define name="content">
+
 		<h1>Bienvenue sur la page de personnalisation détaillée</h1>
-	
-		<h2>Arrière-plan : </h2>
-		
-		<p:growl id ="customizeColor" showDetail="true"></p:growl>
-		
+
+		<h2>Arrière-plan :</h2>
+
+		<p:growl id="customizeColor" showDetail="true"></p:growl>
+
 		<div class="colorBackground">
-		
+			<h:form>
+				<h5 class="mt-0">Popup</h5>
+				<p:colorPicker value="#{personalizationBean.colorBackground}">
+					<p:ajax listener="#{personalizationBean.onColorChange}"
+						process="@this" update="customizeColor" />
+				</p:colorPicker>
+			</h:form>
 		</div>
-		
-		<h2>Couleur du titre : </h2>
-		
-		<div class="colorTitle">
-		
-		</div>
-		
-		<h2>Couleur du texte : </h2>
-		
-		<div class="colorText">
-		
-		</div>
-		
-		<h2>Couleur des boutons : </h2>
-		
-		<div class="colorButton">
-		
-		</div>
-		
+
+		<h2>Couleur du titre :</h2>
+
+		<div class="colorTitle"></div>
+
+		<h2>Couleur du texte :</h2>
+
+		<div class="colorText"></div>
+
+		<h2>Couleur des boutons :</h2>
+
+		<div class="colorButton"></div>
+
 		<h:form id="configSpaceColorForm">
-			<h:commandButton  value="Save" />
+			<h:commandButton action="#{personalizationBean.saveColor()}"
+				value="Save" />
 		</h:form>
-		
-		
-		
-		
+
+
+
+
 	</ui:define>
-	</ui:composition>
+</ui:composition>

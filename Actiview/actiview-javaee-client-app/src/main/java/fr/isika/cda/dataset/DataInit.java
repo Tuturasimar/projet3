@@ -32,6 +32,7 @@ import fr.isika.cda.entities.users.UserData;
 import fr.isika.cda.entities.users.UserRole;
 import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.StatusEnum;
+import fr.isika.cda.entities.config.Feature;
 import fr.isika.cda.entities.config.Options;
 
 @Singleton
@@ -274,12 +275,60 @@ public class DataInit {
 
 
 		// Mock donnée OptionsForfait
+
+  // Mock données Options(1,2,3)
 		Options option1 = new Options();
-		option1.setLabel("customColor");
-		option1.setDescription("cadre pour choisir une couleur");
+		option1.setLabel("Personnalisation poussée");
+		option1.setDescription("Permet de définir n’importe quelle couleur pour l’application (couleur principale, secondaire, boutons)");
 		option1.setPrice(20);
 
 		em.persist(option1);
+
+		
+		Options option2 = new Options();
+		option2.setLabel("FeedBack des missions (salarié)");
+		option2.setDescription("Permet aux salariés de votre ESN de transmettre au sein de l’application leur avis sur leur mission en cours.");
+		option2.setPrice(100);
+		
+		em.persist(option2);
+		
+		Options option3 = new Options();
+		option3.setLabel("Auto-Remplissage du CRA");
+		option3.setDescription("Permet le remplissage automatique du CRA, C’est très pratique !");
+		option3.setPrice(200);
+		
+		em.persist(option3);
+		
+		
+		// Mock données Features(Forfait Basique, Premium, Ultimate)
+		
+		Feature feature1 = new Feature();
+		feature1.setLabel("Forfait BASIQUE");
+		feature1.setNbOfCollaborators(50);
+		feature1.setArConfig(ArConfigEnum.MONTH);
+		feature1.setPrice(200);
+		feature1.setNbOfOptions(1);
+		
+		em.persist(feature1);
+		
+		Feature feature2 = new Feature();
+		feature2.setLabel("Forfait PREMIUM");
+		feature2.setNbOfCollaborators(100);
+		feature2.setArConfig(ArConfigEnum.MONTH);
+		feature2.setPrice(375);
+		feature2.setNbOfOptions(2);
+		
+		em.persist(feature2);
+		
+		Feature feature3 = new Feature();
+		feature3.setLabel("Forfait ULTIMATE");
+		feature3.setNbOfCollaborators(200);
+		feature3.setArConfig(ArConfigEnum.MONTH);
+		feature3.setPrice(666);
+		feature3.setNbOfOptions(3);
+		
+		em.persist(feature3);
+		
 
 	}
 

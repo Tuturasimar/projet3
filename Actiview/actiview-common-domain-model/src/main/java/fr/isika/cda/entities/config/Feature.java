@@ -22,19 +22,24 @@ public class Feature implements Serializable {
 	@GeneratedValue
 	private long id;
 
+	private String label;
 	private int nbOfCollaborators;
-	
+
 	@Enumerated(EnumType.STRING)
 	private ArConfigEnum arConfig;
-	
+
 	private float price;
 	private int nbOfOptions;
 
-
-
-
 	public long getId() {
 		return id;
+	}
+	
+	public String getLabel() {
+		return label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 	public int getNbOfCollaborators() {

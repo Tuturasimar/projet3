@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="Entete">
+		<h1 style="text-align: center">Liste des affectations de
+			formation</h1>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:link outcome="createNewFormationUser.xhtml">Nouvelle affectation</h:link>
+		<h:dataTable value="#{showFormationUserBean.formationsUser}"
+			var="formationUser">
+			<h:column>
+				<f:facet name="header">Nom</f:facet>
+				#{formationUser.user.userData.lastname}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Prénom</f:facet>
+				#{formationUser.user.userData.firstname}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Intitulé Mission</f:facet>
+				#{formationUser.formation.labelActivity}
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Statut</f:facet>
+				#{formationUser.formationState.label}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Localisation</f:facet>
+			#{formationUser.formation.location}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Nombre de jours</f:facet>
+			#{formationUser.formation.nbOfDays}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Commandes</f:facet>
+				<h:form>
+					<h:commandButton
+						action="#{showFormationUserBean.changeAffectation(formationUser.id)}"
+						value="Désactiver"
+						rendered="#{formationUser.formationState == showFormationUserBean.ACTIVE}" />
+					<h:commandButton
+						action="#{showFormationUserBean.changeAffectation(formationUser.id)}"
+						value="Activer"
+						rendered="#{formationUser.formationState == showFormationUserBean.INACTIVE}" />
+				</h:form>
+			</h:column>
+		</h:dataTable>
+	</ui:define>
+
+</ui:composition>

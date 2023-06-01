@@ -2,6 +2,7 @@ package fr.isika.cda.entities.config;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -28,7 +29,7 @@ public class Config implements Serializable {
 	@JoinColumn(name="fontConfig_id")
 	private FontConfig fontConfig;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="imageConfig_id")
 	private ImageConfig imageConfig;
 	
@@ -51,7 +52,9 @@ public class Config implements Serializable {
 	public ImageConfig getImageConfig() {
 		return imageConfig;
 	}
-
+	public void setImageConfig(ImageConfig imageConfig) {
+		this.imageConfig = imageConfig;
+	}
 	public Company getCompany() {
 		return company;
 	}

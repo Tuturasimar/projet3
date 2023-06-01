@@ -8,8 +8,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 import fr.isika.cda.entities.common.JobEnum;
 
@@ -29,9 +27,7 @@ public class UserData {
 	@Enumerated(EnumType.STRING)
 	private JobEnum jobEnum;
 
-	@OneToOne
-	@JoinColumn(name = "fk_user_id", unique = true)
-	private User user;
+	
 	
 	public String getLastname() {
 		return lastname;
@@ -76,12 +72,6 @@ public class UserData {
 	public Long getId() {
 		return id;
 
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 }

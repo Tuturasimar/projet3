@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import fr.isika.cda.entities.activities.Mission;
 import fr.isika.cda.entities.common.StatusEnum;
@@ -25,15 +26,14 @@ public class MissionRepository {
 		mission.setMissionStart(missionVm.getMissionStart());
 		mission.setMissionEnd(missionVm.getMissionEnd());
 		mission.setMissionType(missionVm.getMissionType());
-		mission.setMissionState(StatusEnum.ACTIVE);
 		mission.setStatus(StatusEnum.ACTIVE);
 		em.persist(mission);
 		
 		return mission.getId();
 	}
 	
-	public Long editMission(EditMissionViewModel missionVm, Long id) {
-		Mission missionUpdate = findById(id);
+	public Long editMission(EditMissionViewModel missionVm) {
+		Mission missionUpdate = findById(missionVm.getMissionId());
 		missionUpdate.setLabelActivity(missionVm.getLabelActivity());
 		missionUpdate.setMissionStart(missionVm.getMissionStart());
 		missionUpdate.setMissionEnd(missionVm.getMissionEnd());
@@ -53,6 +53,14 @@ public class MissionRepository {
 				.setParameter("idMissionParam", id)
 				.getSingleResult();
 		return mission;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Mission> getAllActiveMissions(){
+		Query query = em.createQuery("SELECT m FROM Mission m WHERE m.status = :active", Mission.class);
+		query.setParameter("active", StatusEnum.ACTIVE);
+		
+		return query.getResultList();
 	}
 	
 }

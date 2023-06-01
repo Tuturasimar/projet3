@@ -1,7 +1,5 @@
 package fr.isika.cda.viewmodels;
 
-import java.time.LocalDate;
-
 import fr.isika.cda.entities.common.FormationStatusEnum;
 import fr.isika.cda.entities.common.LocationFormationEnum;
 
@@ -13,7 +11,6 @@ public class FormationViewModel {
 	private String description;
 	private FormationStatusEnum formationState;
 	private LocationFormationEnum locationFormation;
-	
 	
 	public int getNbOfDays() {
 		return nbOfDays;

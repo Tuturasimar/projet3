@@ -16,7 +16,7 @@ public class ImageConfig implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 
 	private String logo;
 	private String banner;

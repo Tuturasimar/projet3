@@ -28,10 +28,11 @@ public class FormationUser implements Serializable {
 	private long id;
 	
 	@OneToOne
+	@JoinColumn(name="fk_user_id")
     private User user;
     
     @ManyToOne
-    @JoinColumn(name="activity_id")
+    @JoinColumn(name="fk_activity_id")
     public Formation formation;
     
     @Enumerated(EnumType.STRING)
@@ -39,7 +40,19 @@ public class FormationUser implements Serializable {
 
    
 
-    public User getUser() {
+    public Formation getFormation() {
+		return formation;
+	}
+
+	public void setFormation(Formation formation) {
+		this.formation = formation;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public User getUser() {
         return user;
     }
 

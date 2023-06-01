@@ -2,7 +2,6 @@ package fr.isika.cda.beans;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
@@ -11,20 +10,19 @@ import fr.isika.cda.entities.users.UserRole;
 import fr.isika.cda.repository.UserRepository;
 
 @ManagedBean
-public class ShowUserBean {
-	
+public class SeeProfileBean {
+
 	@Inject
 	private UserRepository userRepo;
 	
-	private List<User> users;
-	
-	//récupère tous les Users de la bdd (pas de jointures avec User Data et UserRole)
-	@PostConstruct
-	public void initUserList() {
-		users = userRepo.findAllUsers();
-		
-	}
+	private User user;
 
+	
+	public String showSeeProfile(Long id) {
+		user = userRepo.findUserById(id);
+		return "SeeProfile.xhtml";
+	}
+	
 	public String getListUserRoleByUserId(Long id) {
 		List<UserRole> roles = userRepo.getAllUserRolesByUserId(id);
 		String rolesString = "";
@@ -35,12 +33,21 @@ public class ShowUserBean {
 		return rolesString;
 	}
 	
-	public List<User> getUsers() {
-		return users;
+	public UserRepository getUserRepo() {
+		return userRepo;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setUserRepo(UserRepository userRepo) {
+		this.userRepo = userRepo;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 	
 }

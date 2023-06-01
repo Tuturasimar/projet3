@@ -127,7 +127,14 @@ public class UserRepository {
 		query.setParameter("id", id);
 		return (User) query.getSingleResult();
 	}
-
+	
+	public User findUserByLogin(String login) {
+		Query query = em.createQuery("SELECT u FROM User u WHERE u.login = :login");
+		query.setParameter("login", login);
+		return (User) query.getSingleResult();
+	}
+	
+	
 	public User findUserWithManagerById(Long id) {
 		Query query = em.createQuery("SELECT u FROM User u LEFT JOIN FETCH u.manager WHERE u.id = :id");
 		query.setParameter("id", id);
@@ -181,4 +188,6 @@ public class UserRepository {
 		query.setParameter("login", login);
 		return  query.getResultList();
 	}
+
+	
 }

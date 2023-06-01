@@ -54,6 +54,13 @@
 				#{showUserBean.getListUserRoleByUserId(user.id)}
 			</h:column>
 			<h:column>
+				<f:facet name="header">Voir le profil</f:facet>
+				<h:form>
+					<h:commandButton action="#{seeProfileBean.showSeeProfile(user.id)}" value="Voir le profil" />
+				</h:form>
+			</h:column>
+			
+			<h:column>
 				<f:facet name="header">Modifier</f:facet>
 				<h:form>
 					<h:commandButton action="#{updateUserBean.showUpdateUser(user.id)}" value="Modifier" />

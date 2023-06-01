@@ -154,6 +154,20 @@ public class UserRepository {
 		query.setParameter("id", id);
 		return (User) query.getSingleResult();
 	}
+	
+	@SuppressWarnings({ "unchecked" })
+	public List<User> getAllEmployeesByManagerId(Long managerId) {
+		Query query = em.createQuery("SELECT u FROM User u JOIN u.userData LEFT JOIN FETCH u.manager WHERE u.id = :id")
+				.setParameter("id", managerId);		
+		return query.getResultList();
+	}
+	
+	@SuppressWarnings({ "unchecked" })
+	public List<User> getAllEmployeesByManagerLogin(String login) {
+		Query query = em.createQuery("SELECT u FROM User u JOIN u.userData LEFT JOIN FETCH u.manager WHERE u.login = :login")
+				.setParameter("login", login);		
+		return query.getResultList();
+	}
 
 	public UserData findDataByUserId(Long id) {
 		Query query = em.createQuery("SELECT ud FROM User u JOIN u.userData ud WHERE u.id = :id");

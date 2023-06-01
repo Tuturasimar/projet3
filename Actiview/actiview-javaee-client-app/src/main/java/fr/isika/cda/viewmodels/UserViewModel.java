@@ -8,7 +8,6 @@ import java.util.List;
 import fr.isika.cda.entities.common.JobEnum;
 import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.StatusEnum;
-import fr.isika.cda.entities.users.UserRole;
 
 public class UserViewModel {
 

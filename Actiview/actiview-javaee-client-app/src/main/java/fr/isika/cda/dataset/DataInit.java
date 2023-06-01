@@ -26,7 +26,6 @@ import fr.isika.cda.entities.common.LocationFormationEnum;
 import fr.isika.cda.entities.common.MissionTypeEnum;
 
 import fr.isika.cda.entities.config.Company;
-import fr.isika.cda.entities.common.JobEnum;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserData;
 import fr.isika.cda.entities.users.UserRole;

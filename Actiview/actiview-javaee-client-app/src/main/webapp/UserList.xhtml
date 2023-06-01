@@ -54,15 +54,37 @@
 				#{showUserBean.getListUserRoleByUserId(user.id)}
 			</h:column>
 			<h:column>
+				<f:facet name="header">Voir le profil</f:facet>
+				<h:form>
+					<h:commandButton action="#{seeProfileBean.showSeeProfile(user.id)}"
+						value="Voir le profil" />
+				</h:form>
+			</h:column>
+
+			<h:column>
 				<f:facet name="header">Modifier</f:facet>
 				<h:form>
-					<h:commandButton action="#{updateUserBean.showUpdateUser(user.id)}" value="Modifier" />
+					<h:commandButton action="#{updateUserBean.showUpdateUser(user.id)}"
+						value="Modifier" />
 				</h:form>
 			</h:column>
 			<h:column>
 				<f:facet name="header">Modifier son rôle</f:facet>
 				<h:form>
-					<h:commandButton action="#{updateUserRoleBean.showUpdateUserRole(user.id)}" value="Modifier son rôle" />
+					<h:commandButton
+						action="#{updateUserRoleBean.showUpdateUserRole(user.id)}"
+						value="Modifier son rôle" />
+				</h:form>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Commandes</f:facet>
+				<h:form>
+					<h:commandButton action="#{showUserBean.changeStatus(user.id)}"
+						value="Désactiver"
+						rendered="#{user.status == showUserBean.ACTIVE}" />
+					<h:commandButton action="#{showUserBean.changeStatus(user.id)}"
+						value="Activer" rendered="#{user.status == showUserBean.INACTIVE}" />
 				</h:form>
 			</h:column>
 		</h:dataTable>

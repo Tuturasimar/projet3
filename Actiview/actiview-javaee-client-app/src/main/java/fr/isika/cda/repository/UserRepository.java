@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -17,6 +16,7 @@ import fr.isika.cda.entities.users.UserData;
 import fr.isika.cda.entities.users.UserRole;
 import fr.isika.cda.viewmodels.UpdateUserViewModel;
 import fr.isika.cda.viewmodels.LoginViewModel;
+import fr.isika.cda.viewmodels.UpdatePasswordViewModel;
 import fr.isika.cda.viewmodels.UpdateUserRoleViewModel;
 import fr.isika.cda.viewmodels.UserViewModel;
 
@@ -81,7 +81,6 @@ public class UserRepository {
 		em.persist(data);
 
 		User user = findUserById(updateUserVM.getId());
-		user.setPassword(updateUserVM.getPassword());
 		user.setStatus(updateUserVM.getStatus());
 
 		Long managerId = extractManagerId(updateUserVM.getManagerId());
@@ -90,11 +89,26 @@ public class UserRepository {
 			user.setManager(manager);
 		}
 		user.setUserData(data);
-
+		
 		em.persist(user);
 
 		return user.getId();
 	}
+	
+	public Long updatePassword(UpdatePasswordViewModel updatePasswordVM) {
+		User user = findUserById(updatePasswordVM.getUserId());
+		user.setPassword(updatePasswordVM.getPassword());
+		
+		em.persist(user);
+		
+		return user.getId();
+	}
+	
+	public void updateStatus(User userToUpdate) {
+		em.merge(userToUpdate);
+		
+	}
+
 
 	public Long updateUserRole(UpdateUserRoleViewModel updateUserRoleVM) {
 		User user = findUserById(updateUserRoleVM.getUserId());
@@ -128,7 +142,13 @@ public class UserRepository {
 		query.setParameter("id", id);
 		return (User) query.getSingleResult();
 	}
-
+	
+	public User findUserByLogin(String login) {
+		Query query = em.createQuery("SELECT u FROM User u WHERE u.login = :login");
+		query.setParameter("login", login);
+		return (User) query.getSingleResult();
+	}
+	
 	public User findUserWithManagerById(Long id) {
 		Query query = em.createQuery("SELECT u FROM User u LEFT JOIN FETCH u.manager WHERE u.id = :id");
 		query.setParameter("id", id);
@@ -152,13 +172,14 @@ public class UserRepository {
 		return query.getResultList();
 	}
 	//En cours par Diane
-//	public List<User> getAllManagers() {
-//		Query query = em.createQuery("SELECT u FROM UserRole ur JOIN ur.user u WHERE ur.roleTypeEnum = MANAGER");
-//		
-//		List<User> managers = query.getResultList();
-//		
-//		return managers;
-//	}
+	@SuppressWarnings("unchecked")
+	public List<User> getAllManagers() {
+		Query query = em.createQuery("SELECT u FROM UserRole ur JOIN ur.user u WHERE ur.roleTypeEnum = :manager")
+				.setParameter("manager", RoleTypeEnum.MANAGER);
+		
+		List<User> managers = query.getResultList();
+		return managers;
+	}
 
 	/**
 	 * Returns a user with the given login data. <br>
@@ -181,4 +202,9 @@ public class UserRepository {
 		query.setParameter("login", login);
 		return  query.getResultList();
 	}
+
+	
+	
+
+	
 }

@@ -26,6 +26,15 @@
 				<f:selectItem itemLabel="-- Missions en cours --" itemDisabled="true"/>
 				<f:selectItems value="#{showActivityBean.missions}" var="mission"
 					itemValue="#{mission.id}" itemLabel="#{mission.labelActivity}"></f:selectItems>
+				<f:selectItem itemLabel="-- Formation en cours --" itemDisabled="true"/>
+				<f:selectItems value="#{showActivityBean.formations}" var="formation"
+					itemValue="#{formation.id}" itemLabel="#{formation.labelActivity}"></f:selectItems>
+				<f:selectItem itemLabel="-- Motif d'absence --" itemDisabled="true"/>
+				<f:selectItems value="#{showActivityBean.absences}" var="absence"
+					itemValue="#{absence.id}" itemLabel="#{absence.labelActivity}"></f:selectItems>
+				<f:selectItem itemLabel="-- Autres --" itemDisabled="true"/>
+				<f:selectItems value="#{showActivityBean.customActivities}" var="customActivity"
+					itemValue="#{customActivity.id}" itemLabel="#{customActivity.labelActivity}"></f:selectItems>
 			</h:selectOneMenu>
 			<h:outputLabel value="Télétravail" for="remote" />
 			<h:selectBooleanCheckbox id="remote"

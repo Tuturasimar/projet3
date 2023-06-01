@@ -62,4 +62,15 @@ public class FormationUserRepository {
 
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Formation> finAllAffectedFormationsByUserId(Long userConnectedId) {
+		try {
+			Query query = em.createQuery("SELECT f FROM FormationUser fu JOIN fu.formation m WHERE fu.user.id = :userId", Formation.class);
+			query.setParameter("userId", userConnectedId);
+			return query.getResultList();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 }

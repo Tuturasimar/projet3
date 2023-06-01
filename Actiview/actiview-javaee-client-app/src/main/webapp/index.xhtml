@@ -45,7 +45,7 @@
 			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
 				<h:form>
 					<li><h:commandLink
-							action="#{seeProfileBean.showSeeProfileByLogin(loginVM.login)}">Voir le profil (#{loginBean.loginVm.login})</h:commandLink>
+							action="#{seeProfileBean.showSeeProfile(loginVM.id)}">Voir le profil (#{loginBean.loginVm.login})</h:commandLink>
 					</li>
 				</h:form>
 			</ui:fragment>

@@ -103,6 +103,12 @@ public class UserRepository {
 		
 		return user.getId();
 	}
+	
+	public void updateStatus(User userToUpdate) {
+		em.merge(userToUpdate);
+		
+	}
+
 
 	public Long updateUserRole(UpdateUserRoleViewModel updateUserRoleVM) {
 		User user = findUserById(updateUserRoleVM.getUserId());
@@ -197,6 +203,7 @@ public class UserRepository {
 		return  query.getResultList();
 	}
 
+	
 	
 
 	

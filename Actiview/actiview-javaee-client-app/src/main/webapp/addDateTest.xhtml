@@ -23,8 +23,9 @@
 			</h:selectOneMenu>
 			<h:selectOneMenu id="activityMenu"
 				value="#{registerActivityDateFromArBean.arDateVm.activityId}">
-				<f:selectItems value="#{showActivityBean.activities}" var="activity"
-					itemValue="#{activity.id}" itemLabel="#{activity.labelActivity}"></f:selectItems>
+				<f:selectItem itemLabel="-- Missions en cours --" itemDisabled="true"/>
+				<f:selectItems value="#{showActivityBean.missions}" var="mission"
+					itemValue="#{mission.id}" itemLabel="#{mission.labelActivity}"></f:selectItems>
 			</h:selectOneMenu>
 			<h:outputLabel value="Télétravail" for="remote" />
 			<h:selectBooleanCheckbox id="remote"

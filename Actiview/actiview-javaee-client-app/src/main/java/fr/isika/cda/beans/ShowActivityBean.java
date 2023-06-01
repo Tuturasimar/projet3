@@ -1,19 +1,19 @@
 package fr.isika.cda.beans;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
-import fr.isika.cda.entities.activities.Activity;
-import fr.isika.cda.repository.ActivityRepository;
+import fr.isika.cda.entities.activities.Mission;
+import fr.isika.cda.repository.MissionUserRepository;
+import fr.isika.cda.utils.SessionUtils;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 /**
  * Bean pour récupérer et afficher l'ensemble des activités
  * @author Trévor
@@ -26,22 +26,31 @@ public class ShowActivityBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private List<Activity> activities = new ArrayList<Activity>();
+	private List<Mission> missions;
 	
 	@Inject
-	private ActivityRepository activityRepo;
+	private MissionUserRepository missionUserRepo;
+	
+	public List<Mission> getMissions() {
+		return missions;
+	}
+	
+	public void setMissions(List<Mission> missions) {
+		this.missions = missions;
+	}
 	
 	@PostConstruct
 	/**
-	 * Méthode pour obtenir l'ensemble des activités sans contrainte (test)
-	 * A changer quand les attributions seront opérationnelles
+	 * Méthode pour obtenir l'ensemble des activités affectées à l'utilisateur connecté
 	 */
 	public void getAllActivities() {
-		activities = activityRepo.getAllActivities();
-	}
-
-	public List<Activity> getActivities() {
-		return activities;
+		
+		// Chercher toutes les missions affectées au User connecté
+		missions = missionUserRepo.findAllAffectedMissionsByUserId(SessionUtils.getUserIdFromSession());
+		
+		// Chercher toutes les formations affectées au User connecté
+		
+		
 	}
 
 }

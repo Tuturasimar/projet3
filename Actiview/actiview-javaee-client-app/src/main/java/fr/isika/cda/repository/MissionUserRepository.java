@@ -70,5 +70,18 @@ public class MissionUserRepository {
 	public void updateMissionUser(MissionUser missionUser) {
 		em.merge(missionUser);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Mission> findAllAffectedMissionsByUserId(Long id){
+		
+		try {
+			Query query = em.createQuery("SELECT m FROM MissionUser mu JOIN mu.mission m WHERE mu.user.id = :userId", Mission.class);
+			query.setParameter("userId", id);
+			return query.getResultList();
+		} catch (Exception e) {
+			return null;
+		}
+		
+	}
 
 }

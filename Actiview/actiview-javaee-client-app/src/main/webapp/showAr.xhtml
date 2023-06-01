@@ -27,7 +27,7 @@
 		<h:form id="arViewForm">
 			<p:fieldset id="rendu" legend="CRA">
 				<h:commandButton
-					action="#{registerArBean.register(showArBean.arVm)}"
+					action="#{registerArBean.register()}"
 					value="Ajouter un nouveau CRA"
 					rendered="#{!showArBean.hasSelectedAr() and showArBean.canBeCreated() }" />
 

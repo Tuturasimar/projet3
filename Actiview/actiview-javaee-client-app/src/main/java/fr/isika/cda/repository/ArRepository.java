@@ -1,5 +1,7 @@
 package fr.isika.cda.repository;
 
+import java.time.LocalDate;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -7,6 +9,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import fr.isika.cda.entities.ar.Ar;
+import fr.isika.cda.entities.ar.StateAr;
+import fr.isika.cda.entities.common.ArConfigEnum;
+import fr.isika.cda.entities.users.User;
 
 @Stateless
 /**
@@ -37,6 +42,19 @@ public class ArRepository {
 		} catch (NoResultException nre) {
 			return null;
 		}
+	}
+
+	public void register(User user) {
+		Ar ar = new Ar();
+		
+		ar.setCreatedAt(LocalDate.now());
+		ar.setArConfig(ArConfigEnum.MONTH);
+		ar.setStateArEnum(StateAr.DRAFT);
+		ar.setUpdatedAt(LocalDate.now());
+		ar.setUser(user);
+		
+		em.persist(ar);
+		
 	}
 
 }

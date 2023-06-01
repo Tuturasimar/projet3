@@ -65,9 +65,31 @@ public class PersonalizationBean {
 		return "adminPersonalizationColor.xhtml";
 	}
 	
+	public void saveColorTitle(AjaxBehaviorEvent e) {
+		String color = onColorChange(e);
+		colorConfigVm.setTitleColor(color);
+	}
+	
+	public void saveColorButton(AjaxBehaviorEvent e) {
+		String color = onColorChange(e);
+		colorConfigVm.setButtonColor(color);
+	}
+	
+	public void saveColorText(AjaxBehaviorEvent e) {
+		String color = onColorChange(e);
+		colorConfigVm.setTextColor(color);
+	}
+	
+	public void saveColorBackground(AjaxBehaviorEvent e) {
+		String color = onColorChange(e);
+		colorConfigVm.setBackgroundColor(color);
+		System.out.println(color);
+	}
+	
     public String onColorChange(AjaxBehaviorEvent e) {
         ColorPicker picker = (ColorPicker) e.getComponent();
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Color changed: " + picker.getValue(), null);
+        
         String color = (String) picker.getValue();
         FacesContext.getCurrentInstance().addMessage(null, msg);
         return color;

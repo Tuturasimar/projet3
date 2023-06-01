@@ -22,7 +22,7 @@
 			<h:form>
 				<h5 class="mt-0">Popup</h5>
 				<p:colorPicker value="#{personalizationBean.colorBackground}">
-					<p:ajax listener="#{personalizationBean.onColorChange}"
+					<p:ajax listener="#{personalizationBean.saveColorBackground}"
 						process="@this" update="customizeColor" />
 				</p:colorPicker>
 			</h:form>
@@ -34,7 +34,7 @@
 			<h:form>
 				<h5 class="mt-0">Popup</h5>
 				<p:colorPicker value="#{personalizationBean.colorTitle}">
-					<p:ajax listener="#{personalizationBean.onColorChange}"
+					<p:ajax listener="#{personalizationBean.saveColorTitle}"
 						process="@this" update="customizeColor" />
 				</p:colorPicker>
 			</h:form>
@@ -46,7 +46,7 @@
 			<h:form>
 				<h5 class="mt-0">Popup</h5>
 				<p:colorPicker value="#{personalizationBean.colorText}">
-					<p:ajax listener="#{personalizationBean.onColorChange}"
+					<p:ajax listener="#{personalizationBean.saveColorText}"
 						process="@this" update="customizeColor" />
 				</p:colorPicker>
 			</h:form>
@@ -58,7 +58,7 @@
 			<h:form>
 				<h5 class="mt-0">Popup</h5>
 				<p:colorPicker value="#{personalizationBean.colorButton}">
-					<p:ajax listener="#{personalizationBean.onColorChange}"
+					<p:ajax listener="#{personalizationBean.saveColorButton}"
 						process="@this" update="customizeColor" />
 				</p:colorPicker>
 			</h:form>

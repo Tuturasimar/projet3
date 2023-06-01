@@ -87,7 +87,6 @@ public class ShowActivityBean implements Serializable {
 		Long userConnectedId = SessionUtils.getUserIdFromSession();
 		// Chercher toutes les missions affectées au User connecté
 		missions = missionUserRepo.findAllAffectedMissionsByUserId(userConnectedId);
-		
 		// Chercher toutes les formations affectées au User connecté
 		formations = formationUserRepo.finAllAffectedFormationsByUserId(userConnectedId);
 		

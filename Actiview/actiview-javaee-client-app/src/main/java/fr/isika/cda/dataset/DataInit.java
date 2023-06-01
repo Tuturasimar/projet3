@@ -165,9 +165,9 @@ public class DataInit {
 
 		// Mock donnée d'un CRA
 		Ar ar = new Ar();
-		ar.setCreatedAt(LocalDate.now());
+		ar.setCreatedAt(LocalDate.of(2023,5,6));
 		ar.setArConfig(ArConfigEnum.MONTH);
-		ar.setStateArEnum(StateAr.DRAFT);
+		ar.setStateArEnum(StateAr.VALIDATED);
 		ar.setUpdatedAt(LocalDate.now());
 		ar.setUser(user);
 

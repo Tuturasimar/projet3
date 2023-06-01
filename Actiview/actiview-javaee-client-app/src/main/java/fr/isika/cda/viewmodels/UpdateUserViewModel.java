@@ -1,24 +1,19 @@
 package fr.isika.cda.viewmodels;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.isika.cda.entities.common.JobEnum;
 import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.StatusEnum;
-import fr.isika.cda.entities.users.UserRole;
 
-public class UserViewModel {
+public class UpdateUserViewModel {
 
 	// Données de la table User
-	private String login;
+	private Long id;
 	private String password;
-	private LocalDateTime createdAt = LocalDateTime.now();
-	
 	private StatusEnum status;
-	
 	private String managerId;
 
 	// Données de la table Userdata
@@ -27,19 +22,17 @@ public class UserViewModel {
 	private LocalDate birthday;
 	private String email;
 	private JobEnum jobEnum;
-	
+
 	// Donnée de la table UserRole
-	private List<RoleTypeEnum> roleTypes = new ArrayList<RoleTypeEnum>();
+		private List<RoleTypeEnum> roleTypes = new ArrayList<RoleTypeEnum>();
 
-	// Getters & Setters
-	public String getLogin() {
-		return login;
+	public UpdateUserViewModel(Long id) {
+		this.id = id;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public Long getId() {
+		return id;
 	}
-
 
 	public String getPassword() {
 		return password;
@@ -55,6 +48,14 @@ public class UserViewModel {
 
 	public void setStatus(StatusEnum status) {
 		this.status = status;
+	}
+
+	public String getManagerId() {
+		return managerId;
+	}
+
+	public void setManagerId(String managerId) {
+		this.managerId = managerId;
 	}
 
 	public String getLastname() {
@@ -97,20 +98,6 @@ public class UserViewModel {
 		this.jobEnum = jobEnum;
 	}
 
-	public String getManagerId() {
-		return managerId;
-	}
-	public void setManagerId(String managerId) {
-		this.managerId = managerId;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-
 	public List<RoleTypeEnum> getRoleTypes() {
 		return roleTypes;
 	}
@@ -118,34 +105,4 @@ public class UserViewModel {
 	public void setRoleTypes(List<RoleTypeEnum> roleTypes) {
 		this.roleTypes = roleTypes;
 	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("UserViewModel [login=");
-		builder.append(login);
-		builder.append(", password=");
-		builder.append(password);
-		builder.append(", createdAt=");
-		builder.append(createdAt);
-		builder.append(", status=");
-		builder.append(status);
-		builder.append(", managerId=");
-		builder.append(managerId);
-		builder.append(", lastname=");
-		builder.append(lastname);
-		builder.append(", firstname=");
-		builder.append(firstname);
-		builder.append(", birthday=");
-		builder.append(birthday);
-		builder.append(", email=");
-		builder.append(email);
-		builder.append(", jobEnum=");
-		builder.append(jobEnum);
-		builder.append(", roles=");
-		builder.append(roleTypes);
-		builder.append("]");
-		return builder.toString();
-	}
-	
 }

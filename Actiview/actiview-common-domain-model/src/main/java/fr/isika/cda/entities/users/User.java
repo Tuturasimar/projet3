@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import fr.isika.cda.entities.ar.Ar;
 import fr.isika.cda.entities.common.StatusEnum;
@@ -37,7 +38,11 @@ public class User implements Serializable {
 
 	@Enumerated(EnumType.STRING)
 	private StatusEnum status;
-
+	
+	@OneToOne
+	@JoinColumn(name = "fk_userdata_id", unique = true)
+	private UserData userData;
+	
 	@ManyToOne
 	@JoinColumn(name = "fk_manager_id")
 	private User manager;
@@ -96,10 +101,21 @@ public class User implements Serializable {
 	}
 	
 	/**
-	 * @param ar
+	 * Il faut utiliser cette méthode pour pouvoir ajouter un cra dans la liste et non faire un user.GetArs.add
+	 * @param ar le cra à ajouter
 	 * @return
 	 */
 	public boolean addAr(Ar ar) {
 		return this.ars.add(ar);
 	}
+
+	public UserData getUserData() {
+		return userData;
+	}
+
+	public void setUserData(UserData userData) {
+		this.userData = userData;
+	}
+
+
 }

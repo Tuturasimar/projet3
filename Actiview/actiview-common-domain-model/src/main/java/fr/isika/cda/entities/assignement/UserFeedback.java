@@ -23,6 +23,10 @@ public class UserFeedback implements Serializable {
     private int gradeManager;
     private int gradeClientRelation;
     private int gradeUserComfort;
+    
+    public long getId() {
+		return id;
+	}
 
     public String getComment() {
         return comment;

@@ -8,6 +8,7 @@ public class FormationViewModel {
 	
 	private int nbOfDays;
 	private String labelFormation;
+	private String description;
 	private FormationStatusEnum formationState;
 	private LocationFormationEnum locationFormation;
 	
@@ -34,6 +35,12 @@ public class FormationViewModel {
 	}
 	public void setLocationFormation(LocationFormationEnum locationFormation) {
 		this.locationFormation = locationFormation;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	

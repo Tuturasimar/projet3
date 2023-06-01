@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import fr.isika.cda.entities.ar.Ar;
 import fr.isika.cda.repository.ArRepository;
+import fr.isika.cda.utils.SessionUtils;
 import fr.isika.cda.viewmodels.ArViewModel;
 
 @ManagedBean
@@ -36,7 +37,11 @@ public class ShowArBean implements Serializable {
 	
 	@PostConstruct
 	public void init() {
-		Ar ar = arRepo.findByUserAndCreatedAt(1L, LocalDate.now().getMonthValue(), LocalDate.now().getYear());
+		
+		// Chercher l'ID de l'utilisateur connecté
+		Long id = SessionUtils.getUserIdFromSession();
+		
+		Ar ar = arRepo.findByUserAndCreatedAt(id, LocalDate.now().getMonthValue(), LocalDate.now().getYear());
 		
 		if(ar != null) {
 			arVm.setAr(ar);
@@ -46,7 +51,9 @@ public class ShowArBean implements Serializable {
 	}
 	
 	public void getAr() {
-		Ar ar = arRepo.findByUserAndCreatedAt(1L, arVm.getDate().getMonthValue(), arVm.getDate().getYear());
+		Long id = SessionUtils.getUserIdFromSession();
+		
+		Ar ar = arRepo.findByUserAndCreatedAt(id, arVm.getDate().getMonthValue(), arVm.getDate().getYear());
 		
 		if(ar != null) {
 			arVm.setAr(ar);

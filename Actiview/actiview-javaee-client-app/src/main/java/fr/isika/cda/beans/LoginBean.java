@@ -25,7 +25,7 @@ public class LoginBean {
 			if(user != null) {
 				// 3 - Si oui => mémoriser le user en session 
 				SessionUtils.setUserLoginIntoSession(user.getLogin());
-				
+				SessionUtils.setUserIdIntoSession(user.getId());
 				// + rediriger vers index
 				return "index";
 				

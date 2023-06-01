@@ -29,15 +29,15 @@
 
 			<li><h:link outcome="UserList.xhtml">Listes des utilisateurs</h:link></li>
 
-			<ui:fragment rendered="#{not loginBean.isUserLoggedIn()}">
+			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
 				<li><h:link outcome="showAr.xhtml">Test du Cra</h:link></li>
 			</ui:fragment>
 
-			<ui:fragment rendered="#{not loginBean.isUserLoggedIn()}">
+			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
 				<li><h:link outcome="missionUserList.xhtml">Affectations Missions</h:link></li>
 			</ui:fragment>
 			
-			<ui:fragment rendered="#{not loginBean.isUserLoggedIn()}">
+			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
 				<li><h:link outcome="formationUserList.xhtml">Affectations Formations</h:link></li>
 			</ui:fragment>
 

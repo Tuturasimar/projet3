@@ -21,8 +21,22 @@
 		<h:inputText id="formationTxt" value="#{registerFormation.formationVm.labelFormation}"/>
 		
 		<p:outputLabel id="formationNbOfDayLabel" value="Nombre de jours de la formation : " />
+
+		<p:inputText id="formationNbOfDayTxt" value="#{registerFormation.formationVm.nbOfDays}" showOn="button">
+		</p:inputText>
 		
 		<p:outputLabel id="formationDescription" value="Description de la formation : " />
+		<p:inputText id="formationDescriptionTxt" value="#{registerFormation.formationVm.description}" showOn="button">
+		</p:inputText>
+		
+		<p:outputLabel id="formationLocation" value="Localisation de la formation : " />
+		<p:inputText id="formationLocationTxt" value="#{registerFormation.formationVm.locationFormation}" showOn="button">
+		</p:inputText>
+		
+		<p:outputLabel id="formationState" value="Statut de la formation : " />
+		<p:inputText id="formationStateTxt" value="#{registerFormation.formationVm.formationState}" showOn="button">
+		</p:inputText>
+
 		
 		<h:commandButton value="Register" action="#{registerFormation.register()}"/>
 		<h:commandButton value="Clear" action="#{registerFormation.clear()}"/>

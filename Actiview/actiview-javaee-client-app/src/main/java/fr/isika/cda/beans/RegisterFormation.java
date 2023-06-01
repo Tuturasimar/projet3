@@ -24,9 +24,11 @@ public class RegisterFormation {
 	public void clear() {
 		formationVm = new FormationViewModel();
 	}
+
 	
 	public void update(Long id) {
 		formationRepository.updateFormation(formationVm);
+
 	}
 
 	public FormationViewModel getFormationVm() {

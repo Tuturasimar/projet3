@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<ui:define name="Entete">
+		<h1 style="color: red; text-align: center">Choix des forfaits</h1>
+	</ui:define>
+
+
+	<ui:define name="content">
+		<h:form>
+		<h:panelGrid columns="3">
+				<h:outputLabel id="forfaitLabel" value="Nom du forfait "/>
+				<h:selectOneMenu id="forfaitTxt" >
+					<f:selectItem itemLabel="1" itemValue="Basic"/>
+				</h:selectOneMenu>
+				
+				<h:selectOneMenu id="dureeSelect" >
+					<f:selectItem itemLabel="3 mois" itemValue="3"/>
+					<f:selectItem itemLabel="6 mois" itemValue="6"/>
+					<f:selectItem itemLabel="1 an" itemValue="12"/>
+				</h:selectOneMenu>
+				<p:commandButton value="Choisir"></p:commandButton>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

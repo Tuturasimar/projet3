@@ -55,20 +55,31 @@
 				</p:selectOneMenu>
 				<h:message for="jobSelectMenu" />
 
+
+
 				<h:outputLabel id="managerLabel" value="Manager" />
 				<p:selectOneMenu id="managerSelectMenu"
 					value="#{registerUserBean.userViewModel.managerId}">
 					<f:selectItem itemLabel="Sélectionner un manager" itemValue=""
 						noSelectionOption="true" />
+						
 					<f:selectItem itemLabel="Aucun Manager" itemValue="null" />
 				</p:selectOneMenu>
 				<h:message for="managerSelectMenu" />
+
+
+
+
 
 				<h:outputLabel id="roleLabel" value="Rôle"/>
 				<p:selectManyCheckbox id="roleCB" value="#{registerUserBean.userViewModel.roleTypes}">
 					<f:selectItems value="#{registerUserBean.roleTypeEnumValues()}" var="role" itemLabel="#{role.label}" itemValue="#{role}" />
 				</p:selectManyCheckbox>
 				<h:message for="roleCheckBox" />
+				
+				
+				
+				
 				
 				<span/>
 

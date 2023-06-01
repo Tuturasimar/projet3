@@ -11,13 +11,13 @@
 	</ui:define>
 
 	<ui:define name="content">
-
 		<h:form>
 			<h:panelGrid columns="3">
-
+			
 				<h:outputLabel value="Salarié" for="userMenu" />
 				<h:selectOneMenu id="userMenu"
 					value="#{registerFormationUserBean.formationUserVm.userId}">
+					
 					<f:selectItem noSelectionOption="true"
 						itemLabel="Choisir un collaborateur" />
 					<f:selectItems value="#{registerFormationUserBean.users}" var="user"

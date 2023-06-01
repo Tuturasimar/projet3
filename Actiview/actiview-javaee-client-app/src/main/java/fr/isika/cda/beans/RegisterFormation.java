@@ -20,21 +20,15 @@ public class RegisterFormation {
 		formationRepository.register(formationVm);
 		clear();
 	}
-
 	public void clear() {
 		formationVm = new FormationViewModel();
 	}
-
-	
 	public void update(Long id) {
 		formationRepository.updateFormation(formationVm);
-
 	}
-
 	public FormationViewModel getFormationVm() {
 		return formationVm;
 	}
-
 	public void setFormationVm(FormationViewModel formationVm) {
 		this.formationVm = formationVm;
 	}

@@ -16,6 +16,14 @@
 	
 		<h2>Pour commencer, choisissez un thème : </h2>
 		
+		<div class ="template">
+		<h:form>
+		<p:selectOneRadio id="template2" value="#{personalizationBean.template}" layout="responsive" columns="3" unselectable="true">
+            <f:selectItems value="#{personalizationBean.templates}" var="template" itemLabel="#{template}" itemValue="#{template}"/>
+        </p:selectOneRadio>
+		</h:form>
+		</div>
+		
 		<h2>Choisissez un logo : </h2>
 		
 		<p:growl id ="messages" showDetail="true"></p:growl>

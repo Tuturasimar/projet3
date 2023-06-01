@@ -2,7 +2,10 @@ package fr.isika.cda.beans;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -26,74 +29,85 @@ public class PersonalizationBean {
 
 	@Inject
 	private ImageConfigRepository imgConfigRepo;
-	
+
 	@Inject
 	private ColorConfigRepository colorConfigRepo;
 
 	private ImageConfigViewModel imgConfigVm = new ImageConfigViewModel();
 	private ColorConfigViewModel colorConfigVm = new ColorConfigViewModel();
-	
+
 	private UploadedFile logo;
 	private UploadedFile banner;
-	
+
 	private String colorBackground;
 	private String colorTitle;
 	private String colorButton;
 	private String colorText;
-	
-	
+
+	private String template;
+	private List<String> templates;
+
+	@PostConstruct
+	public void init() {
+		templates = new ArrayList<String>();
+		templates.add("Template 1");
+		templates.add("Template 2");
+		templates.add("Template 3");
+	}
+
 	public String save() {
 		imgConfigRepo.save(imgConfigVm);
 		imgConfigVm = new ImageConfigViewModel();
 		return "adminPersonalizationPreview.xhtml";
 	}
-	
+
 	public void uploadLogo(FileUploadEvent e) {
 		String fileName = uploadFile(e);
 		// Mettre à jour le vm
 		imgConfigVm.setLogo(fileName);
 	}
+
 	public void uploadBanner(FileUploadEvent e) {
 		String fileName = uploadFile(e);
 		// Mettre à jour le vm
 		imgConfigVm.setBanner(fileName);
 	}
-	
+
 	public String saveColor() {
 		colorConfigRepo.save(colorConfigVm);
 		colorConfigVm = new ColorConfigViewModel();
 		return "adminPersonalizationColor.xhtml";
 	}
-	
+
 	public void saveColorTitle(AjaxBehaviorEvent e) {
 		String color = onColorChange(e);
 		colorConfigVm.setTitleColor(color);
 	}
-	
+
 	public void saveColorButton(AjaxBehaviorEvent e) {
 		String color = onColorChange(e);
 		colorConfigVm.setButtonColor(color);
 	}
-	
+
 	public void saveColorText(AjaxBehaviorEvent e) {
 		String color = onColorChange(e);
 		colorConfigVm.setTextColor(color);
 	}
-	
+
 	public void saveColorBackground(AjaxBehaviorEvent e) {
 		String color = onColorChange(e);
 		colorConfigVm.setBackgroundColor(color);
 		System.out.println(color);
 	}
-	
-    public String onColorChange(AjaxBehaviorEvent e) {
-        ColorPicker picker = (ColorPicker) e.getComponent();
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Color changed: " + picker.getValue(), null);
-        
-        String color = (String) picker.getValue();
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-        return color;
-    }
+
+	public String onColorChange(AjaxBehaviorEvent e) {
+		ColorPicker picker = (ColorPicker) e.getComponent();
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Color changed: " + picker.getValue(), null);
+
+		String color = (String) picker.getValue();
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		return color;
+	}
 
 	private String uploadFile(FileUploadEvent e) {
 		String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyyHHmmss"));
@@ -103,21 +117,24 @@ public class PersonalizationBean {
 
 		// Ecrire le fichier physiquement qq part
 		FileUploadUtils.uploadFileToApp(uploadedFile, fileName);
-		
+
 		FacesMessage message = new FacesMessage("Successful file upload", uploadedFile.getFileName() + " is uploaded.");
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		return fileName;
 	}
-	
+
 	public UploadedFile getBanner() {
 		return banner;
 	}
+
 	public void setBanner(UploadedFile banner) {
 		this.banner = banner;
 	}
+
 	public UploadedFile getLogo() {
 		return logo;
 	}
+
 	public void setLogo(UploadedFile logo) {
 		this.logo = logo;
 	}
@@ -153,6 +170,23 @@ public class PersonalizationBean {
 	public void setColorText(String colorText) {
 		this.colorText = colorText;
 	}
+
+	public String getTemplate() {
+		return template;
+	}
+
+	public void setTemplate(String template) {
+		this.template = template;
+	}
+
+	public List<String> getTemplates() {
+		return templates;
+	}
+
+	public void setTemplates(List<String> templates) {
+		this.templates = templates;
+	}
 	
 	
+
 }

@@ -27,5 +27,14 @@ public class ColorConfigRepository {
 		
 		em.persist(config);
 	}
+	
+	public Long getColorConfigByCompanyId(Long id) {
+		ColorConfig colorConfig = new ColorConfig();
+		colorConfig = (ColorConfig) em.
+										createQuery("SELECT cc from Config c JOIN c.colorConfig cc WHERE c.company =:id ", ColorConfig.class)
+										.setParameter("idColorConfigParam", id)
+										.getSingleResult();
+		return colorConfig.getId();
+	}
 
 }

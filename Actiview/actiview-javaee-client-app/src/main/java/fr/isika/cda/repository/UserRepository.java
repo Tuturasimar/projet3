@@ -152,13 +152,14 @@ public class UserRepository {
 		return query.getResultList();
 	}
 	//En cours par Diane
-//	public List<User> getAllManagers() {
-//		Query query = em.createQuery("SELECT u FROM UserRole ur JOIN ur.user u WHERE ur.roleTypeEnum = MANAGER");
-//		
-//		List<User> managers = query.getResultList();
-//		
-//		return managers;
-//	}
+	@SuppressWarnings("unchecked")
+	public List<User> getAllManagers() {
+		Query query = em.createQuery("SELECT u FROM UserRole ur JOIN ur.user u WHERE ur.roleTypeEnum = :manager")
+				.setParameter("manager", RoleTypeEnum.MANAGER);
+		
+		List<User> managers = query.getResultList();
+		return managers;
+	}
 
 	/**
 	 * Returns a user with the given login data. <br>

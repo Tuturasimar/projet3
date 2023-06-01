@@ -26,7 +26,6 @@ import fr.isika.cda.entities.common.LocationFormationEnum;
 import fr.isika.cda.entities.common.MissionTypeEnum;
 
 import fr.isika.cda.entities.config.Company;
-import fr.isika.cda.entities.common.JobEnum;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserData;
 import fr.isika.cda.entities.users.UserRole;
@@ -166,9 +165,9 @@ public class DataInit {
 
 		// Mock donnée d'un CRA
 		Ar ar = new Ar();
-		ar.setCreatedAt(LocalDate.now());
+		ar.setCreatedAt(LocalDate.of(2023,5,6));
 		ar.setArConfig(ArConfigEnum.MONTH);
-		ar.setStateArEnum(StateAr.DRAFT);
+		ar.setStateArEnum(StateAr.VALIDATED);
 		ar.setUpdatedAt(LocalDate.now());
 		ar.setUser(user);
 

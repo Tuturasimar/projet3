@@ -26,6 +26,11 @@
 
 		<h:form id="arViewForm">
 			<p:fieldset id="rendu" legend="CRA">
+				<h:commandButton
+					action="#{registerArBean.register(showArBean.arVm)}"
+					value="Ajouter un nouveau CRA"
+					rendered="#{!showArBean.hasSelectedAr() and showArBean.canBeCreated() }" />
+
 				<p:outputLabel value="#{showArBean.arVm.ar.id}" id="arId"
 					style="display: block" />
 
@@ -34,9 +39,14 @@
 
 				<p:outputLabel value="#{showArBean.arVm.ar.stateArEnum}"
 					id="arState" style="display: block" />
+				<h:outputText value="Aucun Cra disponible pour ce mois"
+					rendered="#{!showArBean.hasSelectedAr()}" />
+
 			</p:fieldset>
-			
-			<h:commandButton action="#{registerActivityDateFromArBean.getAllActivityDates(showArBean.arVm.ar.id)}" value="Voir les détails" />
+
+			<h:commandButton
+				action="#{registerActivityDateFromArBean.getAllActivityDates(showArBean.arVm.ar.id)}"
+				value="Voir les détails" rendered="#{showArBean.hasSelectedAr()}" />
 
 		</h:form>
 	</ui:define>

@@ -21,12 +21,12 @@ public class ShowArBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
 	private ArRepository arRepo;
-	
+
 	private ArViewModel arVm = new ArViewModel();
-	
+
 	public ArViewModel getArVm() {
 		return arVm;
 	}
@@ -34,37 +34,47 @@ public class ShowArBean implements Serializable {
 	public void setArVm(ArViewModel arVm) {
 		this.arVm = arVm;
 	}
-	
+
 	@PostConstruct
 	public void init() {
-		
+
 		// Chercher l'ID de l'utilisateur connecté
 		Long id = SessionUtils.getUserIdFromSession();
-		
+
 		Ar ar = arRepo.findByUserAndCreatedAt(id, LocalDate.now().getMonthValue(), LocalDate.now().getYear());
-		
-		if(ar != null) {
+
+		if (ar != null) {
 			arVm.setAr(ar);
 		} else {
 			// Création d'un nouveau AR
 		}
 	}
-	
+
 	public void getAr() {
 		Long id = SessionUtils.getUserIdFromSession();
-		
+
 		Ar ar = arRepo.findByUserAndCreatedAt(id, arVm.getDate().getMonthValue(), arVm.getDate().getYear());
-		
-		if(ar != null) {
+
+		if (ar != null) {
 			arVm.setAr(ar);
 		} else {
 			arVm.setAr(null);
 		}
-		
+
 	}
-	
-	public boolean hasSelectedAr()  {
+
+	public boolean hasSelectedAr() {
 		return this.arVm.getAr() != null;
 	}
-	
+
+	public boolean canBeCreated() {
+
+		if (LocalDate.now().getMonthValue() == arVm.getDate().getMonthValue()
+				&& LocalDate.now().getYear() == arVm.getDate().getYear()) {
+			return true;
+		}
+		return false;
+
+	}
+
 }

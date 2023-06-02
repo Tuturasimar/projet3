@@ -33,6 +33,10 @@ public class Config implements Serializable {
 	@JoinColumn(name="imageConfig_id")
 	private ImageConfig imageConfig;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="templateConfig_id")
+	private TemplateConfig templateConfig;
+	
 	@OneToOne
 	@JoinColumn(name="company_id")
 	private Company company;

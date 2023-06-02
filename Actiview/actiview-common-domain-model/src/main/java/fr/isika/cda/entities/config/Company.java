@@ -27,6 +27,10 @@ public class Company implements Serializable {
 	private String name;
 	private String adress;
 	private StatusEnum status;
+	private int phone;
+	private int siren;
+	private String adminJob;
+	
 	
 	@OneToOne
 	@JoinColumn(name="contract_id")
@@ -65,6 +69,34 @@ public class Company implements Serializable {
 	@Enumerated(EnumType.STRING)
 	public void setStatus(StatusEnum status) {
 		this.status = status;
+	}
+
+	public int getPhone() {
+		return phone;
+	}
+
+	public void setPhone(int phone) {
+		this.phone = phone;
+	}
+
+	public int getSiren() {
+		return siren;
+	}
+
+	public void setSiren(int siren) {
+		this.siren = siren;
+	}
+
+	public String getAdminJob() {
+		return adminJob;
+	}
+
+	public void setAdminJob(String adminJob) {
+		this.adminJob = adminJob;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }

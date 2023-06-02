@@ -14,70 +14,65 @@
 	<ui:define name="content">
      	
 		<h:form>
-		
+			<h3> Données de l'entreprise</h3> 
+			<br/>
 			<h:panelGrid columns="3">
-		<h3> Données de l'entreprise</h3> 
+			
+		
+				<h:outputLabel id="brandNameLabel" value="Raison sociale" />
+				<p:inputText id="brandNameInput"
+					value="#{registerCompanyBean.companyViewModel.name}" />
+				<h:message for="brandNameInput" />
+				
+				<h:outputLabel id="adressLabel" value="Adresse" />
+				<p:inputText id="adressInput"
+					value="#{registerCompanyBean.companyViewModel.adress}" />
+				<h:message for="adressInput" />
+				
+				<h:outputLabel id="phoneLabel" value="Téléphone" />
+				<p:inputText id="phoneInput"
+					value="#{registerCompanyBean.companyViewModel.phone}" />
+				<h:message for="phoneInput" />
+		
 				<h:outputLabel id="sirenLabel" value="Siren" />
 				<p:inputText id="sirenInput"
-					value="#{registerUserBean.userViewModel.login}" />
-				<h:message for="loginInput" />
-
-				<h:outputLabel id="passwordLabel" value="Mot de passe" />
-				<p:password id="passwordInput"
-					value="#{registerUserBean.userViewModel.password}" />
-				<h:message for="passwordInput" />
-		<h3> Données de l'administrateur</h3> 
+					value="#{registerCompanyBean.companyViewModel.siren}" />
+				<h:message for="sirenInput" />
+			</h:panelGrid>
+			
+			<h3> Données de l'administrateur</h3> 
+			<br/>
+			<h:panelGrid columns="3">	
 				<h:outputLabel id="emailLabel" value="Email" />
 				<p:inputText id="emailInput"
-					value="#{registerUserBean.userViewModel.email}" />
+					value="#{registerCompanyBean.companyViewModel.email}" />
 				<h:message for="emailInput" />
 
 				<h:outputLabel id="firstnameLabel" value="Prénom" />
 				<p:inputText id="firstnameInput"
-					value="#{registerUserBean.userViewModel.firstname}" />
+					value="#{registerCompanyBean.companyViewModel.firstname}" />
 				<h:message for="firstnameInput" />
 
 				<h:outputLabel id="nameLabel" value="Nom de famille" />
 				<p:inputText id="nameInput"
-					value="#{registerUserBean.userViewModel.lastname}" />
+					value="#{registerCompanyBean.companyViewModel.lastname}" />
 				<h:message for="nameInput" />
 
 				<h:outputLabel id="birthdayLabel" value="Date de naissance" />
 				<p:datePicker id="birthdayInput"
-					value="#{registerUserBean.userViewModel.birthday}" />
+					value="#{registerCompanyBean.companyViewModel.birthday}" />
 				<h:message for="birthdayInput" />
 
 				<h:outputLabel id="jobLabel" value="Poste" />
-				<p:selectOneMenu id="jobSelectMenu"
-					value="#{registerUserBean.userViewModel.jobEnum}">
-					<f:selectItem itemLabel="Sélectionner un poste" itemValue=""
-						noSelectionOption="true" />
-					<f:selectItems value="#{registerUserBean.jobEnumValues()}"
-						var="job" itemLabel="#{job.label}" itemValue="#{job}" />
-				</p:selectOneMenu>
-				<h:message for="jobSelectMenu" />
-
-				<h:outputLabel id="managerLabel" value="Manager" />
-				<p:selectOneMenu id="managerSelectMenu"
-					value="#{registerUserBean.userViewModel.managerId}">
-					<f:selectItem itemLabel="Sélectionner un manager" itemValue=""
-						noSelectionOption="true" />
-					<f:selectItem itemLabel="Aucun Manager" itemValue="null" />
-					<f:selectItems value="#{registerUserBean.managers}" var="manager" itemLabel="#{manager.login}" itemValue="#{manager.id.toString()}"/>
-				</p:selectOneMenu>
-				<h:message for="managerSelectMenu" />
-
-				<h:outputLabel id="roleLabel" value="Rôle"/>
-				<p:selectManyCheckbox id="roleCB" value="#{registerUserBean.userViewModel.roleTypes}">
-					<f:selectItems value="#{registerUserBean.roleTypeEnumValues()}" var="role" itemLabel="#{role.label}" itemValue="#{role}" />
-				</p:selectManyCheckbox>
-				<h:message for="roleCheckBox" />
+				<p:inputText id="jobLabelInput"
+					value="#{registerCompanyBean.companyViewModel.adminJob}"/>
+					<h:message for="jobLabel" />
 				
 				<span/>
-
+				<br/>
 				<p:commandButton value="Submit"
-					action="#{registerUserBean.registerUser()}" />
-				<p:commandButton value="Reset" action="#{registerUserBean.clear()}" />
+					action="#{registerCompanyBean.register()}" />
+				<p:commandButton value="Reset" action="#{registerCompanyBean.clear()}" />
 			</h:panelGrid>
 		</h:form>
 		<p>

@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import fr.isika.cda.repository.CompanyRepository;
 import fr.isika.cda.viewmodels.CompanyViewModel;
-import fr.isika.cda.viewmodels.UserViewModel;
+
 
 @ManagedBean
 @SessionScoped

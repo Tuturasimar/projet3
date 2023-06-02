@@ -7,24 +7,18 @@
 <h:head>
 	<title>ActiView</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	
-	<h:outputStylesheet name="bootstrap-5.0.2-dist/css/bootstrap.min.css"/>
-	
 </h:head>
 
 <h:body>
 
 	<div id="container">
 
-		<div id="header" class="danger">
+		<div id="header">
 			<ui:insert name="Entete"></ui:insert>
-			<div class="alert alert-primary">
-			Bootstrap est installé
-			</div>
 
 		</div>
 
-		<div id="content" class="container">
+		<div id="content">
 			<ui:insert name="content">
                 [Template content will be inserted here]
          	</ui:insert>
@@ -38,7 +32,6 @@
 		</div>
 	</div>
 	<h:outputScript library="js" name="primeFacesLocales.js"></h:outputScript>
-	<h:outputScript name="bootstrap-5.0.2-dist/js/bootstrap.min.js"></h:outputScript>
 
 </h:body>
 </html>

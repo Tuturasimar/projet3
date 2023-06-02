@@ -27,6 +27,7 @@ public class UserViewModel {
 	private String email;
 	private JobEnum jobEnum;
 	
+	
 	// Donnée de la table UserRole
 	private List<RoleTypeEnum> roleTypes = new ArrayList<RoleTypeEnum>();
 
@@ -117,6 +118,9 @@ public class UserViewModel {
 	public void setRoleTypes(List<RoleTypeEnum> roleTypes) {
 		this.roleTypes = roleTypes;
 	}
+	
+
+	
 
 	@Override
 	public String toString() {

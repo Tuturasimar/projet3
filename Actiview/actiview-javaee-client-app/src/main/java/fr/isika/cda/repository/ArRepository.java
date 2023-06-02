@@ -25,6 +25,7 @@ public class ArRepository {
 
 	@PersistenceContext
 	private EntityManager em;
+	
 
 	public Ar findByUserAndCreatedAt(Long userId, int month, int year) {
 
@@ -42,6 +43,25 @@ public class ArRepository {
 		}
 	}
 
+	public Ar findArWithUserDataByUserAndCreatedAt(Long userId, int month, int year) {
+
+		try {
+			Query query = em.createQuery(
+					"SELECT A FROM Ar a JOIN a.user u JOIN u.userData "
+					+ "WHERE fk_user_id = :id "
+					+ "AND MONTH(a.createdAt) = :month "
+					+ "AND YEAR(a.createdAt) = :year");
+			query.setParameter("id", userId);
+			query.setParameter("month", month);
+			query.setParameter("year", year);
+			
+			return (Ar) query.getSingleResult();
+
+		} catch (NoResultException nre) {
+			return null;
+		}
+	}
+	
 	public void register(User user) {
 		Ar ar = new Ar();
 
@@ -65,4 +85,13 @@ public class ArRepository {
 		ar.setStateArEnum(state);
 	}
 
+	public void acceptAr(Long arId) {
+		Ar ar = findById(arId);
+		ar.setStateArEnum(StateAr.VALIDATED);
+	}
+	
+	public void refuseAr(Long arId) {
+		Ar ar = findById(arId);
+		ar.setStateArEnum(StateAr.DRAFT);
+	}
 }

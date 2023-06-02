@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/WEB-INF/templates/default.xhtml">
+	<f:metadata>
+		<f:viewParam name="id" />
+		<f:event listener="#{seeArOfEmployeeBean.showArOfEmployee(id)}" type="preRenderView"></f:event>
+	</f:metadata>
+
+	<ui:define name="Entete">
+		<h2 style="color: red">CRA de l'employé</h2>
+
+	</ui:define>
+
+	<ui:define name="content">
+		<p:dataTable id="dateTab"
+			value="#{seeArOfEmployeeBean.arOfEmployeeVM.activityDates}"
+			var="activityDate">
+			<p:column>
+				<f:facet name="header">Date</f:facet>
+		#{activityDate.date}
+		</p:column>
+			<p:column>
+				<f:facet name="header">Partie de la journée</f:facet>
+		#{activityDate.partOfDay.label}
+		</p:column>
+			<p:column>
+				<f:facet name="header">Télétravail</f:facet>
+		#{activityDate.remote ? "Oui" : "Non"}
+		</p:column>
+			<p:column>
+				<f:facet name="header">Label</f:facet>
+		#{activityDate.arActivity.activity.labelActivity}
+		</p:column>
+		</p:dataTable>
+		<h:form>
+			<p:commandButton
+				action="#{seeArOfEmployeeBean.acceptAr(seeArOfEmployeeBean.arOfEmployeeVM.arId)}"
+				value="Valider le CRA"
+				rendered="#{seeArOfEmployeeBean.arOfEmployeeVM.stateAr == seeArOfEmployeeBean.inhold}" />
+			<p:commandButton
+				action="#{seeArOfEmployeeBean.refuseAr(seeArOfEmployeeBean.arOfEmployeeVM.arId)}"
+				value="Refuser le CRA"
+				rendered="#{seeArOfEmployeeBean.arOfEmployeeVM.stateAr == seeArOfEmployeeBean.inhold}" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

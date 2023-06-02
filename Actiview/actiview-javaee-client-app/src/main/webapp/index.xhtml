@@ -43,10 +43,7 @@
 
 			<li><h:link outcome="adminPersonalization.xhtml">Personnalisation espace ESN</h:link></li>
 
-			<h:form>
-				<li><h:commandLink
-						action="#{seeArOfEmployeeBean.showArOfEmployee(4)}">Test Consulter le CRA d'un employé</h:commandLink></li>
-			</h:form>
+
 			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
 				<li><h:link outcome="SeeArTeam.xhtml">Voir la liste des CRAs des salariés (vue Manager)</h:link></li>
 

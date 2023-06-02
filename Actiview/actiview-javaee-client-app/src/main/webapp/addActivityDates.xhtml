@@ -56,6 +56,14 @@
 				value="Ajouter l'activité">
 				<f:ajax execute="@form" render="dateTab" event="click"></f:ajax>
 			</h:commandButton>
+			<h:commandButton
+				action="#{registerActivityDateFromArBean.addAllMonth()}"
+				value="Remplir le mois">
+			</h:commandButton>
+			<h:commandButton
+				action="#{registerActivityDateFromArBean.deleteAllExistingActivityDate()}"
+				value="Vider le mois">
+			</h:commandButton>
 		</h:form>
 
 		<h:dataTable id="dateTab"
@@ -63,8 +71,10 @@
 			var="activityDate">
 			<h:column>
 				<f:facet name="header">Date</f:facet>
-		#{activityDate.date}
-		</h:column>
+				<h:outputText value="#{activityDate.date}">
+					<f:convertDateTime type="localDate" pattern="dd.MM.yyyy" />
+				</h:outputText>
+			</h:column>
 			<h:column>
 				<f:facet name="header">Partie de la journée</f:facet>
 		#{activityDate.partOfDay.label}

@@ -10,7 +10,9 @@
 	<title>ActiView</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+
 	<h:outputStylesheet name="bootstrap-5.0.2-dist/css/bootstrap.min.css" />
+
 
 </h:head>
 
@@ -18,7 +20,7 @@
 
 	<div id="container">
 
-		<div id="header" class="danger">
+		<div id="header">
 			<ui:insert name="Entete"></ui:insert>
 
 			<h:panelGrid col="1" rendered="#{notificationBean.notification}">
@@ -35,6 +37,7 @@
 
 	<div id="content" class="container">
 		<ui:insert name="content">
+
                 [Template content will be inserted here]
          	</ui:insert>
 	</div>
@@ -46,7 +49,6 @@
 		</div>
 	</div>
 	<h:outputScript library="js" name="primeFacesLocales.js"></h:outputScript>
-	<h:outputScript name="bootstrap-5.0.2-dist/js/bootstrap.min.js"></h:outputScript>
 
 </h:body>
 </html>

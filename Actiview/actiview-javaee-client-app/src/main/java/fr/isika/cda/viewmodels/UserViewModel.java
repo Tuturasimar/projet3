@@ -26,6 +26,9 @@ public class UserViewModel {
 	private LocalDate birthday;
 	private String email;
 	private JobEnum jobEnum;
+	private int phone;
+	private int siren;
+	private String adress;
 	
 	// Donnée de la table UserRole
 	private List<RoleTypeEnum> roleTypes = new ArrayList<RoleTypeEnum>();
@@ -117,6 +120,31 @@ public class UserViewModel {
 	public void setRoleTypes(List<RoleTypeEnum> roleTypes) {
 		this.roleTypes = roleTypes;
 	}
+	
+
+	public int getPhone() {
+		return phone;
+	}
+
+	public void setPhone(int phone) {
+		this.phone = phone;
+	}
+
+	public int getSiren() {
+		return siren;
+	}
+
+	public void setSiren(int siren) {
+		this.siren = siren;
+	}
+
+	public String getAdress() {
+		return adress;
+	}
+
+	public void setAdress(String adress) {
+		this.adress = adress;
+	}
 
 	@Override
 	public String toString() {
@@ -143,6 +171,12 @@ public class UserViewModel {
 		builder.append(jobEnum);
 		builder.append(", roles=");
 		builder.append(roleTypes);
+		builder.append(", adress=");
+		builder.append(adress);
+		builder.append(", phone=");
+		builder.append(phone);
+		builder.append(", siren=");
+		builder.append(siren);
 		builder.append("]");
 		return builder.toString();
 	}

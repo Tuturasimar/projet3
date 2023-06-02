@@ -23,6 +23,9 @@ public class UserData {
 	private String firstname;
 	private LocalDate birthday;
 	private String email;
+	private int phone;
+	private int siren;
+	private String adress;
 
 	@Enumerated(EnumType.STRING)
 	private JobEnum jobEnum;
@@ -73,5 +76,30 @@ public class UserData {
 		return id;
 
 	}
+
+	public int getPhone() {
+		return phone;
+	}
+
+	public void setPhone(int phone) {
+		this.phone = phone;
+	}
+
+	public int getSiren() {
+		return siren;
+	}
+
+	public void setSiren(int siren) {
+		this.siren = siren;
+	}
+
+	public String getAdress() {
+		return adress;
+	}
+
+	public void setAdress(String adress) {
+		this.adress = adress;
+	}
+	
 
 }

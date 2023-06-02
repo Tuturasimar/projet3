@@ -19,13 +19,14 @@ import fr.isika.cda.entities.ar.PartDayEnum;
 import fr.isika.cda.entities.ar.StateAr;
 import fr.isika.cda.entities.assignement.MissionUser;
 import fr.isika.cda.entities.common.ArConfigEnum;
-
+import fr.isika.cda.entities.common.ClassContextEnum;
 import fr.isika.cda.entities.common.FormationStatusEnum;
 import fr.isika.cda.entities.common.JobEnum;
 import fr.isika.cda.entities.common.LocationFormationEnum;
 import fr.isika.cda.entities.common.MissionTypeEnum;
 
 import fr.isika.cda.entities.config.Company;
+import fr.isika.cda.entities.users.Notification;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserData;
 import fr.isika.cda.entities.users.UserRole;
@@ -337,6 +338,16 @@ public class DataInit {
 		feature3.setNbOfOptions(3);
 
 		em.persist(feature3);
+
+		
+		Notification notif = new Notification();
+		notif.setClassContext(ClassContextEnum.SUCCESS);
+		notif.setMessageContent("Au secours");
+		notif.setUser(user);
+		
+		em.persist(notif);
+		
+
 
 	}
 

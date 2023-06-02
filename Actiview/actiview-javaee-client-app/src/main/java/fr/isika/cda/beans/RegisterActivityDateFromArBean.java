@@ -47,6 +47,8 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	
 	@Inject
 	private ArRepository arRepo;
+	
+	
 
 	public List<ActivityDate> getActivityDates() {
 		return activityDates;

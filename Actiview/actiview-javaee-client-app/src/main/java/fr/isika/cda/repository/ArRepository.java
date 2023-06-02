@@ -25,6 +25,7 @@ public class ArRepository {
 
 	@PersistenceContext
 	private EntityManager em;
+	
 
 	public Ar findByUserAndCreatedAt(Long userId, int month, int year) {
 
@@ -84,4 +85,13 @@ public class ArRepository {
 		ar.setStateArEnum(state);
 	}
 
+	public void acceptAr(Long arId) {
+		Ar ar = findById(arId);
+		ar.setStateArEnum(StateAr.VALIDATED);
+	}
+	
+	public void refuseAr(Long arId) {
+		Ar ar = findById(arId);
+		ar.setStateArEnum(StateAr.DRAFT);
+	}
 }

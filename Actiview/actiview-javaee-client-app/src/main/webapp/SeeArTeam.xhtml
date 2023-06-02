@@ -25,6 +25,7 @@
 
 		<h:form id="arViewForm">
 			<p:fieldset id="rendu" legend="CRA">
+			
 				<h:dataTable value="#{seeArTeamBean.ars}" var="ar">
 					<h:column>
 						<f:facet name="header">Nom</f:facet>
@@ -43,9 +44,9 @@
 
 					<h:column>
 						<f:facet name="header">Voir le CRA</f:facet>
-						<h:commandButton action="#{seeArTeamBean.showAr(ar.id)}"
+						<h:link outcome="SeeArOfEmployee?id=#{ar.id}"
 							value="Consulter"
-							rendered="#{ar.stateArEnum != seeArTeamBean.DRAFT}" />
+							/>
 					</h:column>
 				</h:dataTable>
 			</p:fieldset>

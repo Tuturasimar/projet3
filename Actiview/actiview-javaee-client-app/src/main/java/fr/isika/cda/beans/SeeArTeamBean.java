@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.ar.Ar;
@@ -76,6 +77,9 @@ public class SeeArTeamBean {
 
 	}
 	
+	public void test() {
+		System.out.println("test");
+	}
 
 	//Getters & setters
 	public List<User> getEmployees() {

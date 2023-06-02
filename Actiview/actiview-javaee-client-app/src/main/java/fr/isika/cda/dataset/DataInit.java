@@ -250,7 +250,12 @@ public class DataInit {
 		arActivity.setAr(ar);
 		arActivity.setActivity(mission);
 
+		ArActivity arActivity2 = new ArActivity();
+		arActivity2.setAr(arSalarie2);
+		arActivity2.setActivity(mission);
+
 		em.persist(arActivity);
+		em.persist(arActivity2);
 
 		// Mock donnée d'une ActivityDate
 
@@ -259,10 +264,17 @@ public class DataInit {
 		activityDate.setDate(LocalDate.now());
 		activityDate.setPartOfDay(PartDayEnum.ALLDAY);
 		activityDate.setRemote(false);
+		
+		ActivityDate activityDate2 = new ActivityDate();
+		activityDate2.setArActivity(arActivity2);
+		activityDate2.setDate(LocalDate.now());
+		activityDate2.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate2.setRemote(false);
 
 		em.persist(activityDate);
+		em.persist(activityDate2);
 
-		// Mock donnée d'une ESN
+		// Mock donnée d'une ESN 
 
 		Company company = new Company();
 		company.setAdress("Je suis une adresse");

@@ -24,6 +24,14 @@ public class Notification {
 	@ManyToOne
 	private User user;
 	// creating a foreign key
+	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public String getMessageContent() {
 		return messageContent;

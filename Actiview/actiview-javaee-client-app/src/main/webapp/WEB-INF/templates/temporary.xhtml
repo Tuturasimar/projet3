@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -21,17 +20,11 @@
 		<div id="header" class="danger">
 			<ui:insert name="Entete"></ui:insert>
 
-			<h:panelGrid col="1" rendered="#{notificationBean.notification}">
-				<ui:repeat var="notification"
-					value="#{notificationBean.notifications}">
-					<div class="alert alert-#{notification.classContext.label}">
-						<h:outputText value="#{notification.messageContent}" />
-					</div>
-				</ui:repeat>
-			</h:panelGrid>
+			
 		</div>
 
 	</div>
+
 
 	<div id="content" class="container">
 		<ui:insert name="content">

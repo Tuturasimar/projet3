@@ -9,8 +9,10 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 
 import org.primefaces.component.colorpicker.ColorPicker;
@@ -45,15 +47,6 @@ public class PersonalizationBean {
 	private String colorText;
 
 	private String template;
-	private List<String> templates;
-
-	@PostConstruct
-	public void init() {
-		templates = new ArrayList<String>();
-		templates.add("Template 1");
-		templates.add("Template 2");
-		templates.add("Template 3");
-	}
 
 	public String save() {
 		imgConfigRepo.save(imgConfigVm);
@@ -100,6 +93,11 @@ public class PersonalizationBean {
 		colorConfigVm.setBackgroundColor(color);
 		System.out.println(color);
 	}
+	
+	public void saveTemplateChoice(AjaxBehaviorEvent e) {
+		String templateChoice = onTemplateChoice(e);
+		imgConfigVm.setTemplateChoice(templateChoice);
+	}
 
 	public String onColorChange(AjaxBehaviorEvent e) {
 		ColorPicker picker = (ColorPicker) e.getComponent();
@@ -122,6 +120,16 @@ public class PersonalizationBean {
 		FacesMessage message = new FacesMessage("Successful file upload", uploadedFile.getFileName() + " is uploaded.");
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		return fileName;
+	}
+	
+	public String onTemplateChoice(AjaxBehaviorEvent e) {
+		UIInput input = (UIInput) e.getSource();
+		String templateChoice = input.getValue().toString();
+		
+		FacesMessage message = new FacesMessage("Successful choice template", templateChoice);
+		FacesContext.getCurrentInstance().addMessage(null, message);
+
+		return templateChoice;
 	}
 
 	public UploadedFile getBanner() {

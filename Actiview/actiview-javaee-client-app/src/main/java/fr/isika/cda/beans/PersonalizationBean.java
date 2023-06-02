@@ -58,6 +58,7 @@ public class PersonalizationBean {
 	public String save() {
 		imgConfigRepo.save(imgConfigVm);
 		imgConfigVm = new ImageConfigViewModel();
+		
 		return "adminPersonalizationPreview.xhtml";
 	}
 

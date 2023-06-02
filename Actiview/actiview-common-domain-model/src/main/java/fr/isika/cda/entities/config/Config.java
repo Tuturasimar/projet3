@@ -75,6 +75,16 @@ public class Config implements Serializable {
 		this.fontConfig = fontConfig;
 	}
 
+	public TemplateConfig getTemplateConfig() {
+		return templateConfig;
+	}
+
+	public void setTemplateConfig(TemplateConfig templateConfig) {
+		this.templateConfig = templateConfig;
+	}
+	
+	
+
 	
 	
 }

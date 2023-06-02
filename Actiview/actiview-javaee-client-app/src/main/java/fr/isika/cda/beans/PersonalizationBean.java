@@ -187,15 +187,6 @@ public class PersonalizationBean {
 	public void setTemplate(String template) {
 		this.template = template;
 	}
-
-	public List<String> getTemplates() {
-		return templates;
-	}
-
-	public void setTemplates(List<String> templates) {
-		this.templates = templates;
-	}
-	
 	
 
 }

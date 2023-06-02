@@ -11,7 +11,7 @@
 	</ui:define>
 
 	<ui:define name="content">
-
+<body>
 		<h1>Bienvenue sur la page de personnalisation détaillée</h1>
 
 		<h2>Arrière-plan :</h2>
@@ -21,7 +21,7 @@
 		<div class="colorBackground">
 			<h:form>
 				<h5 class="mt-0">Popup</h5>
-				<p:colorPicker value="#{personalizationBean.colorBackground}">
+				<p:colorPicker value="#{personalizationBean.colorBackground}" onchange="updateCSS(this)">
 					<p:ajax listener="#{personalizationBean.saveColorBackground}"
 						process="@this" update="customizeColor" />
 				</p:colorPicker>
@@ -33,7 +33,7 @@
 		<div class="colorTitle">
 			<h:form>
 				<h5 class="mt-0">Popup</h5>
-				<p:colorPicker value="#{personalizationBean.colorTitle}">
+				<p:colorPicker value="#{personalizationBean.colorTitle}" onchange="updateCSS(this)">
 					<p:ajax listener="#{personalizationBean.saveColorTitle}"
 						process="@this" update="customizeColor" />
 				</p:colorPicker>
@@ -45,7 +45,7 @@
 		<div class="colorText">
 			<h:form>
 				<h5 class="mt-0">Popup</h5>
-				<p:colorPicker value="#{personalizationBean.colorText}">
+				<p:colorPicker value="#{personalizationBean.colorText}" onchange="updateCSS(this)">
 					<p:ajax listener="#{personalizationBean.saveColorText}"
 						process="@this" update="customizeColor" />
 				</p:colorPicker>
@@ -57,7 +57,7 @@
 		<div class="colorButton">
 			<h:form>
 				<h5 class="mt-0">Popup</h5>
-				<p:colorPicker value="#{personalizationBean.colorButton}">
+				<p:colorPicker value="#{personalizationBean.colorButton}" onchange="updateCSS(this)">
 					<p:ajax listener="#{personalizationBean.saveColorButton}"
 						process="@this" update="customizeColor" />
 				</p:colorPicker>
@@ -70,7 +70,7 @@
 		</h:form>
 
 
-
+</body>
 
 	</ui:define>
 </ui:composition>

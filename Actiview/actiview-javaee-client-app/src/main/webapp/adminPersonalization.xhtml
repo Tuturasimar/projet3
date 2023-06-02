@@ -21,9 +21,8 @@
 		<div class="template">
 			<h:form>
 				<p:selectOneRadio id="templateTest" value="#{personalizationBean.template}">
-					<f:selectItem itemLabel="Template 1" itemValue="Template 1" />
-					<f:selectItem itemLabel="Template 2" itemValue="Template 2" />
-					<f:selectItem itemLabel="Template 3" itemValue="Template 3" />
+					<f:selectItem itemLabel="Dark mode" itemValue="DarkMode" class="theme-switch__input" />
+					<f:selectItem itemLabel="Light mode" itemValue="LightMode" />
 					<p:ajax update="customize" process="@this" listener="#{personalizationBean.saveTemplateChoice}"/>
 				</p:selectOneRadio>	
 			</h:form>

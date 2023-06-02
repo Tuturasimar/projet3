@@ -1,0 +1,56 @@
+:root {
+  --color-hue: 10;
+  --color-sat: 50%;
+  --color-lit: 50%;
+  --color-primary: hsl(
+    var(--color-hue),
+    var(--color-sat),
+    var(--color-lit)
+  );
+  --color-mod: 0;
+}
+* {
+  box-sizing: border-box;
+  transition: all 0.25s ease-in-out;
+}
+body {
+  font-family: sans-serif;
+  margin:0;
+  padding: 3rem;
+  overflow: auto;
+  min-height: 100vh;
+  background: hsl(
+    var(--color-hue),
+    var(--color-sat),
+    98%
+  );
+}
+.colored {
+  color: var(--color-primary);
+}
+button {
+  appearance: none;
+  padding: 0.5em 1em;
+  border-radius: 3px;
+  font-size: 1rem;
+  color: #fff;
+  background: hsl(
+    calc(var(--color-mod) + var(--color-hue)),
+    var(--color-sat),
+    var(--color-lit)
+  );;
+  text-shadow: 0 2px 3px rgba(0,0,0,0.5);
+  border: 0;
+  border-bottom: 2px solid;
+  border-color: hsl(
+    calc(var(--color-hue) + var(--color-mod)), 
+    var(--color-sat),
+    calc(var(--color-lit) - 20%)
+  );
+}
+button.secondary {
+  --color-mod: 120;
+}
+button.tertiary {
+  --color-mod: 240;
+}

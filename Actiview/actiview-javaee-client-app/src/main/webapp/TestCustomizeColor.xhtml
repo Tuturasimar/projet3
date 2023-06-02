@@ -5,23 +5,40 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/templates/default.xhtml"
 	xmlns:p="http://primefaces.org/ui">
+<script type="text/javascript" src="CustomizeColor.js"></script>
 
 	<ui:define name="header">
+
 		<h1>Page de test</h1>
 	</ui:define>
 
 	<ui:define name="content">
 
 		<h2>Test des couleurs</h2>
-		
+
 		<h1>Je suis un titre pour tester le choix des couleurs</h1>
-		
-		 <p:button value="Submit" />
-		 
-		 <div>Test couleur de la police</div>
-		
+
+		<p:button value="Submit" />
+
+		<div>Test couleur de la police</div>
+
 		<p:growl id="customize" showDetail="true"></p:growl>
 
+		<body>
+			<h1>
+				Welcome to the CSS <span class="colored">color</span> experiment
+			</h1>
+			<p>You can change this page, by modifying the global color with
+				the following input.</p>
+				
+			<input type="color" oninput="updateCSS(this)"></input>
+			<hr></hr>
+			<button class="primary">Foo</button>
+			<button class="secondary">Bar</button>
+			<button class="tertiary">Baz</button>
+			
+
+		</body>
 
 		<h:form id="configSpaceForm">
 			<p:commandButton value="Save" />

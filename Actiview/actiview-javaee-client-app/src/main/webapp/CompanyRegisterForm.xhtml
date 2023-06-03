@@ -19,7 +19,7 @@
 			<h:panelGrid columns="3">
 			
 		
-				<h:outputLabel id="brandNameLabel" value="Raison sociale" />
+				<h:outputLabel id="brandNameLabel" value="Nom de l'entreprise" />
 				<p:inputText id="brandNameInput"
 					value="#{registerCompanyBean.companyViewModel.name}" />
 				<h:message for="brandNameInput" />
@@ -45,32 +45,27 @@
 			<h:panelGrid columns="3">	
 				<h:outputLabel id="emailLabel" value="Email" />
 				<p:inputText id="emailInput"
-					value="#{registerCompanyBean.companyViewModel.email}" />
+					value="#{registerCompanyBean.userVm.email}" />
 				<h:message for="emailInput" />
 
 				<h:outputLabel id="firstnameLabel" value="Prénom" />
 				<p:inputText id="firstnameInput"
-					value="#{registerCompanyBean.companyViewModel.firstname}" />
+					value="#{registerCompanyBean.userVm.firstname}" />
 				<h:message for="firstnameInput" />
 
 				<h:outputLabel id="nameLabel" value="Nom de famille" />
 				<p:inputText id="nameInput"
-					value="#{registerCompanyBean.companyViewModel.lastname}" />
+					value="#{registerCompanyBean.userVm.lastname}" />
 				<h:message for="nameInput" />
 
 				<h:outputLabel id="birthdayLabel" value="Date de naissance" />
 				<p:datePicker id="birthdayInput"
-					value="#{registerCompanyBean.companyViewModel.birthday}" />
+					value="#{registerCompanyBean.userVm.birthday}" />
 				<h:message for="birthdayInput" />
-
-				<h:outputLabel id="jobLabel" value="Poste" />
-				<p:inputText id="jobLabelInput"
-					value="#{registerCompanyBean.companyViewModel.adminJob}"/>
-					<h:message for="jobLabel" />
 				
 				<span/>
 				<br/>
-				<p:commandButton value="Submit"
+				<p:commandButton value="S'inscrire"
 					action="#{registerCompanyBean.register()}" />
 				<p:commandButton value="Reset" action="#{registerCompanyBean.clear()}" />
 			</h:panelGrid>

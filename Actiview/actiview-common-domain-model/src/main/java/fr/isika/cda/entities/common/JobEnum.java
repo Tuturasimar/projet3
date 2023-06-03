@@ -3,7 +3,8 @@ package fr.isika.cda.entities.common;
 public enum JobEnum {
 	
 	DEV("Développeur"), 
-	CHEF_DE_PROJET("Chef de projet")
+	CHEF_DE_PROJET("Chef de projet"),
+	ADMIN ("Administrateur")
 	
 	;
 

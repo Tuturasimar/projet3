@@ -19,6 +19,7 @@ import javax.persistence.OneToOne;
 
 import fr.isika.cda.entities.ar.Ar;
 import fr.isika.cda.entities.common.StatusEnum;
+import fr.isika.cda.entities.config.Company;
 
 @Entity
 public class User implements Serializable {
@@ -46,6 +47,10 @@ public class User implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "fk_manager_id")
 	private User manager;
+	
+	@ManyToOne
+	@JoinColumn(name="fk_company_id")
+	private Company company;
 
 	@OneToMany
 	@JoinColumn(name = "fk_user_id")
@@ -115,6 +120,14 @@ public class User implements Serializable {
 
 	public void setUserData(UserData userData) {
 		this.userData = userData;
+	}
+	
+	public Company getCompany() {
+		return company;
+	}
+	
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 
 

@@ -20,12 +20,14 @@ public class RegisterUserBean {
 	
 	@Inject
 	private UserRepository userRepo;
+	
 
 	private List<User> managers;
 	
 	@PostConstruct
 	public void init() {
-		managers = userRepo.getAllManagers();
+		Long companyId = userRepo.findCompanyIdByUserConnected().getId();
+		managers = userRepo.getAllCompanyManagers(companyId);
 	}
 	
 	/**
@@ -33,6 +35,9 @@ public class RegisterUserBean {
 	 * Connectée en front au bouton Valider du formulaire
 	 */
 	public void registerUser() {
+		// A la création du nouvel utilisateur, on va chercher l'ID de la company de l'administrateur connecté
+		Long idCompany = userRepo.findCompanyIdByUserConnected().getId();
+		userViewModel.setCompanyId(idCompany);
 		Long id = userRepo.registerUser(userViewModel);
 		
 		System.out.println("Id du user créé : "+ id);

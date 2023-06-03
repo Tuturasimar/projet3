@@ -3,6 +3,7 @@ package fr.isika.cda.dataset;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
@@ -44,6 +45,18 @@ public class DataInit {
 
 	@PostConstruct
 	public void init() {
+		
+		// Mock donnée d'une ESN 
+
+		Company company = new Company();
+		company.setAdress("Je suis une adresse");
+		company.setName("BeMyTech");
+		company.setStatus(StatusEnum.ACTIVE);
+		company.setPhone(0606060606);
+		company.setSiren(123456789);
+		
+
+		em.persist(company);
 
 		// Mock donnée UserData liée à user
 		UserData data = new UserData();
@@ -86,6 +99,8 @@ public class DataInit {
 		manager.setPassword("test");
 		manager.setStatus(StatusEnum.ACTIVE);
 		manager.setUserData(dataManager);
+		manager.setCompany(company);
+		
 
 		User user = new User();
 		user.setLogin("tutu");
@@ -94,6 +109,7 @@ public class DataInit {
 		user.setStatus(StatusEnum.ACTIVE);
 		user.setUserData(data);
 		user.setManager(manager);
+		user.setCompany(company);
 
 		User userSalarie1 = new User();
 		userSalarie1.setLogin("boblesalarie");
@@ -102,6 +118,7 @@ public class DataInit {
 		userSalarie1.setStatus(StatusEnum.ACTIVE);
 		userSalarie1.setUserData(dataSalarie1);
 		userSalarie1.setManager(manager);
+		userSalarie1.setCompany(company);
 
 		User userSalarie2 = new User();
 		userSalarie2.setLogin("luciefer");
@@ -110,6 +127,7 @@ public class DataInit {
 		userSalarie2.setStatus(StatusEnum.ACTIVE);
 		userSalarie2.setUserData(dataSalarie2);
 		userSalarie2.setManager(manager);
+		userSalarie2.setCompany(company);
 
 		em.persist(manager);
 		em.persist(user);
@@ -142,6 +160,7 @@ public class DataInit {
 		em.persist(roleSalarie1);
 		em.persist(roleSalarie2);
 		em.persist(role2Salarie2);
+		
 
 		// Mock donnée d'un CRA
 		Ar ar = new Ar();
@@ -275,14 +294,7 @@ public class DataInit {
 		em.persist(activityDate);
 		em.persist(activityDate2);
 
-		// Mock donnée d'une ESN 
-
-		Company company = new Company();
-		company.setAdress("Je suis une adresse");
-		company.setName("BeMyTech");
-		company.setStatus(StatusEnum.ACTIVE);
-
-		em.persist(company);
+		
 
 		// Mock donnée OptionsForfait
 

@@ -9,10 +9,7 @@
 <h:head>
 	<title>ActiView</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-
 	<h:outputStylesheet name="bootstrap-5.0.2-dist/css/bootstrap.min.css" />
-
 
 </h:head>
 
@@ -24,6 +21,7 @@
 			<ui:insert name="Entete"></ui:insert>
 
 			<h:panelGrid col="1" rendered="#{notificationBean.notification}">
+
 				<ui:repeat var="notification"
 					value="#{notificationBean.notifications}">
 					<div class="alert alert-#{notification.classContext.label}">
@@ -31,6 +29,12 @@
 					</div>
 				</ui:repeat>
 			</h:panelGrid>
+			<h:form rendered="#{notificationBean.notification}">
+				<h:commandButton
+					action="#{notificationBean.deleteAllNotifications()}"
+					value="Supprimer les notifications"
+					 />
+			</h:form>
 		</div>
 
 	</div>

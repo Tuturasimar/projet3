@@ -1,0 +1,97 @@
+
+ <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<head>
+    <title>Liste des abonnements ESN</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .activate-btn, .deactivate-btn {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .activate-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .deactivate-btn {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste des abonnements ESN</h1>
+    <table>
+    
+        <tr>
+        	
+            <th>ESN</th>
+            <th>Abonnement</th>
+            <th>Actions</th>
+        </tr>
+        <tr>
+            <td>ESN 1</td>
+            <td>Actif</td>
+            <td>
+                <button class="deactivate-btn">Désactiver</button>
+            </td>
+        </tr>
+        <tr>
+            <td>ESN 2</td>
+            <td>Actif</td>
+            <td>
+                <button class="deactivate-btn">Désactiver</button>
+            </td>
+        </tr>
+        <tr>
+            <td>ESN 3</td>
+            <td>Inactif</td>
+            <td>
+                <button class="activate-btn">Activer</button>
+            </td>
+        </tr>
+        <tr>
+            <td>ESN 4</td>
+            <td>Inactif</td>
+            <td>
+                <button class="activate-btn">Activer</button>
+            </td>
+        </tr>
+        <tr>
+            <td>ESN 5</td>
+            <td>Actif</td>
+            <td>
+                <button class="deactivate-btn">Désactiver</button>
+            </td>
+        </tr>
+        <tr>
+            <td>ESN 6</td>
+            <td>Inactif</td>
+            <td>
+                <button class="activate-btn">Activer</button>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

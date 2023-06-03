@@ -19,6 +19,8 @@ public class UserViewModel {
 	private StatusEnum status;
 	
 	private String managerId;
+	
+	private Long companyId;
 
 	// Données de la table Userdata
 	private String lastname;
@@ -117,6 +119,14 @@ public class UserViewModel {
 
 	public void setRoleTypes(List<RoleTypeEnum> roleTypes) {
 		this.roleTypes = roleTypes;
+	}
+	
+	public Long getCompanyId() {
+		return companyId;
+	}
+	
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
 	}
 	
 

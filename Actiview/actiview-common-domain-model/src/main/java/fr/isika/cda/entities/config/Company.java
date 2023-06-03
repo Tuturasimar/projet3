@@ -1,16 +1,20 @@
 package fr.isika.cda.entities.config;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import fr.isika.cda.entities.common.StatusEnum;
+import fr.isika.cda.entities.users.User;
 
 @Entity
 public class Company implements Serializable {
@@ -21,21 +25,25 @@ public class Company implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	private String name;
 	private String adress;
-	private StatusEnum status;
+	
 	private int phone;
 	private int siren;
-	private String adminJob;
 	
+	@Enumerated(EnumType.STRING)
+	private StatusEnum status;
 	
 	@OneToOne
 	@JoinColumn(name="contract_id")
 	private Contract contract;
-
+	
+	@OneToMany
+	@JoinColumn(name="fk_company_id")
+	List<User> users;
 
 
 	public long getId() {
@@ -44,6 +52,18 @@ public class Company implements Serializable {
 
 	public Contract getContract() {
 		return contract;
+	}
+	
+	public List<User> getUsers() {
+		return users;
+	}
+	
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+	
+	public void setContract(Contract contract) {
+		this.contract = contract;
 	}
 
 	public String getName() {
@@ -85,14 +105,6 @@ public class Company implements Serializable {
 
 	public void setSiren(int siren) {
 		this.siren = siren;
-	}
-
-	public String getAdminJob() {
-		return adminJob;
-	}
-
-	public void setAdminJob(String adminJob) {
-		this.adminJob = adminJob;
 	}
 
 	public static long getSerialversionuid() {

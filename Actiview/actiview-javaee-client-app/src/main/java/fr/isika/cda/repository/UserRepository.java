@@ -11,9 +11,11 @@ import javax.persistence.Query;
 
 import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.StatusEnum;
+import fr.isika.cda.entities.config.Company;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserData;
 import fr.isika.cda.entities.users.UserRole;
+import fr.isika.cda.utils.SessionUtils;
 import fr.isika.cda.viewmodels.UpdateUserViewModel;
 import fr.isika.cda.viewmodels.LoginViewModel;
 import fr.isika.cda.viewmodels.UpdatePasswordViewModel;
@@ -49,7 +51,8 @@ public class UserRepository {
 		user.setCreatedAt(LocalDateTime.now());
 		user.setStatus(StatusEnum.ACTIVE);
 		user.setUserData(data);
-
+		user.setCompany(em.getReference(Company.class, userVM.getCompanyId() ));
+		
 		Long managerId = extractManagerId(userVM.getManagerId());
 		if (!MANAGER_ID_DEFAULT_NOT_FOUND.equals(managerId)) {
 			User manager = em.find(User.class, managerId);
@@ -217,6 +220,12 @@ public class UserRepository {
 		return  query.getResultList();
 	}
 
+	public Company findCompanyIdByUserConnected() {
+		Query query = em.createQuery("SELECT u.company FROM User u WHERE u.id = :userId", Company.class);
+		query.setParameter("userId", SessionUtils.getUserIdFromSession());
+		
+		return (Company) query.getSingleResult();
+	}
 	
 	
 

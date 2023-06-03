@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="Entete">
+		<h2 style="color: red">Formulaire de modification du rôle de l'utilisateur</h2>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:panelGrid columns="3">
+<!-- 				il faudrait une function en JS pour vérifier qu'au moins un role est coché 		 -->
+				<h:outputLabel id="roleLabel" value="Rôle"/>
+				<p:selectManyCheckbox id="roleCB" value="#{updateUserRoleBean.updateUserRoleVM.roleTypes}">
+					<f:selectItems value="#{updateUserRoleBean.roleTypeEnumValues()}" var="role" itemLabel="#{role.label}" itemValue="#{role}" />
+				</p:selectManyCheckbox>
+				<h:message for="roleCheckBox" />
+				
+				<span></span>
+				<p:commandButton value="Submit" action="#{updateUserRoleBean.updateUserRole()}" />
+			</h:panelGrid>
+		</h:form>
+		<p>
+			<h:link outcome="index.html">Index</h:link>
+		</p>
+	</ui:define>
+</ui:composition>
+
+</html>

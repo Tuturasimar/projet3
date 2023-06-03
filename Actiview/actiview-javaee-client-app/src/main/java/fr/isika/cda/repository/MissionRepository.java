@@ -5,9 +5,12 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import fr.isika.cda.entities.activities.Mission;
 import fr.isika.cda.entities.common.StatusEnum;
+import fr.isika.cda.entities.users.User;
+import fr.isika.cda.utils.SessionUtils;
 import fr.isika.cda.viewmodels.EditMissionViewModel;
 import fr.isika.cda.viewmodels.MissionViewModel;
 
@@ -25,8 +28,8 @@ public class MissionRepository {
 		mission.setMissionStart(missionVm.getMissionStart());
 		mission.setMissionEnd(missionVm.getMissionEnd());
 		mission.setMissionType(missionVm.getMissionType());
-		mission.setMissionState(StatusEnum.ACTIVE);
 		mission.setStatus(StatusEnum.ACTIVE);
+		mission.setCreator(em.getReference(User.class, SessionUtils.getUserIdFromSession()));
 		em.persist(mission);
 		
 		return mission.getId();
@@ -39,7 +42,6 @@ public class MissionRepository {
 		missionUpdate.setMissionEnd(missionVm.getMissionEnd());
 		missionUpdate.setMissionType(missionVm.getMissionType());
 		missionUpdate.setStatus(missionVm.getMissionState());
-		missionUpdate.setMissionState(missionVm.getMissionState());
 		return missionUpdate.getId(); 
 	}
 
@@ -54,6 +56,15 @@ public class MissionRepository {
 				.setParameter("idMissionParam", id)
 				.getSingleResult();
 		return mission;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Mission> getAllActiveMissionsFromCompany(Long companyId){
+		Query query = em.createQuery("SELECT m FROM Mission m JOIN m.creator u WHERE m.status = :active AND u.company.id = :companyId", Mission.class);
+		query.setParameter("active", StatusEnum.ACTIVE);
+		query.setParameter("companyId", companyId );
+		
+		return query.getResultList();
 	}
 	
 }

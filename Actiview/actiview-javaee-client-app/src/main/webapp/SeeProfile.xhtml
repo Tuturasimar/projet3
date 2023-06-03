@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="Entete">
+		<h2 style="color: red">Page de profil</h2>
+	</ui:define>
+
+	<ui:define name="content">
+
+
+		<h2>Informations du compte</h2>
+		<h:dataTable value="#{seeProfileBean.user}" var="user">
+			<h:column>
+				<f:facet name="header">Login</f:facet> #{user.login}
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Date de création du compte</f:facet>
+				<h:outputText value="#{user.createdAt}">
+					<f:convertDateTime type="localDate" pattern="dd.MM.yyyy" />
+				</h:outputText>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Statut du compte</f:facet> #{user.status}
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Rôle de l'utilisateur</f:facet> #{seeProfileBean.getListUserRoleByUserId(user.id)}
+			</h:column>
+		</h:dataTable>
+		<h2>Informations personnelles</h2>
+		<h:dataTable value="#{seeProfileBean.user}" var="user">
+			<h:column>
+				<f:facet name="header">Prénom et Nom</f:facet> #{user.userData.firstname} #{user.userData.lastname}
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Date de naissance</f:facet>
+				<h:outputText value="#{user.userData.birthday}">
+					<f:convertDateTime type="localDate" pattern="dd.MM.yyyy" />
+				</h:outputText>
+			</h:column>
+		</h:dataTable>
+		<h2>Informations professionnelles</h2>
+		<h:dataTable value="#{seeProfileBean.user}" var="user">
+			<h:column>
+				<f:facet name="header">Poste</f:facet> #{user.userData.jobEnum} 
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Email</f:facet> #{user.userData.email}
+			</h:column>
+		</h:dataTable>
+	</ui:define>
+</ui:composition>
+
+</html>

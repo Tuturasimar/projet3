@@ -17,6 +17,17 @@ public final class SessionUtils {
 		session.setAttribute("login", login);
 	}
 	
+	public static Long getUserIdFromSession() {
+		HttpSession session = getSession();
+		
+		return (Long) session.getAttribute("id");
+	}
+	
+	public static void setUserIdIntoSession(final Long id) {
+		HttpSession session = getSession();
+		session.setAttribute("id", id);
+	}
+	
 	public static boolean isUserLoggedIn() {
 		// Si pas de lgoin mémorisé en session -> personne n'est connecté !!
 		return getUserLoginFromSession() != null

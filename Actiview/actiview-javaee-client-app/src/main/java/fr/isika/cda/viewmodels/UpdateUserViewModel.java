@@ -1,6 +1,8 @@
 package fr.isika.cda.viewmodels;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.isika.cda.entities.common.JobEnum;
 import fr.isika.cda.entities.common.RoleTypeEnum;
@@ -10,7 +12,6 @@ public class UpdateUserViewModel {
 
 	// Données de la table User
 	private Long id;
-	private String password;
 	private StatusEnum status;
 	private String managerId;
 
@@ -21,9 +22,8 @@ public class UpdateUserViewModel {
 	private String email;
 	private JobEnum jobEnum;
 
-	// Donnée de la table UserRole (par défaut tout le monde est salarié, à
-	// surcharger plus tard)
-	private RoleTypeEnum roleTypeEnum = RoleTypeEnum.SALARIE;
+	// Donnée de la table UserRole
+		private List<RoleTypeEnum> roleTypes = new ArrayList<RoleTypeEnum>();
 
 	public UpdateUserViewModel(Long id) {
 		this.id = id;
@@ -31,14 +31,6 @@ public class UpdateUserViewModel {
 
 	public Long getId() {
 		return id;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public StatusEnum getStatus() {
@@ -97,11 +89,11 @@ public class UpdateUserViewModel {
 		this.jobEnum = jobEnum;
 	}
 
-	public RoleTypeEnum getRoleTypeEnum() {
-		return roleTypeEnum;
+	public List<RoleTypeEnum> getRoleTypes() {
+		return roleTypes;
 	}
 
-	public void setRoleTypeEnum(RoleTypeEnum roleTypeEnum) {
-		this.roleTypeEnum = roleTypeEnum;
+	public void setRoleTypes(List<RoleTypeEnum> roleTypes) {
+		this.roleTypes = roleTypes;
 	}
 }

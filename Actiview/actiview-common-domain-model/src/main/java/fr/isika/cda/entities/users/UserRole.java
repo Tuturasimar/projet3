@@ -25,6 +25,8 @@ public class UserRole {
 	@JoinColumn(name = "fk_user_id")
 	private User user;
 	
+	
+	//Getters & setters
 	public RoleTypeEnum getRoleTypeEnum() {
 		return roleTypeEnum;
 	}
@@ -44,6 +46,7 @@ public class UserRole {
 		this.user = user;
 	}
 	
+	//To string avec les label de l'énum
 	public String toStringLabel() {
 		return roleTypeEnum.getLabel();
 	}

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import fr.isika.cda.entities.common.ArConfigEnum;
@@ -19,22 +20,27 @@ public class Feature implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	private String label;
 	private int nbOfCollaborators;
-	
+
 	@Enumerated(EnumType.STRING)
 	private ArConfigEnum arConfig;
-	
+
 	private float price;
 	private int nbOfOptions;
 
-
-
-
 	public long getId() {
 		return id;
+	}
+	
+	public String getLabel() {
+		return label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 	public int getNbOfCollaborators() {

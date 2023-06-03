@@ -14,12 +14,7 @@
 	<ui:define name="content">
 		<h:form>
 			<h:panelGrid columns="3">
-							
-				<h:outputLabel id="passwordLabel" value="Mot de passe" />
-				<p:password id="passwordInput" value="#{updateUserBean.updateUserViewModel.password}" toggleMask="true" redisplay="true" 
-					feedback="true" promptLabel="Veuillez saisir votre mot de passe ..." />
-				<h:message for="passwordInput"/>
-				
+											
 				<h:outputLabel id="emailLabel" value="Email" />
 				<p:inputText id="emailInput" value="#{updateUserBean.updateUserViewModel.email}" />
 				<h:message for="emailInput"/>
@@ -48,6 +43,7 @@
 					value="#{updateUserBean.updateUserViewModel.managerId}">
 					<f:selectItem itemLabel="Sélectionner un manager" itemValue="" noSelectionOption="true"/>
 					<f:selectItem itemLabel="Aucun Manager" itemValue="null" />
+					<f:selectItems value="#{updateUserBean.managers}" var="manager" itemLabel="#{manager.login}" itemValue="#{manager.id.toString()}"/>
 				</p:selectOneMenu>
 				<h:message for="managerSelectMenu"/>
 				

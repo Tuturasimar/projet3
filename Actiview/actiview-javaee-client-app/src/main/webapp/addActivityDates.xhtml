@@ -15,7 +15,7 @@
 
 	<ui:define name="content">
 
-		<h:form>
+		<h:form rendered="#{showArBean.isArADraft()}">
 			<h:selectOneMenu id="partDayMenu"
 				value="#{registerActivityDateFromArBean.arDateVm.partOfDay}">
 				<f:selectItems value="#{enumData.partDay}" var="enum"
@@ -23,8 +23,27 @@
 			</h:selectOneMenu>
 			<h:selectOneMenu id="activityMenu"
 				value="#{registerActivityDateFromArBean.arDateVm.activityId}">
-				<f:selectItems value="#{showActivityBean.activities}" var="activity"
-					itemValue="#{activity.id}" itemLabel="#{activity.labelActivity}"></f:selectItems>
+
+				<f:selectItem itemLabel="-- Missions en cours --"
+					itemDisabled="true" />
+				<f:selectItems value="#{showActivityBean.missions}" var="mission"
+					itemValue="#{mission.id}" itemLabel="#{mission.labelActivity}"></f:selectItems>
+
+				<f:selectItem itemLabel="-- Formation en cours --"
+					itemDisabled="true" />
+				<f:selectItems value="#{showActivityBean.formations}"
+					var="formation" itemValue="#{formation.id}"
+					itemLabel="#{formation.labelActivity}"></f:selectItems>
+
+				<f:selectItem itemLabel="-- Motif d'absence --" itemDisabled="true" />
+				<f:selectItems value="#{showActivityBean.absences}" var="absence"
+					itemValue="#{absence.id}" itemLabel="#{absence.labelActivity}"></f:selectItems>
+
+				<f:selectItem itemLabel="-- Autres --" itemDisabled="true" />
+				<f:selectItems value="#{showActivityBean.customActivities}"
+					var="customActivity" itemValue="#{customActivity.id}"
+					itemLabel="#{customActivity.labelActivity}"></f:selectItems>
+
 			</h:selectOneMenu>
 			<h:outputLabel value="Télétravail" for="remote" />
 			<h:selectBooleanCheckbox id="remote"
@@ -33,17 +52,29 @@
 				value="#{registerActivityDateFromArBean.arDateVm.date}"
 				showIcon="true" />
 			<h:commandButton id="addDate"
-				action="#{registerActivityDateFromArBean.addDate()}" value="Test">
+				action="#{registerActivityDateFromArBean.addDate()}"
+				value="Ajouter l'activité">
 				<f:ajax execute="@form" render="dateTab" event="click"></f:ajax>
 			</h:commandButton>
+			<h:commandButton
+				action="#{registerActivityDateFromArBean.addAllMonth()}"
+				value="Remplir le mois">
+			</h:commandButton>
+			<h:commandButton
+				action="#{registerActivityDateFromArBean.deleteAllExistingActivityDate()}"
+				value="Vider le mois">
+			</h:commandButton>
 		</h:form>
+
 		<h:dataTable id="dateTab"
 			value="#{registerActivityDateFromArBean.activityDates}"
 			var="activityDate">
 			<h:column>
 				<f:facet name="header">Date</f:facet>
-		#{activityDate.date}
-		</h:column>
+				<h:outputText value="#{activityDate.date}">
+					<f:convertDateTime type="localDate" pattern="dd.MM.yyyy" />
+				</h:outputText>
+			</h:column>
 			<h:column>
 				<f:facet name="header">Partie de la journée</f:facet>
 		#{activityDate.partOfDay.label}
@@ -57,6 +88,10 @@
 		#{activityDate.arActivity.activity.labelActivity}
 		</h:column>
 		</h:dataTable>
+		<h:form>
+			<p:commandButton action="#{showArBean.arSentToValidation()}"
+				value="Soumettre le CRA" rendered="#{showArBean.isArADraft()}" />
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

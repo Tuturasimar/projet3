@@ -12,54 +12,82 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h:dataTable value="#{showUserBean.users}" var="user">
-			<h:column>
+		<p:dataTable value="#{showUserBean.users}" var="user">
+			<p:column>
 				<f:facet name="header">login</f:facet>
 				#{user.login}
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Status</f:facet>
 				#{user.status}
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Date de création</f:facet>
 				<h:outputText value="#{user.createdAt}">
 					<f:convertDateTime type="localDate" pattern="dd.MM.yyyy" />
 				</h:outputText>
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Email</f:facet>
 				#{user.userData.email}
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Prénom</f:facet>
 				#{user.userData.firstname}
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Nom</f:facet>
 				#{user.userData.lastname}
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Date de naissance</f:facet>
 				<h:outputText value="#{user.userData.birthday}">
 					<f:convertDateTime type="localDate" pattern="dd.MM.yyyy" />
 				</h:outputText>
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Poste</f:facet>
 				#{user.userData.jobEnum.label}
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Rôle</f:facet>
 				#{showUserBean.getListUserRoleByUserId(user.id)}
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
+				<f:facet name="header">Voir le profil</f:facet>
+				<h:form>
+					<p:commandButton action="#{seeProfileBean.showSeeProfile(user.id)}"
+						value="Voir le profil" />
+				</h:form>
+			</p:column>
+
+			<p:column>
 				<f:facet name="header">Modifier</f:facet>
 				<h:form>
-					<h:commandButton action="#{updateUserBean.showUpdateUser(user.id)}" value="Modifier" />
+					<p:commandButton action="#{updateUserBean.showUpdateUser(user.id)}"
+						value="Modifier" />
 				</h:form>
-			</h:column>
-		</h:dataTable>
+			</p:column>
+			<p:column>
+				<f:facet name="header">Modifier son rôle</f:facet>
+				<h:form>
+					<p:commandButton
+						action="#{updateUserRoleBean.showUpdateUserRole(user.id)}"
+						value="Modifier son rôle" />
+				</h:form>
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">Commandes</f:facet>
+				<h:form>
+					<p:commandButton action="#{showUserBean.changeStatus(user.id)}"
+						value="Désactiver"
+						rendered="#{user.status == showUserBean.ACTIVE}" />
+					<p:commandButton action="#{showUserBean.changeStatus(user.id)}"
+						value="Activer" rendered="#{user.status == showUserBean.INACTIVE}" />
+				</h:form>
+			</p:column>
+		</p:dataTable>
 		<h:link outcome="index.html">Index</h:link>
 		<h:link outcome="RegisterUserForm.html">Ajouter un utilisateur</h:link>
 	</ui:define>

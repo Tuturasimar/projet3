@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="Entete">
+		<h1 style="text-align: center">Liste des affectations de missions</h1>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:link outcome="createNewMissionUser.xhtml">Nouvelle affectation</h:link>
+		<h:form>
+			<h:dataTable value="#{showMissionUserBean.missionsUser}"
+				var="missionUser">
+				<h:column>
+					<f:facet name="header">Nom</f:facet>
+				#{missionUser.user.userData.lastname}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Prénom</f:facet>
+				#{missionUser.user.userData.firstname}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Intitulé Mission</f:facet>
+				#{missionUser.mission.labelActivity}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Date de début</f:facet>
+					<h:outputText value="#{missionUser.mission.missionStart}">
+						<f:convertDateTime type="localDate" pattern="dd.MM.yyyy" />
+					</h:outputText>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Date de fin</f:facet>
+					<h:outputText value="#{missionUser.mission.missionEnd}">
+						<f:convertDateTime type="localDate" pattern="dd.MM.yyyy" />
+					</h:outputText>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Statut</f:facet>
+				#{missionUser.missionState.label}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">TJM</f:facet>
+				#{missionUser.adr}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Nouvelle valeur de TJM</f:facet>
+					<h:inputText value="#{showMissionUserBean.adr}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Commandes</f:facet>
+					<h:commandButton
+						action="#{showMissionUserBean.editAdr(missionUser.id)}"
+						value="Changer TJM" />
+					<h:commandButton
+						action="#{showMissionUserBean.changeAffectation(missionUser.id)}"
+						value="Désactiver"
+						rendered="#{missionUser.missionState == showMissionUserBean.ACTIVE}" />
+					<h:commandButton
+						action="#{showMissionUserBean.changeAffectation(missionUser.id)}"
+						value="Activer"
+						rendered="#{missionUser.missionState == showMissionUserBean.INACTIVE}" />
+				</h:column>
+				
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

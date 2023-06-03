@@ -9,7 +9,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import fr.isika.cda.entities.assignement.MissionUser;
 import fr.isika.cda.entities.common.MissionTypeEnum;
-import fr.isika.cda.entities.common.StatusEnum;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "activity_id")
@@ -23,12 +22,14 @@ public class Mission extends Activity {
 	@Enumerated(EnumType.STRING)
 	private MissionTypeEnum missionType;
 	
+
 	@Enumerated(EnumType.STRING)
 	private StatusEnum missionState;
 	
 	public Mission(String string) {
 
 	}
+
 	public LocalDate getMissionStart() {
 		return missionStart;
 	}
@@ -47,12 +48,7 @@ public class Mission extends Activity {
 	public void setMissionType(MissionTypeEnum missionType) {
 		this.missionType = missionType;
 	}
-	public StatusEnum getMissionState() {
-		return missionState;
-	}
-	public void setMissionState(StatusEnum missionState) {
-		this.missionState = missionState;
-	}
+	
 	
 	
 

@@ -1,9 +1,11 @@
 package fr.isika.cda.beans;
 
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
-
 import fr.isika.cda.entities.common.JobEnum;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserData;
@@ -19,12 +21,23 @@ public class UpdateUserBean {
 	@Inject
 	private UserRepository userRepo;
 
+	private List<User> managers;
+	
+	@PostConstruct
+	public void init() {
+		managers = userRepo.getAllManagers();
+	}
+	
+	/**
+	 * Méthode qui permet de renvoyer sur un formulaire de modification d'un user avec ses infos préremplies
+	 * @param id du userVM de la vue UserList qui sert à retrouver le user et le userData en bdd
+	 * @return la vue du formulaire de modification
+	 */
 	public String showUpdateUser(Long id) {
 		User userToUpdate = userRepo.findUserWithManagerById(id);
 		UserData userDataToUpdate = userRepo.findDataByUserId(id);
 		
 		updateUserViewModel = new UpdateUserViewModel(userToUpdate.getId());
-		updateUserViewModel.setPassword(userToUpdate.getPassword());
 		updateUserViewModel.setStatus(userToUpdate.getStatus());
 		
 		String managerId = (userToUpdate.getManager() != null) ? String.valueOf(userToUpdate.getManager().getId()) : null;
@@ -38,6 +51,10 @@ public class UpdateUserBean {
 		return "UpdateUserForm.xhtml";
 	}
 
+	/**
+	 * Méthode qui permet d'enregistrer la modification d'un user en bdd
+	 * @return la vue UserList
+	 */
 	public String updateUser() {
 		
 		Long id = updateUserViewModel.getId();
@@ -48,10 +65,15 @@ public class UpdateUserBean {
 		return "UserList.xhtml";
 	}
 	
+	/**
+	 * récupère la liste des job dans JobEnum
+	 * @return
+	 */
 	public JobEnum[] jobEnumValues() {
 		return JobEnum.values();
 	}
-
+	
+	
 	public UpdateUserViewModel getUpdateUserViewModel() {
 		return updateUserViewModel;
 	}
@@ -60,4 +82,11 @@ public class UpdateUserBean {
 		this.updateUserViewModel = updateUserViewModel;
 	}
 
+	public List<User> getManagers() {
+		return managers;
+	}
+
+	public void setManagers(List<User> managers) {
+		this.managers = managers;
+	}
 }

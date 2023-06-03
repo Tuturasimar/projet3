@@ -2,8 +2,10 @@ package fr.isika.cda.entities.config;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -17,10 +19,10 @@ public class Config implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="colorconfig_id")
 	private ColorConfig colorConfig;
 
@@ -28,7 +30,7 @@ public class Config implements Serializable {
 	@JoinColumn(name="fontConfig_id")
 	private FontConfig fontConfig;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="imageConfig_id")
 	private ImageConfig imageConfig;
 	
@@ -43,6 +45,10 @@ public class Config implements Serializable {
 	public ColorConfig getColorConfig() {
 		return colorConfig;
 	}
+	
+	public void setColorConfig(ColorConfig colorConfig) {
+		this.colorConfig = colorConfig;
+	}
 
 	public FontConfig getFontConfig() {
 		return fontConfig;
@@ -51,10 +57,21 @@ public class Config implements Serializable {
 	public ImageConfig getImageConfig() {
 		return imageConfig;
 	}
-
+	public void setImageConfig(ImageConfig imageConfig) {
+		this.imageConfig = imageConfig;
+	}
 	public Company getCompany() {
 		return company;
 	}
+	
+	public Config() {
+		// TODO Auto-generated constructor stub
+	}
 
+	public void setFontConfig(FontConfig fontConfig) {
+		this.fontConfig = fontConfig;
+	}
+
+	
 	
 }

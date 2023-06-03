@@ -4,36 +4,63 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/templates/default.xhtml"
-                xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="header">
 		<h1>Créer une formation</h1>
 	</ui:define>
 
 	<ui:define name="content">
-	<h:form>
-		
-		<h2>Création d'une formation</h2>
-		
-		<h:panelGrid>
-		
-		<h:outputLabel id="formationLabel" value="Nom de la formation : "/>
-		<h:inputText id="formationTxt" value="#{registerFormation.formationVm.labelFormation}"/>
-		
-		<p:outputLabel id="formationNbOfDayLabel" value="Nombre de jours de la formation : " />
-		
-		<p:outputLabel id="formationDescription" value="Description de la formation : " />
-		
-		<h:commandButton value="Register" action="#{registerFormation.register()}"/>
-		<h:commandButton value="Clear" action="#{registerFormation.clear()}"/>
-		
-		</h:panelGrid>
-		<ul>
-			<li>
-				<h:link outcome="index.xhtml">Index</h:link>
-			</li>
-		</ul>
+		<h:form>
 
-	</h:form>
+			<h2>Création d'une formation</h2>
+
+			<h:panelGrid>
+
+				<h:outputLabel for="nameInput" value="Nom de la formation : " />
+				<p:inputText id="nameInput"
+					value="#{registerFormation.formationVm.labelFormation}" />
+
+				<p:outputLabel for="numberOfDaysInput"
+					value="Nombre de jours de la formation : " />
+				<p:inputText id="numberOfDaysInput"
+					value="#{registerFormation.formationVm.nbOfDays}">
+				</p:inputText>
+
+				<p:outputLabel for="descriptionInput"
+					value="Description de la formation : " />
+				<p:inputTextarea id="descriptionInput"
+					value="#{registerFormation.formationVm.description}">
+				</p:inputTextarea>
+
+				<p:outputLabel for="locationInput" value="Lieu de la formation : " />
+				<p:inputText id="locationInput"
+					value="#{registerFormation.formationVm.location}">
+				</p:inputText>
+
+				<p:outputLabel for="formationStatusMenu" value="La formation a été : " />
+				<p:selectOneMenu id="formationStatusMenu"
+					value="#{registerFormation.formationVm.formationState}">
+					<f:selectItems value="#{data.formationStatus}" var="enum"
+						itemValue="#{enum}" itemLabel="#{enum.label}"></f:selectItems>
+				</p:selectOneMenu>
+				
+				<p:outputLabel for="locationFormationMenu" value="La formation est : " />
+				<p:selectOneMenu id="locationFormationMenu"
+					value="#{registerFormation.formationVm.locationFormation}">
+					<f:selectItems value="#{data.locationFormation}" var="enum"
+						itemValue="#{enum}" itemLabel="#{enum.label}"></f:selectItems>
+				</p:selectOneMenu>
+				
+				<h:commandButton value="Register"
+					action="#{registerFormation.register()}" />
+				<h:commandButton value="Clear" action="#{registerFormation.clear()}" />
+
+			</h:panelGrid>
+			<ul>
+				<li><h:link outcome="index.xhtml">Index</h:link></li>
+			</ul>
+
+		</h:form>
 	</ui:define>
 </ui:composition>

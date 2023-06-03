@@ -2,6 +2,8 @@ package fr.isika.cda.viewmodels;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.isika.cda.entities.common.JobEnum;
 import fr.isika.cda.entities.common.RoleTypeEnum;
@@ -17,6 +19,8 @@ public class UserViewModel {
 	private StatusEnum status;
 	
 	private String managerId;
+	
+	private Long companyId;
 
 	// Données de la table Userdata
 	private String lastname;
@@ -25,8 +29,9 @@ public class UserViewModel {
 	private String email;
 	private JobEnum jobEnum;
 	
-	// Donnée de la table UserRole (par défaut tout le monde est salarié, à surcharger plus tard)
-	private RoleTypeEnum roleTypeEnum = RoleTypeEnum.SALARIE;
+	
+	// Donnée de la table UserRole
+	private List<RoleTypeEnum> roleTypes = new ArrayList<RoleTypeEnum>();
 
 	// Getters & Setters
 	public String getLogin() {
@@ -36,6 +41,7 @@ public class UserViewModel {
 	public void setLogin(String login) {
 		this.login = login;
 	}
+
 
 	public String getPassword() {
 		return password;
@@ -93,14 +99,6 @@ public class UserViewModel {
 		this.jobEnum = jobEnum;
 	}
 
-	public RoleTypeEnum getRoleTypeEnum() {
-		return roleTypeEnum;
-	}
-
-	public void setRoleTypeEnum(RoleTypeEnum roleTypeEnum) {
-		this.roleTypeEnum = roleTypeEnum;
-	}
-
 	public String getManagerId() {
 		return managerId;
 	}
@@ -114,7 +112,26 @@ public class UserViewModel {
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
+
+	public List<RoleTypeEnum> getRoleTypes() {
+		return roleTypes;
+	}
+
+	public void setRoleTypes(List<RoleTypeEnum> roleTypes) {
+		this.roleTypes = roleTypes;
+	}
 	
+	public Long getCompanyId() {
+		return companyId;
+	}
+	
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
+	}
+	
+
+	
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -138,11 +155,10 @@ public class UserViewModel {
 		builder.append(email);
 		builder.append(", jobEnum=");
 		builder.append(jobEnum);
-		builder.append(", roleTypeEnum=");
-		builder.append(roleTypeEnum);
+		builder.append(", roles=");
+		builder.append(roleTypes);
 		builder.append("]");
 		return builder.toString();
 	}
 	
-
 }

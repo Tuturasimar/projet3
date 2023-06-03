@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,14 +25,15 @@ public class FormationUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@OneToOne
+	@JoinColumn(name="fk_user_id")
     private User user;
     
     @ManyToOne
-    @JoinColumn(name="activity_id")
+    @JoinColumn(name="fk_activity_id")
     public Formation formation;
     
     @Enumerated(EnumType.STRING)
@@ -41,8 +43,21 @@ public class FormationUser implements Serializable {
 
    
 
+
     public FormationUser(String string) {
 		
+
+    public Formation getFormation() {
+		return formation;
+	}
+
+	public void setFormation(Formation formation) {
+		this.formation = formation;
+	}
+
+	public long getId() {
+		return id;
+
 	}
 
 	public User getUser() {

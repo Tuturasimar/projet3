@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="Entete">
+		<h2 style="color: red">Formulaire d'inscription Actiview</h2>
+	</ui:define>
+
+	<ui:define name="content">
+     	
+		<h:form>
+			<h3> Données de l'entreprise</h3> 
+			<br/>
+			<h:panelGrid columns="3">
+			
+		
+				<h:outputLabel id="brandNameLabel" value="Nom de l'entreprise" />
+				<p:inputText id="brandNameInput"
+					value="#{registerCompanyBean.companyViewModel.name}" />
+				<h:message for="brandNameInput" />
+				
+				<h:outputLabel id="adressLabel" value="Adresse" />
+				<p:inputText id="adressInput"
+					value="#{registerCompanyBean.companyViewModel.adress}" />
+				<h:message for="adressInput" />
+				
+				<h:outputLabel id="phoneLabel" value="Téléphone" />
+				<p:inputText id="phoneInput"
+					value="#{registerCompanyBean.companyViewModel.phone}" />
+				<h:message for="phoneInput" />
+		
+				<h:outputLabel id="sirenLabel" value="Siren" />
+				<p:inputText id="sirenInput"
+					value="#{registerCompanyBean.companyViewModel.siren}" />
+				<h:message for="sirenInput" />
+			</h:panelGrid>
+			
+			<h3> Données de l'administrateur</h3> 
+			<br/>
+			<h:panelGrid columns="3">	
+				<h:outputLabel id="emailLabel" value="Email" />
+				<p:inputText id="emailInput"
+					value="#{registerCompanyBean.userVm.email}" />
+				<h:message for="emailInput" />
+
+				<h:outputLabel id="firstnameLabel" value="Prénom" />
+				<p:inputText id="firstnameInput"
+					value="#{registerCompanyBean.userVm.firstname}" />
+				<h:message for="firstnameInput" />
+
+				<h:outputLabel id="nameLabel" value="Nom de famille" />
+				<p:inputText id="nameInput"
+					value="#{registerCompanyBean.userVm.lastname}" />
+				<h:message for="nameInput" />
+
+				<h:outputLabel id="birthdayLabel" value="Date de naissance" />
+				<p:datePicker id="birthdayInput"
+					value="#{registerCompanyBean.userVm.birthday}" />
+				<h:message for="birthdayInput" />
+				
+				<span/>
+				<br/>
+				<p:commandButton value="S'inscrire"
+					action="#{registerCompanyBean.register()}" />
+				<p:commandButton value="Reset" action="#{registerCompanyBean.clear()}" />
+			</h:panelGrid>
+		</h:form>
+		<p>
+			<h:link outcome="index.html">Index</h:link>
+		</p>
+	</ui:define>
+</ui:composition>
+
+</html>

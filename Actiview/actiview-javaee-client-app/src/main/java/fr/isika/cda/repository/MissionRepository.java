@@ -9,6 +9,8 @@ import javax.persistence.Query;
 
 import fr.isika.cda.entities.activities.Mission;
 import fr.isika.cda.entities.common.StatusEnum;
+import fr.isika.cda.entities.users.User;
+import fr.isika.cda.utils.SessionUtils;
 import fr.isika.cda.viewmodels.EditMissionViewModel;
 import fr.isika.cda.viewmodels.MissionViewModel;
 
@@ -27,6 +29,7 @@ public class MissionRepository {
 		mission.setMissionEnd(missionVm.getMissionEnd());
 		mission.setMissionType(missionVm.getMissionType());
 		mission.setStatus(StatusEnum.ACTIVE);
+		mission.setCreator(em.getReference(User.class, SessionUtils.getUserIdFromSession()));
 		em.persist(mission);
 		
 		return mission.getId();
@@ -56,9 +59,10 @@ public class MissionRepository {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Mission> getAllActiveMissions(){
-		Query query = em.createQuery("SELECT m FROM Mission m WHERE m.status = :active", Mission.class);
+	public List<Mission> getAllActiveMissionsFromCompany(Long companyId){
+		Query query = em.createQuery("SELECT m FROM Mission m JOIN m.creator u WHERE m.status = :active AND u.company.id = :companyId", Mission.class);
 		query.setParameter("active", StatusEnum.ACTIVE);
+		query.setParameter("companyId", companyId );
 		
 		return query.getResultList();
 	}

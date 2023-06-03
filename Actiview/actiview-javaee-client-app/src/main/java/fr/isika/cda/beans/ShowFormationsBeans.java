@@ -3,12 +3,16 @@ package fr.isika.cda.beans;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.activities.Formation;
 import fr.isika.cda.repository.FormationRepository;
 
+@ManagedBean
 public class ShowFormationsBeans {
+	
+	
 	@Inject
 	private FormationRepository formationRepo;
 	

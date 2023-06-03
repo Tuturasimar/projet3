@@ -2,15 +2,23 @@ package fr.isika.cda.viewmodels;
 
 import fr.isika.cda.entities.common.FormationStatusEnum;
 import fr.isika.cda.entities.common.LocationFormationEnum;
+import fr.isika.cda.entities.common.StatusEnum;
 
-public class FormationViewModel {
+public class EditFormationViewModel {
 
+	private final Long formationId;
+	
 	private int nbOfDays;
 	private String labelFormation;
 	private String description;
 	private String location;
 	private FormationStatusEnum formationState;
 	private LocationFormationEnum locationFormation;
+	private StatusEnum status;
+	
+	public EditFormationViewModel(Long formationId ) {
+		this.formationId = formationId;
+	}
 
 	public int getNbOfDays() {
 		return nbOfDays;
@@ -26,22 +34,6 @@ public class FormationViewModel {
 
 	public void setLabelFormation(String labelFormation) {
 		this.labelFormation = labelFormation;
-	}
-
-	public FormationStatusEnum getFormationState() {
-		return formationState;
-	}
-
-	public void setFormationState(FormationStatusEnum formationState) {
-		this.formationState = formationState;
-	}
-
-	public LocationFormationEnum getLocationFormation() {
-		return locationFormation;
-	}
-
-	public void setLocationFormation(LocationFormationEnum locationFormation) {
-		this.locationFormation = locationFormation;
 	}
 
 	public String getDescription() {
@@ -60,4 +52,34 @@ public class FormationViewModel {
 		this.location = location;
 	}
 
+	public FormationStatusEnum getFormationState() {
+		return formationState;
+	}
+
+	public void setFormationState(FormationStatusEnum formationState) {
+		this.formationState = formationState;
+	}
+
+	public LocationFormationEnum getLocationFormation() {
+		return locationFormation;
+	}
+
+	public void setLocationFormation(LocationFormationEnum locationFormation) {
+		this.locationFormation = locationFormation;
+	}
+
+	public Long getFormationId() {
+		return formationId;
+	}
+	
+	public StatusEnum getStatus() {
+		return status;
+	}
+	
+	public void setStatus(StatusEnum status) {
+		this.status = status;
+	}
+	
+	
+	
 }

@@ -26,7 +26,7 @@ public class RegisterUserBean {
 	
 	@PostConstruct
 	public void init() {
-		Long companyId = userRepo.findCompanyIdByUserConnected().getId();
+		Long companyId = userRepo.findCompanyByUserConnected().getId();
 		managers = userRepo.getAllCompanyManagers(companyId);
 	}
 	
@@ -36,7 +36,7 @@ public class RegisterUserBean {
 	 */
 	public void registerUser() {
 		// A la création du nouvel utilisateur, on va chercher l'ID de la company de l'administrateur connecté
-		Long idCompany = userRepo.findCompanyIdByUserConnected().getId();
+		Long idCompany = userRepo.findCompanyByUserConnected().getId();
 		userViewModel.setCompanyId(idCompany);
 		Long id = userRepo.registerUser(userViewModel);
 		

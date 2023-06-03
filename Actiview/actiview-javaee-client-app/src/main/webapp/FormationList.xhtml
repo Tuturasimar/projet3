@@ -10,28 +10,34 @@
 		<h1 style="text-align: center">Liste des formations</h1>
 	</ui:define>
 	<ui:define name="content">
-		<h:dataTable value="#{showFormationsBean.formations}" var="formation">
+		<h:dataTable value="#{showFormationsBeans.formations}" var="formation">
 			<h:column>
 				<f:facet name="header">Nom</f:facet>
-				#{formation.labelFormation}
+				#{formation.labelActivity}
 			</h:column>
 			<h:column>
 				<f:facet name="header">Nombre de jours</f:facet>
 				#{formation.nbOfDays}
 			</h:column>
-			
+
 			<h:column>
 				<f:facet name="header">Description</f:facet>
-				#{formation.status}
+				#{formation.description}
 			</h:column>
 			<h:column>
 				<f:facet name="header">Localisation</f:facet>
-				#{formation.formationType}
+				#{formation.location}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Statut</f:facet>
+				#{formation.status}
 			</h:column>
 			<h:column>
 				<h:form id="actionsForm">
 					<f:facet name="header">Mettre à jour</f:facet>
-					<h:commandButton action="#{registerFormation.update(formation.id)}" value="Update"/>
+					<h:commandButton
+						action="#{editFormationBean.showEditFormation(formation.id)}"
+						value="Update" />
 				</h:form>
 			</h:column>
 		</h:dataTable>

@@ -198,7 +198,7 @@ public class DataInit {
 
 		// Mock donnée d'une activity
 		Mission mission = new Mission();
-		mission.setCreatorId(1L);
+		mission.setCreator(manager);
 		mission.setLabelActivity("Mission Test");
 		mission.setMissionStart(LocalDate.of(2023, 4, 23));
 		mission.setMissionEnd(LocalDate.of(2024, 6, 6));
@@ -206,7 +206,7 @@ public class DataInit {
 		mission.setMissionType(MissionTypeEnum.TMC);
 
 		Mission mission2 = new Mission();
-		mission2.setCreatorId(1L);
+		mission2.setCreator(manager);
 		mission2.setLabelActivity("Ancienne mission");
 		mission2.setMissionStart(LocalDate.of(2022, 4, 23));
 		mission2.setMissionEnd(LocalDate.of(2023, 4, 25));
@@ -214,7 +214,7 @@ public class DataInit {
 		mission2.setMissionType(MissionTypeEnum.TMC);
 
 		Mission mission3 = new Mission();
-		mission3.setCreatorId(1L);
+		mission3.setCreator(manager);
 		mission3.setLabelActivity("Mission forfait");
 		mission3.setMissionStart(LocalDate.of(2023, 4, 23));
 		mission3.setMissionEnd(LocalDate.of(2026, 6, 6));
@@ -226,13 +226,13 @@ public class DataInit {
 		em.persist(mission3);
 
 		Absence absence = new Absence();
-		absence.setCreatorId(1L);
+		absence.setCreator(manager);
 		absence.setLabelActivity("Absence Test");
 
 		em.persist(absence);
 
 		Formation formation = new Formation();
-		formation.setCreatorId(1L);
+		formation.setCreator(manager);
 		formation.setLabelActivity("Formation Test");
 		formation.setDescription("C'est une formation test");
 		formation.setFormationStatus(FormationStatusEnum.FOLLOWED);
@@ -242,7 +242,7 @@ public class DataInit {
 		formation.setStatus(StatusEnum.ACTIVE);
 
 		Formation formation2 = new Formation();
-		formation2.setCreatorId(1L);
+		formation2.setCreator(manager);
 		formation2.setLabelActivity("Autre formation");
 		formation2.setDescription("Pour tester des choses");
 		formation2.setFormationStatus(FormationStatusEnum.GIVEN);

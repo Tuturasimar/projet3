@@ -197,6 +197,16 @@ public class UserRepository {
 		List<User> managers = query.getResultList();
 		return managers;
 	}
+	
+	public List<User> getAllCompanyManagers(Long companyId) {
+		Query query = em.createQuery("SELECT u FROM UserRole ur JOIN ur.user u WHERE ur.roleTypeEnum = :manager AND u.company.id = :company");
+		query.setParameter("manager", RoleTypeEnum.MANAGER);
+		query.setParameter("company", companyId);
+		
+		@SuppressWarnings("unchecked")
+		List<User> managers = query.getResultList();
+		return managers;
+	}
 
 	/**
 	 * Returns a user with the given login data. <br>
@@ -226,6 +236,8 @@ public class UserRepository {
 		
 		return (Company) query.getSingleResult();
 	}
+
+	
 	
 	
 

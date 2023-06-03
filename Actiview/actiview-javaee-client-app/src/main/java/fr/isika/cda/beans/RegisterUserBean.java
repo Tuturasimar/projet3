@@ -20,12 +20,14 @@ public class RegisterUserBean {
 	
 	@Inject
 	private UserRepository userRepo;
+	
 
 	private List<User> managers;
 	
 	@PostConstruct
 	public void init() {
-		managers = userRepo.getAllManagers();
+		Long companyId = userRepo.findCompanyIdByUserConnected().getId();
+		managers = userRepo.getAllCompanyManagers(companyId);
 	}
 	
 	/**

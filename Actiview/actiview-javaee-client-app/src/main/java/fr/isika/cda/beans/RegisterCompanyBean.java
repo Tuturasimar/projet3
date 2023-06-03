@@ -15,7 +15,6 @@ import fr.isika.cda.repository.UserRepository;
 import fr.isika.cda.viewmodels.CompanyViewModel;
 import fr.isika.cda.viewmodels.UserViewModel;
 
-
 @ManagedBean
 @SessionScoped
 public class RegisterCompanyBean {
@@ -67,15 +66,19 @@ public class RegisterCompanyBean {
 			userVm.setRoleTypes(role);
 			// Création du UserData et User (correspondant à l'admin ESN)
 			// Génération d'un login aléatoire
+
+			// TODO l'utilisation du UUID est contraignant pour un utilisateur, trouver un
+			// autre moyen. Soit permettre à l'ESN de renseigner lui même login et mdp, soit
+			// une autre méthode aléatoire.
 			userVm.setLogin(UUID.randomUUID().toString());
 			userVm.setPassword(UUID.randomUUID().toString());
-			
+
 			userRepo.registerUser(userVm);
 
 			// TODO ajout d'un message de validation "votre inscription a bien été
 			// effectuée"
 			// TODO ajout d'une notification au superadmin
-			
+
 			return "index";
 		} else {
 			// TODO ajout d'un message d'erreur

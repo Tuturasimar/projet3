@@ -9,7 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import fr.isika.cda.entities.common.StatusEnum;
+import fr.isika.cda.entities.users.User;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -27,7 +31,10 @@ public abstract class Activity {
 
 	// id du manager ayant créé la mission
 
-	protected Long creatorId;
+	@ManyToOne
+	@JoinColumn(name="creator")
+	
+	protected User creator;
 
 
 	public String getLabelActivity() {
@@ -46,15 +53,14 @@ public abstract class Activity {
 		this.status = status;
 	}
 
-
-	public Long getCreatorId() {
-		return creatorId;
+	public User getCreator() {
+		return creator;
+	}
+	
+	public void setCreator(User creator) {
+		this.creator = creator;
 	}
 
-	public void setCreatorId(Long creatorId) {
-
-		this.creatorId = creatorId;
-	}
 
 	public Long getId() {
 		return id;

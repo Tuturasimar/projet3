@@ -230,7 +230,7 @@ public class UserRepository {
 		return  query.getResultList();
 	}
 
-	public Company findCompanyIdByUserConnected() {
+	public Company findCompanyByUserConnected() {
 		Query query = em.createQuery("SELECT u.company FROM User u WHERE u.id = :userId", Company.class);
 		query.setParameter("userId", SessionUtils.getUserIdFromSession());
 		

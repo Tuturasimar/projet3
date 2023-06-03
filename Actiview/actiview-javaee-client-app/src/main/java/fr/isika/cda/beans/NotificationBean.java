@@ -37,7 +37,14 @@ public class NotificationBean {
 	}
 	
 	public boolean isNotification() {
-		return notifications != null ? true : false;
+		return notifications.size() != 0 ? true : false;
+	}
+	
+	public void deleteAllNotifications() {
+		for (Notification notification : notifications) {
+			notificationRepo.delete(notification);
+		}
+		load();
 	}
 	
 	

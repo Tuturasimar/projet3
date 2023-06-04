@@ -68,4 +68,5 @@ public class UserFeedback implements Serializable {
     public void setGradeUserComfort(int gradeUserComfort) {
         this.gradeUserComfort = gradeUserComfort;
     }
+    
 }

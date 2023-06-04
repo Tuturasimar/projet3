@@ -34,6 +34,10 @@
 			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
 				<li><h:link outcome="showAr.xhtml">Test du Cra</h:link></li>
 			</ui:fragment>
+			
+			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
+				<li><h:link outcome="salarieUserFeedbackView.xhtml">UserFeedback</h:link></li>
+			</ui:fragment>
 
 			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
 				<li><h:link outcome="missionUserList.xhtml">Affectations Missions</h:link></li>

@@ -19,6 +19,7 @@ import fr.isika.cda.entities.ar.ArActivity;
 import fr.isika.cda.entities.ar.PartDayEnum;
 import fr.isika.cda.entities.ar.StateAr;
 import fr.isika.cda.entities.assignement.MissionUser;
+import fr.isika.cda.entities.assignement.UserFeedback;
 import fr.isika.cda.entities.common.ArConfigEnum;
 import fr.isika.cda.entities.common.ClassContextEnum;
 import fr.isika.cda.entities.common.FormationStatusEnum;
@@ -255,12 +256,22 @@ public class DataInit {
 		em.persist(formation2);
 
 		// Mock donnée de MissionUser
+		
+		UserFeedback userFeedback = new UserFeedback();
+		userFeedback.setComment("Test de mission");
+		userFeedback.setGradeClientRelation(4);
+		userFeedback.setGradeManager(3);
+		userFeedback.setGradeMission(2);
+		userFeedback.setGradeUserComfort(4);
+		
+		em.persist(userFeedback);
 
 		MissionUser missionUser = new MissionUser();
 		missionUser.setUser(user);
 		missionUser.setMissionState(StatusEnum.ACTIVE);
 		missionUser.setAdr(200.68f);
 		missionUser.setMission(mission);
+		missionUser.setUserFeedback(userFeedback);
 
 		em.persist(missionUser);
 

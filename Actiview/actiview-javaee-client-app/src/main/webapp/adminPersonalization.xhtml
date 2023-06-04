@@ -21,7 +21,7 @@
 		<div class="template">
 			<h:form>
 				<p:selectOneRadio id="templateTest" value="#{personalizationBean.template}">
-					<f:selectItem itemLabel="Dark mode" itemValue="DarkMode" class="theme-switch__input" />
+					<f:selectItem itemLabel="Dark mode" itemValue="DarkMode"/>
 					<f:selectItem itemLabel="Light mode" itemValue="LightMode" />
 					<p:ajax update="customize" process="@this" listener="#{personalizationBean.saveTemplateChoice}"/>
 				</p:selectOneRadio>	
@@ -47,7 +47,7 @@
 		</div>
 
 		<h:form id="configSpaceForm">
-			<h:commandButton action="#{personalizationBean.save()}" value="Save" />
+			<h:commandButton action="#{personalizationBean.save()}" value="Save"/>
 		</h:form>
 
 

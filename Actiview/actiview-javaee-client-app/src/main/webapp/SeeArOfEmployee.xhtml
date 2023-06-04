@@ -19,12 +19,12 @@
 	</ui:define>
 
 	<ui:define name="content">
-
+		<p:outputLabel value="CRA du mois de #{seeArOfEmployeeBean.arOfEmployeeVM.createdAt.month}"></p:outputLabel>
 		<p:growl id="messages" showDetail="true" />
 
 		<p:schedule id="schedule" value="#{seeArOfEmployeeBean.calendar}"
 			initialDate="#{seeArOfEmployeeBean.arOfEmployeeVM.createdAt}"
-			draggable="false" showHeader="false"></p:schedule>
+			draggable="false" showHeader="false" ></p:schedule>
 
 		
 		<h:form>

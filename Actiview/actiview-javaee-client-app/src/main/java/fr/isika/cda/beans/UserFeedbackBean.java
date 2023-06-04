@@ -18,6 +18,10 @@ public class UserFeedbackBean {
 	private UserFeedBackRepository userFeedbackRepo;
 
 	private List<MissionUser> missionUsers;
+	
+	public int getIndex(int index) {
+		return index;
+	}
 
 	public List<MissionUser> getMissionUsers() {
 		return missionUsers;
@@ -32,15 +36,20 @@ public class UserFeedbackBean {
 		missionUsers = userFeedbackRepo.getAllActiveUserFeedbackByUserConnected();
 	}
 
-	public void updateGrade(int index, MissionUser missionUser) {
+	public void update(int index, MissionUser missionUser) {
 
 		missionUsers.set(index, missionUser);
 	}
+	
 
-	public void saveChanges() {
-		for (MissionUser missionUser : missionUsers) {
-			userFeedbackRepo.update(missionUser.getUserFeedback());
-		}
+	public void saveChanges(int index) {
+		
+		
+		
+		MissionUser missionUser = missionUsers.get(index);
+		
+	    userFeedbackRepo.update(missionUser.getUserFeedback());
+		
 		init();
 	}
 }

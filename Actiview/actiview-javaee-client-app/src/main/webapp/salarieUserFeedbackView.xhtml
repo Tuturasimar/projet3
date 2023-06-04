@@ -14,47 +14,47 @@
 
 		<ui:repeat var="assignement" value="#{userFeedbackBean.missionUsers}"
 			varStatus="status">
-			<div class="card">
-				<h:form>
-					<h3>#{assignement.mission.labelActivity}</h3>
+			<h:form>
+				<h3>#{assignement.mission.labelActivity}</h3>
 
-					<h5>Note de la relation client</h5>
-					<p:rating value="#{assignement.userFeedback.gradeClientRelation}">
-						<p:ajax event="rate"
-							listener="#{userFeedbackBean.updateGrade(status.index, assignement)}"></p:ajax>
-					</p:rating>
+				<h5>Note de la relation client</h5>
 
-					<h5>Note de l'accompagnement du manager</h5>
-					<p:rating value="#{assignement.userFeedback.gradeManager}">
-						<p:ajax event="rate"
-							listener="#{userFeedbackBean.updateGrade(status.index, assignement)}"></p:ajax>
-					</p:rating>
+				<p:rating value="#{assignement.userFeedback.gradeClientRelation}">
+					<p:ajax event="rate"
+						listener="#{userFeedbackBean.update(status.index, assignement)}"></p:ajax>
+				</p:rating>
 
+				<h5>Note de l'accompagnement du manager</h5>
+				<p:rating value="#{assignement.userFeedback.gradeManager}">
+					<p:ajax event="rate"
+						listener="#{userFeedbackBean.update(status.index, assignement)}"></p:ajax>
+				</p:rating>
 
+				<h5>Note de la mission</h5>
+				<p:rating value="#{assignement.userFeedback.gradeMission}">
+					<p:ajax event="rate"
+						listener="#{userFeedbackBean.update(status.index, assignement)}"></p:ajax>
+				</p:rating>
 
-					<h5>Note de la mission</h5>
-					<p:rating value="#{assignement.userFeedback.gradeMission}">
-						<p:ajax event="rate"
-							listener="#{userFeedbackBean.updateGrade(status.index, assignement)}"></p:ajax>
-					</p:rating>
+				<h5>Note du confort de l'employé</h5>
+				<p:rating value="#{assignement.userFeedback.gradeUserComfort}">
+					<p:ajax event="rate"
+						listener="#{userFeedbackBean.update(status.index, assignement)}"></p:ajax>
+				</p:rating>
 
+				<h:outputLabel value="Commentaires supplémentaires"
+					for="commentInput" />
+				<p:inputTextarea id="commentInput_#{status.index}"
+					value="#{userFeedbackBean.missionUsers[status.index].userFeedback.comment}">
+					<p:ajax event="keyup"
+						listener="#{userFeedbackBean.update(status.index, assignement)}"></p:ajax>
+				</p:inputTextarea>
 
-					<h5>Note du confort de l'employé</h5>
-					<p:rating value="#{assignement.userFeedback.gradeUserComfort}">
-						<p:ajax event="rate"
-							listener="#{userFeedbackBean.updateGrade(status.index, assignement)}"></p:ajax>
-					</p:rating>
-
-
-					<h:outputLabel value="Commentaires supplémentaires"
-						for="commentInput" />
-					<h:inputTextarea id="commentInput"
-						value="#{assignement.userFeedback.comment}" />
-
-					<h:commandButton action="#{userFeedbackBean.saveChanges()}"
-						value="Mettre à jour" />
-				</h:form>
-			</div>
+				<p:commandButton
+					action="#{userFeedbackBean.saveChanges(status.index)}"
+					value="Mettre à jour">
+				</p:commandButton>
+			</h:form>
 		</ui:repeat>
 
 

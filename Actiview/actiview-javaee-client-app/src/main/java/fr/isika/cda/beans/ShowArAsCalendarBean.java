@@ -14,28 +14,21 @@ import org.primefaces.model.ScheduleModel;
 import fr.isika.cda.entities.ar.ActivityDate;
 import fr.isika.cda.entities.ar.Ar;
 import fr.isika.cda.entities.ar.PartDayEnum;
-import fr.isika.cda.entities.ar.StateAr;
 import fr.isika.cda.repository.ActivityDateRepository;
 import fr.isika.cda.repository.ArRepository;
 import fr.isika.cda.viewmodels.ArCalendarViewModel;
-import fr.isika.cda.viewmodels.SeeArOfEmployeeViewModel;
 
 @ManagedBean
 @SessionScoped
-public class SeeArOfEmployeeBean {
-
-	@Inject
-	private ActivityDateRepository activityDateRepo;
+public class ShowArAsCalendarBean {
 
 	@Inject
 	private ArRepository arRepo;
 
-	private SeeArOfEmployeeViewModel arOfEmployeeVM = new SeeArOfEmployeeViewModel();
+	@Inject
+	private ActivityDateRepository activityDateRepo;
 
-	// pour condition d'affichage en front
-	private final StateAr INHOLD = StateAr.INHOLD;
-	private final StateAr DRAFT = StateAr.DRAFT;
-	private final StateAr VALIDATED = StateAr.VALIDATED;
+	private ArCalendarViewModel arCalendarVM = new ArCalendarViewModel();
 
 	private ScheduleModel calendar;
 
@@ -54,19 +47,19 @@ public class SeeArOfEmployeeBean {
 		// initialisation du calendrier vide
 		calendar = new DefaultScheduleModel();
 		Ar ar = arRepo.findById(arId);
-		arOfEmployeeVM.setArId(ar.getId());
+		arCalendarVM.setArId(ar.getId());
 
 		// la date de création est utilisée pour définir le mois affiché (sinon par
 		// défaut il affiche le mois en cours)
-		arOfEmployeeVM.setCreatedAt(ar.getCreatedAt());
-
+		arCalendarVM.setCreatedAt(ar.getCreatedAt());
+		
 		// on récupère la liste des activityDate
-		arOfEmployeeVM.setActivityDates(activityDateRepo.getAllActivityDateByArId(ar.getId()));
-		arOfEmployeeVM.setUpdatedAt(ar.getUpdatedAt());
-		arOfEmployeeVM.setStateAr(ar.getStateArEnum());
-
+		arCalendarVM.setActivityDates(activityDateRepo.getAllActivityDateByArId(ar.getId()));
+		arCalendarVM.setUpdatedAt(ar.getUpdatedAt());
+		arCalendarVM.setStateAr(ar.getStateArEnum());
+		
 		// chaque activityDate de la liste est ajouté comme event au calendrier
-		List<ActivityDate> activityDatesAsEvents = arOfEmployeeVM.getActivityDates();
+		List<ActivityDate> activityDatesAsEvents = arCalendarVM.getActivityDates();
 		for (ActivityDate activityDateAsEvent : activityDatesAsEvents) {
 			//création de l'event en fonction de la valeur de PartOfDay
 			if (activityDateAsEvent.getPartOfDay() == PartDayEnum.MORNING) {
@@ -87,56 +80,18 @@ public class SeeArOfEmployeeBean {
 						.startDate(activityDateAsEvent.getDate().atTime(9, 0))
 						.endDate(activityDateAsEvent.getDate().atTime(18, 0)).build();
 				calendar.addEvent(event);
-			}	
+			}
 		}
-		return "SeeArOfEmployee.xhtml";
+		return "ShowArAsCalendar.xhtml";
 	}
 
-	public String acceptAr(Long arId) {
-		arRepo.acceptAr(arId);
-		return "SeeArTeam.xhtml";
+	//Getters & setters
+	public ArCalendarViewModel getArCalendarVM() {
+		return arCalendarVM;
 	}
 
-	public String refuseAr(Long arId) {
-		arRepo.refuseAr(arId);
-		return "SeeArTeam.xhtml";
-	}
-
-	// Getters & setters
-	public ActivityDateRepository getActivityDateRepo() {
-		return activityDateRepo;
-	}
-
-	public void setActivityDateRepo(ActivityDateRepository activityDateRepo) {
-		this.activityDateRepo = activityDateRepo;
-	}
-
-	public ArRepository getArRepo() {
-		return arRepo;
-	}
-
-	public void setArRepo(ArRepository arRepo) {
-		this.arRepo = arRepo;
-	}
-
-	public SeeArOfEmployeeViewModel getArOfEmployeeVM() {
-		return arOfEmployeeVM;
-	}
-
-	public void setArOfEmployeeVM(SeeArOfEmployeeViewModel arOfEmployeeVM) {
-		this.arOfEmployeeVM = arOfEmployeeVM;
-	}
-
-	public StateAr getInhold() {
-		return INHOLD;
-	}
-
-	public StateAr getDraft() {
-		return DRAFT;
-	}
-
-	public StateAr getValidated() {
-		return VALIDATED;
+	public void setArCalendarVM(ArCalendarViewModel arCalendarVM) {
+		this.arCalendarVM = arCalendarVM;
 	}
 
 	public ScheduleModel getCalendar() {
@@ -146,4 +101,5 @@ public class SeeArOfEmployeeBean {
 	public void setCalendar(ScheduleModel calendar) {
 		this.calendar = calendar;
 	}
+
 }

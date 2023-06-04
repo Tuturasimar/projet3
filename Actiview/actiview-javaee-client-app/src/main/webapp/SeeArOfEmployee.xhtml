@@ -9,7 +9,8 @@
 <ui:composition template="/WEB-INF/templates/default.xhtml">
 	<f:metadata>
 		<f:viewParam name="id" />
-		<f:event listener="#{seeArOfEmployeeBean.showArOfEmployee(id)}" type="preRenderView"></f:event>
+		<f:event listener="#{seeArOfEmployeeBean.showArCalendar(id)}"
+			type="preRenderView"></f:event>
 	</f:metadata>
 
 	<ui:define name="Entete">
@@ -18,26 +19,14 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<p:dataTable id="dateTab"
-			value="#{seeArOfEmployeeBean.arOfEmployeeVM.activityDates}"
-			var="activityDate">
-			<p:column>
-				<f:facet name="header">Date</f:facet>
-		#{activityDate.date}
-		</p:column>
-			<p:column>
-				<f:facet name="header">Partie de la journée</f:facet>
-		#{activityDate.partOfDay.label}
-		</p:column>
-			<p:column>
-				<f:facet name="header">Télétravail</f:facet>
-		#{activityDate.remote ? "Oui" : "Non"}
-		</p:column>
-			<p:column>
-				<f:facet name="header">Label</f:facet>
-		#{activityDate.arActivity.activity.labelActivity}
-		</p:column>
-		</p:dataTable>
+		<p:outputLabel value="CRA du mois de #{seeArOfEmployeeBean.arOfEmployeeVM.createdAt.month}"></p:outputLabel>
+		<p:growl id="messages" showDetail="true" />
+
+		<p:schedule id="schedule" value="#{seeArOfEmployeeBean.calendar}"
+			initialDate="#{seeArOfEmployeeBean.arOfEmployeeVM.createdAt}"
+			draggable="false" showHeader="false" ></p:schedule>
+
+		
 		<h:form>
 			<p:commandButton
 				action="#{seeArOfEmployeeBean.acceptAr(seeArOfEmployeeBean.arOfEmployeeVM.arId)}"

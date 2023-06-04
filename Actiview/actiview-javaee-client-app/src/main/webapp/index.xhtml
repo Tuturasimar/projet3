@@ -28,7 +28,7 @@
 			<li><h:link outcome="RegisterUserForm.xhtml">Formulaire Création d'un utilisateur</h:link></li>
 
 			<li><h:link outcome="UserList.xhtml">Listes des utilisateurs</h:link></li>
-			
+
 			<li><h:link outcome="CompanyRegisterForm">Formulaire d'inscription client</h:link></li>
 
 			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
@@ -44,8 +44,10 @@
 			</ui:fragment>
 
 			<li><h:link outcome="adminPersonalization.xhtml">Personnalisation espace ESN</h:link></li>
-			
+
 			<li><h:link outcome="adminPersonalizationColor.xhtml">Personnalisation détailéée espace ESN</h:link></li>
+
+			<li><h:link outcome="ShowArAsCalendar?id=#{4}">test calendrier dynamique option2</h:link></li>
 
 
 			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">

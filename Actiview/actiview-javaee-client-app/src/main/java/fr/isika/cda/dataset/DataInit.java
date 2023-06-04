@@ -185,7 +185,7 @@ public class DataInit {
 		arSalarie1.setUser(userSalarie1);
 		
 		Ar arSalarie2 = new Ar();
-		arSalarie2.setCreatedAt(LocalDate.of(2023, 04, 20));
+		arSalarie2.setCreatedAt(LocalDate.of(2023, 04, 01));
 		arSalarie2.setArConfig(ArConfigEnum.MONTH);
 		arSalarie2.setStateArEnum(StateAr.INHOLD);
 		arSalarie2.setUpdatedAt(LocalDate.now());
@@ -281,19 +281,25 @@ public class DataInit {
 
 		ActivityDate activityDate = new ActivityDate();
 		activityDate.setArActivity(arActivity);
-		activityDate.setDate(LocalDate.now());
+		activityDate.setDate(LocalDate.of(2023, 4, 6));
 		activityDate.setPartOfDay(PartDayEnum.ALLDAY);
 		activityDate.setRemote(false);
 		
 		ActivityDate activityDate2 = new ActivityDate();
 		activityDate2.setArActivity(arActivity2);
-		activityDate2.setDate(LocalDate.now());
+		activityDate2.setDate(LocalDate.of(2023, 4, 6));
 		activityDate2.setPartOfDay(PartDayEnum.ALLDAY);
 		activityDate2.setRemote(false);
+		
+		ActivityDate activityDate3 = new ActivityDate();
+		activityDate3.setArActivity(arActivity2);
+		activityDate3.setDate(LocalDate.of(2023, 4, 11));
+		activityDate3.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate3.setRemote(false);
 
 		em.persist(activityDate);
 		em.persist(activityDate2);
-
+		em.persist(activityDate3);
 		
 
 		// Mock donnée OptionsForfait

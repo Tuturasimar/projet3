@@ -281,7 +281,7 @@ public class DataInit {
 
 		ActivityDate activityDate = new ActivityDate();
 		activityDate.setArActivity(arActivity);
-		activityDate.setDate(LocalDate.of(2023, 4, 6));
+		activityDate.setDate(LocalDate.of(2023, 5, 6));
 		activityDate.setPartOfDay(PartDayEnum.ALLDAY);
 		activityDate.setRemote(false);
 		

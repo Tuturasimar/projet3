@@ -31,6 +31,7 @@ public class SeeArOfEmployeeBean {
 
 	private SeeArOfEmployeeViewModel arOfEmployeeVM = new SeeArOfEmployeeViewModel();
 
+	// pour condition d'affichage en front
 	private final StateAr INHOLD = StateAr.INHOLD;
 	private final StateAr DRAFT = StateAr.DRAFT;
 	private final StateAr VALIDATED = StateAr.VALIDATED;
@@ -42,25 +43,39 @@ public class SeeArOfEmployeeBean {
 		calendar = new DefaultScheduleModel();
 	}
 
+	/**
+	 * Méthode qui permet d'afficher un calendrier correspondant au mois du cra avec
+	 * toutes les activityDate qui lui sont liées
+	 * 
+	 * @param arId Id du cra
+	 */
 	public String showArCalendar(Long arId) {
+		// initialisation du calendrier vide
 		calendar = new DefaultScheduleModel();
 		Ar ar = arRepo.findById(arId);
 		arOfEmployeeVM.setArId(ar.getId());
+
+		// la date de création est utilisée pour définir le mois affiché (sinon par
+		// défaut il affiche le mois en cours)
 		arOfEmployeeVM.setCreatedAt(ar.getCreatedAt());
+
+		// on récupère la liste des activityDate
 		arOfEmployeeVM.setActivityDates(activityDateRepo.getAllActivityDateByArId(ar.getId()));
 		arOfEmployeeVM.setUpdatedAt(ar.getUpdatedAt());
 		arOfEmployeeVM.setStateAr(ar.getStateArEnum());
+
+		// chaque activityDate de la liste est ajouté comme event au calendrier
 		List<ActivityDate> activityDatesAsEvents = arOfEmployeeVM.getActivityDates();
 		for (ActivityDate activityDateAsEvent : activityDatesAsEvents) {
-			DefaultScheduleEvent<?> event2 = DefaultScheduleEvent.builder().title("test")
+			DefaultScheduleEvent<?> event2 = DefaultScheduleEvent.builder()
+					.title(activityDateRepo.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
 					.startDate(activityDateAsEvent.getDate().atTime(9, 0))
 					.endDate(activityDateAsEvent.getDate().atTime(18, 0)).build();
 			calendar.addEvent(event2);
 		}
 		return "SeeArOfEmployee.xhtml";
 	}
-	
-	
+
 	public String acceptAr(Long arId) {
 		arRepo.acceptAr(arId);
 		return "SeeArTeam.xhtml";

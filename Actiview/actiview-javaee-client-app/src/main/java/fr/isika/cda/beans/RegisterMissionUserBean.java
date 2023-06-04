@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.activities.Mission;
@@ -17,7 +16,6 @@ import fr.isika.cda.utils.SessionUtils;
 import fr.isika.cda.viewmodels.MissionUserViewModel;
 
 @ManagedBean
-@SessionScoped
 public class RegisterMissionUserBean {
 
 	@Inject
@@ -68,9 +66,12 @@ public class RegisterMissionUserBean {
 		String login = SessionUtils.getUserLoginFromSession();
 
 		users = userRepo.findUserByManagerLogin(login);
+		
+		// Obtenir l'Id de la Company avec l'utilisateur actuellement connecté
+		Long idCompany = userRepo.findCompanyByUserConnected().getId();
 
 		// Chercher la liste des missions actives
-		missions = missionRepo.getAllActiveMissions();
+		missions = missionRepo.getAllActiveMissionsFromCompany(idCompany);
 
 	}
 
@@ -91,5 +92,6 @@ public class RegisterMissionUserBean {
 		return "missionUserList";
 
 	}
+	
 
 }

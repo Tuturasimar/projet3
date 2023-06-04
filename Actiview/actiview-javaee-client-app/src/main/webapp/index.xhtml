@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-<ui:composition template="/WEB-INF/templates/default.xhtml">
+<ui:composition template="/WEB-INF/templates/temporary.xhtml">
 
 	<ui:define name="Entete">
 		<h2 style="color: red">Vous faites du bon travail</h2>
@@ -17,8 +17,6 @@
 
 		<h2>Menu</h2>
 		<ul>
-
-
 			<li><h:link outcome="CreateFormation.xhtml">Créer une formation</h:link></li>
 
 			<li><h:link outcome="FormationList.xhtml">Voir les formations</h:link></li>
@@ -30,19 +28,51 @@
 			<li><h:link outcome="RegisterUserForm.xhtml">Formulaire Création d'un utilisateur</h:link></li>
 
 			<li><h:link outcome="UserList.xhtml">Listes des utilisateurs</h:link></li>
-
-			<li><h:link outcome="addDateTest.xhtml">Test des dates</h:link></li>
-
-			<li><h:link outcome="showAr.xhtml">Test du Cra</h:link></li>
-
-			<li><h:link outcome="missionUserList.xhtml">Affectations Missions</h:link></li>
 			
-			<li><h:link outcome="formationUserList.xhtml">Affectations Formations</h:link></li>
+			<li><h:link outcome="CompanyRegisterForm">Formulaire d'inscription client</h:link></li>
+
+			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
+				<li><h:link outcome="showAr.xhtml">Test du Cra</h:link></li>
+			</ui:fragment>
 			
+			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
+				<li><h:link outcome="salarieUserFeedbackView.xhtml">UserFeedback</h:link></li>
+			</ui:fragment>
+
+			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
+				<li><h:link outcome="missionUserList.xhtml">Affectations Missions</h:link></li>
+			</ui:fragment>
+
+			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
+				<li><h:link outcome="formationUserList.xhtml">Affectations Formations</h:link></li>
+			</ui:fragment>
 
 			<li><h:link outcome="adminPersonalization.xhtml">Personnalisation espace ESN</h:link></li>
+			
+			<li><h:link outcome="adminPersonalizationColor.xhtml">Personnalisation détailéée espace ESN</h:link></li>
 
-	
+
+			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
+				<li><h:link outcome="SeeArTeam.xhtml">Voir la liste des CRAs des salariés (vue Manager)</h:link></li>
+
+			</ui:fragment>
+
+
+			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
+				<h:form>
+					<li><h:commandLink
+							action="#{seeProfileBean.showSeeProfile(loginBean.loginVm.login)}">Voir le profil (#{loginBean.loginVm.login})</h:commandLink>
+					</li>
+				</h:form>
+			</ui:fragment>
+
+			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
+				<h:form>
+					<li><h:commandLink
+							action="#{updatePasswordBean.showUpdatePassword(loginBean.loginVm.login)}">Modifier le mot de passe (#{loginBean.loginVm.login})</h:commandLink>
+					</li>
+				</h:form>
+			</ui:fragment>
 
 			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
 				<h:form>
@@ -63,12 +93,11 @@
 			
 			<li><h:link outcome="UpdateFeature.xhtml">Modifier un forfait</h:link></li>
 
-
-
 		</ul>
 
 
 	</ui:define>
+
 </ui:composition>
 </html>
 

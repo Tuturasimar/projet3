@@ -64,6 +64,7 @@
 						noSelectionOption="true" />
 						
 					<f:selectItem itemLabel="Aucun Manager" itemValue="null" />
+					<f:selectItems value="#{registerUserBean.managers}" var="manager" itemLabel="#{manager.login}" itemValue="#{manager.id.toString()}"/>
 				</p:selectOneMenu>
 				<h:message for="managerSelectMenu" />
 

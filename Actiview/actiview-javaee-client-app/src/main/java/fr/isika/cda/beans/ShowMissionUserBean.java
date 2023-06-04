@@ -17,8 +17,11 @@ public class ShowMissionUserBean {
 	@Inject
 	private MissionUserRepository missionUserRepo;
 
+	private float adr;
+
 	private List<MissionUser> missionsUser;
 
+	// Pour gérer facilement des conditions d'apparition côté front
 	private final StatusEnum ACTIVE = StatusEnum.ACTIVE;
 	private final StatusEnum INACTIVE = StatusEnum.INACTIVE;
 
@@ -28,6 +31,14 @@ public class ShowMissionUserBean {
 
 	public StatusEnum getINACTIVE() {
 		return INACTIVE;
+	}
+
+	public float getAdr() {
+		return adr;
+	}
+
+	public void setAdr(float adr) {
+		this.adr = adr;
 	}
 
 	@PostConstruct
@@ -48,7 +59,7 @@ public class ShowMissionUserBean {
 		MissionUser missionUser = missionUserRepo.findMissionUserById(id);
 
 		if (missionUser != null) {
-			if(missionUser.getMissionState() == StatusEnum.ACTIVE) {
+			if (missionUser.getMissionState() == StatusEnum.ACTIVE) {
 				missionUser.setMissionState(StatusEnum.INACTIVE);
 			} else {
 				missionUser.setMissionState(StatusEnum.ACTIVE);
@@ -60,5 +71,18 @@ public class ShowMissionUserBean {
 		return "missionUserList";
 	}
 
+	public String editAdr(Long id) {
+
+		// On cherche la missionUser en fonction de son Id
+		MissionUser missionUser = missionUserRepo.findMissionUserById(id);
+		// On change son TJM
+		missionUser.setAdr(adr);
+		// On valide les modifs
+		missionUserRepo.updateMissionUser(missionUser);
+		
+		init();
+
+		return "missionUserList";
+	}
 
 }

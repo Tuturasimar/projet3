@@ -16,16 +16,16 @@ public class RegisterFormation {
 	
 	private FormationViewModel formationVm = new FormationViewModel();
 
-	public void register() {
+	public String register() {
 		formationRepository.register(formationVm);
 		clear();
+		
+		return "FormationList";
 	}
 	public void clear() {
 		formationVm = new FormationViewModel();
 	}
-	public void update(Long id) {
-		formationRepository.updateFormation(formationVm);
-	}
+
 	public FormationViewModel getFormationVm() {
 		return formationVm;
 	}

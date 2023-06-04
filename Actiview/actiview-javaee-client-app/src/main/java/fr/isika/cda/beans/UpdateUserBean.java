@@ -1,5 +1,8 @@
 package fr.isika.cda.beans;
 
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
@@ -18,6 +21,13 @@ public class UpdateUserBean {
 	@Inject
 	private UserRepository userRepo;
 
+	private List<User> managers;
+	
+	@PostConstruct
+	public void init() {
+		managers = userRepo.getAllManagers();
+	}
+	
 	/**
 	 * Méthode qui permet de renvoyer sur un formulaire de modification d'un user avec ses infos préremplies
 	 * @param id du userVM de la vue UserList qui sert à retrouver le user et le userData en bdd
@@ -28,7 +38,6 @@ public class UpdateUserBean {
 		UserData userDataToUpdate = userRepo.findDataByUserId(id);
 		
 		updateUserViewModel = new UpdateUserViewModel(userToUpdate.getId());
-		updateUserViewModel.setPassword(userToUpdate.getPassword());
 		updateUserViewModel.setStatus(userToUpdate.getStatus());
 		
 		String managerId = (userToUpdate.getManager() != null) ? String.valueOf(userToUpdate.getManager().getId()) : null;
@@ -73,4 +82,11 @@ public class UpdateUserBean {
 		this.updateUserViewModel = updateUserViewModel;
 	}
 
+	public List<User> getManagers() {
+		return managers;
+	}
+
+	public void setManagers(List<User> managers) {
+		this.managers = managers;
+	}
 }

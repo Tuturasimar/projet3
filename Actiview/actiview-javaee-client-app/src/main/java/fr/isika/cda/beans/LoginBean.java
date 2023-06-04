@@ -1,6 +1,7 @@
 package fr.isika.cda.beans;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.users.User;
@@ -9,6 +10,7 @@ import fr.isika.cda.utils.SessionUtils;
 import fr.isika.cda.viewmodels.LoginViewModel;
 
 @ManagedBean
+@SessionScoped
 public class LoginBean {
 
 	@Inject
@@ -25,7 +27,7 @@ public class LoginBean {
 			if(user != null) {
 				// 3 - Si oui => mémoriser le user en session 
 				SessionUtils.setUserLoginIntoSession(user.getLogin());
-				
+				SessionUtils.setUserIdIntoSession(user.getId());
 				// + rediriger vers index
 				return "index";
 				

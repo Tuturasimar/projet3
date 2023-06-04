@@ -294,13 +294,19 @@ public class DataInit {
 		ActivityDate activityDate3 = new ActivityDate();
 		activityDate3.setArActivity(arActivity2);
 		activityDate3.setDate(LocalDate.of(2023, 4, 11));
-		activityDate3.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate3.setPartOfDay(PartDayEnum.AFTERNOON);
 		activityDate3.setRemote(false);
+		
+		ActivityDate activityDate4 = new ActivityDate();
+		activityDate4.setArActivity(arActivity2);
+		activityDate4.setDate(LocalDate.of(2023, 4, 13));
+		activityDate4.setPartOfDay(PartDayEnum.MORNING);
+		activityDate4.setRemote(false);
 
 		em.persist(activityDate);
 		em.persist(activityDate2);
 		em.persist(activityDate3);
-		
+		em.persist(activityDate4);
 
 		// Mock donnée OptionsForfait
 

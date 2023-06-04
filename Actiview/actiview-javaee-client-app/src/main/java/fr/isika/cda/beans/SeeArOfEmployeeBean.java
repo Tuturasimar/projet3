@@ -13,6 +13,7 @@ import org.primefaces.model.ScheduleModel;
 
 import fr.isika.cda.entities.ar.ActivityDate;
 import fr.isika.cda.entities.ar.Ar;
+import fr.isika.cda.entities.ar.PartDayEnum;
 import fr.isika.cda.entities.ar.StateAr;
 import fr.isika.cda.repository.ActivityDateRepository;
 import fr.isika.cda.repository.ArRepository;
@@ -67,11 +68,26 @@ public class SeeArOfEmployeeBean {
 		// chaque activityDate de la liste est ajouté comme event au calendrier
 		List<ActivityDate> activityDatesAsEvents = arOfEmployeeVM.getActivityDates();
 		for (ActivityDate activityDateAsEvent : activityDatesAsEvents) {
-			DefaultScheduleEvent<?> event2 = DefaultScheduleEvent.builder()
-					.title(activityDateRepo.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
-					.startDate(activityDateAsEvent.getDate().atTime(9, 0))
-					.endDate(activityDateAsEvent.getDate().atTime(18, 0)).build();
-			calendar.addEvent(event2);
+			//création de l'event en fonction de la valeur de PartOfDay
+			if (activityDateAsEvent.getPartOfDay() == PartDayEnum.MORNING) {
+				DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
+						.title(activityDateRepo.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
+						.startDate(activityDateAsEvent.getDate().atTime(9, 0))
+						.endDate(activityDateAsEvent.getDate().atTime(13, 0)).build();
+				calendar.addEvent(event);
+			} else if (activityDateAsEvent.getPartOfDay() == PartDayEnum.AFTERNOON) {
+				DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
+						.title(activityDateRepo.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
+						.startDate(activityDateAsEvent.getDate().atTime(14, 0))
+						.endDate(activityDateAsEvent.getDate().atTime(18, 0)).build();
+				calendar.addEvent(event);
+			}else {
+				DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
+						.title(activityDateRepo.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
+						.startDate(activityDateAsEvent.getDate().atTime(9, 0))
+						.endDate(activityDateAsEvent.getDate().atTime(18, 0)).build();
+				calendar.addEvent(event);
+			}	
 		}
 		return "SeeArOfEmployee.xhtml";
 	}

@@ -38,7 +38,7 @@ public class UpdateFeatureBean {
 	}
 
 	public String updateFeature() {
-		
+		featureRepo.updateFeature(editFeatureViewModel);
 		return "FeatureList.xhtml";	
 	}
 

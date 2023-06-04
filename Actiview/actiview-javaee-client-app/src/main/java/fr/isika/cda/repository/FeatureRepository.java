@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 
 import fr.isika.cda.entities.common.ArConfigEnum;
 import fr.isika.cda.entities.config.Feature;
+import fr.isika.cda.viewmodels.EditFeatureViewModel;
 import fr.isika.cda.viewmodels.FeaturesViewModel;
 
 
@@ -39,12 +40,13 @@ public class FeatureRepository {
 		return feature.getId();
 	}
 	
-	public void updateFeature(FeaturesViewModel featureVm) {
-		Feature feature = new Feature();
+	public void updateFeature(EditFeatureViewModel featureVm) {
+		Feature feature = findByFeatureId(featureVm.getFeatureId());
 		feature.setLabel(featureVm.getLabel());
-
-		em.merge(feature);
-		
+		feature.setArConfig(featureVm.getArConfig());
+		feature.setNbOfCollaborators(featureVm.getNumberOfCollaborators());
+		feature.setNbOfOptions(featureVm.getNumberOfOptions());
+		feature.setPrice(featureVm.getPrice());
 		
 	}
 

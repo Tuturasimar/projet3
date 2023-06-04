@@ -22,16 +22,13 @@ public class RegisterFormation {
 		
 		return "FormationList";
 	}
-
 	public void clear() {
 		formationVm = new FormationViewModel();
 	}
 
-
 	public FormationViewModel getFormationVm() {
 		return formationVm;
 	}
-
 	public void setFormationVm(FormationViewModel formationVm) {
 		this.formationVm = formationVm;
 	}

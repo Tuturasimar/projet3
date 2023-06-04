@@ -7,12 +7,13 @@
 
 <ui:composition template="/WEB-INF/templates/default.xhtml">
 
-<ui:define name="Entete">
-		<h2 style="color: red; text-align: center">Liste des options disponible</h2>
+	<ui:define name="Entete">
+		<h2 style="color: red; text-align: center">Liste des options
+			disponible</h2>
 	</ui:define>
 
 	<ui:define name="header">
-		<h1 style="text-align:center">Liste des options</h1>
+		<h1 style="text-align: center">Liste des options</h1>
 	</ui:define>
 
 	<ui:define name="content">
@@ -33,6 +34,9 @@
 	</h:column>
 
 		</h:dataTable>
+		<p>
+			<h:link outcome="index.html">Accueil</h:link>
+		</p>
 	</ui:define>
 </ui:composition>
 </html>

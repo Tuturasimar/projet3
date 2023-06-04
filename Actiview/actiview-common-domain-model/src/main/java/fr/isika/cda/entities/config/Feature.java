@@ -75,4 +75,5 @@ public class Feature implements Serializable {
 		this.nbOfOptions = nbOfOptions;
 	}
 
+	
 }

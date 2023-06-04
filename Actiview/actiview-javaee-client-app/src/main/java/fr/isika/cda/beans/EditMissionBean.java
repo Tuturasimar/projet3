@@ -22,6 +22,7 @@ public class EditMissionBean {
 		if(missionToUpdate != null) {
 			// mapper l'entité à modifier dans le editMissionVm
 			editMissionVm = new EditMissionViewModel(missionToUpdate.getId());
+			
 			editMissionVm.setLabelActivity(missionToUpdate.getLabelActivity());
 			editMissionVm.setMissionStart(missionToUpdate.getMissionStart());
 			editMissionVm.setMissionEnd(missionToUpdate.getMissionEnd());

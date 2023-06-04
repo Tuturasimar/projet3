@@ -16,8 +16,6 @@ public class ShowFeaturesBean {
 	@Inject
 	private FeatureRepository featureRepo;
 	
-	private FeaturesViewModel featureVm = new FeaturesViewModel();
-
 	private List<Feature> feature;
 
 	@PostConstruct
@@ -32,15 +30,4 @@ public class ShowFeaturesBean {
 	public void setFeature(List<Feature> feature) {
 		this.feature = feature;
 	}
-	
-	public String register() {
-		featureRepo.register(featureVm);
-		clear();
-		return "RegisterFeaturesBean";
-	}
-	
-	public void clear() {
-		featureVm = new FeaturesViewModel();
-	}
-
 }

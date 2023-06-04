@@ -6,7 +6,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import fr.isika.cda.entities.activities.Formation;
 import fr.isika.cda.entities.common.ArConfigEnum;
 import fr.isika.cda.entities.config.Feature;
 import fr.isika.cda.viewmodels.FeaturesViewModel;
@@ -15,6 +14,7 @@ import fr.isika.cda.viewmodels.FeaturesViewModel;
 @Stateless
 public class FeatureRepository {
 
+	private static final String SELECT_FEATURE_BY_ID_FEATURE_PARAM = "SELECT f FROM Feature f WHERE f.id = :idFeatureParam";
 	@PersistenceContext
 	private EntityManager em;
 
@@ -45,6 +45,17 @@ public class FeatureRepository {
 
 		em.merge(feature);
 		
+		
+	}
+
+	public Feature findByFeatureId(Long id) {
+		// TODO Auto-generated method stub
+		Feature feature = new Feature();
+		feature = em
+				.createQuery(SELECT_FEATURE_BY_ID_FEATURE_PARAM, Feature.class)
+				.setParameter("idFeatureParam", id)
+				.getSingleResult();
+		return feature;
 		
 	}
 

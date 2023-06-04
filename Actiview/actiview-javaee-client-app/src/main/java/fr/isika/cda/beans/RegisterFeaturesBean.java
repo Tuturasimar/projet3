@@ -26,9 +26,6 @@ public class RegisterFeaturesBean {
 		featureVm = new FeaturesViewModel();
 	}
 	
-	public void update(Long id) {
-		featureRepository.updateFeature(featureVm);
-	}
 	public FeaturesViewModel getFeatureVm() {
 		return featureVm;
 	}

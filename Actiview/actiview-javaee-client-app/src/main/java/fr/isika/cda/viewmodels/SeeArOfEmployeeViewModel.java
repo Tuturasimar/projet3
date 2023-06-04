@@ -1,5 +1,6 @@
 package fr.isika.cda.viewmodels;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import fr.isika.cda.entities.ar.ActivityDate;
@@ -8,6 +9,8 @@ import fr.isika.cda.entities.ar.StateAr;
 public class SeeArOfEmployeeViewModel {
 
 	private Long arId;
+	private LocalDate createdAt;
+	private LocalDate updatedAt;
 
 	private StateAr stateAr;
 
@@ -37,6 +40,22 @@ public class SeeArOfEmployeeViewModel {
 
 	public void setActivityDates(List<ActivityDate> activityDates) {
 		this.activityDates = activityDates;
+	}
+
+	public LocalDate getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDate createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDate getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDate updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 	
 	

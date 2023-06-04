@@ -18,7 +18,8 @@
 	<ui:define name="content">
 		<p:growl id="messages" showDetail="true"/>
 		
-		<p:schedule id="schedule" value="#{showArAsCalendarBean.calendar}" initialDate="#{showArAsCalendarBean.arCalendarVM.createdAt}"></p:schedule>
+		<p:schedule id="schedule" value="#{showArAsCalendarBean.calendar}" initialDate="#{showArAsCalendarBean.arCalendarVM.createdAt}" 
+		draggable="false" showHeader="false"></p:schedule>
 	
 	</ui:define>
 </ui:composition>

@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import fr.isika.cda.entities.activities.Mission;
 import fr.isika.cda.repository.MissionRepository;
+import fr.isika.cda.repository.UserRepository;
 
 @ManagedBean
 public class ShowMissionsBean {
@@ -15,11 +16,16 @@ public class ShowMissionsBean {
 	@Inject
 	private MissionRepository missionRepo;
 	
+	@Inject
+	private UserRepository userRepo;
+	
 	private List<Mission> missions;
 	
 	@PostConstruct
 	public void initMissionList() {
-		missions = missionRepo.findAll();
+		Long companyId = userRepo.findCompanyByUserConnected().getId();
+		
+		missions = missionRepo.findAllMissionsByCompanyId(companyId);
 	}
 
 	public MissionRepository getMissionRepo() {

@@ -66,5 +66,13 @@ public class MissionRepository {
 		
 		return query.getResultList();
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<Mission> findAllMissionsByCompanyId(Long companyId) {
+		Query query = em.createQuery("SELECT m FROM Mission m JOIN m.creator u WHERE u.company.id = :companyId", Mission.class);
+		query.setParameter("companyId", companyId);
+		
+		return query.getResultList();
+	}
 	
 }

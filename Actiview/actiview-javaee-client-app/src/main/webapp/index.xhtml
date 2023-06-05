@@ -36,7 +36,11 @@
 			</ui:fragment>
 			
 			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
-				<li><h:link outcome="salarieUserFeedbackView.xhtml">UserFeedback</h:link></li>
+				<li><h:link outcome="salarieUserFeedbackView.xhtml">Remplir UserFeedback mission active</h:link></li>
+			</ui:fragment>
+			
+			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
+				<li><h:link outcome="showUserFeedbackSalarie.xhtml">Voir historique des UserFeedback</h:link></li>
 			</ui:fragment>
 
 			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">

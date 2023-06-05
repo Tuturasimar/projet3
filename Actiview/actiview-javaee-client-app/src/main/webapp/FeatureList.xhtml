@@ -37,9 +37,32 @@
 		#{feature.price}
 	</h:column>
 
+<h:column>
+				<f:facet name="header">Mettre à jour</f:facet>
+
+				<h:form>
+					<h:commandButton
+						action="#{updateFeatureBean.showUpdateFeature(feature.id)}"
+						value="Update" />
+				</h:form>
+
+			</h:column>
+			
 		</h:dataTable>
+
+		<div style="text-align: center;">
+			<a href="RegisterFeature.xhtml">
+				<button type="button" style="font-size: 16px;">Créer un
+					forfait</button>
+			</a>
+		</div>
+
+		<p>
+			<h:link outcome="index.html">Accueil</h:link>
+		</p>
+
+
+
 	</ui:define>
-
 </ui:composition>
-
 </html>

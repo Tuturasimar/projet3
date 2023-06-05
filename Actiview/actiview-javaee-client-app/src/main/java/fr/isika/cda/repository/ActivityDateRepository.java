@@ -94,6 +94,21 @@ public class ActivityDateRepository {
 
 		return null;
 	}
+	/**
+	 * Méthode qui permet de récupérer le label de l'activité liée à une activityDate dont on passe l'id 
+	 * @param id : id de l'activityDate
+	 * @return : Label de l'activité correspondante
+	 */
+	public String getActivityLabelFromActivityDate(Long id) {
+		Query query = em.createQuery(
+				"SELECT ad from ActivityDate ad " 
+				+"JOIN ad.arActivity ara " 
+				+"JOIN ara.activity a "
+				+"WHERE ad.id = :id");
+		query.setParameter("id", id);
+		ActivityDate activityDate = (ActivityDate) query.getSingleResult();		
+		return activityDate.arActivity.getActivity().getLabelActivity();
+	}
 	
 	public void delete(ActivityDate activityDate) {
 		

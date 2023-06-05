@@ -11,9 +11,11 @@ import javax.persistence.Query;
 
 import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.StatusEnum;
+import fr.isika.cda.entities.config.Company;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserData;
 import fr.isika.cda.entities.users.UserRole;
+import fr.isika.cda.utils.SessionUtils;
 import fr.isika.cda.viewmodels.UpdateUserViewModel;
 import fr.isika.cda.viewmodels.LoginViewModel;
 import fr.isika.cda.viewmodels.UpdatePasswordViewModel;
@@ -49,7 +51,8 @@ public class UserRepository {
 		user.setCreatedAt(LocalDateTime.now());
 		user.setStatus(StatusEnum.ACTIVE);
 		user.setUserData(data);
-
+		user.setCompany(em.getReference(Company.class, userVM.getCompanyId() ));
+		
 		Long managerId = extractManagerId(userVM.getManagerId());
 		if (!MANAGER_ID_DEFAULT_NOT_FOUND.equals(managerId)) {
 			User manager = em.find(User.class, managerId);
@@ -154,6 +157,20 @@ public class UserRepository {
 		query.setParameter("id", id);
 		return (User) query.getSingleResult();
 	}
+	
+	@SuppressWarnings({ "unchecked" })
+	public List<User> getAllEmployeesByManagerId(Long managerId) {
+		Query query = em.createQuery("SELECT u FROM User u JOIN u.userData LEFT JOIN FETCH u.manager m WHERE m.id = :id")
+				.setParameter("id", managerId);		
+		return query.getResultList();
+	}
+	
+	@SuppressWarnings({ "unchecked" })
+	public List<User> getAllEmployeesByManagerLogin(String login) {
+		Query query = em.createQuery("SELECT u FROM User u JOIN u.userData LEFT JOIN FETCH u.manager WHERE u.login = :login")
+				.setParameter("login", login);		
+		return query.getResultList();
+	}
 
 	public UserData findDataByUserId(Long id) {
 		Query query = em.createQuery("SELECT ud FROM User u JOIN u.userData ud WHERE u.id = :id");
@@ -180,6 +197,16 @@ public class UserRepository {
 		List<User> managers = query.getResultList();
 		return managers;
 	}
+	
+	public List<User> getAllCompanyManagers(Long companyId) {
+		Query query = em.createQuery("SELECT u FROM UserRole ur JOIN ur.user u WHERE ur.roleTypeEnum = :manager AND u.company.id = :company");
+		query.setParameter("manager", RoleTypeEnum.MANAGER);
+		query.setParameter("company", companyId);
+		
+		@SuppressWarnings("unchecked")
+		List<User> managers = query.getResultList();
+		return managers;
+	}
 
 	/**
 	 * Returns a user with the given login data. <br>
@@ -203,6 +230,14 @@ public class UserRepository {
 		return  query.getResultList();
 	}
 
+	public Company findCompanyByUserConnected() {
+		Query query = em.createQuery("SELECT u.company FROM User u WHERE u.id = :userId", Company.class);
+		query.setParameter("userId", SessionUtils.getUserIdFromSession());
+		
+		return (Company) query.getSingleResult();
+	}
+
+	
 	
 	
 

@@ -23,6 +23,7 @@ public class UserData {
 	private String firstname;
 	private LocalDate birthday;
 	private String email;
+	
 
 	@Enumerated(EnumType.STRING)
 	private JobEnum jobEnum;
@@ -73,5 +74,6 @@ public class UserData {
 		return id;
 
 	}
+	
 
 }

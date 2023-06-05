@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="Entete">
+		<h1 style="text-align: center">Liste des CRA du mois</h1>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form id="selectArMonthForm">
+			<h:panelGroup id="dateView">
+				<p:datePicker id="month" view="month" lang="fr"
+					value="#{seeArTeamBean.arVm.date}" inline="true" pattern="MM/yyyy"
+					yearNavigator="true" yearRange="2020:2050">
+					<p:ajax event="dateSelect" listener="#{seeArTeamBean.getAr()}"
+						update=":arViewForm:rendu"></p:ajax>
+				</p:datePicker>
+			</h:panelGroup>
+		</h:form>
+
+		<h:form id="arViewForm">
+			<p:fieldset id="rendu" legend="CRA">
+			
+				<h:dataTable value="#{seeArTeamBean.ars}" var="ar">
+					<h:column>
+						<f:facet name="header">Nom</f:facet>
+				#{ar.user.userData.lastname}
+				</h:column>
+
+					<h:column>
+						<f:facet name="header">Prénom</f:facet>
+				#{ar.user.userData.firstname}
+				</h:column>
+
+					<h:column>
+						<f:facet name="header">Etat du CRA</f:facet>
+				#{ar.stateArEnum}
+				</h:column>
+
+					<h:column>
+						<f:facet name="header">Voir le CRA</f:facet>
+						<h:link outcome="SeeArOfEmployee?id=#{ar.id}"
+							value="Consulter" rendered="#{ar.stateArEnum != seeArTeamBean.DRAFT}"
+							/>
+					</h:column>
+				</h:dataTable>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>

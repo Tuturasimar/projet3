@@ -8,13 +8,14 @@ import javax.inject.Inject;
 
 import fr.isika.cda.entities.config.Feature;
 import fr.isika.cda.repository.FeatureRepository;
+import fr.isika.cda.viewmodels.FeaturesViewModel;
 
 @ManagedBean
 public class ShowFeaturesBean {
 
 	@Inject
 	private FeatureRepository featureRepo;
-
+	
 	private List<Feature> feature;
 
 	@PostConstruct
@@ -29,5 +30,4 @@ public class ShowFeaturesBean {
 	public void setFeature(List<Feature> feature) {
 		this.feature = feature;
 	}
-
 }

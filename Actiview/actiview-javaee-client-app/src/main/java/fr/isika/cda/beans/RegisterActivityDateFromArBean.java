@@ -1,17 +1,23 @@
 package fr.isika.cda.beans;
 
 import java.io.Serializable;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.ar.ActivityDate;
+import fr.isika.cda.entities.ar.Ar;
 import fr.isika.cda.entities.ar.ArActivity;
 import fr.isika.cda.entities.ar.PartDayEnum;
 import fr.isika.cda.repository.ActivityDateRepository;
 import fr.isika.cda.repository.ArActivityRepository;
+import fr.isika.cda.repository.ArRepository;
 import fr.isika.cda.viewmodels.ArDateViewModel;
 
 /**
@@ -38,6 +44,11 @@ public class RegisterActivityDateFromArBean implements Serializable {
 
 	@Inject
 	private ActivityDateRepository activityDateRepository;
+	
+	@Inject
+	private ArRepository arRepo;
+	
+	
 
 	public List<ActivityDate> getActivityDates() {
 		return activityDates;
@@ -46,7 +57,7 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	public void setActivityDates(List<ActivityDate> activityDates) {
 		this.activityDates = activityDates;
 	}
-	
+
 	public ArDateViewModel getArDateVm() {
 		return arDateVm;
 	}
@@ -54,16 +65,15 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	public void setArDateVm(ArDateViewModel arDateVm) {
 		this.arDateVm = arDateVm;
 	}
-	
-	
+
 	/**
 	 * Méthode qui va chercher toutes les dates liées à l'ID de l'Ar en cours
 	 */
 	public String getAllActivityDates(Long arId) {
 		arDateVm.setArId(arId);
 		activityDates = activityDateRepository.getAllActivityDateByArId(arId);
-		
-		return "addDateTest";
+
+		return "addActivityDates";
 	}
 
 	/**
@@ -93,13 +103,15 @@ public class RegisterActivityDateFromArBean implements Serializable {
 			activityDateRepository.createActivityDate(arDateVm, id);
 		}
 
-		// On rafraichit la nouvelle liste suite à l'ajout ou la suppression de plusieurs activityDate
+		// On rafraichit la nouvelle liste suite à l'ajout ou la suppression de
+		// plusieurs activityDate
 		getAllActivityDates(arDateVm.getArId());
 
 	}
 
 	/**
-	 * Méthode permettant de vérifier les dates déjà existantes pour l'AR en cours, afin de supprimer les incohérences
+	 * Méthode permettant de vérifier les dates déjà existantes pour l'AR en cours,
+	 * afin de supprimer les incohérences
 	 */
 	public void checkExistingActivityDate() {
 
@@ -115,11 +127,12 @@ public class RegisterActivityDateFromArBean implements Serializable {
 				}
 			}
 		} else
-		// Si le PartDay est MORNING ou AFTERNOON 
+		// Si le PartDay est MORNING ou AFTERNOON
 		{
 			// On utilise un stream qui va filtrer la liste et stocker celui qui correspond
 			// dans une variable
-			// Si la date est identique ET ( Si le PartDay est identique OU le PartDay de l'ancien est ALLDAY)
+			// Si la date est identique ET ( Si le PartDay est identique OU le PartDay de
+			// l'ancien est ALLDAY)
 			ActivityDate activityDateToDelete = activityDates.stream()
 					.filter(activityDate -> arDateVm.getDate().equals(activityDate.getDate())
 							&& (arDateVm.getPartOfDay().equals(activityDate.getPartOfDay())
@@ -132,7 +145,41 @@ public class RegisterActivityDateFromArBean implements Serializable {
 			}
 		}
 	}
-	
 
+	public void deleteAllExistingActivityDate() {
+
+		// requete pour supprimer toutes les activityDate liées à l'Ar
+		for(ActivityDate activityDateToDelete : activityDates) {
+			activityDateRepository.delete(activityDateToDelete);
+		}
+		
+		getAllActivityDates(arDateVm.getArId());
+		
+	}
+
+	public void addAllMonth() {
+
+		deleteAllExistingActivityDate();
+		
+		Ar actualAr = arRepo.findById(arDateVm.getArId());
+		
+		LocalDate actualDate = actualAr.getCreatedAt();
+		
+		
+		LocalDate firstDayOfMonth = LocalDate.of(actualDate.getYear(), actualDate.getMonthValue(), 1);
+		
+		LocalDate firstDayNextMonth = LocalDate.of(actualDate.getYear(), actualDate.plusMonths(1).getMonthValue(), 1);
+		
+		Stream<LocalDate> allDaysOfMonthStream = firstDayOfMonth.datesUntil(firstDayNextMonth);
+		
+		List<LocalDate> allDaysOfMonth = allDaysOfMonthStream.collect(Collectors.toList());
+		
+		for(LocalDate dateToAdd : allDaysOfMonth) {
+			if(dateToAdd.getDayOfWeek() != DayOfWeek.SATURDAY && dateToAdd.getDayOfWeek() != DayOfWeek.SUNDAY)
+			arDateVm.setDate(dateToAdd);
+			addDate();
+		}
 	
+	}
+
 }

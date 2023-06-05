@@ -18,7 +18,7 @@ public class LoginViewModel {
 	public void setLogin(String login) {
 		this.login = login;
 	}
-	
+	 
 	public boolean isValid() {
 		return this.login != null 
 				&& this.password != null 

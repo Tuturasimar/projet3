@@ -84,8 +84,13 @@ public class SeeArOfEmployeeBean {
 				DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
 						.title(activityDateRepo.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
 						.startDate(activityDateAsEvent.getDate().atTime(9, 0))
-						.endDate(activityDateAsEvent.getDate().atTime(18, 0)).build();
+						.endDate(activityDateAsEvent.getDate().atTime(13, 0)).build();
 				calendar.addEvent(event);
+				DefaultScheduleEvent<?> eventAfternoon = DefaultScheduleEvent.builder()
+						.title(activityDateRepo.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
+						.startDate(activityDateAsEvent.getDate().atTime(14, 0))
+						.endDate(activityDateAsEvent.getDate().atTime(18, 0)).build();
+				calendar.addEvent(eventAfternoon);
 			}	
 		}
 		return "SeeArOfEmployee.xhtml";

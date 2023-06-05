@@ -9,7 +9,6 @@ import javax.inject.Inject;
 
 import fr.isika.cda.entities.common.ClassContextEnum;
 import fr.isika.cda.repository.ArRepository;
-import fr.isika.cda.repository.NotificationRepository;
 import fr.isika.cda.repository.UserRepository;
 import fr.isika.cda.utils.SessionUtils;
 
@@ -27,9 +26,6 @@ public class RegisterArBean implements Serializable {
 	
 	@Inject
 	UserRepository userRepo;
-	
-	@Inject
-	NotificationRepository notifRepo;
 	
 	@ManagedProperty(value="#{showArBean}")
 	private ShowArBean showArBean;

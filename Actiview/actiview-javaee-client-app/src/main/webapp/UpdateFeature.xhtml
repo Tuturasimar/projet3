@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="Entete">
+		<h2 style="color: red; text-align: center">Modification formulaire forfait</h2>
+	</ui:define>
+	
+	<ui:define name="content">
+	
+	<h:form>
+	
+	<h:panelGrid columns="3">
+
+				<h:outputLabel for="FeatureName" value="Nom du forfait " />
+				
+				<p:inputText id="FeatureName"
+					value="#{updateFeatureBean.editFeatureViewModel.label}" />
+				<h:message for="FeatureName" />
+			
+				<h:outputLabel for="numberOfCollaborators"
+					value="Nombre de collaborateur" />
+				<p:inputText id="numberOfCollaborators"
+					value="#{updateFeatureBean.editFeatureViewModel.numberOfCollaborators}" />
+				<h:message for="numberOfCollaborators" />
+
+				<h:outputLabel for="optionNumber" value="Nombre d'options" />
+				<p:selectOneMenu id="optionNumber"
+					value="#{updateFeatureBean.editFeatureViewModel.numberOfOptions}">
+					<f:selectItem itemLabel="--Sélectionner une option--" itemValue=""
+						itemDisabled="true" />
+					<f:selectItem itemLabel="0 option" itemValue="0" />
+					<f:selectItem itemLabel="1 option" itemValue="1" />
+					<f:selectItem itemLabel="2 options" itemValue="2" />
+					<f:selectItem itemLabel="3 options" itemValue="3" />
+				</p:selectOneMenu>
+				<h:message for="optionNumber" />
+
+				<h:outputLabel for="PriceInput" value="Prix Total" />
+				<p:inputText id="PriceInput"
+					value="#{updateFeatureBean.editFeatureViewModel.price}" />
+				<h:message for="PriceInput" />
+
+				<p:commandButton value="Modifier"
+					action="#{updateFeatureBean.updateFeature()}" />
+
+			</h:panelGrid>
+	
+	
+	</h:form>
+	
+	</ui:define>
+	
+	
+	</ui:composition>
+</html>

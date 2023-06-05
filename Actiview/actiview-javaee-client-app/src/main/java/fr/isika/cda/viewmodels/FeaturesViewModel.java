@@ -5,7 +5,7 @@ import fr.isika.cda.entities.common.ArConfigEnum;
 public class FeaturesViewModel {
 
 	private String label;
-	private int numberOfColaborators;
+	private int numberOfCollaborators;
 	private ArConfigEnum arConfig;
 	private float price;
 	private int numberOfOptions;
@@ -17,11 +17,11 @@ public class FeaturesViewModel {
 		this.label = label;
 	}
 	
-	public int getNumberOfColaborators() {
-		return numberOfColaborators;
+	public int getNumberOfCollaborators() {
+		return numberOfCollaborators;
 	}
-	public void setNumberOfColaborators(int numberOfColaborators) {
-		this.numberOfColaborators = numberOfColaborators;
+	public void setNumberOfCollaborators(int numberOfCollaborators) {
+		this.numberOfCollaborators = numberOfCollaborators;
 	}
 	public ArConfigEnum getArConfig() {
 		return arConfig;
@@ -41,5 +41,6 @@ public class FeaturesViewModel {
 	public void setNumberOfOptions(int numberOfOptions) {
 		this.numberOfOptions = numberOfOptions;
 	}
+	
 		
 }

@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 
 import fr.isika.cda.entities.config.Config;
 import fr.isika.cda.entities.config.ImageConfig;
+import fr.isika.cda.entities.config.TemplateConfig;
 import fr.isika.cda.viewmodels.ImageConfigViewModel;
 
 @Stateless
@@ -38,9 +39,13 @@ public class ImageConfigRepository {
 		ImageConfig imageConfig = new ImageConfig();
 		imageConfig.setLogo(imgConfigVm.getLogo());
 		imageConfig.setBanner(imgConfigVm.getBanner());
+		
+		TemplateConfig templateConfig = new TemplateConfig();
+		templateConfig.setTemplateChoice(imgConfigVm.getTemplateChoice());
 
 		Config config = new Config();
 		config.setImageConfig(imageConfig);
+		config.setTemplateConfig(templateConfig);
 
 		em.persist(config);
 	}

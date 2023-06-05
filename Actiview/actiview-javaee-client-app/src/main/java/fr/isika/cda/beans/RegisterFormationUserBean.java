@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.activities.Formation;
@@ -16,7 +15,6 @@ import fr.isika.cda.utils.SessionUtils;
 import fr.isika.cda.viewmodels.FormationUserViewModel;
 
 @ManagedBean
-@SessionScoped
 public class RegisterFormationUserBean {
 
 	@Inject
@@ -61,9 +59,12 @@ public class RegisterFormationUserBean {
 	@PostConstruct
 	public void init() {
 		String login = SessionUtils.getUserLoginFromSession();
+		
 		users = userRepo.findUserByManagerLogin(login);
 		
-		formations = formationRepo.getAllActiveFormations();
+		Long idCompany = userRepo.findCompanyByUserConnected().getId();
+		
+		formations = formationRepo.getAllActiveFormationsFromCompany(idCompany);
 	}
 	
 	public String register() {

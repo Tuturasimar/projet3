@@ -6,6 +6,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
+
+
 <ui:composition template="/WEB-INF/templates/default.xhtml">
 
 	<ui:define name="Entete">
@@ -15,7 +17,7 @@
 	<ui:define name="content">
 		<h:form id="selectArMonthForm">
 			<h:panelGroup id="dateView">
-				<p:datePicker id="month" view="month"
+				<p:datePicker id="month" view="month" lang="fr"
 					value="#{showArBean.arVm.date}" inline="true" pattern="MM/yyyy"
 					yearNavigator="true" yearRange="2020:2050">
 					<p:ajax event="dateSelect" listener="#{showArBean.getAr()}"
@@ -26,6 +28,10 @@
 
 		<h:form id="arViewForm">
 			<p:fieldset id="rendu" legend="CRA">
+				<h:commandButton action="#{registerArBean.register()}"
+					value="Ajouter un nouveau CRA"
+					rendered="#{!showArBean.hasSelectedAr() and showArBean.canBeCreated() }" />
+
 				<p:outputLabel value="#{showArBean.arVm.ar.id}" id="arId"
 					style="display: block" />
 
@@ -34,13 +40,18 @@
 
 				<p:outputLabel value="#{showArBean.arVm.ar.stateArEnum}"
 					id="arState" style="display: block" />
+				<h:outputText value="Aucun Cra disponible pour ce mois"
+					rendered="#{!showArBean.hasSelectedAr()}" />
+
+				<h:commandButton
+					action="#{registerActivityDateFromArBean.getAllActivityDates(showArBean.arVm.ar.id)}"
+					value="Voir les détails" rendered="#{showArBean.hasSelectedAr()}" />
+
 			</p:fieldset>
-			
-			<h:commandButton action="#{registerActivityDateFromArBean.getAllActivityDates(showArBean.arVm.ar.id)}" value="Voir les détails" />
 
 		</h:form>
-	</ui:define>
 
+	</ui:define>
 
 </ui:composition>
 </html>

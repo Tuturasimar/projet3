@@ -8,7 +8,6 @@ import java.util.List;
 import fr.isika.cda.entities.common.JobEnum;
 import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.StatusEnum;
-import fr.isika.cda.entities.users.UserRole;
 
 public class UserViewModel {
 
@@ -20,6 +19,8 @@ public class UserViewModel {
 	private StatusEnum status;
 	
 	private String managerId;
+	
+	private Long companyId;
 
 	// Données de la table Userdata
 	private String lastname;
@@ -27,6 +28,7 @@ public class UserViewModel {
 	private LocalDate birthday;
 	private String email;
 	private JobEnum jobEnum;
+	
 	
 	// Donnée de la table UserRole
 	private List<RoleTypeEnum> roleTypes = new ArrayList<RoleTypeEnum>();
@@ -118,6 +120,17 @@ public class UserViewModel {
 	public void setRoleTypes(List<RoleTypeEnum> roleTypes) {
 		this.roleTypes = roleTypes;
 	}
+	
+	public Long getCompanyId() {
+		return companyId;
+	}
+	
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
+	}
+	
+
+	
 
 	@Override
 	public String toString() {

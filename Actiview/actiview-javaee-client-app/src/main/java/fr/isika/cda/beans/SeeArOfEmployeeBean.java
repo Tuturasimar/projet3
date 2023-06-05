@@ -17,7 +17,6 @@ import fr.isika.cda.entities.ar.PartDayEnum;
 import fr.isika.cda.entities.ar.StateAr;
 import fr.isika.cda.repository.ActivityDateRepository;
 import fr.isika.cda.repository.ArRepository;
-import fr.isika.cda.viewmodels.ArCalendarViewModel;
 import fr.isika.cda.viewmodels.SeeArOfEmployeeViewModel;
 
 @ManagedBean

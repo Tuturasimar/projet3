@@ -7,9 +7,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
+
+import org.primefaces.model.DefaultScheduleEvent;
+import org.primefaces.model.DefaultScheduleModel;
+import org.primefaces.model.ScheduleModel;
 
 import fr.isika.cda.entities.ar.ActivityDate;
 import fr.isika.cda.entities.ar.Ar;
@@ -18,6 +23,7 @@ import fr.isika.cda.entities.ar.PartDayEnum;
 import fr.isika.cda.repository.ActivityDateRepository;
 import fr.isika.cda.repository.ArActivityRepository;
 import fr.isika.cda.repository.ArRepository;
+import fr.isika.cda.viewmodels.ArCalendarViewModel;
 import fr.isika.cda.viewmodels.ArDateViewModel;
 
 /**
@@ -36,8 +42,11 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private ArDateViewModel arDateVm = new ArDateViewModel();
+	private ArCalendarViewModel arCalendarVM = new ArCalendarViewModel();
 
 	private List<ActivityDate> activityDates;
+	
+	private ScheduleModel calendar;
 
 	@Inject
 	private ArActivityRepository arActivityRepo;
@@ -48,33 +57,75 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	@Inject
 	private ArRepository arRepo;
 	
-	
-
-	public List<ActivityDate> getActivityDates() {
-		return activityDates;
-	}
-
-	public void setActivityDates(List<ActivityDate> activityDates) {
-		this.activityDates = activityDates;
-	}
-
-	public ArDateViewModel getArDateVm() {
-		return arDateVm;
-	}
-
-	public void setArDateVm(ArDateViewModel arDateVm) {
-		this.arDateVm = arDateVm;
+	/**
+	 * Initialise un calendrier au chargement de la page
+	 */
+	@PostConstruct
+	public void initTest() {
+		calendar = new DefaultScheduleModel();
 	}
 
 	/**
-	 * Méthode qui va chercher toutes les dates liées à l'ID de l'Ar en cours
+	 * Méthode qui permet d'afficher un calendrier correspondant au mois du cra avec
+	 * toutes les activityDate qui lui sont liées
+	 * 
+	 * @param arId Id du cra
 	 */
-	public String getAllActivityDates(Long arId) {
+	public String showArCalendar(Long arId) {
+		// initialisation du calendrier vide
+		calendar = new DefaultScheduleModel();
+		Ar ar = arRepo.findById(arId);
+		arCalendarVM.setArId(ar.getId());
+
+		// la date de création est utilisée pour définir le mois affiché (sinon par
+		// défaut il affiche le mois en cours)
+		arCalendarVM.setCreatedAt(ar.getCreatedAt());
+		
+		// on récupère la liste des activityDate
+		arCalendarVM.setActivityDates(activityDateRepository.getAllActivityDateByArId(ar.getId()));
+		arCalendarVM.setUpdatedAt(ar.getUpdatedAt());
+		arCalendarVM.setStateAr(ar.getStateArEnum());
+		
+		//initialisation de l'id du cra et de la liste des activités liées au cra (issu de l'ancienne méthode, pour grder ce qui a été fait je le reprends ici)
 		arDateVm.setArId(arId);
 		activityDates = activityDateRepository.getAllActivityDateByArId(arId);
-
-		return "addActivityDates";
+		
+		// chaque activityDate de la liste est ajouté comme event au calendrier
+		List<ActivityDate> activityDatesAsEvents = arCalendarVM.getActivityDates();
+		for (ActivityDate activityDateAsEvent : activityDatesAsEvents) {
+			//création de l'event en fonction de la valeur de PartOfDay
+			if (activityDateAsEvent.getPartOfDay() == PartDayEnum.MORNING) {
+				DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
+						.title(activityDateRepository.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
+						.startDate(activityDateAsEvent.getDate().atTime(9, 0))
+						.endDate(activityDateAsEvent.getDate().atTime(13, 0)).build();
+				calendar.addEvent(event);
+			} else if (activityDateAsEvent.getPartOfDay() == PartDayEnum.AFTERNOON) {
+				DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
+						.title(activityDateRepository.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
+						.startDate(activityDateAsEvent.getDate().atTime(14, 0))
+						.endDate(activityDateAsEvent.getDate().atTime(18, 0)).build();
+				calendar.addEvent(event);
+			}else {
+				DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
+						.title(activityDateRepository.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
+						.startDate(activityDateAsEvent.getDate().atTime(9, 0))
+						.endDate(activityDateAsEvent.getDate().atTime(18, 0)).build();
+				calendar.addEvent(event);
+			}
+		}
+		return "addActivityDates.xhtml";
 	}
+
+	/**
+	 * Méthode qui va chercher toutes les dates liées à l'ID de l'Ar en cours si le calendrier fonctionne devient obsolète
+	 */
+//	public String getAllActivityDates(Long arId) {
+//		arDateVm.setArId(arId);
+//		activityDates = activityDateRepository.getAllActivityDateByArId(arId);
+//
+//		return "addActivityDates";
+//	}
 
 	/**
 	 * 
@@ -105,7 +156,7 @@ public class RegisterActivityDateFromArBean implements Serializable {
 
 		// On rafraichit la nouvelle liste suite à l'ajout ou la suppression de
 		// plusieurs activityDate
-		getAllActivityDates(arDateVm.getArId());
+		showArCalendar(arDateVm.getArId());
 
 	}
 
@@ -153,7 +204,7 @@ public class RegisterActivityDateFromArBean implements Serializable {
 			activityDateRepository.delete(activityDateToDelete);
 		}
 		
-		getAllActivityDates(arDateVm.getArId());
+		showArCalendar(arDateVm.getArId());
 		
 	}
 
@@ -180,6 +231,39 @@ public class RegisterActivityDateFromArBean implements Serializable {
 			addDate();
 		}
 	
+	}
+
+	//Getters & setters
+	public List<ActivityDate> getActivityDates() {
+		return activityDates;
+	}
+
+	public void setActivityDates(List<ActivityDate> activityDates) {
+		this.activityDates = activityDates;
+	}
+
+	public ArDateViewModel getArDateVm() {
+		return arDateVm;
+	}
+
+	public void setArDateVm(ArDateViewModel arDateVm) {
+		this.arDateVm = arDateVm;
+	}
+	
+	public ArCalendarViewModel getArCalendarVM() {
+		return arCalendarVM;
+	}
+
+	public void setArCalendarVM(ArCalendarViewModel arCalendarVM) {
+		this.arCalendarVM = arCalendarVM;
+	}
+
+	public ScheduleModel getCalendar() {
+		return calendar;
+	}
+
+	public void setCalendar(ScheduleModel calendar) {
+		this.calendar = calendar;
 	}
 
 }

@@ -61,7 +61,7 @@ public class RegisterArBean implements Serializable {
 		Long userConnectedId = SessionUtils.getUserIdFromSession();
 		arRepo.register(userRepo.findUserById(userConnectedId));
 		
-		addNotification(userConnectedId);
+		notifBean.addNotification(userConnectedId, "Cra créé avec succès", ClassContextEnum.SUCCESS);
 		
 		notifBean.load();
 	
@@ -69,11 +69,5 @@ public class RegisterArBean implements Serializable {
 		
 		return "showAr";
 	}
-	
-	public void addNotification(Long id) {
-		notifRepo.createNotification(id, "Cra créé avec succès", ClassContextEnum.SUCCESS);
-
-	}
-	
 	
 }

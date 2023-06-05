@@ -11,6 +11,7 @@
 	</ui:define>
 
 	<ui:define name="content">
+	
 		<h:dataTable value="#{showMissionsBean.missions}" var="mission">
 
 			<h:column>
@@ -41,7 +42,17 @@
 				<h:form>
 					<h:commandButton
 						action="#{editMissionBean.showEditMission(mission.id)}"
-						value="Update" />
+						value="Modifier" />
+				</h:form>
+
+			</h:column>
+			<h:column>
+				<f:facet name="header">Notes de mission</f:facet>
+
+				<h:form>
+					<h:commandButton
+						action="#{showMissionUserFeedbackBean.showView(mission.id)}"
+						value="Voir" />
 				</h:form>
 
 			</h:column>

@@ -31,16 +31,6 @@ public class UserFeedBackRepository {
 		return userFeedback.getId();
 	}
 	
-	@SuppressWarnings("unchecked")
-	public List<MissionUser> getAllActiveUserFeedbackByUserConnected(){
-		
-		Query query = em.createQuery("SELECT mu FROM MissionUser mu JOIN mu.mission m JOIN mu.userFeedback uf WHERE mu.missionState = :active AND mu.user.id = :userId ");
-		query.setParameter("active", StatusEnum.ACTIVE);
-		query.setParameter("userId", SessionUtils.getUserIdFromSession());
-		
-		return query.getResultList();
-	}
-	
 	public void update(UserFeedback userFeedback) {
 		UserFeedback oldUserFeedback = findById(userFeedback.getId());
 		oldUserFeedback.setComment(userFeedback.getComment());
@@ -56,5 +46,31 @@ public class UserFeedBackRepository {
 		query.setParameter("id", id);
 		
 		return (UserFeedback) query.getSingleResult();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<MissionUser> getAllActiveUserFeedbackByUserConnected(){
+		
+		Query query = em.createQuery("SELECT mu FROM MissionUser mu JOIN mu.mission m JOIN mu.userFeedback uf WHERE mu.missionState = :active AND mu.user.id = :userId ");
+		query.setParameter("active", StatusEnum.ACTIVE);
+		query.setParameter("userId", SessionUtils.getUserIdFromSession());
+		
+		return query.getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<MissionUser> getAllUserFeedbackByUserConnected() {
+		
+		Query query = em.createQuery("SELECT mu FROM MissionUser mu JOIN mu.userFeedback uf WHERE mu.user.id = :userId");
+		query.setParameter("userId", SessionUtils.getUserIdFromSession());
+		return query.getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<MissionUser> getAllUserFeedbackByMissionId(Long id) {
+		Query query = em.createQuery("SELECT mu FROM MissionUser mu JOIN mu.userFeedback uf JOIN mu.user u WHERE mu.mission.id = :missionId");
+		query.setParameter("missionId",id);
+		
+		return query.getResultList();
 	}
 }

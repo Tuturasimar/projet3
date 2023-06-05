@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
+import fr.isika.cda.entities.common.ClassContextEnum;
 import fr.isika.cda.entities.users.Notification;
 import fr.isika.cda.repository.NotificationRepository;
 
@@ -45,6 +46,10 @@ public class NotificationBean {
 			notificationRepo.delete(notification);
 		}
 		load();
+	}
+	
+	public void addNotification(Long id, String message, ClassContextEnum bootstrapClass) {
+		notificationRepo.createNotification(id, message, bootstrapClass);
 	}
 	
 	

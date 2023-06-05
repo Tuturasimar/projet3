@@ -56,8 +56,7 @@ public class DataInit {
 		company.setName("BeMyTech");
 		company.setStatus(StatusEnum.ACTIVE);
 		company.setPhone(0606060606);
-		company.setSiren(123456789);
-		
+		company.setSiren(123456789);		
 
 		em.persist(company);
 		

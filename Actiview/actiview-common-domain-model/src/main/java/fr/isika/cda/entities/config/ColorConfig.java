@@ -20,7 +20,6 @@ public class ColorConfig implements Serializable {
 	private long id;
 
 	private String buttonColor;
-	private String fontColor;
 	private String backgroundColor;
 	private String titleColor;
 	private String textColor;
@@ -31,14 +30,6 @@ public class ColorConfig implements Serializable {
 
 	public void setButtonColor(String buttonColor) {
 		this.buttonColor = buttonColor;
-	}
-
-	public String getFontColor() {
-		return fontColor;
-	}
-
-	public void setFontColor(String fontColor) {
-		this.fontColor = fontColor;
 	}
 
 	public long getId() {

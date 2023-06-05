@@ -39,5 +39,24 @@ public class CSSRepository {
 						.getSingleResult();
 		return colorConfig.getButtonColor();
 	}
+	
+	public void delete(ColorConfig colorConfig) {
+		em.remove(em.contains(colorConfig) ? colorConfig : em.merge(colorConfig));
+	}
+	
+	public ColorConfig getAllColorConfig() {
+		ColorConfig colorConfig = new ColorConfig();
+		colorConfig = em.createQuery("SELECT cc FROM ColorConfig cc", ColorConfig.class)
+						.getSingleResult();
+		return colorConfig;
+	}
+	
+	public void checkExistingColorConfig() {
+		ColorConfig colorConfigToDelete = getAllColorConfig();
+		if (colorConfigToDelete != null) {
+			delete(colorConfigToDelete);
+		}
+	}
+
 
 }

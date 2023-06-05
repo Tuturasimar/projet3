@@ -19,6 +19,7 @@ import org.primefaces.component.colorpicker.ColorPicker;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
+import fr.isika.cda.repository.CSSRepository;
 import fr.isika.cda.repository.ColorConfigRepository;
 import fr.isika.cda.repository.ImageConfigRepository;
 import fr.isika.cda.utils.FileUploadUtils;
@@ -34,6 +35,9 @@ public class PersonalizationBean {
 
 	@Inject
 	private ColorConfigRepository colorConfigRepo;
+	
+	@Inject
+	private CSSRepository CSSRepo;
 
 	private ImageConfigViewModel imgConfigVm = new ImageConfigViewModel();
 	private ColorConfigViewModel colorConfigVm = new ColorConfigViewModel();
@@ -49,6 +53,7 @@ public class PersonalizationBean {
 	private String template;
 
 	public String save() {
+		CSSRepo.checkExistingColorConfig();
 		imgConfigRepo.save(imgConfigVm);
 		imgConfigVm = new ImageConfigViewModel();
 		

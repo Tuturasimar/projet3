@@ -8,10 +8,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
+import org.primefaces.component.colorpicker.ColorPicker;
+
 import fr.isika.cda.entities.common.JobEnum;
 import fr.isika.cda.entities.common.RoleTypeEnum;
+import fr.isika.cda.entities.config.ColorConfig;
+import fr.isika.cda.repository.ColorConfigRepository;
 import fr.isika.cda.repository.CompanyRepository;
 import fr.isika.cda.repository.UserRepository;
+import fr.isika.cda.viewmodels.ColorConfigViewModel;
 import fr.isika.cda.viewmodels.CompanyViewModel;
 import fr.isika.cda.viewmodels.UserViewModel;
 
@@ -24,11 +29,24 @@ public class RegisterCompanyBean {
 
 	@Inject
 	UserRepository userRepo;
+	
+	@Inject
+	ColorConfigRepository colorConfigRepo;
 
 	private CompanyViewModel companyViewModel = new CompanyViewModel();
 
 	private UserViewModel userVm = new UserViewModel();
+	
+	private ColorConfigViewModel colorConfigVm = new ColorConfigViewModel();
 
+	public ColorConfigViewModel getColorConfigVm() {
+		return colorConfigVm;
+	}
+
+	public void setColorConfigVm(ColorConfigViewModel colorConfigVm) {
+		this.colorConfigVm = colorConfigVm;
+	}
+	
 	public CompanyViewModel getCompanyViewModel() {
 		return companyViewModel;
 	}
@@ -74,6 +92,14 @@ public class RegisterCompanyBean {
 			userVm.setPassword(UUID.randomUUID().toString());
 
 			userRepo.registerUser(userVm);
+			
+//			//Création de la ColorConfig par défaut lié à la company
+			colorConfigVm.setBackgroundColor("7FB2AE");
+			colorConfigVm.setButtonColor("8FBCB8");
+			colorConfigVm.setTextColor("000000");
+			colorConfigVm.setTitleColor("e01d1d");
+			
+			colorConfigRepo.save(colorConfigVm);
 
 			// TODO ajout d'un message de validation "votre inscription a bien été
 			// effectuée"

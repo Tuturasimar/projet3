@@ -24,3 +24,19 @@
         --text-color: #f5f5f5;
         --background-color: #424242;
       }
+      
+      .redCalendarItem {
+      background-color: #A52B2B !important;
+      }
+      
+      .purpleCalendarItem {
+      background-color: #7138CE !important;
+      }
+      
+      .blueCalendarItem {
+      background-color: #5081FF !important;
+      }
+      
+      .fc-daygrid-event-dot{
+      visibility: hidden
+      }

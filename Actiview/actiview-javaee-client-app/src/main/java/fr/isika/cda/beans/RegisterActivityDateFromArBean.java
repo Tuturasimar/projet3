@@ -17,6 +17,9 @@ import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleModel;
 
+import fr.isika.cda.entities.activities.Activity;
+import fr.isika.cda.entities.activities.Formation;
+import fr.isika.cda.entities.activities.Mission;
 import fr.isika.cda.entities.ar.ActivityDate;
 import fr.isika.cda.entities.ar.Ar;
 import fr.isika.cda.entities.ar.ArActivity;
@@ -101,32 +104,51 @@ public class RegisterActivityDateFromArBean implements Serializable {
 		List<ActivityDate> activityDatesAsEvents = arCalendarVM.getActivityDates();
 		for (ActivityDate activityDateAsEvent : activityDatesAsEvents) {
 			// création de l'event en fonction de la valeur de PartOfDay
+			String colorClass = getColorClass(activityDateAsEvent);
+
 			if (activityDateAsEvent.getPartOfDay() == PartDayEnum.MORNING) {
 				DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
 						.title(activityDateRepository.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
+						.styleClass(colorClass)
 						.startDate(activityDateAsEvent.getDate().atTime(9, 0))
 						.endDate(activityDateAsEvent.getDate().atTime(13, 0)).build();
 				calendar.addEvent(event);
 			} else if (activityDateAsEvent.getPartOfDay() == PartDayEnum.AFTERNOON) {
 				DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
 						.title(activityDateRepository.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
+						.styleClass(colorClass)
 						.startDate(activityDateAsEvent.getDate().atTime(14, 0))
 						.endDate(activityDateAsEvent.getDate().atTime(18, 0)).build();
 				calendar.addEvent(event);
 			} else {
 				DefaultScheduleEvent<?> eventMorning = DefaultScheduleEvent.builder()
 						.title(activityDateRepository.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
+						.styleClass(colorClass)
 						.startDate(activityDateAsEvent.getDate().atTime(9, 0))
 						.endDate(activityDateAsEvent.getDate().atTime(13, 0)).build();
 				calendar.addEvent(eventMorning);
 				DefaultScheduleEvent<?> eventAfternoon = DefaultScheduleEvent.builder()
 						.title(activityDateRepository.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
+						.styleClass(colorClass)
 						.startDate(activityDateAsEvent.getDate().atTime(14, 0))
 						.endDate(activityDateAsEvent.getDate().atTime(18, 0)).build();
 				calendar.addEvent(eventAfternoon);
 			}
 		}
 		return "addActivityDates.xhtml";
+	}
+	
+	public String getColorClass(ActivityDate activityDateAsEvent) {
+		Activity activity = activityDateAsEvent.getArActivity().getActivity();
+		
+		if(activity.getClass() == Mission.class) {
+			return "redCalendarItem";
+		} else if(activity.getClass() == Formation.class) {
+			return "purpleCalendarItem";
+		} else {
+			return "blueCalendarItem";
+		}
+	
 	}
 
 	/**

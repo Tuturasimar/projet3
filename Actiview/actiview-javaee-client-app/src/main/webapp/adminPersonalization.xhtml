@@ -4,56 +4,54 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/templates/default.xhtml"
-                xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="header">
 		<h1>Page de personnalisation</h1>
 	</ui:define>
-	
-	<ui:define name ="content">
-	
+
+	<ui:define name="content">
+
 		<h1>Bienvenue sur la page de personnalisation</h1>
-	
-		<h2>Pour commencer, choisissez un thème : </h2>
+
+		<h2>Pour commencer, choisissez un thème :</h2>
 		
-		<div class ="template">
-		<h:form>
-		<p:selectOneRadio id="template2" value="#{personalizationBean.template}" layout="responsive" columns="3" unselectable="true">
-            <f:selectItems value="#{personalizationBean.templates}" var="template" itemLabel="#{template}" itemValue="#{template}"/>
-        </p:selectOneRadio>
-		</h:form>
+		<p:growl id="customize" showDetail="true"></p:growl>
+
+		<div class="template">
+			<h:form>
+				<p:selectOneRadio id="templateTest" value="#{personalizationBean.template}">
+					<f:selectItem itemLabel="Dark mode" itemValue="DarkMode"/>
+					<f:selectItem itemLabel="Light mode" itemValue="LightMode" />
+					<p:ajax update="customize" process="@this" listener="#{personalizationBean.saveTemplateChoice}"/>
+				</p:selectOneRadio>	
+			</h:form>
 		</div>
-		
-		<h2>Choisissez un logo : </h2>
-		
-		<p:growl id ="messages" showDetail="true"></p:growl>
-		
+
+		<h2>Choisissez un logo :</h2>
+
 		<div class="cardLogo">
-		<h:form enctype="multipart/form-data">
-			<p:fileUpload listener="#{personalizationBean.uploadLogo}" 
-							mode="advanced" 
-							dragDropSupport="false"
-			                update="messages" />
-		</h:form>
+			<h:form enctype="multipart/form-data">
+				<p:fileUpload listener="#{personalizationBean.uploadLogo}"
+					mode="advanced" dragDropSupport="false" update="customize" />
+			</h:form>
 		</div>
-		
-		<h2>Choisissez une bannière : </h2>
-		
+
+		<h2>Choisissez une bannière :</h2>
+
 		<div class="cardBanner">
-		<h:form enctype="multipart/form-data">
-			<p:fileUpload listener="#{personalizationBean.uploadBanner}" 
-							mode="advanced" 
-							dragDropSupport="false"
-			                update="messages" />
-		</h:form>
+			<h:form enctype="multipart/form-data">
+				<p:fileUpload listener="#{personalizationBean.uploadBanner}"
+					mode="advanced" dragDropSupport="false" update="customize" />
+			</h:form>
 		</div>
-		
+
 		<h:form id="configSpaceForm">
-			<h:commandButton action="#{personalizationBean.save()}" value="Save" />
+			<h:commandButton action="#{personalizationBean.save()}" value="Save"/>
 		</h:form>
-		
-		
-		
-		
+
+
+
+
 	</ui:define>
-	</ui:composition>
+</ui:composition>

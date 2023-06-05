@@ -69,4 +69,12 @@ public class FormationRepository {
 		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Formation> findAllFormationsByCompanyId(Long companyId) {
+		Query query = em.createQuery("SELECT f FROM Formation f JOIN f.creator u WHERE u.company.id = :id", Formation.class);
+		query.setParameter("id", companyId);
+		
+		return query.getResultList();
+	}
+
 }

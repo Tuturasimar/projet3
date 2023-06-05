@@ -236,6 +236,23 @@ public class UserRepository {
 		
 		return (Company) query.getSingleResult();
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<User> findAllUsersByCompanyId(Long id){
+		try {
+			Query query = em.createQuery("SELECT u FROM User u WHERE u.company.id = :companyId");
+			query.setParameter("companyId", id);
+			
+			return query.getResultList();
+		} catch (Exception e) {
+			return null;
+		}
+		
+	}
+	
+	
+	
 
 	
 	

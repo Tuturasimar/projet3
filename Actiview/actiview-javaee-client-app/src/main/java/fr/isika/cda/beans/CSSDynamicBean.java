@@ -13,13 +13,22 @@ public class CSSDynamicBean {
 	
 	public String getBackgroundColor() {
 		String backgroundColor = "#" + CSSRepo.getBackgroundColor();
-		System.out.println(backgroundColor);
 		return backgroundColor;
 	}
 	
 	public String getColorTitle() {
 		String colorTitle = "#" + CSSRepo.getColorTitle();
 		return colorTitle;
+	}
+	
+	public String getColorText() {
+		String colorText = "#" + CSSRepo.getColorText();
+		return colorText;
+	}
+	
+	public String getColorButton() {
+		String colorButton = "#" + CSSRepo.getColorButton();
+		return colorButton;
 	}
 
 	public CSSRepository getCSSRepo() {

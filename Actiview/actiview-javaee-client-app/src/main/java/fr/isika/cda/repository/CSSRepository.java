@@ -25,5 +25,19 @@ public class CSSRepository {
 						.getSingleResult();
 		return colorConfig.getTitleColor();
 	}
+	
+	public String getColorText() {
+		ColorConfig colorConfig = new ColorConfig();
+		colorConfig = em.createQuery("SELECT cc FROM ColorConfig cc", ColorConfig.class)
+						.getSingleResult();
+		return colorConfig.getTextColor();
+	}
+	
+	public String getColorButton() {
+		ColorConfig colorConfig = new ColorConfig();
+		colorConfig = em.createQuery("SELECT cc FROM ColorConfig cc", ColorConfig.class)
+						.getSingleResult();
+		return colorConfig.getButtonColor();
+	}
 
 }

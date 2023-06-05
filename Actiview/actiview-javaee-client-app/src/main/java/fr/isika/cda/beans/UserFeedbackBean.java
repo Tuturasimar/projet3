@@ -19,10 +19,6 @@ public class UserFeedbackBean {
 
 	private List<MissionUser> missionUsers;
 	
-	public int getIndex(int index) {
-		return index;
-	}
-
 	public List<MissionUser> getMissionUsers() {
 		return missionUsers;
 	}

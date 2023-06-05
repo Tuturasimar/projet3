@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+    <h:head>
+        <title>Actiview</title>
+        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <h:outputStylesheet library="bootstrap-5.0.2-dist" name="css/bootstrap.min.css" />
+        <h:outputStylesheet library="css" name="stylesheet.css" />
+        
+    </h:head>
+    <h:body>
+    	<h:outputScript name="bootstrap.min.js" library="js"></h:outputScript>
+        <ui:composition>
+            <nav class="navbar navbar-default">
+<!--                 <div class="container-fluid"> -->
+                
+                  <!-- Brand and toggle get grouped for better mobile display -->
+                  <div class="navbar-header">
+                    <h:link class="navbar-brand" outcome="index.xhtml">
+                    	<h:graphicImage library="img" name="logo.png" id="logo" class="logo" width="25%" height="25%"/>
+                   	</h:link>
+                  
+			        <p:menubar>
+		                <p:submenu label="Formations" icon="pi pi-fw pi-calendar">
+		                	<p:menuitem value="Créer une formation" outcome="CreateFormation.xhtml" />
+		                	<p:menuitem value="Liste des formations" outcome="FormationList.xhtml" />
+	                	</p:submenu>
+		                
+			        	<p:submenu label="Missions" icon="pi pi-fw pi-calendar">
+		                	<p:menuitem value="Créer une mission" outcome="createMission.xhtml" />
+	                	</p:submenu>
+	                	
+	                	<p:divider layout="vertical"/>
+
+			          <f:facet name="options">
+			              <div class="ui-input-icon-left mr-2">
+			                  <i class="pi pi-fw pi-search" />
+			                  <p:inputText placeholder="Search"/>
+			              </div>
+			              <p:submenu label="Mon profil" icon="pi pi-fw pi-calendar">
+			              	<h:form>
+		                		<p:button value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
+		                	</h:form>
+	                	</p:submenu>
+			          </f:facet>
+					</p:menubar>                    
+                  </div>
+                    
+<!--                 </div>/.container-fluid -->
+              </nav>
+        </ui:composition>
+    </h:body>
+</html>

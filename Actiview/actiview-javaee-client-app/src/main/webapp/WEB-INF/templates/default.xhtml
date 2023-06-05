@@ -23,6 +23,8 @@
 	<div id="container">
 
 		<div id="header">
+			<ui:include src="header.xhtml" />
+		
 			<ui:insert name="Entete"></ui:insert>
 
 			<h:panelGrid col="1" rendered="#{notificationBean.notification}">
@@ -52,10 +54,7 @@
 	</div>
 
 	<div id="footer">
-		<div>
-			<p>You have successfully deployed a Java EE 7 Enterprise
-				Application.</p>
-		</div>
+		<ui:include src="footer.xhtml" />
 	</div>
 	<h:outputScript library="js" name="primeFacesLocales.js"></h:outputScript>
 

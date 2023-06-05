@@ -26,8 +26,9 @@ import fr.isika.cda.entities.common.FormationStatusEnum;
 import fr.isika.cda.entities.common.JobEnum;
 import fr.isika.cda.entities.common.LocationFormationEnum;
 import fr.isika.cda.entities.common.MissionTypeEnum;
-
+import fr.isika.cda.entities.config.ColorConfig;
 import fr.isika.cda.entities.config.Company;
+import fr.isika.cda.entities.config.Config;
 import fr.isika.cda.entities.users.Notification;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserData;
@@ -35,6 +36,7 @@ import fr.isika.cda.entities.users.UserRole;
 import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.StatusEnum;
 import fr.isika.cda.entities.config.Feature;
+import fr.isika.cda.entities.config.ImageConfig;
 import fr.isika.cda.entities.config.Options;
 
 @Singleton
@@ -58,6 +60,20 @@ public class DataInit {
 		
 
 		em.persist(company);
+		
+		//Mock donnée ColorConfig liée à l'ESN
+		ColorConfig colorConfigDefault = new ColorConfig();
+		colorConfigDefault.setBackgroundColor("7FB2AE");
+		colorConfigDefault.setButtonColor("8FBCB8");
+		colorConfigDefault.setTextColor("000000");
+		colorConfigDefault.setTitleColor("FFFFFF");
+		
+		Config config = new Config();
+		config.setColorConfig(colorConfigDefault);
+		config.setCompany(company);
+		config.setImageConfig(new ImageConfig());
+		
+		em.persist(config);
 
 		// Mock donnée UserData liée à user
 		UserData data = new UserData();

@@ -44,6 +44,7 @@
  
       p {
         color: var(--secondary-color);
+        font-family:sans-serif;
         font-family: "Roboto", Baskerville, Source;
         font-family: "Baskerville",Roboto , Source;
         font-family: "Source", Baskerville, Roboto ;

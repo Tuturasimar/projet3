@@ -62,8 +62,8 @@ public class RegisterActivityDateFromArBean implements Serializable {
 
 	@Inject
 	private ArRepository arRepo;
-	
-	@ManagedProperty(value="#{notificationBean}")
+
+	@ManagedProperty(value = "#{notificationBean}")
 	private NotificationBean notifBean;
 
 	/**
@@ -109,46 +109,42 @@ public class RegisterActivityDateFromArBean implements Serializable {
 			if (activityDateAsEvent.getPartOfDay() == PartDayEnum.MORNING) {
 				DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
 						.title(activityDateRepository.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
-						.styleClass(colorClass)
-						.startDate(activityDateAsEvent.getDate().atTime(9, 0))
+						.styleClass(colorClass).startDate(activityDateAsEvent.getDate().atTime(9, 0))
 						.endDate(activityDateAsEvent.getDate().atTime(13, 0)).build();
 				calendar.addEvent(event);
 			} else if (activityDateAsEvent.getPartOfDay() == PartDayEnum.AFTERNOON) {
 				DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
 						.title(activityDateRepository.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
-						.styleClass(colorClass)
-						.startDate(activityDateAsEvent.getDate().atTime(14, 0))
+						.styleClass(colorClass).startDate(activityDateAsEvent.getDate().atTime(14, 0))
 						.endDate(activityDateAsEvent.getDate().atTime(18, 0)).build();
 				calendar.addEvent(event);
 			} else {
 				DefaultScheduleEvent<?> eventMorning = DefaultScheduleEvent.builder()
 						.title(activityDateRepository.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
-						.styleClass(colorClass)
-						.startDate(activityDateAsEvent.getDate().atTime(9, 0))
+						.styleClass(colorClass).startDate(activityDateAsEvent.getDate().atTime(9, 0))
 						.endDate(activityDateAsEvent.getDate().atTime(13, 0)).build();
 				calendar.addEvent(eventMorning);
 				DefaultScheduleEvent<?> eventAfternoon = DefaultScheduleEvent.builder()
 						.title(activityDateRepository.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
-						.styleClass(colorClass)
-						.startDate(activityDateAsEvent.getDate().atTime(14, 0))
+						.styleClass(colorClass).startDate(activityDateAsEvent.getDate().atTime(14, 0))
 						.endDate(activityDateAsEvent.getDate().atTime(18, 0)).build();
 				calendar.addEvent(eventAfternoon);
 			}
 		}
 		return "addActivityDates.xhtml";
 	}
-	
+
 	public String getColorClass(ActivityDate activityDateAsEvent) {
 		Activity activity = activityDateAsEvent.getArActivity().getActivity();
-		
-		if(activity.getClass() == Mission.class) {
+
+		if (activity.getClass() == Mission.class) {
 			return "redCalendarItem";
-		} else if(activity.getClass() == Formation.class) {
+		} else if (activity.getClass() == Formation.class) {
 			return "purpleCalendarItem";
 		} else {
 			return "blueCalendarItem";
 		}
-	
+
 	}
 
 	/**
@@ -185,11 +181,12 @@ public class RegisterActivityDateFromArBean implements Serializable {
 			// plusieurs activityDate
 			showArCalendar(arDateVm.getArId());
 		} else {
-			
-			notifBean.addNotification(SessionUtils.getUserIdFromSession(), "La date renseignée n'appartient pas au mois en cours", ClassContextEnum.DANGER);
-			
+
+			notifBean.addNotification(SessionUtils.getUserIdFromSession(),
+					"La date renseignée n'appartient pas au mois en cours", ClassContextEnum.DANGER);
+
 			notifBean.load();
-			
+
 		}
 	}
 
@@ -262,6 +259,39 @@ public class RegisterActivityDateFromArBean implements Serializable {
 				arDateVm.setDate(dateToAdd);
 			addDate();
 		}
+	}
+
+	public void addRangeDate() {
+
+		Ar actualAr = arRepo.findById(arDateVm.getArId());
+
+		LocalDate actualDate = actualAr.getCreatedAt();
+
+		if (actualDate.getMonthValue() == arDateVm.getDateFirst().getMonthValue()
+				&& actualDate.getMonthValue() == arDateVm.getDateLast().getMonthValue()) {
+			if (arDateVm.getDateLast().compareTo(arDateVm.getDateFirst()) > 0) {
+				Stream<LocalDate> allDaysInRangeStream = arDateVm.getDateFirst()
+						.datesUntil(arDateVm.getDateLast().plusDays(1));
+
+				List<LocalDate> allDaysInRange = allDaysInRangeStream.collect(Collectors.toList());
+
+				for (LocalDate dateToAdd : allDaysInRange) {
+					if (dateToAdd.getDayOfWeek() != DayOfWeek.SATURDAY && dateToAdd.getDayOfWeek() != DayOfWeek.SUNDAY)
+						arDateVm.setDate(dateToAdd);
+					addDate();
+				}
+			} else {
+				notifBean.addNotification(SessionUtils.getUserIdFromSession(),
+						"Les dates renseignées doivent être cohérentes", ClassContextEnum.DANGER);
+
+				notifBean.load();
+			}
+		} else {
+			notifBean.addNotification(SessionUtils.getUserIdFromSession(),
+					"Les dates renseignées doivent appartenir au mois du CRA en cours", ClassContextEnum.DANGER);
+
+			notifBean.load();
+		}
 
 	}
 
@@ -310,11 +340,11 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	public void setCalendar(ScheduleModel calendar) {
 		this.calendar = calendar;
 	}
-	
+
 	public NotificationBean getNotifBean() {
 		return notifBean;
 	}
-	
+
 	public void setNotifBean(NotificationBean notifBean) {
 		this.notifBean = notifBean;
 	}

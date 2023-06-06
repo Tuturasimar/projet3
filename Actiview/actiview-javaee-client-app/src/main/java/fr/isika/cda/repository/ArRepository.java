@@ -27,6 +27,13 @@ public class ArRepository {
 	private EntityManager em;
 	
 
+	/**
+	 * Méthode restituant un Ar en fonction de la date de création de l'Ar ainsi que de l'Id du user
+	 * @param userId L'Id du User
+	 * @param month Le mois de la création du CRA
+	 * @param year L'année de la création du CRA
+	 * @return Ar
+	 */
 	public Ar findByUserAndCreatedAt(Long userId, int month, int year) {
 
 		try {
@@ -43,6 +50,13 @@ public class ArRepository {
 		}
 	}
 
+	/**
+	 * Méthode restituant un Ar ainsi que les informations liées au User et à ses UserData
+	 * @param userId Id du User
+	 * @param month Le mois de la création du CRA
+	 * @param year L'année de la création du CRA
+	 * @return
+	 */
 	public Ar findArWithUserDataByUserAndCreatedAt(Long userId, int month, int year) {
 
 		try {
@@ -62,6 +76,10 @@ public class ArRepository {
 		}
 	}
 	
+	/**
+	 * Méthode enregistrant en BDD l'AR nouvellement créé
+	 * @param user
+	 */
 	public void register(User user) {
 		Ar ar = new Ar();
 
@@ -75,10 +93,20 @@ public class ArRepository {
 
 	}
 
+	/**
+	 * Méthode pour récupérer un Ar en fonction de son id
+	 * @param id Id de l'Ar
+	 * @return Ar
+	 */
 	public Ar findById(Long id) {
 		return (Ar) em.createQuery("SELECT a FROM Ar a WHERE a.id = " + id).getSingleResult();
 	}
 
+	/**
+	 * Méthode permettant de changer l'état de l'AR
+	 * @param state Nouveau statut de l'AR
+	 * @param arVm ArViewModel
+	 */
 	public void changeState(StateAr state, ArViewModel arVm) {
 		Ar ar = findById(arVm.getAr().getId());
 		ar.setUpdatedAt(LocalDate.now());

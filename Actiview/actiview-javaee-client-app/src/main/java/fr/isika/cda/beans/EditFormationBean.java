@@ -25,6 +25,11 @@ public class EditFormationBean {
 		this.editFormaVm = editFormaVm;
 	}
 	
+	/**
+	 * Méthode permettant le pré-remplissage du formulaire d'édition
+	 * @param id Id de la formation
+	 * @return String (La vue que l'on souhaite afficher)
+	 */
 	public String showEditFormation(Long id) {
 		Formation formationToUpdate = formationRepo.findById(id);
 		
@@ -42,6 +47,10 @@ public class EditFormationBean {
 		return "UpdateFormation.xhtml";
 	}
 	
+	/**
+	 * Méthode pour enregistrer les modifications
+	 * @return String (La vue que l'on souhaite afficher)
+	 */
 	public String editFormation() {
 		formationRepo.updateFormation(editFormaVm);
 		return "FormationList";

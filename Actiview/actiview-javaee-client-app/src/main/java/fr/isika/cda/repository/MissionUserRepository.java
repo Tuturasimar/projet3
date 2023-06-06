@@ -26,6 +26,11 @@ public class MissionUserRepository {
 	@PersistenceContext
 	private EntityManager em;
 
+	/**
+	 * Méthode pour récupérer toutes les attributions de mission des employés selon le login de leur manager
+	 * @param managerLogin login du manager
+	 * @return List MissionUser
+	 */
 	@SuppressWarnings("unchecked")
 	public List<MissionUser> getAllMissionUserByManagerLogin(String managerLogin) {
 		Query query = em.createQuery(
@@ -35,6 +40,10 @@ public class MissionUserRepository {
 		return query.getResultList();
 	}
 
+	/**
+	 * Méthode pour enregistrer une nouvelle attribution de Mission
+	 * @param missionUserVm MissionUserViewModel
+	 */
 	public void register(MissionUserViewModel missionUserVm) {
 
 		MissionUser missionUser = new MissionUser();
@@ -48,6 +57,11 @@ public class MissionUserRepository {
 
 	}
 
+	/**
+	 * Méthode pour vérifier si l'attribution de mission existe déjà
+	 * @param missionUserVm MissionUserViewModel
+	 * @return true si elle existe | false si elle n'existe pas
+	 */
 	public boolean checkExistingMissionUser(MissionUserViewModel missionUserVm) {
 
 		try {
@@ -63,14 +77,28 @@ public class MissionUserRepository {
 
 	}
 
+	/**
+	 * Méthode pour récupérer une MissionUser en fonction de son id
+	 * @param id id de la MissionUser
+	 * @return MissionUser
+	 */
 	public MissionUser findMissionUserById(Long id) {
 		return (MissionUser) em.createQuery("SELECT mu FROM MissionUser mu WHERE id = " + id).getSingleResult();
 	}
 
+	/**
+	 * Méthode pour mettre à jour une MissionUser
+	 * @param missionUser MissionUser
+	 */
 	public void updateMissionUser(MissionUser missionUser) {
 		em.merge(missionUser);
 	}
 	
+	/**
+	 * Méthode pour récupérer les missions en fonction de l'id du user et si l'attribution de mission est active
+	 * @param id id du User
+	 * @return List Mission
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Mission> findAllAffectedMissionsByUserId(Long id){
 		

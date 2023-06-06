@@ -3,7 +3,6 @@ package fr.isika.cda.repository;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQuery;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -20,8 +19,6 @@ import fr.isika.cda.entities.ar.ArActivity;
  * @author Trévor
  *
  */
-
-@NamedQuery(name = "findArActivityByForeignKeyId", query = "SELECT ara FROM ar_activity ara WHERE activity_id = :activityId AND ar_id = :arId")
 
 public class ArActivityRepository {
 

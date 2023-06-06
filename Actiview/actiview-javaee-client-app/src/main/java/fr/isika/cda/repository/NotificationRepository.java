@@ -18,6 +18,12 @@ public class NotificationRepository {
 	@PersistenceContext
 	private EntityManager em;
 	
+	/**
+	 * Méthode pour créer une nouvelle notification
+	 * @param userId id du User qui recevra la notification
+	 * @param message Message de la notification
+	 * @param bootStrapClass Classe Bootstrap pour l'affichage
+	 */
 	public void createNotification(Long userId, String message, ClassContextEnum bootStrapClass) {
 		Notification notif = new Notification();
 		notif.setUser(em.getReference(User.class, userId));
@@ -27,6 +33,10 @@ public class NotificationRepository {
 		em.persist(notif);
 	}
 	
+	/**
+	 * Méthode pour récupérer toutes les notifications d'un utilisateur connecté
+	 * @return List Notification
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Notification> getAllNotificationsByUserConnected(){
 		try {
@@ -39,6 +49,10 @@ public class NotificationRepository {
 		}
 	}
 	
+	/**
+	 * Méthode pour supprimer une notification
+	 * @param notification
+	 */
 	public void delete(Notification notification) {
 		
 		em.remove(em.contains(notification) ? notification : em.merge(notification));

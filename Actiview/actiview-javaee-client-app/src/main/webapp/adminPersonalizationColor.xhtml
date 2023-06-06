@@ -14,25 +14,32 @@
 		<body>
 			<h1>Bienvenue sur la page de personnalisation détaillée</h1>
 			<h2>Police d'écriture :</h2>
+			
+			<p:growl id="customizeColor" showDetail="true"></p:growl>
 
 			<div class="field col-12 md:col-4">
 				<h:form>
-					<p:selectOneMenu id="option"
-						value="#{personalizationBean.font}">
+					<p:selectOneMenu id="option" value="#{personalizationBean.font}">
 						<f:selectItem itemLabel="Sélectionnez une option" itemValue="" />
 						<f:selectItem itemLabel="Roboto" itemValue="Roboto" />
 						<f:selectItem itemLabel="Baskerville" itemValue="Baskerville" />
+						<f:selectItem itemLabel="Par défaut" itemValue="Sans-serif" />
 						<f:facet name="footer">
 							<p:divider styleClass="mt-0" />
 							<h:outputText value="2 options" style="font-weight:bold;" />
 						</f:facet>
+						<p:ajax process="@this" update="customizeColor"
+        listener="#{personalizationBean.saveFontChoice}"/>
 					</p:selectOneMenu>
 				</h:form>
 			</div>
 
+
+   
+
 			<h2>Arrière-plan :</h2>
 
-			<p:growl id="customizeColor" showDetail="true"></p:growl>
+			
 
 			<div class="colorBackground">
 				<h:form>

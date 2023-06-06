@@ -33,6 +33,7 @@ public class ConfigRepository {
 		Config config = new Config();
 		config.setImageConfig(imageConfig);
 		config.setColorConfig(colorConfig);
+		config.setFontConfig(fontConfig);
 
 		config.setCompany(company);
 		

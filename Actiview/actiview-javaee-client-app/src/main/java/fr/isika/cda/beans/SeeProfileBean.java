@@ -14,6 +14,7 @@ import fr.isika.cda.entities.activities.Absence;
 import fr.isika.cda.entities.activities.Formation;
 import fr.isika.cda.entities.activities.Mission;
 import fr.isika.cda.entities.ar.ActivityDate;
+import fr.isika.cda.entities.ar.Ar;
 import fr.isika.cda.entities.ar.PartDayEnum;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserRole;
@@ -57,13 +58,17 @@ public class SeeProfileBean {
 	 */
 	public String showSeeProfileWithStats(String login) {
 		user = userRepo.findUserByLogin(login);
-		Long arId = userRepo.findLatestArByUserId(user.getId());
+		Ar ar = userRepo.findLatestArByUserId(user.getId());
 		Long companyId = userRepo.findCompanyByUserConnected().getId();
-		statEmployeeVM.setArId(arId);
-		statEmployeeVM.setAllActivityDates(activityDateRepo.getAllActivityDateByArId(arId));
+		statEmployeeVM.setArId(ar.getId());
+		statEmployeeVM.setAllActivityDates(activityDateRepo.getAllActivityDateByArId(ar.getId()));
 
+		//Méthode qui mériterait d'être factorisée (mais manque de temps...)
+		
 		// Liste des missions :
+		//On récupère dans un premier temps toutes les missions proposées par l'ESN
 		List<Mission> missions = missionRepo.findAllMissionsByCompanyId(companyId);
+		//On récupère ensuite les activityDate qui correspondent à ces missions
 		List<ActivityDate> allMissionDates = new ArrayList<ActivityDate>();
 		for (Mission mission : missions) {
 			// génère la liste des ActivityDate correspondant à une mission
@@ -71,7 +76,15 @@ public class SeeProfileBean {
 			// récupère les résultats des query dans une liste globale
 			allMissionDates.addAll(missionDates);
 		}
-		statEmployeeVM.setMissionActivityDates(allMissionDates);
+		//Enfin, on ne garde que les ActivityDate correspondant au CRA choisi
+		List<ActivityDate> finalmissionDate = new ArrayList<ActivityDate>();
+		for (ActivityDate missionDate : allMissionDates) {
+			if (missionDate.getArActivity().getAr().getId() == ar.getId()) {
+				finalmissionDate.add(missionDate);
+			}
+		}
+		//On ajoute cette liste finale au viewModel
+		statEmployeeVM.setMissionActivityDates(finalmissionDate);
 
 		// Liste des formations :
 		List<Formation> formations = formationRepo.findAllFormationByCompanyId(companyId);
@@ -82,7 +95,13 @@ public class SeeProfileBean {
 			// récupère les résultats des query dans une liste globale
 			allFormationDates.addAll(formationDates);
 		}
-		statEmployeeVM.setFormationActivityDates(allFormationDates);
+		List<ActivityDate> finalformationDate = new ArrayList<ActivityDate>();
+		for (ActivityDate formationDate : allFormationDates) {
+			if (formationDate.getArActivity().getAr().getId() == ar.getId()) {
+				finalformationDate.add(formationDate);
+			}
+		}
+		statEmployeeVM.setFormationActivityDates(finalformationDate);
 
 		// Liste des absences :
 		List<Absence> absences = absenceRepo.findAllAbsences();
@@ -93,7 +112,14 @@ public class SeeProfileBean {
 			// récupère les résultats des query dans une liste globale
 			allAbsenceDates.addAll(absenceDates);
 		}
-		statEmployeeVM.setAbsenceActivityDates(allAbsenceDates);
+		
+		List<ActivityDate> finalabsenceDate = new ArrayList<ActivityDate>();
+		for (ActivityDate absenceDate : allAbsenceDates) {
+			if (absenceDate.getArActivity().getAr().getId() == ar.getId()) {
+				finalabsenceDate.add(absenceDate);
+			}
+		}
+		statEmployeeVM.setAbsenceActivityDates(finalabsenceDate);
 
 		// calcule les différents nombres d'heures
 		ratios();

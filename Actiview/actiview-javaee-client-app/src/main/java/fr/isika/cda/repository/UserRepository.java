@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import fr.isika.cda.entities.ar.Ar;
 import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.StatusEnum;
 import fr.isika.cda.entities.config.Company;
@@ -164,15 +165,16 @@ public class UserRepository {
 		return (User) query.getSingleResult();
 	}
 	
-	public Long findLatestArByUserId(Long userId) {
+	public Ar findLatestArByUserId(Long userId) {
 		Query query = em.createQuery(""
 				+ "SELECT ar FROM Ar ar "
 				+ "JOIN ar.user u "
 				+ "WHERE u.id = :id "
 				+ "ORDER BY ar.createdAt DESC");
 		query.setParameter("id", userId);
-		
-		return (long) query.getFirstResult();
+		query.setMaxResults(1);
+		Ar latestAr = (Ar) query.getSingleResult();
+		return latestAr;
 	}
 	
 	@SuppressWarnings({ "unchecked" })

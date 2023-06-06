@@ -42,7 +42,7 @@
 					style="font-weight : bold" rendered="#{showArBean.hasSelectedAr()}"></p:outputLabel>
 				<h:outputText value="#{showArBean.arVm.ar.createdAt}"
 					id="arCreatedAt" class="mx-4">
-					<f:convertDateTime type="localDate" pattern="dd.MM.yyyy"></f:convertDateTime>
+					<f:convertDateTime type="localDate" pattern="dd/MM/yyyy"></f:convertDateTime>
 				</h:outputText>
 
 				<p:outputLabel for="arState" value="Etat actuel du CRA : "

@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/WEB-INF/templates/default.xhtml">
+<!-- 	<f:metadata> -->
+<!-- 		<f:viewParam name="id" /> -->
+<!-- 		<f:event -->
+<!-- 			listener="#{createContractBean.showContractCreationForm(id)}" -->
+<!-- 			type="preRenderView"></f:event> -->
+<!-- 	</f:metadata> -->
+	<ui:define name="Entete">
+		<h2>Veuillez choisir votre forfait</h2>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:panelGrid columns="3">
+
+				<h:outputLabel id="featureLabel" value="Forfait" />
+				<p:selectOneMenu id="featureSelectMenu"
+					value="#{createContractBean.contractVM.featureId}">
+					<f:selectItem itemLabel="Sélectionner un forfait" itemValue="null"
+						noSelectionOption="true" />
+					<f:selectItems value="#{createContractBean.findAllFeatures()}"
+						var="feature" itemLabel="#{feature.label}" itemValue="#{feature.id}" />
+				</p:selectOneMenu>
+				<h:message for="featureSelectMenu" />
+				<span/>
+
+				<p:commandButton value="Valider" action="#{createContractBean.register()}" />
+			</h:panelGrid>
+		</h:form>
+		<p>
+			<h:link outcome="index.html">Index (à enlever)</h:link>
+		</p>
+	</ui:define>
+</ui:composition>
+
+</html>

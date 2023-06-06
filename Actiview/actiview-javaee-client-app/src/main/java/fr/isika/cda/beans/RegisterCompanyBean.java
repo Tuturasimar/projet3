@@ -52,6 +52,7 @@ public class RegisterCompanyBean {
 
 			// Création de la Company
 			Long companyId = companyRepo.register(companyViewModel);
+			companyViewModel.setCompanyId(companyId);
 
 			// Lien avec la Company
 			userVm.setCompanyId(companyId);
@@ -78,7 +79,7 @@ public class RegisterCompanyBean {
 			// effectuée"
 			// TODO ajout d'une notification au superadmin
 
-			return "index";
+			return "CreateContract?id=" + companyId;
 		} else {
 			// TODO ajout d'un message d'erreur
 		}

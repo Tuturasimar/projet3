@@ -11,7 +11,6 @@ import fr.isika.cda.entities.config.Feature;
 import fr.isika.cda.viewmodels.EditFeatureViewModel;
 import fr.isika.cda.viewmodels.FeaturesViewModel;
 
-
 @Stateless
 public class FeatureRepository {
 
@@ -75,5 +74,6 @@ public class FeatureRepository {
 		return feature;
 		
 	}
+	
 
 }

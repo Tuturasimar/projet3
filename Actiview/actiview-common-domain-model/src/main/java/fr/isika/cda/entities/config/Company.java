@@ -3,6 +3,7 @@ package fr.isika.cda.entities.config;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -37,7 +38,7 @@ public class Company implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private StatusEnum status;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="contract_id")
 	private Contract contract;
 	

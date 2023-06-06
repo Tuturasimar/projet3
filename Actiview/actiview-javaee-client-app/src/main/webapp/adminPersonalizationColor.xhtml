@@ -11,66 +11,82 @@
 	</ui:define>
 
 	<ui:define name="content">
-<body>
-		<h1>Bienvenue sur la page de personnalisation détaillée</h1>
+		<body>
+			<h1>Bienvenue sur la page de personnalisation détaillée</h1>
+			<h2>Police d'écriture :</h2>
 
-		<h2>Arrière-plan :</h2>
+			<div class="field col-12 md:col-4">
+				<h:form>
+					<p:selectOneMenu id="option"
+						value="#{personalizationBean.font}">
+						<f:selectItem itemLabel="Sélectionnez une option" itemValue="" />
+						<f:selectItem itemLabel="Roboto" itemValue="Roboto" />
+						<f:selectItem itemLabel="Baskerville" itemValue="Baskerville" />
+						<f:facet name="footer">
+							<p:divider styleClass="mt-0" />
+							<h:outputText value="2 options" style="font-weight:bold;" />
+						</f:facet>
+					</p:selectOneMenu>
+				</h:form>
+			</div>
 
-		<p:growl id="customizeColor" showDetail="true"></p:growl>
+			<h2>Arrière-plan :</h2>
 
-		<div class="colorBackground">
-			<h:form>
-				<h5 class="mt-0">Popup</h5>
-				<p:colorPicker value="#{personalizationBean.colorBackground}" >
-					<p:ajax listener="#{personalizationBean.saveColorBackground}"
-						process="@this" update="customizeColor" />
-				</p:colorPicker>
+			<p:growl id="customizeColor" showDetail="true"></p:growl>
+
+			<div class="colorBackground">
+				<h:form>
+					<h5 class="mt-0">Popup</h5>
+					<p:colorPicker value="#{personalizationBean.colorBackground}">
+						<p:ajax listener="#{personalizationBean.saveColorBackground}"
+							process="@this" update="customizeColor" />
+					</p:colorPicker>
+				</h:form>
+			</div>
+
+			<h2>Couleur du titre :</h2>
+
+			<div class="colorTitle">
+				<h:form>
+					<h5 class="mt-0">Popup</h5>
+					<p:colorPicker value="#{personalizationBean.colorTitle}">
+						<p:ajax listener="#{personalizationBean.saveColorTitle}"
+							process="@this" update="customizeColor" />
+					</p:colorPicker>
+				</h:form>
+			</div>
+
+			<h2>Couleur du texte :</h2>
+
+			<div class="colorText">
+				<h:form>
+					<h5 class="mt-0">Popup</h5>
+					<p:colorPicker value="#{personalizationBean.colorText}">
+						<p:ajax listener="#{personalizationBean.saveColorText}"
+							process="@this" update="customizeColor" />
+					</p:colorPicker>
+				</h:form>
+			</div>
+
+			<h2>Couleur des boutons :</h2>
+
+			<div class="colorButton">
+				<h:form>
+					<h5 class="mt-0">Popup</h5>
+					<p:colorPicker value="#{personalizationBean.colorButton}">
+						<p:ajax listener="#{personalizationBean.saveColorButton}"
+							process="@this" update="customizeColor" />
+					</p:colorPicker>
+				</h:form>
+			</div>
+
+			<h:form id="configSpaceColorForm">
+				<h:commandButton action="#{personalizationBean.saveColor()}"
+					value="Save" />
 			</h:form>
-		</div>
-
-		<h2>Couleur du titre :</h2>
-
-		<div class="colorTitle">
-			<h:form>
-				<h5 class="mt-0">Popup</h5>
-				<p:colorPicker value="#{personalizationBean.colorTitle}" >
-					<p:ajax listener="#{personalizationBean.saveColorTitle}"
-						process="@this" update="customizeColor" />
-				</p:colorPicker>
-			</h:form>
-		</div>
-
-		<h2>Couleur du texte :</h2>
-
-		<div class="colorText">
-			<h:form>
-				<h5 class="mt-0">Popup</h5>
-				<p:colorPicker value="#{personalizationBean.colorText}" >
-					<p:ajax listener="#{personalizationBean.saveColorText}"
-						process="@this" update="customizeColor" />
-				</p:colorPicker>
-			</h:form>
-		</div>
-
-		<h2>Couleur des boutons :</h2>
-
-		<div class="colorButton">
-			<h:form>
-				<h5 class="mt-0">Popup</h5>
-				<p:colorPicker value="#{personalizationBean.colorButton}">
-					<p:ajax listener="#{personalizationBean.saveColorButton}"
-						process="@this" update="customizeColor" />
-				</p:colorPicker>
-			</h:form>
-		</div>
-
-		<h:form id="configSpaceColorForm">
-			<h:commandButton action="#{personalizationBean.saveColor()}"
-				value="Save" />
-		</h:form>
 
 
-</body>
+		</body>
 
 	</ui:define>
 </ui:composition>

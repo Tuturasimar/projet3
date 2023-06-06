@@ -46,6 +46,8 @@ public class PersonalizationBean {
 	private String colorTitle;
 	private String colorButton;
 	private String colorText;
+	
+	private String font;
 
 	private String template;
 
@@ -192,6 +194,14 @@ public class PersonalizationBean {
 
 	public void setTemplate(String template) {
 		this.template = template;
+	}
+
+	public String getFont() {
+		return font;
+	}
+
+	public void setFont(String font) {
+		this.font = font;
 	}
 	
 

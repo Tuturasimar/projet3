@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="Entete">
+		<h2 style="color: red">Statistiques du mois</h2>
+	</ui:define>
+
+	<ui:define name="content">
+		<p><p:outputLabel
+			value="Missions : #{statEmployeeBean.statEmployeeVM.missionHours}h"></p:outputLabel></p>
+		<p><p:outputLabel
+			value="Formation : #{statEmployeeBean.statEmployeeVM.formationHours}h"></p:outputLabel></p>
+		<p><p:outputLabel
+			value="Absence : #{statEmployeeBean.statEmployeeVM.absenceHours}h"></p:outputLabel></p>
+
+		<div class="card col-4" >
+			<p:donutChart model="#{statEmployeeBean.model}"
+				style="width: 100%" />
+		</div>
+
+	</ui:define>
+</ui:composition>
+
+</html>

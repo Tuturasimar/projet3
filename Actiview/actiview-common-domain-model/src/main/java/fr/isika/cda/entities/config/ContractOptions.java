@@ -40,6 +40,10 @@ public class ContractOptions implements Serializable{
 	public Options getOption() {
 		return option;
 	}
-	
-
+	public void setContract(Contract contract) {
+		this.contract = contract;
+	}
+	public void setOption(Options option) {
+		this.option = option;
+	}
 }

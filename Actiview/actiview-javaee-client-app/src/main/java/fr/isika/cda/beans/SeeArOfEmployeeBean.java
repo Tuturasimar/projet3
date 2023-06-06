@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
@@ -11,13 +12,16 @@ import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleModel;
 
+import fr.isika.cda.entities.activities.Activity;
+import fr.isika.cda.entities.activities.Formation;
+import fr.isika.cda.entities.activities.Mission;
 import fr.isika.cda.entities.ar.ActivityDate;
 import fr.isika.cda.entities.ar.Ar;
 import fr.isika.cda.entities.ar.PartDayEnum;
 import fr.isika.cda.entities.ar.StateAr;
+import fr.isika.cda.entities.common.ClassContextEnum;
 import fr.isika.cda.repository.ActivityDateRepository;
 import fr.isika.cda.repository.ArRepository;
-import fr.isika.cda.viewmodels.ArCalendarViewModel;
 import fr.isika.cda.viewmodels.SeeArOfEmployeeViewModel;
 
 @ManagedBean
@@ -29,6 +33,9 @@ public class SeeArOfEmployeeBean {
 
 	@Inject
 	private ArRepository arRepo;
+	
+	@ManagedProperty(value="#{notificationBean}")
+	private NotificationBean notifBean;
 
 	private SeeArOfEmployeeViewModel arOfEmployeeVM = new SeeArOfEmployeeViewModel();
 
@@ -69,36 +76,66 @@ public class SeeArOfEmployeeBean {
 		List<ActivityDate> activityDatesAsEvents = arOfEmployeeVM.getActivityDates();
 		for (ActivityDate activityDateAsEvent : activityDatesAsEvents) {
 			//création de l'event en fonction de la valeur de PartOfDay
+			String colorClass = getColorClass(activityDateAsEvent);
+			
 			if (activityDateAsEvent.getPartOfDay() == PartDayEnum.MORNING) {
 				DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
 						.title(activityDateRepo.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
 						.startDate(activityDateAsEvent.getDate().atTime(9, 0))
+						.styleClass(colorClass)
 						.endDate(activityDateAsEvent.getDate().atTime(13, 0)).build();
 				calendar.addEvent(event);
 			} else if (activityDateAsEvent.getPartOfDay() == PartDayEnum.AFTERNOON) {
 				DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
 						.title(activityDateRepo.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
 						.startDate(activityDateAsEvent.getDate().atTime(14, 0))
+						.styleClass(colorClass)
 						.endDate(activityDateAsEvent.getDate().atTime(18, 0)).build();
 				calendar.addEvent(event);
 			}else {
 				DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
 						.title(activityDateRepo.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
 						.startDate(activityDateAsEvent.getDate().atTime(9, 0))
-						.endDate(activityDateAsEvent.getDate().atTime(18, 0)).build();
+						.styleClass(colorClass)
+						.endDate(activityDateAsEvent.getDate().atTime(13, 0)).build();
 				calendar.addEvent(event);
+				DefaultScheduleEvent<?> eventAfternoon = DefaultScheduleEvent.builder()
+						.title(activityDateRepo.getActivityLabelFromActivityDate(activityDateAsEvent.getId()))
+						.startDate(activityDateAsEvent.getDate().atTime(14, 0))
+						.styleClass(colorClass)
+						.endDate(activityDateAsEvent.getDate().atTime(18, 0)).build();
+				calendar.addEvent(eventAfternoon);
 			}	
 		}
 		return "SeeArOfEmployee.xhtml";
 	}
+	
+	public String getColorClass(ActivityDate activityDateAsEvent) {
+		Activity activity = activityDateAsEvent.getArActivity().getActivity();
+		
+		if(activity.getClass() == Mission.class) {
+			return "redCalendarItem";
+		} else if(activity.getClass() == Formation.class) {
+			return "purpleCalendarItem";
+		} else {
+			return "blueCalendarItem";
+		}
+	
+	}
 
 	public String acceptAr(Long arId) {
 		arRepo.acceptAr(arId);
+		
+		notifBean.addNotification(arRepo.findUserByArId(arId).getId(), "Votre CRA a été validé", ClassContextEnum.SUCCESS);
+		notifBean.load();
 		return "SeeArTeam.xhtml";
 	}
 
 	public String refuseAr(Long arId) {
 		arRepo.refuseAr(arId);
+		
+		notifBean.addNotification(arRepo.findUserByArId(arId).getId(), "Votre CRA a été refusé", ClassContextEnum.DANGER);
+		notifBean.load();
 		return "SeeArTeam.xhtml";
 	}
 
@@ -145,5 +182,13 @@ public class SeeArOfEmployeeBean {
 
 	public void setCalendar(ScheduleModel calendar) {
 		this.calendar = calendar;
+	}
+
+	public NotificationBean getNotifBean() {
+		return notifBean;
+	}
+
+	public void setNotifBean(NotificationBean notifBean) {
+		this.notifBean = notifBean;
 	}
 }

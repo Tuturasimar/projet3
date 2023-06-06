@@ -7,6 +7,8 @@ public class ImageConfigViewModel {
 	
 	private String templateChoice;
 	
+	private Long companyId;
+	
 	public String getLogo() {
 		return logo;
 	}
@@ -24,6 +26,12 @@ public class ImageConfigViewModel {
 	}
 	public void setTemplateChoice(String templateChoice) {
 		this.templateChoice = templateChoice;
+	}
+	public Long getCompanyId() {
+		return companyId;
+	}
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
 	}
 	
 	

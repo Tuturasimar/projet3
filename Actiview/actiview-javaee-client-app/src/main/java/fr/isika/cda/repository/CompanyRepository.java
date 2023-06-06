@@ -21,7 +21,7 @@ public class CompanyRepository {
 	 * Enregistre en bdd une entreprise cliente
 	 * 
 	 * @param companyVM
-	 * @return
+	 * @return Long (L'id de la company)
 	 */
 	public Long register(CompanyViewModel companyVM) {
 		Company company = new Company();
@@ -29,8 +29,8 @@ public class CompanyRepository {
 		company.setName(companyVM.getName());
 		company.setPhone(companyVM.getPhone());
 		company.setSiren(companyVM.getSiren());
-		// En attendant que le SUPER ADMIN valide, l'entreprise est considérée comme inactive
-		company.setStatus(StatusEnum.INACTIVE);
+		// L'entreprise est activée directement (pour l'instant)
+		company.setStatus(StatusEnum.ACTIVE);
 		em.persist(company);
 
 		return company.getId();
@@ -48,6 +48,11 @@ public class CompanyRepository {
 		return company;
 	}
 
+	/**
+	 * Méthode pour vérifier si la Company existe déjà en BDD
+	 * @param companyVm CompanyViewModel
+	 * @return true si la Company existe | false si la Company n'existe pas
+	 */
 	public boolean checkExistingCompany(CompanyViewModel companyVm) {
 
 		try {

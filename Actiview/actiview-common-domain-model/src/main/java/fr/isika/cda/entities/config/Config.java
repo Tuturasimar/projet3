@@ -26,7 +26,7 @@ public class Config implements Serializable {
 	@JoinColumn(name="colorconfig_id")
 	private ColorConfig colorConfig;
 
-	@OneToOne
+	@OneToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name="fontConfig_id")
 	private FontConfig fontConfig;
 
@@ -66,6 +66,10 @@ public class Config implements Serializable {
 	}
 	public Company getCompany() {
 		return company;
+	}
+	
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 	
 	public Config() {

@@ -9,11 +9,9 @@
 <ui:composition template="/WEB-INF/templates/default.xhtml">
 	<f:metadata>
 		<f:viewParam name="id" />
-		<f:event
-			listener="#{registerActivityDateFromArBean.showArCalendar(id)}"
+		<f:event listener="#{seeArOfEmployeeBean.showArCalendar(id)}"
 			type="preRenderView"></f:event>
 	</f:metadata>
-
 	<ui:define name="Entete">
 		<h2 style="color: red">test des dates</h2>
 
@@ -21,7 +19,6 @@
 
 	<ui:define name="content">
 
-		<!-- Formulaire d'ajout d'activité -->
 		<h:form rendered="#{showArBean.isArADraft()}">
 			<h:selectOneMenu id="partDayMenu"
 				value="#{registerActivityDateFromArBean.arDateVm.partOfDay}">
@@ -61,18 +58,7 @@
 			<h:commandButton id="addDate"
 				action="#{registerActivityDateFromArBean.addDate()}"
 				value="Ajouter l'activité">
-				<!-- 				<f:ajax execute="@form" render="schedule" event="click"></f:ajax> -->
-			</h:commandButton>
-			<p:datePicker id="datePickerDateFirst"
-				value="#{registerActivityDateFromArBean.arDateVm.dateFirst}"
-				showIcon="true" />
-			<p:datePicker id="datePickerDateLast"
-				value="#{registerActivityDateFromArBean.arDateVm.dateLast}"
-				showIcon="true" />
-			<h:commandButton id="addRangeDate"
-				action="#{registerActivityDateFromArBean.addRangeDate()}"
-				value="Ajouter les activités">
-				<!-- 				<f:ajax execute="@form" render="schedule" event="click"></f:ajax> -->
+				<f:ajax execute="@form" render="dateTab" event="click"></f:ajax>
 			</h:commandButton>
 			<h:commandButton
 				action="#{registerActivityDateFromArBean.addAllMonth()}"
@@ -84,17 +70,36 @@
 			</h:commandButton>
 		</h:form>
 
-		<!-- Affichage du calendrier -->
 		<p:outputLabel
-			value="CRA du mois de #{registerActivityDateFromArBean.arCalendarVM.createdAt.month}"></p:outputLabel>
+			value="CRA du mois de #{seeArOfEmployeeBean.arOfEmployeeVM.createdAt.month}"></p:outputLabel>
 		<p:growl id="messages" showDetail="true" />
 
-		<p:schedule id="schedule"
-			value="#{registerActivityDateFromArBean.calendar}"
-			initialDate="#{registerActivityDateFromArBean.arCalendarVM.createdAt}"
+		<p:schedule id="schedule" value="#{seeArOfEmployeeBean.calendar}"
+			initialDate="#{seeArOfEmployeeBean.arOfEmployeeVM.createdAt}"
 			draggable="false" showHeader="false"></p:schedule>
-		<!-- Affichage en tableau des dates (se rafraichit automatiquement) à remplacer par le calendrier !-->
 
+		<h:dataTable id="dateTab"
+			value="#{registerActivityDateFromArBean.activityDates}"
+			var="activityDate">
+			<h:column>
+				<f:facet name="header">Date</f:facet>
+				<h:outputText value="#{activityDate.date}">
+					<f:convertDateTime type="localDate" pattern="dd.MM.yyyy" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Partie de la journée</f:facet>
+		#{activityDate.partOfDay.label}
+		</h:column>
+			<h:column>
+				<f:facet name="header">Télétravail</f:facet>
+		#{activityDate.remote ? "Oui" : "Non"}
+		</h:column>
+			<h:column>
+				<f:facet name="header">Label</f:facet>
+		#{activityDate.arActivity.activity.labelActivity}
+		</h:column>
+		</h:dataTable>
 		<h:form>
 			<p:commandButton action="#{showArBean.arSentToValidation()}"
 				value="Soumettre le CRA" rendered="#{showArBean.isArADraft()}" />

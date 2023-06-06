@@ -40,8 +40,6 @@ public class UserFeedbackBean {
 
 	public void saveChanges(int index) {
 		
-		
-		
 		MissionUser missionUser = missionUsers.get(index);
 		
 	    userFeedbackRepo.update(missionUser.getUserFeedback());

@@ -9,7 +9,6 @@ import javax.inject.Inject;
 
 import fr.isika.cda.entities.common.ClassContextEnum;
 import fr.isika.cda.repository.ArRepository;
-import fr.isika.cda.repository.NotificationRepository;
 import fr.isika.cda.repository.UserRepository;
 import fr.isika.cda.utils.SessionUtils;
 
@@ -27,9 +26,6 @@ public class RegisterArBean implements Serializable {
 	
 	@Inject
 	UserRepository userRepo;
-	
-	@Inject
-	NotificationRepository notifRepo;
 	
 	@ManagedProperty(value="#{showArBean}")
 	private ShowArBean showArBean;
@@ -61,7 +57,7 @@ public class RegisterArBean implements Serializable {
 		Long userConnectedId = SessionUtils.getUserIdFromSession();
 		arRepo.register(userRepo.findUserById(userConnectedId));
 		
-		addNotification(userConnectedId);
+		notifBean.addNotification(userConnectedId, "Cra créé avec succès", ClassContextEnum.SUCCESS);
 		
 		notifBean.load();
 	
@@ -69,11 +65,5 @@ public class RegisterArBean implements Serializable {
 		
 		return "showAr";
 	}
-	
-	public void addNotification(Long id) {
-		notifRepo.createNotification(id, "Cra créé avec succès", ClassContextEnum.SUCCESS);
-
-	}
-	
 	
 }

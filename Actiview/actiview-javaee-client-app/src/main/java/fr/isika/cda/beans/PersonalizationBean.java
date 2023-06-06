@@ -2,17 +2,13 @@ package fr.isika.cda.beans;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
-import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 
 import org.primefaces.component.colorpicker.ColorPicker;
@@ -21,6 +17,7 @@ import org.primefaces.model.file.UploadedFile;
 
 import fr.isika.cda.repository.ColorConfigRepository;
 import fr.isika.cda.repository.ImageConfigRepository;
+import fr.isika.cda.repository.UserRepository;
 import fr.isika.cda.utils.FileUploadUtils;
 import fr.isika.cda.viewmodels.ColorConfigViewModel;
 import fr.isika.cda.viewmodels.ImageConfigViewModel;
@@ -34,10 +31,14 @@ public class PersonalizationBean {
 
 	@Inject
 	private ColorConfigRepository colorConfigRepo;
+	
+	@Inject
+	private UserRepository userRepo;
+
 
 	private ImageConfigViewModel imgConfigVm = new ImageConfigViewModel();
 	private ColorConfigViewModel colorConfigVm = new ColorConfigViewModel();
-
+	
 	private UploadedFile logo;
 	private UploadedFile banner;
 
@@ -49,7 +50,10 @@ public class PersonalizationBean {
 	private String template;
 
 	public String save() {
-		imgConfigRepo.save(imgConfigVm);
+
+		Long companyId = userRepo.findCompanyByUserConnected().getId();
+		imgConfigVm.setCompanyId(companyId);
+		imgConfigRepo.update(imgConfigVm);
 		imgConfigVm = new ImageConfigViewModel();
 		
 		return "adminPersonalizationPreview.xhtml";
@@ -68,9 +72,11 @@ public class PersonalizationBean {
 	}
 
 	public String saveColor() {
-		colorConfigRepo.save(colorConfigVm);
+		Long companyId = userRepo.findCompanyByUserConnected().getId();
+		colorConfigVm.setCompanyId(companyId);
+		colorConfigRepo.update(colorConfigVm);
 		colorConfigVm = new ColorConfigViewModel();
-		return "adminPersonalizationColor.xhtml";
+		return "TestCustomizeColor.xhtml";
 	}
 
 	public void saveColorTitle(AjaxBehaviorEvent e) {

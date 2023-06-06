@@ -24,10 +24,11 @@ public class ShowUserBean {
 
 	// récupère tous les Users de la bdd (pas de jointures avec User Data et
 	// UserRole)
+	
 	@PostConstruct
 	public void initUserList() {
-		users = userRepo.findAllUsers();
-
+		Long companyId = userRepo.findCompanyByUserConnected().getId();
+		users = userRepo.findAllUsersByCompanyId(companyId);
 	}
 
 	public String getListUserRoleByUserId(Long id) {

@@ -11,8 +11,12 @@ import javax.inject.Inject;
 import fr.isika.cda.entities.common.JobEnum;
 import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.repository.CompanyRepository;
+import fr.isika.cda.repository.ConfigRepository;
 import fr.isika.cda.repository.UserRepository;
+import fr.isika.cda.viewmodels.ColorConfigViewModel;
 import fr.isika.cda.viewmodels.CompanyViewModel;
+import fr.isika.cda.viewmodels.ConfigViewModel;
+import fr.isika.cda.viewmodels.ImageConfigViewModel;
 import fr.isika.cda.viewmodels.UserViewModel;
 
 @ManagedBean
@@ -24,11 +28,28 @@ public class RegisterCompanyBean {
 
 	@Inject
 	UserRepository userRepo;
+	
+	@Inject
+	ConfigRepository configRepo;
+	
+	private ImageConfigViewModel imageConfigVm = new ImageConfigViewModel();
+	
+	private ConfigViewModel configVm = new ConfigViewModel();
 
 	private CompanyViewModel companyViewModel = new CompanyViewModel();
 
 	private UserViewModel userVm = new UserViewModel();
+	
+	private ColorConfigViewModel colorConfigVm = new ColorConfigViewModel();
 
+	public ColorConfigViewModel getColorConfigVm() {
+		return colorConfigVm;
+	}
+
+	public void setColorConfigVm(ColorConfigViewModel colorConfigVm) {
+		this.colorConfigVm = colorConfigVm;
+	}
+	
 	public CompanyViewModel getCompanyViewModel() {
 		return companyViewModel;
 	}
@@ -43,6 +64,22 @@ public class RegisterCompanyBean {
 
 	public void setUserVm(UserViewModel userVm) {
 		this.userVm = userVm;
+	}
+
+	public ImageConfigViewModel getImageConfigVm() {
+		return imageConfigVm;
+	}
+
+	public void setImageConfigVm(ImageConfigViewModel imageConfigVm) {
+		this.imageConfigVm = imageConfigVm;
+	}
+
+	public ConfigViewModel getConfigVm() {
+		return configVm;
+	}
+
+	public void setConfigVm(ConfigViewModel configVm) {
+		this.configVm = configVm;
 	}
 
 	public void clear() {
@@ -74,6 +111,8 @@ public class RegisterCompanyBean {
 			userVm.setPassword(UUID.randomUUID().toString());
 
 			userRepo.registerUser(userVm);
+		
+			configRepo.initConfig(companyId);
 
 			// TODO ajout d'un message de validation "votre inscription a bien été
 			// effectuée"

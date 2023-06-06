@@ -42,46 +42,6 @@ public class RegisterCompanyBean {
 	
 	private ColorConfigViewModel colorConfigVm = new ColorConfigViewModel();
 
-	public ColorConfigViewModel getColorConfigVm() {
-		return colorConfigVm;
-	}
-
-	public void setColorConfigVm(ColorConfigViewModel colorConfigVm) {
-		this.colorConfigVm = colorConfigVm;
-	}
-	
-	public CompanyViewModel getCompanyViewModel() {
-		return companyViewModel;
-	}
-
-	public void setCompanyViewModel(CompanyViewModel companyViewModel) {
-		this.companyViewModel = companyViewModel;
-	}
-
-	public UserViewModel getUserVm() {
-		return userVm;
-	}
-
-	public void setUserVm(UserViewModel userVm) {
-		this.userVm = userVm;
-	}
-
-	public ImageConfigViewModel getImageConfigVm() {
-		return imageConfigVm;
-	}
-
-	public void setImageConfigVm(ImageConfigViewModel imageConfigVm) {
-		this.imageConfigVm = imageConfigVm;
-	}
-
-	public ConfigViewModel getConfigVm() {
-		return configVm;
-	}
-
-	public void setConfigVm(ConfigViewModel configVm) {
-		this.configVm = configVm;
-	}
-
 	public void clear() {
 		companyViewModel = new CompanyViewModel();
 		userVm = new UserViewModel();
@@ -123,7 +83,50 @@ public class RegisterCompanyBean {
 			// TODO ajout d'un message d'erreur
 		}
 		return "LoginView";
-
 	}
+	
+	
+	//Getters & setters
+	public ColorConfigViewModel getColorConfigVm() {
+		return colorConfigVm;
+	}
+
+	public void setColorConfigVm(ColorConfigViewModel colorConfigVm) {
+		this.colorConfigVm = colorConfigVm;
+	}
+	
+	public CompanyViewModel getCompanyViewModel() {
+		return companyViewModel;
+	}
+
+	public void setCompanyViewModel(CompanyViewModel companyViewModel) {
+		this.companyViewModel = companyViewModel;
+	}
+
+	public UserViewModel getUserVm() {
+		return userVm;
+	}
+
+	public void setUserVm(UserViewModel userVm) {
+		this.userVm = userVm;
+	}
+
+	public ImageConfigViewModel getImageConfigVm() {
+		return imageConfigVm;
+	}
+
+	public void setImageConfigVm(ImageConfigViewModel imageConfigVm) {
+		this.imageConfigVm = imageConfigVm;
+	}
+
+	public ConfigViewModel getConfigVm() {
+		return configVm;
+	}
+
+	public void setConfigVm(ConfigViewModel configVm) {
+		this.configVm = configVm;
+	}
+
+	
 
 }

@@ -82,9 +82,12 @@
       width: calc(25% - 1px);
       margin-right: 1.7 rem;
       position: relative;
-      z-index: 5;
-      height: 62rem;
+      height: 30rem;
       overflow: hidden;
       border-radius: 1rem;
       color: #fff;
       }
+      
+      
+      
+      

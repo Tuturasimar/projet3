@@ -8,7 +8,6 @@ import javax.inject.Inject;
 
 import fr.isika.cda.entities.config.Feature;
 import fr.isika.cda.repository.FeatureRepository;
-import fr.isika.cda.viewmodels.FeaturesViewModel;
 
 @ManagedBean
 public class ShowFeaturesBean {

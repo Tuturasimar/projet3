@@ -284,9 +284,19 @@ public class DataInit {
 		ArActivity arActivity2 = new ArActivity();
 		arActivity2.setAr(arSalarie2);
 		arActivity2.setActivity(mission);
+		
+		ArActivity arActivity3 = new ArActivity();
+		arActivity3.setAr(ar);
+		arActivity3.setActivity(formation);
+		
+		ArActivity arActivity4 = new ArActivity();
+		arActivity4.setAr(ar);
+		arActivity4.setActivity(absence);
 
 		em.persist(arActivity);
 		em.persist(arActivity2);
+		em.persist(arActivity3);
+		em.persist(arActivity4);
 
 		// Mock donnée d'une ActivityDate
 
@@ -313,11 +323,25 @@ public class DataInit {
 		activityDate4.setDate(LocalDate.of(2023, 4, 13));
 		activityDate4.setPartOfDay(PartDayEnum.MORNING);
 		activityDate4.setRemote(false);
+		
+		ActivityDate activityDate5 = new ActivityDate();
+		activityDate3.setArActivity(arActivity3);
+		activityDate3.setDate(LocalDate.of(2023, 4, 14));
+		activityDate3.setPartOfDay(PartDayEnum.AFTERNOON);
+		activityDate3.setRemote(false);
+		
+		ActivityDate activityDate6 = new ActivityDate();
+		activityDate4.setArActivity(arActivity4);
+		activityDate4.setDate(LocalDate.of(2023, 4, 14));
+		activityDate4.setPartOfDay(PartDayEnum.MORNING);
+		activityDate4.setRemote(false);
 
 		em.persist(activityDate);
 		em.persist(activityDate2);
 		em.persist(activityDate3);
 		em.persist(activityDate4);
+		em.persist(activityDate5);
+		em.persist(activityDate6);
 
 		// Mock donnée OptionsForfait
 

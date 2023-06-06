@@ -26,23 +26,6 @@ public class ArRepository {
 	@PersistenceContext
 	private EntityManager em;
 
-	public void register(User user) {
-		Ar ar = new Ar();
-
-		ar.setCreatedAt(LocalDate.now());
-		ar.setArConfig(ArConfigEnum.MONTH);
-		ar.setStateArEnum(StateAr.DRAFT);
-		ar.setUpdatedAt(LocalDate.now());
-		ar.setUser(user);
-
-		em.persist(ar);
-
-	}
-
-	public Ar findById(Long id) {
-		return (Ar) em.createQuery("SELECT a FROM Ar a WHERE a.id = " + id).getSingleResult();
-	}
-
 	/**
 	 * Méthode restituant un Ar en fonction de la date de création de l'Ar ainsi que de l'Id du user
 	 * @param userId L'Id du User

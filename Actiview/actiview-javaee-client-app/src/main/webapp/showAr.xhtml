@@ -10,40 +10,51 @@
 
 <ui:composition template="/WEB-INF/templates/default.xhtml">
 
-	<ui:define name="Entete">
-		<h2>View des CRAS</h2>
-	</ui:define>
 
 	<ui:define name="content">
-		<h:form id="selectArMonthForm">
-			<h:panelGroup id="dateView">
-				<p:datePicker id="month" view="month" lang="fr"
-					value="#{showArBean.arVm.date}" inline="true" pattern="MM/yyyy"
-					yearNavigator="true" yearRange="2020:2050">
-					<p:ajax event="dateSelect" listener="#{showArBean.getAr()}"
-						update=":arViewForm:rendu"></p:ajax>
-				</p:datePicker>
-			</h:panelGroup>
-		</h:form>
+		<h2 class="text-center my-3">Sélectionnez un mois</h2>
+		<div class="row my-4">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-6">
+				<h:form id="selectArMonthForm">
 
+					<h:panelGroup id="dateView">
+						<p:datePicker id="month" view="month" lang="fr"
+							value="#{showArBean.arVm.date}" inline="true" pattern="MM/yyyy"
+							yearNavigator="true" yearRange="2020:2050">
+							<p:ajax event="dateSelect" listener="#{showArBean.getAr()}"
+								update=":arViewForm:rendu"></p:ajax>
+						</p:datePicker>
+					</h:panelGroup>
+
+				</h:form>
+			</div>
+			<div class="col-sm-3"></div>
+
+		</div>
 		<h:form id="arViewForm">
 			<p:fieldset id="rendu" legend="CRA">
 				<h:commandButton action="#{registerArBean.register()}"
 					value="Ajouter un nouveau CRA"
 					rendered="#{!showArBean.hasSelectedAr() and showArBean.canBeCreated() }" />
 
-				<p:outputLabel value="#{showArBean.arVm.ar.id}" id="arId"
-					style="display: block" />
+				<p:outputLabel for="arCreatedAt" value="Date de création : "
+					style="font-weight : bold" rendered="#{showArBean.hasSelectedAr()}"></p:outputLabel>
+				<h:outputText value="#{showArBean.arVm.ar.createdAt}"
+					id="arCreatedAt" class="mx-4">
+					<f:convertDateTime type="localDate" pattern="dd/MM/yyyy"></f:convertDateTime>
+				</h:outputText>
 
-				<p:outputLabel value="#{showArBean.arVm.ar.createdAt}"
-					id="arCreatedAt" style="display: block" />
-
-				<p:outputLabel value="#{showArBean.arVm.ar.stateArEnum}"
-					id="arState" style="display: block" />
+				<p:outputLabel for="arState" value="Etat actuel du CRA : "
+					style="font-weight : bold;"
+					rendered="#{showArBean.hasSelectedAr()}"></p:outputLabel>
+				<h:outputLabel value="#{showArBean.arVm.ar.stateArEnum.label}"
+					id="arState" class="mx-4" />
 				<h:outputText value="Aucun Cra disponible pour ce mois"
 					rendered="#{!showArBean.hasSelectedAr()}" />
 
-				<h:link rendered="#{showArBean.hasSelectedAr()}" outcome="addActivityDates?id=#{showArBean.arVm.ar.id}" >Voir les détails</h:link>
+				<h:link rendered="#{showArBean.hasSelectedAr()}"
+					outcome="addActivityDates?id=#{showArBean.arVm.ar.id}">Voir les détails</h:link>
 
 			</p:fieldset>
 

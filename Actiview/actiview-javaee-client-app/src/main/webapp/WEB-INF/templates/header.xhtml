@@ -4,7 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions">
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <ui:composition>
 	<nav class="navbar navbar-default">
 		<div class="navbar-header w-100">
@@ -20,8 +21,7 @@
 			</h:link>
 			<h:form>
 				<p:menubar>
-					<p:submenu label="Formations"
-						rendered="#{loginBean.isUserLoggedIn()}">
+					<p:submenu label="Formations" rendered="#{loginBean.userAManager}">
 						<p:menuitem value="Créer une formation"
 							outcome="CreateFormation.xhtml" />
 						<p:menuitem value="Liste des formations"
@@ -30,8 +30,7 @@
 							outcome="formationUserList.xhtml" />
 					</p:submenu>
 
-					<p:submenu label="Missions"
-						rendered="#{loginBean.isUserLoggedIn()}">
+					<p:submenu label="Missions" rendered="#{loginBean.userAManager}">
 						<p:menuitem value="Créer une mission"
 							outcome="createMission.xhtml" />
 						<p:menuitem value="Liste des missions" outcome="missionList.xhtml" />
@@ -40,16 +39,17 @@
 					</p:submenu>
 
 					<p:submenu label="Informations ESN"
-						rendered="#{loginBean.isUserLoggedIn()}">
+						rendered="#{loginBean.userAEsnAdmin}">
 						<p:menuitem value="Formulaire de création d'un utilisateur"
 							outcome="RegisterUserForm.xhtml" />
 						<p:menuitem value="Liste des utilisateurs"
 							outcome="UserList.xhtml" />
-						<p:menuitem value="Détails du forfait" outcome="DetailsFeature.xhtml"></p:menuitem>
+						<p:menuitem value="Détails du forfait"
+							outcome="DetailsFeature.xhtml"></p:menuitem>
 					</p:submenu>
 
 					<p:submenu label="Personnalisation"
-						rendered="#{loginBean.isUserLoggedIn()}">
+						rendered="#{loginBean.userAEsnAdmin}">
 						<p:menuitem value="Identité" outcome="adminPersonalization.xhtml" />
 						<p:menuitem value="Tests couleurs"
 							outcome="TestCustomizeColor.xhtml" />
@@ -60,11 +60,16 @@
 
 					<p:submenu label="Compte rendu d'activité"
 						rendered="#{loginBean.isUserLoggedIn()}">
-						<p:menuitem value="CRA" outcome="showAr.xhtml" />
+						<p:menuitem value="CRA" outcome="showAr.xhtml"
+							rendered="#{loginBean.userASalarie}" />
 						<p:menuitem value="Note de mission en cours"
-							outcome="salarieUserFeedbackView.xhtml" />
+							outcome="salarieUserFeedbackView.xhtml"
+							rendered="#{loginBean.userASalarie}" />
+						<p:menuitem value="Note des missions"
+							outcome="showUserFeedbackSalarie.xhtml"
+							rendered="#{loginBean.userASalarie}" />
 						<p:menuitem value="CRA des collaborateurs"
-							outcome="SeeArTeam.xhtml" />
+							rendered="#{loginBean.userAManager}" outcome="SeeArTeam.xhtml" />
 					</p:submenu>
 
 					<p:menuitem value="Devenez client"
@@ -79,10 +84,17 @@
 						rendered="#{not loginBean.isUserLoggedIn()}">
 					</p:menuitem>
 
-					<p:menuitem rendered="#{loginBean.isUserLoggedIn()}"
+					<!-- // Gérer le login pour ceux qui ne sont pas salariés -->
+					<p:menuitem rendered="#{loginBean.userASalarie}"
 						action="#{seeProfileBean.showSeeProfileWithStats(loginBean.loginVm.login)}"
 						value="Voir le profil">
 					</p:menuitem>
+					<c:if test="#{loginBean.userLoggedIn}">
+						<p:menuitem rendered="#{!loginBean.userASalarie}"
+							action="#{seeProfileBean.showSeeProfile(loginBean.getUserConnectedId())}"
+							value="Voir le profil">
+						</p:menuitem>
+					</c:if>
 
 					<p:menuitem label="Logout" action="#{loginBean.logout()}"
 						value="Déconnexion" rendered="#{loginBean.isUserLoggedIn()}">

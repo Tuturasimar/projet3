@@ -388,6 +388,12 @@ public class RegisterActivityDateFromArBean implements Serializable {
 		}
 		return month;
 	}
+	
+	public int getYear() {
+		Ar actualAr = arRepo.findById(arDateVm.getArId());
+		return actualAr.getCreatedAt().getYear();
+		
+	}
 
 	// Getters & setters
 	public List<ActivityDate> getActivityDates() {

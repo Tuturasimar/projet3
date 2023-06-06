@@ -13,6 +13,10 @@
 
 	<ui:define name="content">
 
+		<div class="card col-4" >
+			<p:donutChart model="#{seeProfileBean.model}"
+				style="width: 100%" />
+		</div>
 
 		<h2>Informations du compte</h2>
 		<h:dataTable value="#{seeProfileBean.user}" var="user">

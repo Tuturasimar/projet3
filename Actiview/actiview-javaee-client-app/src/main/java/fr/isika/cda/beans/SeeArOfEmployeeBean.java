@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
@@ -18,6 +19,7 @@ import fr.isika.cda.entities.ar.ActivityDate;
 import fr.isika.cda.entities.ar.Ar;
 import fr.isika.cda.entities.ar.PartDayEnum;
 import fr.isika.cda.entities.ar.StateAr;
+import fr.isika.cda.entities.common.ClassContextEnum;
 import fr.isika.cda.repository.ActivityDateRepository;
 import fr.isika.cda.repository.ArRepository;
 import fr.isika.cda.viewmodels.SeeArOfEmployeeViewModel;
@@ -31,6 +33,9 @@ public class SeeArOfEmployeeBean {
 
 	@Inject
 	private ArRepository arRepo;
+	
+	@ManagedProperty(value="#{notificationBean}")
+	private NotificationBean notifBean;
 
 	private SeeArOfEmployeeViewModel arOfEmployeeVM = new SeeArOfEmployeeViewModel();
 
@@ -120,11 +125,17 @@ public class SeeArOfEmployeeBean {
 
 	public String acceptAr(Long arId) {
 		arRepo.acceptAr(arId);
+		
+		notifBean.addNotification(arRepo.findUserByArId(arId).getId(), "Votre CRA a été validé", ClassContextEnum.SUCCESS);
+		notifBean.load();
 		return "SeeArTeam.xhtml";
 	}
 
 	public String refuseAr(Long arId) {
 		arRepo.refuseAr(arId);
+		
+		notifBean.addNotification(arRepo.findUserByArId(arId).getId(), "Votre CRA a été refusé", ClassContextEnum.DANGER);
+		notifBean.load();
 		return "SeeArTeam.xhtml";
 	}
 
@@ -171,5 +182,13 @@ public class SeeArOfEmployeeBean {
 
 	public void setCalendar(ScheduleModel calendar) {
 		this.calendar = calendar;
+	}
+
+	public NotificationBean getNotifBean() {
+		return notifBean;
+	}
+
+	public void setNotifBean(NotificationBean notifBean) {
+		this.notifBean = notifBean;
 	}
 }

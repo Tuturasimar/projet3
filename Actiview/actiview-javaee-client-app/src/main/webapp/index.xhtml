@@ -34,11 +34,11 @@
 			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
 				<li><h:link outcome="showAr.xhtml">Test du Cra</h:link></li>
 			</ui:fragment>
-			
+
 			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
 				<li><h:link outcome="salarieUserFeedbackView.xhtml">Remplir UserFeedback mission active</h:link></li>
 			</ui:fragment>
-			
+
 			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
 				<li><h:link outcome="showUserFeedbackSalarie.xhtml">Voir historique des UserFeedback</h:link></li>
 			</ui:fragment>
@@ -54,10 +54,16 @@
 			<li><h:link outcome="adminPersonalization.xhtml">Personnalisation espace ESN</h:link></li>
 
 			<li><h:link outcome="adminPersonalizationColor.xhtml">Personnalisation détailéée espace ESN</h:link></li>
-			
+
 			<li><h:link outcome="TestCustomizeColor.xhtml">Test couleur</h:link></li>
 
 			<li><h:link outcome="ShowArAsCalendar?id=#{4}">test calendrier dynamique (avec l'ar.id=4)</h:link></li>
+
+			<h:form>
+				<li><h:commandLink
+						action="#{statEmployeeBean.showStatOfEmployee(4)}">Voir les stats test</h:commandLink>
+				</li>
+			</h:form>
 
 
 			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
@@ -69,7 +75,7 @@
 			<ui:fragment rendered="#{loginBean.isUserLoggedIn()}">
 				<h:form>
 					<li><h:commandLink
-							action="#{seeProfileBean.showSeeProfile(loginBean.loginVm.login)}">Voir le profil (#{loginBean.loginVm.login})</h:commandLink>
+							action="#{seeProfileBean.showSeeProfileWithStats(loginBean.loginVm.login)}">Voir le profil (#{loginBean.loginVm.login})</h:commandLink>
 					</li>
 				</h:form>
 			</ui:fragment>
@@ -96,16 +102,14 @@
 			<li><h:link outcome="OptionsList.xhtml">Liste des options</h:link></li>
 
 			<li><h:link outcome="FeatureList.xhtml">Voir la liste des forfaits</h:link></li>
-			
+
 			<li><h:link outcome="RegisterFeature.xhtml">Créer un forfait</h:link></li>
-			
+
 			<li><h:link outcome="UpdateFeature.xhtml">Modifier un forfait</h:link></li>
 			
 			<li><h:link outcome="DetailsFeature.xhtml">Detail forfait</h:link></li>
 
 		</ul>
-
-
 	</ui:define>
 
 </ui:composition>

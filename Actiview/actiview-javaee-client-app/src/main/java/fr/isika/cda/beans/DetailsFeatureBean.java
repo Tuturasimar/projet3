@@ -6,14 +6,17 @@ import java.util.Optional;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
+import javax.swing.text.html.Option;
 
 import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.config.Company;
+import fr.isika.cda.entities.config.Feature;
 import fr.isika.cda.entities.config.Options;
 import fr.isika.cda.entities.users.UserRole;
 import fr.isika.cda.repository.ContractRepository;
 import fr.isika.cda.repository.UserRepository;
 import fr.isika.cda.utils.SessionUtils;
+import fr.isika.cda.viewmodels.FeaturesViewModel;
 
 @ManagedBean
 public class DetailsFeatureBean {
@@ -55,4 +58,27 @@ public class DetailsFeatureBean {
 	public boolean hasOptions() {
 		return options != null;
 	}
+	
+//	public double calculerPrixTotal(List<Feature> feature, List<Options> option) {
+//	    double prixTotal = 0.0;
+//
+//	    for (Options options : option) {
+//	        prixTotal += option.getPrice();
+//	    }
+//
+//	    return prixTotal;
+//	}
+	
+	public double calculerPrixTotal() {
+        double prixTotal = company.getContract().getFeature().getPrice();
+
+        for (Options option : options) {
+            prixTotal += option.getPrice();
+        }
+
+        return prixTotal;
+    }
+	
+	
+	
 }

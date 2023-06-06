@@ -413,11 +413,14 @@ public class DataInit {
 		co.setContract(contract);
 		co.setOption(option1);
 		
+		
+		
 		ContractOptions co2 = new ContractOptions();
 		co2.setContract(contract);
 		co2.setOption(option2);
 		
 		company.setContract(contract);
+		
 		
 		em.persist(co);
 		em.persist(co2);

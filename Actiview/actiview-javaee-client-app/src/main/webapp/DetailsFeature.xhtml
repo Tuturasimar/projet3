@@ -22,7 +22,7 @@
 			<label class="label">Nom de l'entreprise :</label>#{detailsFeatureBean.company.name}
 			<br /> <label class="label">Date de création du contrat: </label>#{detailsFeatureBean.company.contract.createdAt}
 			<br /> <label class="label">Nom du contrat souscrit: </label>#{detailsFeatureBean.company.contract.feature.label}
-			<br /> <label class="label">Prix du contrat: </label>#{detailsFeatureBean.company.contract.price}€
+			<br /> <label class="label">Prix du contrat: </label>#{detailsFeatureBean.calculerPrixTotal()}€
 		</p>
 
 		<ui:fragment rendered="#{detailsFeatureBean.hasOptions()}">

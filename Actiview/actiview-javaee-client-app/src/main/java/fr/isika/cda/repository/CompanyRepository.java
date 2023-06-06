@@ -29,8 +29,8 @@ public class CompanyRepository {
 		company.setName(companyVM.getName());
 		company.setPhone(companyVM.getPhone());
 		company.setSiren(companyVM.getSiren());
-		// En attendant que le SUPER ADMIN valide, l'entreprise est considérée comme inactive
-		company.setStatus(StatusEnum.INACTIVE);
+		// L'entreprise est activée directement (pour l'instant)
+		company.setStatus(StatusEnum.ACTIVE);
 		em.persist(company);
 
 		return company.getId();

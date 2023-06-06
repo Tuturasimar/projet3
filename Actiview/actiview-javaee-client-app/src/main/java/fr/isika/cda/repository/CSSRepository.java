@@ -12,18 +12,13 @@ public class CSSRepository {
 	@PersistenceContext
 	private EntityManager em;
 	
-	public String getBackgroundColor() {
+	public ColorConfig getColorConfigByCompanyId(Long id) {
 		ColorConfig colorConfig = new ColorConfig();
-		colorConfig = em.createQuery("SELECT cc FROM ColorConfig cc", ColorConfig.class)
+		colorConfig = em.createQuery("SELECT cc FROM Config c JOIN c.colorConfig cc WHERE c.company.id = :id", ColorConfig.class)
+						.setParameter("id", id)		
 						.getSingleResult();
-		return colorConfig.getBackgroundColor();
+		return colorConfig;
 	}
-	
-	public String getColorTitle() {
-		ColorConfig colorConfig = new ColorConfig();
-		colorConfig = em.createQuery("SELECT cc FROM ColorConfig cc", ColorConfig.class)
-						.getSingleResult();
-		return colorConfig.getTitleColor();
-	}
+
 
 }

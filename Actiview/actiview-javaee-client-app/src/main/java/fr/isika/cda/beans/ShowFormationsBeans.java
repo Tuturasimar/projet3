@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import fr.isika.cda.entities.activities.Formation;
 import fr.isika.cda.repository.FormationRepository;
+import fr.isika.cda.repository.UserRepository;
 
 @ManagedBean
 public class ShowFormationsBeans {
@@ -16,11 +17,15 @@ public class ShowFormationsBeans {
 	@Inject
 	private FormationRepository formationRepo;
 	
+	@Inject
+	private UserRepository userRepo;
+	
 	private List<Formation> formations;
 	
 	@PostConstruct
 	public void initMissionList() {
-		formations = formationRepo.findAllFormations();
+		Long companyId = userRepo.findCompanyByUserConnected().getId();
+		formations = formationRepo.findAllFormationsByCompanyId(companyId);
 	}
 
 	public FormationRepository getMissionRepo() {

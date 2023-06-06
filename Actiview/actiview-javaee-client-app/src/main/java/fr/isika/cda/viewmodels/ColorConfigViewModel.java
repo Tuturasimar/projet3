@@ -4,9 +4,11 @@ public class ColorConfigViewModel {
 
 	private String backgroundColor;
 	private String buttonColor;
-	private String fontColor;
 	private String titleColor;
 	private String textColor;
+	
+	private Long configId; 
+	private Long companyId;
 	
 	public String getBackgroundColor() {
 		return backgroundColor;
@@ -24,13 +26,6 @@ public class ColorConfigViewModel {
 		this.buttonColor = buttonColor;
 	}
 
-	public String getFontColor() {
-		return fontColor;
-	}
-
-	public void setFontColor(String fontColor) {
-		this.fontColor = fontColor;
-	}
 
 	public String getTitleColor() {
 		return titleColor;
@@ -47,6 +42,23 @@ public class ColorConfigViewModel {
 	public void setTextColor(String textColor) {
 		this.textColor = textColor;
 	}
+
+	public Long getConfigId() {
+		return configId;
+	}
+
+	public void setConfigId(Long configId) {
+		this.configId = configId;
+	}
+
+	public Long getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
+	}
+
 	
 	
 }

@@ -3,7 +3,6 @@ package fr.isika.cda.dataset;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
@@ -26,16 +25,20 @@ import fr.isika.cda.entities.common.FormationStatusEnum;
 import fr.isika.cda.entities.common.JobEnum;
 import fr.isika.cda.entities.common.LocationFormationEnum;
 import fr.isika.cda.entities.common.MissionTypeEnum;
-
+import fr.isika.cda.entities.common.RoleTypeEnum;
+import fr.isika.cda.entities.common.StatusEnum;
+import fr.isika.cda.entities.config.ColorConfig;
 import fr.isika.cda.entities.config.Company;
+import fr.isika.cda.entities.config.Config;
+import fr.isika.cda.entities.config.Contract;
+import fr.isika.cda.entities.config.ContractOptions;
+import fr.isika.cda.entities.config.Feature;
+import fr.isika.cda.entities.config.ImageConfig;
+import fr.isika.cda.entities.config.Options;
 import fr.isika.cda.entities.users.Notification;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserData;
 import fr.isika.cda.entities.users.UserRole;
-import fr.isika.cda.entities.common.RoleTypeEnum;
-import fr.isika.cda.entities.common.StatusEnum;
-import fr.isika.cda.entities.config.Feature;
-import fr.isika.cda.entities.config.Options;
 
 @Singleton
 @Startup
@@ -54,10 +57,23 @@ public class DataInit {
 		company.setName("BeMyTech");
 		company.setStatus(StatusEnum.ACTIVE);
 		company.setPhone(0606060606);
-		company.setSiren(123456789);
-		
+		company.setSiren(123456789);		
 
 		em.persist(company);
+		
+		//Mock donnée ColorConfig liée à l'ESN
+		ColorConfig colorConfigDefault = new ColorConfig();
+		colorConfigDefault.setBackgroundColor("7FB2AE");
+		colorConfigDefault.setButtonColor("8FBCB8");
+		colorConfigDefault.setTextColor("000000");
+		colorConfigDefault.setTitleColor("FFFFFF");
+		
+		Config config = new Config();
+		config.setColorConfig(colorConfigDefault);
+		config.setCompany(company);
+		config.setImageConfig(new ImageConfig());
+		
+		em.persist(config);
 
 		// Mock donnée UserData liée à user
 		UserData data = new UserData();
@@ -406,8 +422,31 @@ public class DataInit {
 		
 		em.persist(notif);
 		
+		// Mock Afficher détails d'un forfait
+		
+		//Liés au nom de la compagny, le nom du contrat, le prix du contrat, la date de création du contrat, le nom du forfait.
+		
+		
 
-
+		Contract contract = new Contract();
+		contract.setCreatedAt(LocalDate.now());
+		contract.setFeature(feature2);
+		contract.setPrice(495f);
+		
+		ContractOptions co = new ContractOptions();
+		co.setContract(contract);
+		co.setOption(option1);
+		
+		ContractOptions co2 = new ContractOptions();
+		co2.setContract(contract);
+		co2.setOption(option2);
+		
+		company.setContract(contract);
+		
+		em.persist(co);
+		em.persist(co2);
+		em.persist(contract);
+		em.merge(company);
 	}
 
 }

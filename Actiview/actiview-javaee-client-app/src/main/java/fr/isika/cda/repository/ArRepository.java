@@ -25,7 +25,23 @@ public class ArRepository {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
+	public void register(User user) {
+		Ar ar = new Ar();
+
+		ar.setCreatedAt(LocalDate.now());
+		ar.setArConfig(ArConfigEnum.MONTH);
+		ar.setStateArEnum(StateAr.DRAFT);
+		ar.setUpdatedAt(LocalDate.now());
+		ar.setUser(user);
+
+		em.persist(ar);
+
+	}
+
+	public Ar findById(Long id) {
+		return (Ar) em.createQuery("SELECT a FROM Ar a WHERE a.id = " + id).getSingleResult();
+	}
 
 	public Ar findByUserAndCreatedAt(Long userId, int month, int year) {
 
@@ -46,15 +62,12 @@ public class ArRepository {
 	public Ar findArWithUserDataByUserAndCreatedAt(Long userId, int month, int year) {
 
 		try {
-			Query query = em.createQuery(
-					"SELECT A FROM Ar a JOIN a.user u JOIN u.userData "
-					+ "WHERE fk_user_id = :id "
-					+ "AND MONTH(a.createdAt) = :month "
-					+ "AND YEAR(a.createdAt) = :year");
+			Query query = em.createQuery("SELECT A FROM Ar a JOIN a.user u JOIN u.userData " + "WHERE fk_user_id = :id "
+					+ "AND MONTH(a.createdAt) = :month " + "AND YEAR(a.createdAt) = :year");
 			query.setParameter("id", userId);
 			query.setParameter("month", month);
 			query.setParameter("year", year);
-			
+
 			return (Ar) query.getSingleResult();
 
 		} catch (NoResultException nre) {
@@ -62,21 +75,11 @@ public class ArRepository {
 		}
 	}
 	
-	public void register(User user) {
-		Ar ar = new Ar();
-
-		ar.setCreatedAt(LocalDate.now());
-		ar.setArConfig(ArConfigEnum.MONTH);
-		ar.setStateArEnum(StateAr.DRAFT);
-		ar.setUpdatedAt(LocalDate.now());
-		ar.setUser(user);
-
-		em.persist(ar);
-
-	}
-
-	public Ar findById(Long id) {
-		return (Ar) em.createQuery("SELECT a FROM Ar a WHERE a.id = " + id).getSingleResult();
+	public User findUserByArId(Long arId) {
+		Query query = em.createQuery("SELECT a FROM Ar a JOIN a.user u WHERE a.id = :id");
+		query.setParameter("id", arId);
+		Ar ar = (Ar) query.getSingleResult();
+		return ar.getUser();
 	}
 
 	public void changeState(StateAr state, ArViewModel arVm) {
@@ -89,7 +92,7 @@ public class ArRepository {
 		Ar ar = findById(arId);
 		ar.setStateArEnum(StateAr.VALIDATED);
 	}
-	
+
 	public void refuseAr(Long arId) {
 		Ar ar = findById(arId);
 		ar.setStateArEnum(StateAr.DRAFT);

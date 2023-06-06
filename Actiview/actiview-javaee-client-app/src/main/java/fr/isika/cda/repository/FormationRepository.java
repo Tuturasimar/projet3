@@ -14,13 +14,12 @@ import fr.isika.cda.utils.SessionUtils;
 import fr.isika.cda.viewmodels.EditFormationViewModel;
 import fr.isika.cda.viewmodels.FormationViewModel;
 
-
 @Stateless
 public class FormationRepository {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	public Long register(FormationViewModel formationVm) {
 		Formation formation = new Formation();
 		formation.setLabelActivity(formationVm.getLabelFormation());
@@ -32,14 +31,14 @@ public class FormationRepository {
 		formation.setCreator(em.getReference(User.class, SessionUtils.getUserIdFromSession()));
 		formation.setStatus(StatusEnum.ACTIVE);
 		em.persist(formation);
-		
+
 		return formation.getId();
 	}
-	
+
 	public List<Formation> findAllFormations() {
 		return em.createQuery("SELECT f FROM Formation f", Formation.class).getResultList();
 	}
-	
+
 	public void updateFormation(EditFormationViewModel editFormaVm) {
 		// TODO : fill the rest of the attributes
 		Formation formation = findById(editFormaVm.getFormationId());
@@ -53,17 +52,30 @@ public class FormationRepository {
 
 		em.merge(formation);
 	}
-	
+
 	public Formation findById(Long id) {
 		Query query = em.createQuery("SELECT f FROM Formation f WHERE f.id = :id", Formation.class);
 		query.setParameter("id", id);
-		
+
 		return (Formation) query.getSingleResult();
 	}
 
 	@SuppressWarnings("unchecked")
+	public List<Formation> findAllFormationByCompanyId(Long companyId) {
+		Query query = em.createQuery(
+				"SELECT f FROM Formation f JOIN f.creator u WHERE f.status = :active AND u.company.id = :companyId",
+				Formation.class);
+		query.setParameter("active", StatusEnum.ACTIVE);
+		query.setParameter("companyId", companyId);
+
+		return query.getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
 	public List<Formation> getAllActiveFormationsFromCompany(Long companyId) {
-		Query query = em.createQuery("SELECT f FROM Formation f JOIN f.creator u WHERE f.status = :active AND u.company.id = :companyId", Formation.class);
+		Query query = em.createQuery(
+				"SELECT f FROM Formation f JOIN f.creator u WHERE f.status = :active AND u.company.id = :companyId",
+				Formation.class);
 		query.setParameter("active", StatusEnum.ACTIVE);
 		query.setParameter("companyId", companyId);
 		return query.getResultList();

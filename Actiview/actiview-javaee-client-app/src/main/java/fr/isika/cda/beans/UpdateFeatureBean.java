@@ -4,11 +4,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
-import fr.isika.cda.entities.activities.Mission;
 import fr.isika.cda.entities.config.Feature;
 import fr.isika.cda.repository.FeatureRepository;
 import fr.isika.cda.viewmodels.EditFeatureViewModel;
-import fr.isika.cda.viewmodels.FeaturesViewModel;
 
 @ManagedBean
 @SessionScoped

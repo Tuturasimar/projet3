@@ -5,16 +5,14 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/templates/default.xhtml">
-	
+	<h:head>
+		<h:outputStylesheet name="bootstrap-5.0.2-dist/css/bootstrap.min.css" />
+	</h:head>
+
 	<ui:define name="content">
-		<div class="container-fluid">
-			<h:form id="content-form">
-
-				<h1>Bienvenue</h1>
-				<p>Contenu de la page d'accueil</p>
-
-			</h:form>
+		<div class="row content">
+			<h1>Bienvenue</h1>
+			<p>Contenu de la page d'accueil</p>
 		</div>
 	</ui:define>
-
 </ui:composition>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -10,10 +9,10 @@
 	<title>ActiView</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-	
+
 
 	<h:outputStylesheet name="bootstrap-5.0.2-dist/css/bootstrap.min.css" />
-<h:outputStylesheet library="CSS" name="stylesheet.css" />
+	<h:outputStylesheet library="CSS" name="stylesheet.css" />
 	<h:outputScript library="js" name="CustomizeColor.js" />
 
 </h:head>
@@ -24,39 +23,44 @@
 
 		<div id="header">
 			<ui:include src="header.xhtml" />
-		
+
 			<ui:insert name="Entete"></ui:insert>
-
-			<h:panelGrid col="1" rendered="#{notificationBean.notification}">
-
-				<ui:repeat var="notification"
-					value="#{notificationBean.notifications}">
-					<div class="alert alert-#{notification.classContext.label}">
-						<h:outputText value="#{notification.messageContent}" />
-					</div>
-				</ui:repeat>
-			</h:panelGrid>
-			<h:form rendered="#{notificationBean.notification}">
-				<h:commandButton
-					action="#{notificationBean.deleteAllNotifications()}"
-					value="Supprimer les notifications"
-					 />
-			</h:form>
 		</div>
 
 	</div>
 
-	<div id="content" class="container">
-		<ui:insert name="content">
+	<div id="content" class="container-fluid">
+		<div class="row">
+			<div class="col-sm-10 text-left">
+				<ui:insert name="content">
 
                 [Template content will be inserted here]
          	</ui:insert>
+			</div>
+			<div class="col-sm-2 sidenav">
+				<h:panelGrid col="1" rendered="#{notificationBean.notification}">
+
+					<ui:repeat var="notification"
+						value="#{notificationBean.notifications}">
+						<div class="alert alert-#{notification.classContext.label}">
+							<h:outputText value="#{notification.messageContent}" />
+						</div>
+					</ui:repeat>
+				</h:panelGrid>
+				<h:form rendered="#{notificationBean.notification}">
+					<h:commandButton
+						action="#{notificationBean.deleteAllNotifications()}"
+						value="Supprimer les notifications" />
+				</h:form>
+			</div>
+		</div>
 	</div>
 
 	<div id="footer">
 		<ui:include src="footer.xhtml" />
 	</div>
 	<h:outputScript library="js" name="primeFacesLocales.js"></h:outputScript>
+	<h:outputScript name="bootstrap.min.js" library="js"></h:outputScript>
 
 </h:body>
 </html>

@@ -13,30 +13,60 @@
 			type="preRenderView"></f:event>
 	</f:metadata>
 
-	<ui:define name="Entete">
-		<h2 style="color: red">CRA de l'employé</h2>
 
-	</ui:define>
 
 	<ui:define name="content">
-		<p:outputLabel value="CRA du mois de #{seeArOfEmployeeBean.arOfEmployeeVM.createdAt.month}"></p:outputLabel>
-		<p:growl id="messages" showDetail="true" />
 
-		<p:schedule id="schedule" value="#{seeArOfEmployeeBean.calendar}"
-			initialDate="#{seeArOfEmployeeBean.arOfEmployeeVM.createdAt}"
-			draggable="false" showHeader="false" ></p:schedule>
+		<h2 style="text-align: center">Visualisation du Compte Rendu
+			d'Activité</h2>
 
-		
-		<h:form>
-			<p:commandButton
-				action="#{seeArOfEmployeeBean.acceptAr(seeArOfEmployeeBean.arOfEmployeeVM.arId)}"
-				value="Valider le CRA"
-				rendered="#{seeArOfEmployeeBean.arOfEmployeeVM.stateAr == seeArOfEmployeeBean.inhold}" />
-			<p:commandButton
-				action="#{seeArOfEmployeeBean.refuseAr(seeArOfEmployeeBean.arOfEmployeeVM.arId)}"
-				value="Refuser le CRA"
-				rendered="#{seeArOfEmployeeBean.arOfEmployeeVM.stateAr == seeArOfEmployeeBean.inhold}" />
-		</h:form>
+		<div class="row">
+			<p:outputLabel
+				value="CRA du mois de #{seeArOfEmployeeBean.getMonth()} #{seeArOfEmployeeBean.getYear()}"
+				class="text-center mb-3" style="font-size: 20px !important"></p:outputLabel>
+			<p:growl id="messages" showDetail="true" />
+		</div>
+
+		<div class="row px-2">
+			<div
+				class="col-sm-4 d-flex flex-column justify-content-around card p-3">
+				<h3 class="text-center">Légende</h3>
+				<div class="row">
+					<div class="col-sm-6">Mission</div>
+					<div class="col-sm-5 redCalendarItem rounded"></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">Absence</div>
+					<div class="col-sm-5 blueCalendarItem rounded"></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">Formation</div>
+					<div class="col-sm-5 purpleCalendarItem rounded"></div>
+				</div>
+				<h:form>
+				<div class="row d-flex justify-content-around">
+					
+						<div class="col-sm-5">
+							<p:commandButton
+								action="#{seeArOfEmployeeBean.acceptAr(seeArOfEmployeeBean.arOfEmployeeVM.arId)}"
+								value="Valider le CRA"
+								rendered="#{seeArOfEmployeeBean.arOfEmployeeVM.stateAr == seeArOfEmployeeBean.inhold}" />
+						</div>
+						<div class="col-sm-5">
+							<p:commandButton
+								action="#{seeArOfEmployeeBean.refuseAr(seeArOfEmployeeBean.arOfEmployeeVM.arId)}"
+								value="Refuser le CRA"
+								rendered="#{seeArOfEmployeeBean.arOfEmployeeVM.stateAr == seeArOfEmployeeBean.inhold}" />
+						</div>
+				
+				</div>
+					</h:form>
+			</div>
+
+			<p:schedule id="schedule" value="#{seeArOfEmployeeBean.calendar}"
+				initialDate="#{seeArOfEmployeeBean.arOfEmployeeVM.createdAt}"
+				draggable="false" showHeader="false" class="col-sm-8"></p:schedule>
+		</div>
 	</ui:define>
 </ui:composition>
 </html>

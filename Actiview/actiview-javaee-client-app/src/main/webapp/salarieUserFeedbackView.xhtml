@@ -7,56 +7,70 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="header">
-		<h1 style="text-align: center">Liste des appréciations de missions en cours</h1>
+		<h1 style="text-align: center">Liste des appréciations de
+			missions en cours</h1>
 	</ui:define>
 
 	<ui:define name="content">
 
-		<ui:repeat var="assignement" value="#{userFeedbackBean.missionUsers}"
-			varStatus="status">
-			<h:form>
-				<h3>#{assignement.mission.labelActivity}</h3>
+		<h2 class="text-center my-4">Remplissage des notes de mission</h2>
+		<div class="row d-flex justify-content-between m-4">
+			<ui:repeat var="assignement" value="#{userFeedbackBean.missionUsers}"
+				varStatus="status">
 
-				<h5>Note de la relation client</h5>
 
-				<p:rating value="#{assignement.userFeedback.gradeClientRelation}">
-					<p:ajax event="rate"
-						listener="#{userFeedbackBean.update(status.index, assignement)}"></p:ajax>
-				</p:rating>
+				<div class="card col-sm-5 my-3">
+					<h:form>
+						<h3 class="text-center">#{assignement.mission.labelActivity}</h3>
 
-				<h5>Note de l'accompagnement du manager</h5>
-				<p:rating value="#{assignement.userFeedback.gradeManager}">
-					<p:ajax event="rate"
-						listener="#{userFeedbackBean.update(status.index, assignement)}"></p:ajax>
-				</p:rating>
+						<h5>Note de la relation client</h5>
 
-				<h5>Note de la mission</h5>
-				<p:rating value="#{assignement.userFeedback.gradeMission}">
-					<p:ajax event="rate"
-						listener="#{userFeedbackBean.update(status.index, assignement)}"></p:ajax>
-				</p:rating>
+						<p:rating value="#{assignement.userFeedback.gradeClientRelation}">
+							<p:ajax event="rate"
+								listener="#{userFeedbackBean.update(status.index, assignement)}"></p:ajax>
+						</p:rating>
 
-				<h5>Note du confort de l'employé</h5>
-				<p:rating value="#{assignement.userFeedback.gradeUserComfort}">
-					<p:ajax event="rate"
-						listener="#{userFeedbackBean.update(status.index, assignement)}"></p:ajax>
-				</p:rating>
+						<h5>Note de l'accompagnement du manager</h5>
+						<p:rating value="#{assignement.userFeedback.gradeManager}">
+							<p:ajax event="rate"
+								listener="#{userFeedbackBean.update(status.index, assignement)}"></p:ajax>
+						</p:rating>
 
-				<h:outputLabel value="Commentaires supplémentaires"
-					for="commentInput" />
-				<p:inputTextarea id="commentInput_#{status.index}"
-					value="#{userFeedbackBean.missionUsers[status.index].userFeedback.comment}">
-					<p:ajax event="keyup"
-						listener="#{userFeedbackBean.update(status.index, assignement)}"></p:ajax>
-				</p:inputTextarea>
+						<h5>Note de la mission</h5>
+						<p:rating value="#{assignement.userFeedback.gradeMission}">
+							<p:ajax event="rate"
+								listener="#{userFeedbackBean.update(status.index, assignement)}"></p:ajax>
+						</p:rating>
 
-				<p:commandButton
-					action="#{userFeedbackBean.saveChanges(status.index)}"
-					value="Mettre à jour">
-				</p:commandButton>
-			</h:form>
-		</ui:repeat>
+						<h5>Note du confort de l'employé</h5>
+						<p:rating value="#{assignement.userFeedback.gradeUserComfort}">
+							<p:ajax event="rate"
+								listener="#{userFeedbackBean.update(status.index, assignement)}"></p:ajax>
+						</p:rating>
 
+						<div class="col">
+							<h:outputLabel value="Commentaires supplémentaires"
+								for="commentInput" />
+						</div>
+						<div class="col d-flex justify-content-center my-4">
+							<p:inputTextarea id="commentInput_#{status.index}"
+								value="#{userFeedbackBean.missionUsers[status.index].userFeedback.comment}">
+								<p:ajax event="keyup"
+									listener="#{userFeedbackBean.update(status.index, assignement)}"></p:ajax>
+							</p:inputTextarea>
+						</div>
+						<div class="col-4 my-4 d-flex mx-auto">
+							<p:commandButton
+								action="#{userFeedbackBean.saveChanges(status.index)}"
+								value="Mettre à jour">
+							</p:commandButton>
+						</div>
+					</h:form>
+				</div>
+
+
+			</ui:repeat>
+		</div>
 
 	</ui:define>
 

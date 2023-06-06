@@ -4,7 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="/WEB-INF/templates/default.xhtml">
 	<f:metadata>
@@ -14,14 +15,19 @@
 			type="preRenderView"></f:event>
 	</f:metadata>
 
-	<ui:define name="Entete">
-		<h2 style="text-align: center">Remplissage du Compte Rendu
-			d'activité</h2>
 
-	</ui:define>
 
 	<ui:define name="content">
 
+
+		<c:if test="#{showArBean.isArADraft()}">
+			<h2 style="text-align: center">Remplissage du Compte Rendu
+				d'Activité</h2>
+		</c:if>
+		<c:if test="#{!showArBean.isArADraft()}">
+			<h2 style="text-align: center">Visualisation du Compte Rendu
+				d'Activité</h2>
+		</c:if>
 		<!-- Formulaire d'ajout d'activité -->
 		<h:form rendered="#{showArBean.isArADraft()}">
 
@@ -121,7 +127,7 @@
 		<!-- Affichage du calendrier -->
 		<div class="row">
 			<p:outputLabel
-				value="CRA du mois de #{registerActivityDateFromArBean.getMonth()}"
+				value="CRA du mois de #{registerActivityDateFromArBean.getMonth()} #{registerActivityDateFromArBean.getYear()}"
 				class="text-center mb-3" style="font-size: 20px !important"></p:outputLabel>
 		</div>
 		<p:growl id="messages" showDetail="true" />
@@ -147,7 +153,8 @@
 					<div class="col-sm-6">
 						<h:form>
 							<p:commandButton action="#{showArBean.arSentToValidation()}"
-								value="Soumettre le CRA" rendered="#{showArBean.isArADraft()}" styleClass="btn btn-success" />
+								value="Soumettre le CRA" rendered="#{showArBean.isArADraft()}"
+								styleClass="btn btn-success" />
 						</h:form>
 					</div>
 

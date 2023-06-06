@@ -12,13 +12,11 @@
 		<f:event listener="#{seeArOfEmployeeBean.showArCalendar(id)}"
 			type="preRenderView"></f:event>
 	</f:metadata>
-	<ui:define name="Entete">
-		<h2 style="color: red">test des dates</h2>
-
-	</ui:define>
 
 	<ui:define name="content">
 
+		<h2 style="text-align: center">Visualisation du Compte Rendu
+			d'Activité</h2>
 		<h:form rendered="#{showArBean.isArADraft()}">
 			<h:selectOneMenu id="partDayMenu"
 				value="#{registerActivityDateFromArBean.arDateVm.partOfDay}">

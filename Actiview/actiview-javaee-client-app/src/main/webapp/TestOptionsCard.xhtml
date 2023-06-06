@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="Entete">
+		<h1>Liste des forfaits</h1>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<p:growl id="cardFeature" showDetail="true"
+				skipDetailIfEqualsSummary="true" />
+
+			<div class="tablePack-item">
+				<p:panel id="basic" header="Personnalisation poussée" 
+					style="margin-bottom:20px">
+					<h:panelGrid columns="2" cellpadding="10">
+					<h:outputText value="20€ / mois " style="font-size: 30px" />
+						<br />
+
+						<h:outputText value="Permet de définir n’importe quelle couleur pour l’application (couleur principale, secondaire, boutons)" />
+						<br />
+						<p:commandButton id="select-button" value="Choisir cette option" action="CompanyRegisterForm.xhtml"/> 
+					</h:panelGrid>
+				</p:panel>
+			</div>
+
+			<div class="tablePack-item">
+				<p:panel id="premium" header="Feedback" 
+					style="margin-bottom:20px">
+					<h:panelGrid columns="2" cellpadding="10">
+					<h:outputText value="100€ / mois" style="font-size: 30px" />
+						<br />
+						<h:outputText value="Permet aux salariés de votre ESN de transmettre au sein de l’application leur avis sur leur mission en cours." />
+						<br />
+
+						<p:commandButton id="selectButton" value="Choisir cette option" action="CompanyRegisterForm.xhtml"/>  
+					
+					</h:panelGrid>
+				</p:panel>
+			</div>
+
+			<div class="tablePack-item">
+				<p:panel id="ultimate" header="Auto-remplissage du CRA"
+					style="margin-bottom:20px">
+					<h:panelGrid columns="2" cellpadding="10">
+						<h:outputText value="200€ / mois " style="font-size: 30px" />
+						<br />
+
+						<h:outputText value="Permet le remplissage automatique du CRA, C’est très pratique !" />
+						<br />
+						
+						<p:commandButton id="submitButton" value="Choisir cette option" action="CompanyRegisterForm.xhtml"/> 
+					</h:panelGrid>
+				</p:panel>
+			</div>
+
+
+		
+
+
+
+		</h:form>
+
+
+	</ui:define>
+
+
+</ui:composition>

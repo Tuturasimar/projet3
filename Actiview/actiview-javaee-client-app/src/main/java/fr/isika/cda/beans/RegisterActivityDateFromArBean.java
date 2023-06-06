@@ -134,6 +134,11 @@ public class RegisterActivityDateFromArBean implements Serializable {
 		return "addActivityDates.xhtml";
 	}
 
+	/**
+	 * Méthode qui va retourner la classe CSS correspondante au type d'activité
+	 * @param activityDateAsEvent ActivityDate
+	 * @return String
+	 */
 	public String getColorClass(ActivityDate activityDateAsEvent) {
 		Activity activity = activityDateAsEvent.getArActivity().getActivity();
 
@@ -227,6 +232,9 @@ public class RegisterActivityDateFromArBean implements Serializable {
 		}
 	}
 
+	/**
+	 * Méthode qui supprime toutes les ActivityDate du mois en cours pour le salarié connecté
+	 */
 	public void deleteAllExistingActivityDate() {
 
 		// requete pour supprimer toutes les activityDate liées à l'Ar
@@ -238,37 +246,53 @@ public class RegisterActivityDateFromArBean implements Serializable {
 
 	}
 
+	/**
+	 * Méthode pour créer la liste de toutes les dates possibles dans le mois du CRA en cours
+	 */
 	public void addAllMonth() {
 
+		// Appel de méthode pour supprimer toutes les anciennes ActivityDates
 		deleteAllExistingActivityDate();
 
 		Ar actualAr = arRepo.findById(arDateVm.getArId());
 
+		// Date du CRA en cours
 		LocalDate actualDate = actualAr.getCreatedAt();
 
+		// Date du premier jour du mois du CRA en cours
 		LocalDate firstDayOfMonth = LocalDate.of(actualDate.getYear(), actualDate.getMonthValue(), 1);
 
+		// Date du premier jour du mois suivant celui du CRA en cours
 		LocalDate firstDayNextMonth = LocalDate.of(actualDate.getYear(), actualDate.plusMonths(1).getMonthValue(), 1);
 
+		// Stream qui récupère l'ensemble des dates du mois du CRA en cours
 		Stream<LocalDate> allDaysOfMonthStream = firstDayOfMonth.datesUntil(firstDayNextMonth);
 
+		// On récupère une liste à partir du Stream
 		List<LocalDate> allDaysOfMonth = allDaysOfMonthStream.collect(Collectors.toList());
 
+		// Sur chaque date, on vérifie que le jour n'est pas Samedi ou Dimanche
 		for (LocalDate dateToAdd : allDaysOfMonth) {
 			if (dateToAdd.getDayOfWeek() != DayOfWeek.SATURDAY && dateToAdd.getDayOfWeek() != DayOfWeek.SUNDAY)
 				arDateVm.setDate(dateToAdd);
+			// Si oui, appel de la méthode pour ajouter la date
 			addDate();
 		}
 	}
 
+	/**
+	 * Méthode pour ajouter plusieurs dates dans un intervalle choisi par l'utilisateur
+	 */
 	public void addRangeDate() {
 
 		Ar actualAr = arRepo.findById(arDateVm.getArId());
 
 		LocalDate actualDate = actualAr.getCreatedAt();
 
+		// Si les dates renseignées appartiennent au même mois que le CRA en cours
 		if (actualDate.getMonthValue() == arDateVm.getDateFirst().getMonthValue()
 				&& actualDate.getMonthValue() == arDateVm.getDateLast().getMonthValue()) {
+			// Si la date de début se trouve bien avant la date de fin
 			if (arDateVm.getDateLast().compareTo(arDateVm.getDateFirst()) > 0) {
 				Stream<LocalDate> allDaysInRangeStream = arDateVm.getDateFirst()
 						.datesUntil(arDateVm.getDateLast().plusDays(1));
@@ -295,6 +319,10 @@ public class RegisterActivityDateFromArBean implements Serializable {
 
 	}
 
+	/**
+	 * Méthode pour vérifier si la date est bien du mois et de l'année du CRA en cours
+	 * @return
+	 */
 	public boolean checkDateMonthAndYear() {
 		Ar actualAr = arRepo.findById(arDateVm.getArId());
 

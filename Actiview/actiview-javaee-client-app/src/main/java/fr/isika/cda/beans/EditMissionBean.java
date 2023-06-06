@@ -17,6 +17,11 @@ public class EditMissionBean {
 	@Inject
 	private MissionRepository missionRepository;
 
+	/**
+	 * Méthode permettant le pré-remplissage du formulaire d'édition
+	 * @param id Id de la mission
+	 * @return String (La vue que l'on souhaite afficher)
+	 */
 	public String showEditMission(Long id) {
 		Mission missionToUpdate = missionRepository.findById(id);
 		if(missionToUpdate != null) {
@@ -32,6 +37,10 @@ public class EditMissionBean {
 		return "editMission.xhtml";
 	}
 
+	/**
+	 * Méthode pour enregistrer les modifications
+	 * @return String (La vue que l'on souhaite afficher)
+	 */
 	public String editMission() {
 		missionRepository.editMission(editMissionVm);
 		return "missionList.xhtml";

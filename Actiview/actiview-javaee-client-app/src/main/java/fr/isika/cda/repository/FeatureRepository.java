@@ -19,11 +19,17 @@ public class FeatureRepository {
 	@PersistenceContext
 	private EntityManager em;
 
+	
 	public List<Feature> findAll() {
 
 		return em.createQuery("SELECT f FROM Feature f", Feature.class).getResultList();
 	}
 
+	/**
+	 * Méthode pour enregistrer un nouveau forfait
+	 * @param featureVm FeaturesViewModel
+	 * @return Long (id de la Feature)
+	 */
 	public Long register(FeaturesViewModel featureVm) {
 		// TODO Auto-generated method stub
 		
@@ -40,6 +46,10 @@ public class FeatureRepository {
 		return feature.getId();
 	}
 	
+	/**
+	 * Méthode pour mettre à jour la Feature
+	 * @param featureVm EditFeatureViewModel
+	 */
 	public void updateFeature(EditFeatureViewModel featureVm) {
 		Feature feature = findByFeatureId(featureVm.getFeatureId());
 		feature.setLabel(featureVm.getLabel());
@@ -50,6 +60,11 @@ public class FeatureRepository {
 		
 	}
 
+	/**
+	 * Méthode pour récupérer une Feature en fonction de son id
+	 * @param id id de la Feature
+	 * @return Feature
+	 */
 	public Feature findByFeatureId(Long id) {
 		// TODO Auto-generated method stub
 		Feature feature = new Feature();

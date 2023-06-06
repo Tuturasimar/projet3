@@ -22,6 +22,11 @@ public class MissionRepository {
 	@PersistenceContext
 	private EntityManager em;
 	
+	/**
+	 * Méthode pour enregistrer une nouvelle mission
+	 * @param missionVm MissionViewModel
+	 * @return Long (id de la Mission)
+	 */
 	public Long register(MissionViewModel missionVm) {
 		Mission mission = new Mission();
 		mission.setLabelActivity(missionVm.getLabelActivity());
@@ -35,6 +40,11 @@ public class MissionRepository {
 		return mission.getId();
 	}
 	
+	/**
+	 * Méthode pour mettre à jour une Mission en BDD
+	 * @param missionVm EditMissionViewModel
+	 * @return Long (id de la Mission mise à jour
+	 */
 	public Long editMission(EditMissionViewModel missionVm) {
 		Mission missionUpdate = findById(missionVm.getMissionId());
 		missionUpdate.setLabelActivity(missionVm.getLabelActivity());
@@ -45,10 +55,16 @@ public class MissionRepository {
 		return missionUpdate.getId(); 
 	}
 
+	
 	public List<Mission> findAll() {
 		return em.createQuery("SELECT m FROM Mission m", Mission.class).getResultList();
 	}
 	
+	/**
+	 * Méthode pour récupérer une mission en fonction de son id
+	 * @param id id de la Mission
+	 * @return Mission
+	 */
 	public Mission findById(Long id) {
 		Mission mission = new Mission();
 		mission = em
@@ -58,6 +74,11 @@ public class MissionRepository {
 		return mission;
 	}
 	
+	/**
+	 * Méthode pour récupérer les missions actives de la Company
+	 * @param companyId id de la Company
+	 * @return List Mission
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Mission> getAllActiveMissionsFromCompany(Long companyId){
 		Query query = em.createQuery("SELECT m FROM Mission m JOIN m.creator u WHERE m.status = :active AND u.company.id = :companyId", Mission.class);
@@ -67,6 +88,11 @@ public class MissionRepository {
 		return query.getResultList();
 	}
 
+	/**
+	 * Méthode pour récupérer toutes les missions en fonction de l'id de la Company
+	 * @param companyId id de la Company
+	 * @return List Mission
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Mission> findAllMissionsByCompanyId(Long companyId) {
 		Query query = em.createQuery("SELECT m FROM Mission m JOIN m.creator u WHERE u.company.id = :companyId", Mission.class);

@@ -48,6 +48,11 @@ public class ActivityDateRepository {
 		em.persist(activityDate);
 	}
 
+	/**
+	 * Méthode pour récupérer l'ensemble des ActivityDate par l'Id du CRA
+	 * @param arActivityId l'ID du CRA
+	 * @return Une liste d'ActivityDate
+	 */
 	public List<ActivityDate> getAllActivityDateByArActivityId(Long arActivityId) {
 
 		try {
@@ -149,6 +154,10 @@ public class ActivityDateRepository {
 		return activityDate.arActivity.getActivity().getLabelActivity();
 	}
 	
+	/**
+	 * Méthode de suppresion d'une ActivityDate
+	 * @param activityDate ActivityDate
+	 */
 	public void delete(ActivityDate activityDate) {
 		
 		em.remove(em.contains(activityDate) ? activityDate : em.merge(activityDate));

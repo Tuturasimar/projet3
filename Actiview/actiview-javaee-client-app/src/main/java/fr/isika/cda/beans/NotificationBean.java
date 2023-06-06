@@ -29,6 +29,9 @@ public class NotificationBean {
 	}
 	
 	@PostConstruct
+	/**
+	 * Méthode récupérant l'ensemble des notifications de l'utilisateur connecté
+	 */
 	private void init() {
 		notifications = notificationRepo.getAllNotificationsByUserConnected();
 	}
@@ -37,10 +40,17 @@ public class NotificationBean {
 		init();
 	}
 	
+	/**
+	 * Méthode vérifiant si l'utilisateur possède des notifications
+	 * @return true s'il a des notifications | false s'il n'en a pas
+	 */
 	public boolean isNotification() {
 		return notifications.size() != 0 ? true : false;
 	}
 	
+	/**
+	 * Méthode pour supprimer toutes les notifications de l'utilisateur connecté
+	 */
 	public void deleteAllNotifications() {
 		for (Notification notification : notifications) {
 			notificationRepo.delete(notification);
@@ -48,6 +58,12 @@ public class NotificationBean {
 		load();
 	}
 	
+	/**
+	 * Ajoute une notification
+	 * @param id L'Id de l'utilisateur qui doit recevoir la notification
+	 * @param message Le message renseigné dans la notification
+	 * @param bootstrapClass La classe BootStrap utilisée pour le rendu graphique de la notification
+	 */
 	public void addNotification(Long id, String message, ClassContextEnum bootstrapClass) {
 		notificationRepo.createNotification(id, message, bootstrapClass);
 	}

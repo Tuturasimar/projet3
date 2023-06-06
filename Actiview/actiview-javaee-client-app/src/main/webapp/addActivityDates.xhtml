@@ -9,7 +9,8 @@
 <ui:composition template="/WEB-INF/templates/default.xhtml">
 	<f:metadata>
 		<f:viewParam name="id" />
-		<f:event listener="#{registerActivityDateFromArBean.showArCalendar(id)}"
+		<f:event
+			listener="#{registerActivityDateFromArBean.showArCalendar(id)}"
 			type="preRenderView"></f:event>
 	</f:metadata>
 
@@ -60,7 +61,18 @@
 			<h:commandButton id="addDate"
 				action="#{registerActivityDateFromArBean.addDate()}"
 				value="Ajouter l'activité">
-<!-- 				<f:ajax execute="@form" render="schedule" event="click"></f:ajax> -->
+				<!-- 				<f:ajax execute="@form" render="schedule" event="click"></f:ajax> -->
+			</h:commandButton>
+			<p:datePicker id="datePickerDateFirst"
+				value="#{registerActivityDateFromArBean.arDateVm.dateFirst}"
+				showIcon="true" />
+			<p:datePicker id="datePickerDateLast"
+				value="#{registerActivityDateFromArBean.arDateVm.dateLast}"
+				showIcon="true" />
+			<h:commandButton id="addRangeDate"
+				action="#{registerActivityDateFromArBean.addRangeDate()}"
+				value="Ajouter les activités">
+				<!-- 				<f:ajax execute="@form" render="schedule" event="click"></f:ajax> -->
 			</h:commandButton>
 			<h:commandButton
 				action="#{registerActivityDateFromArBean.addAllMonth()}"
@@ -77,11 +89,12 @@
 			value="CRA du mois de #{registerActivityDateFromArBean.arCalendarVM.createdAt.month}"></p:outputLabel>
 		<p:growl id="messages" showDetail="true" />
 
-		<p:schedule id="schedule" value="#{registerActivityDateFromArBean.calendar}"
+		<p:schedule id="schedule"
+			value="#{registerActivityDateFromArBean.calendar}"
 			initialDate="#{registerActivityDateFromArBean.arCalendarVM.createdAt}"
 			draggable="false" showHeader="false"></p:schedule>
 		<!-- Affichage en tableau des dates (se rafraichit automatiquement) à remplacer par le calendrier !-->
-		
+
 		<h:form>
 			<p:commandButton action="#{showArBean.arSentToValidation()}"
 				value="Soumettre le CRA" rendered="#{showArBean.isArADraft()}" />

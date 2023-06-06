@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="Entete">
+		<h1>Liste des forfaits</h1>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<p:growl id="cardFeature" showDetail="true"
+				skipDetailIfEqualsSummary="true" />
+
+			<div class="tablePack-item">
+				<p:panel id="basic" header="Forfait basique" footer="200€ / mois "
+					style="margin-bottom:20px">
+					<h:panelGrid columns="2" cellpadding="10">
+
+						<h:outputText value="- Collaborateurs maximum = 50 " />
+						<br />
+						<h:outputText value="- Configuration du CRA mensuel" />
+					</h:panelGrid>
+				</p:panel>
+			</div>
+
+			<div class="tablePack-item">
+				<p:panel id="premium" header="Forfait premium" footer="375€ / mois "
+					style="margin-bottom:20px">
+					<h:panelGrid columns="2" cellpadding="10">
+
+						<h:outputText value="- Collaborateurs maximum = 100 " />
+						<br />
+						<h:outputText value="- Configuration du CRA mensuel" />
+						<br />
+						<h:outputText value="- Nombre d'options possibles : 2 " />
+						<br />
+					</h:panelGrid>
+				</p:panel>
+			</div>
+
+			<div class="tablePack-item">
+				<p:panel id="ultimate" header="Forfait ultimate"
+					footer="666€ / mois" style="margin-bottom:20px">
+					<h:panelGrid columns="2" cellpadding="10">
+
+						<h:outputText value="- Collaborateurs maximum = 200 " />
+						<br />
+						<h:outputText value="- Configuration du CRA mensuel" />
+						<br />
+						<h:outputText value="- Nombre d'options possibles : illimité " />
+						<br />
+					</h:panelGrid>
+				</p:panel>
+			</div>
+
+		</h:form>
+
+
+	</ui:define>
+
+
+</ui:composition>

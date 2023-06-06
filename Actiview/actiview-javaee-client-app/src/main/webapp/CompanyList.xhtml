@@ -12,38 +12,38 @@
 
 	<ui:define name="content">
 	
-		<h:dataTable value="#{showCompanyBean.companies}" var="company">
+		<p:dataTable value="#{showCompanyBean.companies}" var="company">
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">Nom</f:facet>
 				#{company.name}
-			</h:column>
+			</p:column>
 			
-			<h:column>
+			<p:column>
 				<f:facet name="header">Adresse</f:facet>
 				#{company.adress}
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Numéro de téléphone</f:facet>
 				#{company.phone}
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">Numéro SIREN</f:facet>
 				#{company.siren}
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">Status</f:facet>
 				#{company.status}
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Voir le détail</f:facet>
 
 				
-			</h:column>
+			</p:column>
 
-		</h:dataTable>
+		</p:dataTable>
 	</ui:define>
 
 </ui:composition>

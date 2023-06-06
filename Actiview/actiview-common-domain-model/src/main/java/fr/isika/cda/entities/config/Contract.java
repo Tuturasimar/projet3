@@ -26,7 +26,7 @@ public class Contract implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	private char label;
+//	private char label;
 	private float price;
 	private String description;
 	
@@ -50,13 +50,9 @@ public class Contract implements Serializable {
 	public Feature getFeature() {
 		return feature;
 	}
-
-	public char getLabel() {
-		return label;
-	}
-
-	public void setLabel(char label) {
-		this.label = label;
+	
+	public void setFeature(Feature feature) {
+		this.feature = feature;
 	}
 
 	public float getPrice() {

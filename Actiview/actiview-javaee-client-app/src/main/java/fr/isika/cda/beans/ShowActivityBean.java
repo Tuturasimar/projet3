@@ -88,7 +88,7 @@ public class ShowActivityBean implements Serializable {
 		// Chercher toutes les missions affectées au User connecté
 		missions = missionUserRepo.findAllAffectedMissionsByUserId(userConnectedId);
 		// Chercher toutes les formations affectées au User connecté
-		formations = formationUserRepo.finAllAffectedFormationsByUserId(userConnectedId);
+		formations = formationUserRepo.findAllAffectedFormationsByUserId(userConnectedId);
 		
 		absences = activityRepository.getAllAbsences();
 		

@@ -1,5 +1,6 @@
 package fr.isika.cda.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -10,6 +11,7 @@ import javax.persistence.Query;
 
 import fr.isika.cda.entities.ar.ActivityDate;
 import fr.isika.cda.entities.ar.ArActivity;
+import fr.isika.cda.entities.ar.PartDayEnum;
 import fr.isika.cda.viewmodels.ArDateViewModel;
 
 @Stateless
@@ -46,6 +48,11 @@ public class ActivityDateRepository {
 		em.persist(activityDate);
 	}
 
+	/**
+	 * Méthode pour récupérer l'ensemble des ActivityDate par l'Id du CRA
+	 * @param arActivityId l'ID du CRA
+	 * @return Une liste d'ActivityDate
+	 */
 	public List<ActivityDate> getAllActivityDateByArActivityId(Long arActivityId) {
 
 		try {
@@ -94,6 +101,43 @@ public class ActivityDateRepository {
 
 		return null;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<ActivityDate> getMissionsDateByActivityId(Long activityId) {
+		Query query= em.createQuery("SELECT ad FROM ActivityDate ad "
+				+ "JOIN ad.arActivity ara " //arActivtity = attribut de ad
+				+ "JOIN ara.activity a " // a =attribut de l'activité dans arAvitivty
+				+ "WHERE a.id = :aId");
+		query.setParameter("aId", activityId);
+		
+		List<ActivityDate> missions = query.getResultList();
+		return missions;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<ActivityDate> getFormationsDateByActivityId(Long activityId) {
+		Query query= em.createQuery("SELECT ad FROM ActivityDate ad "
+				+ "JOIN ad.arActivity ara " //arActivtity = attribut de ad
+				+ "JOIN ara.activity a " // a =attribut de l'activité dans arAvitivty
+				+ "WHERE a.id = :aId");
+		query.setParameter("aId", activityId);
+		
+		List<ActivityDate> formations = query.getResultList();
+		return formations;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<ActivityDate> getAbsencesDateByActivityId(Long activityId) {
+		Query query= em.createQuery("SELECT ad FROM ActivityDate ad "
+				+ "JOIN ad.arActivity ara " //arActivtity = attribut de ad
+				+ "JOIN ara.activity a " // a =attribut de l'activité dans arAvitivty
+				+ "WHERE a.id = :aId");
+		query.setParameter("aId", activityId);
+		
+		List<ActivityDate> absences = query.getResultList();
+		return absences;
+	}
+	
 	/**
 	 * Méthode qui permet de récupérer le label de l'activité liée à une activityDate dont on passe l'id 
 	 * @param id : id de l'activityDate
@@ -110,10 +154,30 @@ public class ActivityDateRepository {
 		return activityDate.arActivity.getActivity().getLabelActivity();
 	}
 	
+	/**
+	 * Méthode de suppresion d'une ActivityDate
+	 * @param activityDate ActivityDate
+	 */
 	public void delete(ActivityDate activityDate) {
 		
 		em.remove(em.contains(activityDate) ? activityDate : em.merge(activityDate));
 		
 	}
+
+	public List<ActivityDate> getActivityDateDependingOnPartOfDay(List<ActivityDate> activityDates, PartDayEnum partOfDay) {
+		List<ActivityDate> resultActivityDates = new ArrayList<ActivityDate>();
+		for(ActivityDate activityDate : activityDates) {
+			if (activityDate.getPartOfDay() == partOfDay) {
+				resultActivityDates.add(activityDate);
+			}
+		}
+		return resultActivityDates;
+	}
+
+	
+
+	
+
+
 
 }

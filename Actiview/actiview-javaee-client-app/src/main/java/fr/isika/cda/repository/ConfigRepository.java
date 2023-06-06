@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import fr.isika.cda.entities.config.ColorConfig;
 import fr.isika.cda.entities.config.Company;
 import fr.isika.cda.entities.config.Config;
+import fr.isika.cda.entities.config.FontConfig;
 import fr.isika.cda.entities.config.ImageConfig;
 
 @Stateless
@@ -24,11 +25,15 @@ public class ConfigRepository {
 		colorConfig.setTextColor("000000");
 		colorConfig.setTitleColor("FFFFFF");
 		
+		FontConfig fontConfig = new FontConfig();
+		fontConfig.setFontFamily("sans-serif");
+		
 		Company company = em.getReference(Company.class, id);
 		
 		Config config = new Config();
 		config.setImageConfig(imageConfig);
 		config.setColorConfig(colorConfig);
+		config.setFontConfig(fontConfig);
 
 		config.setCompany(company);
 		

@@ -40,6 +40,14 @@ import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserData;
 import fr.isika.cda.entities.users.UserRole;
 
+
+
+
+import fr.isika.cda.entities.config.FontConfig;
+
+
+
+
 @Singleton
 @Startup
 public class DataInit {
@@ -68,9 +76,14 @@ public class DataInit {
 		colorConfigDefault.setTextColor("000000");
 		colorConfigDefault.setTitleColor("FFFFFF");
 		
+		//Mock donnée FontCOnfig liée à l'ESN
+		FontConfig fontConfigDefault = new FontConfig();
+		fontConfigDefault.setFontFamily("sans-serif");
+		
 		Config config = new Config();
 		config.setColorConfig(colorConfigDefault);
 		config.setCompany(company);
+		config.setFontConfig(fontConfigDefault);
 		config.setImageConfig(new ImageConfig());
 		
 		em.persist(config);

@@ -61,12 +61,36 @@ public class DataInit {
 		// Mock donnée d'une ESN 
 
 		Company company = new Company();
-		company.setAdress("Je suis une adresse");
+		company.setAdress("Paris");
 		company.setName("BeMyTech");
 		company.setStatus(StatusEnum.ACTIVE);
 		company.setPhone(0606060606);
 		company.setSiren(123456789);		
 
+		Company orange = new Company();
+		orange.setAdress("Genève");
+		orange.setName("Orange");
+		orange.setStatus(StatusEnum.ACTIVE);
+		orange.setPhone(0450463027);
+		orange.setSiren(123456987);		
+		
+		Company alten = new Company();
+		alten.setAdress("Nimes");
+		alten.setName("Alten");
+		alten.setStatus(StatusEnum.ACTIVE);
+		alten.setPhone(0450461327);
+		alten.setSiren(673456987);		
+		
+		Company sopra = new Company();
+		sopra.setAdress("Annecy");
+		sopra.setName("Sopra Steria");
+		sopra.setStatus(StatusEnum.ACTIVE);
+		sopra.setPhone(0445461313);
+		sopra.setSiren(673946987);		
+
+		em.persist(orange);
+		em.persist(alten);
+		em.persist(sopra);
 		em.persist(company);
 		
 		//Mock donnée ColorConfig liée à l'ESN

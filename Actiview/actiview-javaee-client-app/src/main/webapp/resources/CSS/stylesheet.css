@@ -1,21 +1,53 @@
  :root {
-        --primary-color: #4caf50;
-        --secondary-color: #ffc107;
+        --primary-color: #FFFFFF;
+        --secondary-color: #000000;
         --text-color: #212121;
-        --background-color: #ffffff;
+        --background-color: #7FB2AE;
       }
- 
-      body {
-        background-color: var(--background-color);
-        color: var(--text-color);
+      
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Libre+Baskerville&family=Roboto&family=Source+Code+Pro&display=swap');
+      
+      @font-face {
+      	font-family: 'Roboto';
+      	src: url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+      	font-weight: 300;
       }
+      
+      @font-face {
+      	font-family: 'Fira';
+      	src: url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+      	font-weight: 300;
+      }
+      
+       @font-face {
+      	font-family: 'Baskerville';
+      	src: url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+      	font-weight: 300;
+      }
+      
+      @font-face {
+      	font-family: 'Source';
+      	src: url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+      	font-weight: 400;
+      }
+      
+       @font-face {
+      	font-family: 'Dancing';
+      	src: url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+      	font-weight: 400;
+      }
+      
  
       h1 {
-        color: var(--primary-color);
+        color: var(--primary-color);        
       }
  
       p {
         color: var(--secondary-color);
+        font-family: "Roboto", Baskerville, Source;
+        font-family: "Baskerville",Roboto , Source;
+        font-family: "Source", Baskerville, Roboto ;
+        font-family: "Dancing", Baskerville, Roboto ;
       }
  
       .dark-theme {

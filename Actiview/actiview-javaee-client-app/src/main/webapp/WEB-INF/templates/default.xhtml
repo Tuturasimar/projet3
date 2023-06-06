@@ -9,11 +9,13 @@
 <h:head>
 	<title>ActiView</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
 	
 
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&amp;family=Libre+Baskerville&amp;family=Roboto&amp;family=Source+Code+Pro&amp;display=swap" rel="stylesheet"></link>
+
 	<h:outputStylesheet name="bootstrap-5.0.2-dist/css/bootstrap.min.css" />
-<h:outputStylesheet library="CSS" name="stylesheet.css" />
+	
+	<h:outputStylesheet library="CSS" name="stylesheet.css" />
 	<h:outputScript library="js" name="CustomizeColor.js" />
 
 </h:head>
@@ -37,8 +39,7 @@
 			<h:form rendered="#{notificationBean.notification}">
 				<h:commandButton
 					action="#{notificationBean.deleteAllNotifications()}"
-					value="Supprimer les notifications"
-					 />
+					value="Supprimer les notifications" />
 			</h:form>
 		</div>
 

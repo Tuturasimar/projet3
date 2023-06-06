@@ -3,24 +3,24 @@ package fr.isika.cda.viewmodels;
 public class CompanyViewModel {
 
 	// Données de la table Company
-	private int phone;
-	private int siren;
+	private String phone;
+	private String siren;
 	private String adress;
 	private String name;
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-	public int getSiren() {
+	public String getSiren() {
 		return siren;
 	}
 
-	public void setSiren(int siren) {
+	public void setSiren(String siren) {
 		this.siren = siren;
 	}
 

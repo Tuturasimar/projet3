@@ -31,8 +31,8 @@ public class Company implements Serializable {
 	private String name;
 	private String adress;
 	
-	private int phone;
-	private int siren;
+	private String phone;
+	private String siren;
 	
 	@Enumerated(EnumType.STRING)
 	private StatusEnum status;
@@ -91,19 +91,19 @@ public class Company implements Serializable {
 		this.status = status;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-	public int getSiren() {
+	public String getSiren() {
 		return siren;
 	}
 
-	public void setSiren(int siren) {
+	public void setSiren(String siren) {
 		this.siren = siren;
 	}
 

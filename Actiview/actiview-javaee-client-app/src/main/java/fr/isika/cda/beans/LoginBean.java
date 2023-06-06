@@ -28,17 +28,21 @@ public class LoginBean {
 				// 3 - Si oui => mémoriser le user en session 
 				SessionUtils.setUserLoginIntoSession(user.getLogin());
 				SessionUtils.setUserIdIntoSession(user.getId());
-				// + rediriger vers index
-				return "index";
+				
+				//TODO Check ici si celui qui se connecte est superAdmin
+				// Si oui, rediriger vers "indexAdmin"
+				
+				// Sinon rediriger vers homePageConnected
+				return "homePageConnected";
 				
 			} else {
 				System.err.println("user not found with data : " + loginVm);
-				return "";
+				return "LoginView";
 			}
 		} else {
 			// 4 - Sinon => Erreurs sur le frmulaire + rester sur la même page
 			System.err.println("user login data are not valid : " + loginVm);
-			return "";
+			return "LoginView";
 		}
 	}
 	

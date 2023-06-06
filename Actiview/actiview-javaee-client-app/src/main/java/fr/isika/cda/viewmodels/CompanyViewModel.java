@@ -7,6 +7,15 @@ public class CompanyViewModel {
 	private String siren;
 	private String adress;
 	private String name;
+	
+	private final Long companyId;
+	
+	public CompanyViewModel(Long companyId) {
+		this.companyId = companyId;
+	}
+	public Long getCompanyId() {
+		return companyId;
+	}
 
 	public String getPhone() {
 		return phone;

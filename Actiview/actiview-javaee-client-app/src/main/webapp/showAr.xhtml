@@ -36,7 +36,7 @@
 			<p:fieldset id="rendu" legend="CRA">
 				<h:commandButton action="#{registerArBean.register()}"
 					value="Ajouter un nouveau CRA"
-					rendered="#{!showArBean.hasSelectedAr() and showArBean.canBeCreated() }" />
+					rendered="#{!showArBean.hasSelectedAr() and showArBean.canBeCreated() }" class="btn btn-success" />
 
 				<p:outputLabel for="arCreatedAt" value="Date de création : "
 					style="font-weight : bold" rendered="#{showArBean.hasSelectedAr()}"></p:outputLabel>
@@ -54,7 +54,8 @@
 					rendered="#{!showArBean.hasSelectedAr()}" />
 
 				<h:link rendered="#{showArBean.hasSelectedAr()}"
-					outcome="addActivityDates?id=#{showArBean.arVm.ar.id}">Voir les détails</h:link>
+					outcome="addActivityDates?id=#{showArBean.arVm.ar.id}"
+					value="Voir les détails" class="btn btn-primary"></h:link>
 
 			</p:fieldset>
 

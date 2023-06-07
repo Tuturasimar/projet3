@@ -58,6 +58,8 @@
         --background-color: #424242;
       }
       
+/*       COULEUR DANS TABLEAU CRA  */
+      
       .redCalendarItem {
       background-color: #A52B2B !important;
       }
@@ -74,6 +76,8 @@
       visibility: hidden
       }
       
+/*       USERFEEDBACK */
+      
       .ui-rating a,  .ui-rating-star-on a {
       color : #CCBD02 !important;
       }
@@ -81,6 +85,11 @@
       .ui-rating .ui-rating-star.ui-state-focus {
       box-shadow : unset !important;
       }
+      
+      .my-heading-row {
+      background-color: var(--surface-c);
+      font-weight: bold;
+}
       
       .footer {
 	width: 100%;

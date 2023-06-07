@@ -52,7 +52,7 @@
 					<p:column>
 						<f:facet name="header">Voir le CRA</f:facet>
 						<h:link outcome="SeeArOfEmployee?id=#{ar.id}" value="Consulter"
-							rendered="#{ar.stateArEnum != seeArTeamBean.DRAFT}" />
+							rendered="#{ar.stateArEnum != seeArTeamBean.DRAFT}" class="btn btn-primary" />
 					</p:column>
 				</p:dataTable>
 			</p:fieldset>

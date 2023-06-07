@@ -17,8 +17,7 @@
 
 	<ui:define name="content">
 
-		<h2 style="text-align: center">Visualisation du Compte Rendu
-			d'Activité</h2>
+		<h2 class="text-center my-4">Visualisation du Compte Rendu d'Activité</h2>
 
 		<div class="row">
 			<p:outputLabel
@@ -44,8 +43,8 @@
 					<div class="col-sm-5 purpleCalendarItem rounded"></div>
 				</div>
 				<h:form>
-				<div class="row d-flex justify-content-around">
-					
+					<div class="row d-flex justify-content-around">
+
 						<div class="col-sm-5">
 							<p:commandButton
 								action="#{seeArOfEmployeeBean.acceptAr(seeArOfEmployeeBean.arOfEmployeeVM.arId)}"
@@ -58,9 +57,9 @@
 								value="Refuser le CRA"
 								rendered="#{seeArOfEmployeeBean.arOfEmployeeVM.stateAr == seeArOfEmployeeBean.inhold}" />
 						</div>
-				
-				</div>
-					</h:form>
+
+					</div>
+				</h:form>
 			</div>
 
 			<p:schedule id="schedule" value="#{seeArOfEmployeeBean.calendar}"

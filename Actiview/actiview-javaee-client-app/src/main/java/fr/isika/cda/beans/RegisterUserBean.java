@@ -34,13 +34,14 @@ public class RegisterUserBean {
 	 * Appelle la méthode registerUser de UserRepository pour enregistrer le user (et les tables liées (UserData et UserRole) en bdd
 	 * Connectée en front au bouton Valider du formulaire
 	 */
-	public void registerUser() {
+	public String registerUser() {
 		// A la création du nouvel utilisateur, on va chercher l'ID de la company de l'administrateur connecté
 		Long idCompany = userRepo.findCompanyByUserConnected().getId();
 		userViewModel.setCompanyId(idCompany);
-		Long id = userRepo.registerUser(userViewModel);
+		userRepo.registerUser(userViewModel);
 		
-		System.out.println("Id du user créé : "+ id);
+		return "UserList";
+		
 	}
 	/**
 	 * Vide les champs du formulaire en front

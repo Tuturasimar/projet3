@@ -106,8 +106,8 @@ public class DataInit {
 		
 		//Mock données ImageConfig liées à l'ESN
 		ImageConfig imageConfigDefault = new ImageConfig();
-		imageConfigDefault.setBanner("BannerDefault");
-		imageConfigDefault.setLogo("logoDefaut");
+		imageConfigDefault.setBanner("BannerDefault.png");
+		imageConfigDefault.setLogo("logoDefaut.png");
 		
 		//configuration par défault des ESN
 		Config config = new Config();
@@ -240,10 +240,6 @@ public class DataInit {
 		UserRole roleSalarie1 = new UserRole();
 		roleSalarie1.setRoleTypeEnum(RoleTypeEnum.SALARIE);
 		roleSalarie1.setUser(userSalarie1);
-
-		UserRole roleSalarie2 = new UserRole();
-		roleSalarie2.setRoleTypeEnum(RoleTypeEnum.SALARIE);
-		roleSalarie2.setUser(userSalarie2);
 		
 		UserRole role2Salarie2 = new UserRole();
 		role2Salarie2.setRoleTypeEnum(RoleTypeEnum.ADMINESN);
@@ -258,7 +254,6 @@ public class DataInit {
 		em.persist(role);
 		em.persist(managerRole);
 		em.persist(roleSalarie1);
-		em.persist(roleSalarie2);
 		em.persist(role2Salarie2);
 
 		em.persist(superAdminRole);

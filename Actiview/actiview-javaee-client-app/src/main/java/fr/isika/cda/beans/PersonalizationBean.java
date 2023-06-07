@@ -64,7 +64,7 @@ public class PersonalizationBean {
 		imgConfigRepo.update(imgConfigVm);
 		imgConfigVm = new ImageConfigViewModel();
 		
-		return "adminPersonalizationPreview.xhtml";
+		return "adminPersonalization";
 	}
 
 	public void uploadLogo(FileUploadEvent e) {

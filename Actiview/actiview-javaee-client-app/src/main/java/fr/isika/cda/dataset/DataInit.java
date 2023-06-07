@@ -147,7 +147,7 @@ public class DataInit {
 		em.persist(dataManager);
 		em.persist(dataSalarie1);
 		em.persist(dataSalarie2);
-		em.persist(dataSuperUser);
+
 
 		// Mock donnée User
 

@@ -5,12 +5,13 @@ import javax.inject.Inject;
 
 import fr.isika.cda.entities.config.Company;
 import fr.isika.cda.repository.CompanyRepository;
-import fr.isika.cda.viewmodels.CompanyViewModel;
+import fr.isika.cda.viewmodels.ShowCompanyViewModel;
+
 
 @ManagedBean
 public class SeeCompanyProfileBean {
 	
-	private CompanyViewModel companyVm;
+	private ShowCompanyViewModel showCompanyVm;
 	
 	@Inject
 	private CompanyRepository companyRepo;
@@ -19,21 +20,21 @@ public class SeeCompanyProfileBean {
 	
 	public String showCompanyProfile(Long id) {
 		Company companyProfile = companyRepo.findById(id);
-		companyVm = new CompanyViewModel(companyProfile.getId());
-		companyVm.setAdress(companyProfile.getAdress());
-		companyVm.setName(companyProfile.getName());
-		companyVm.setPhone(companyProfile.getPhone());
-		companyVm.setSiren(companyProfile.getSiren());
+		showCompanyVm = new ShowCompanyViewModel(companyProfile.getId());
+		showCompanyVm.setAdress(companyProfile.getAdress());
+		showCompanyVm.setName(companyProfile.getName());
+		showCompanyVm.setPhone(companyProfile.getPhone());
+		showCompanyVm.setSiren(companyProfile.getSiren());
 		
 		return "SeeProfileCompany.xhtml";
 	}
 
-	public CompanyViewModel getCompanyVm() {
-		return companyVm;
+	public ShowCompanyViewModel getCompanyVm() {
+		return showCompanyVm;
 	}
 
-	public void setCompanyVm(CompanyViewModel companyVm) {
-		this.companyVm = companyVm;
+	public void setCompanyVm(ShowCompanyViewModel companyVm) {
+		this.showCompanyVm = companyVm;
 	}
 
 	public Company getCompany() {

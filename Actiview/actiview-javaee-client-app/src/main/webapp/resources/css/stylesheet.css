@@ -90,6 +90,15 @@
       background-color: var(--surface-c);
       font-weight: bold;
 }
+
+	.passwordInput:hover, .passWordInput:focus {
+	border-color: #2196f3;
+	}
+	
+	.passwordInput:focus {
+	outline: 0 none;
+	box-shadow : 0 0 0 0.2em #a6d5fa;
+	}
       
       .footer {
 	width: 100%;

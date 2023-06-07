@@ -14,21 +14,9 @@
 
 		<h1>Bienvenue sur la page de personnalisation</h1>
 
-		<h2>Pour commencer, choisissez un thème :</h2>
-		
-		<p:growl id="customize" showDetail="true"></p:growl>
-
-		<div class="template">
-			<h:form>
-				<p:selectOneRadio id="templateTest" value="#{personalizationBean.template}">
-					<f:selectItem itemLabel="Dark mode" itemValue="DarkMode"/>
-					<f:selectItem itemLabel="Light mode" itemValue="LightMode" />
-					<p:ajax update="customize" process="@this" listener="#{personalizationBean.saveTemplateChoice}"/>
-				</p:selectOneRadio>	
-			</h:form>
-		</div>
-
 		<h2>Choisissez un logo :</h2>
+
+		<p:growl id="customize" showDetail="true"></p:growl>
 
 		<div class="cardLogo">
 			<h:form enctype="multipart/form-data">

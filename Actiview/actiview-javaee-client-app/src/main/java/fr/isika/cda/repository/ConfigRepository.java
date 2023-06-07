@@ -17,8 +17,6 @@ public class ConfigRepository {
 	private EntityManager em;
 	
 	public Long initConfig(Long id) {
-		ImageConfig imageConfig = new ImageConfig();
-		
 		ColorConfig colorConfig = new ColorConfig();
 		colorConfig.setBackgroundColor("7FB2AE");
 		colorConfig.setButtonColor("8FBCB8");

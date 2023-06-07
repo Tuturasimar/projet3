@@ -6,28 +6,34 @@
 	template="/WEB-INF/templates/default.xhtml"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="Entete">
-		<h1>Créer une nouvelle affectation de formation</h1>
-	</ui:define>
+
 
 	<ui:define name="content">
+
+		<h2 class="text-center my-4">Création d'une affectation de
+			formation</h2>
+
+
 		<h:form>
-			<h:panelGrid columns="3">
-			
-				<h:outputLabel value="Salarié" for="userMenu" />
-				<h:selectOneMenu id="userMenu"
+			<p:panelGrid columns="3"
+				columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2"
+				layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
+				style="border:0px none;background-color: transparent;">
+
+				<p:outputLabel value="Salarié" for="userMenu" />
+				<p:selectOneMenu id="userMenu"
 					value="#{registerFormationUserBean.formationUserVm.userId}">
-					
+
 					<f:selectItem noSelectionOption="true"
 						itemLabel="Choisir un collaborateur" />
-					<f:selectItems value="#{registerFormationUserBean.users}" var="user"
-						itemValue="#{user.id}"
+					<f:selectItems value="#{registerFormationUserBean.users}"
+						var="user" itemValue="#{user.id}"
 						itemLabel="#{user.userData.firstname} #{user.userData.lastname}"></f:selectItems>
-				</h:selectOneMenu>
-				<h:message for="userMenu" />
+				</p:selectOneMenu>
+				<p:message for="userMenu" />
 
-				<h:outputLabel value="Formation" for="formationMenu" />
-				<h:selectOneMenu
+				<p:outputLabel value="Formation" for="formationMenu" />
+				<p:selectOneMenu
 					value="#{registerFormationUserBean.formationUserVm.formationId}"
 					id="formationMenu">
 					<f:selectItem noSelectionOption="true"
@@ -35,15 +41,16 @@
 					<f:selectItems value="#{registerFormationUserBean.formations}"
 						var="formation" itemValue="#{formation.id}"
 						itemLabel="#{formation.labelActivity}"></f:selectItems>
-				</h:selectOneMenu>
-				<h:message for="missionMenu" />
+				</p:selectOneMenu>
+				<p:message for="formationMenu" />
 
 				<span></span>
 
-				<p:commandButton value="Submit"
-					action="#{registerFormationUserBean.register()}"></p:commandButton>
-
-			</h:panelGrid>
+				<h:commandButton value="Créer"
+					action="#{registerFormationUserBean.register()}"
+					class="btn btn-success">
+				</h:commandButton>
+			</p:panelGrid>
 		</h:form>
 
 

@@ -6,18 +6,18 @@
 	template="/WEB-INF/templates/default.xhtml"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="header">
-		<h1>Créer une formation</h1>
-	</ui:define>
 
 	<ui:define name="content">
 		<h:form>
 
-			<h2>Création d'une formation</h2>
+			<h2 class="text-center my-4">Modification d'une formation</h2>
 
-			<h:panelGrid>
+			<p:panelGrid columns="4"
+				columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+				layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
+				style="border:0px none;background-color: transparent;">
 
-				<h:outputLabel for="nameInput" value="Nom de la formation : " />
+				<p:outputLabel for="nameInput" value="Nom de la formation : " />
 				<p:inputText id="nameInput"
 					value="#{editFormationBean.editFormaVm.labelFormation}" />
 
@@ -38,14 +38,16 @@
 					value="#{editFormationBean.editFormaVm.location}">
 				</p:inputText>
 
-				<p:outputLabel for="formationStatusMenu" value="La formation a été : " />
+				<p:outputLabel for="formationStatusMenu"
+					value="La formation a été : " />
 				<p:selectOneMenu id="formationStatusMenu"
 					value="#{editFormationBean.editFormaVm.formationState}">
 					<f:selectItems value="#{data.formationStatus}" var="enum"
 						itemValue="#{enum}" itemLabel="#{enum.label}"></f:selectItems>
 				</p:selectOneMenu>
 
-				<p:outputLabel for="locationFormationMenu" value="La formation est : " />
+				<p:outputLabel for="locationFormationMenu"
+					value="La formation est : " />
 				<p:selectOneMenu id="locationFormationMenu"
 					value="#{editFormationBean.editFormaVm.locationFormation}">
 					<f:selectItems value="#{data.locationFormation}" var="enum"
@@ -59,15 +61,19 @@
 					<f:selectItems value="#{data.statusEnum}"></f:selectItems>
 				</p:selectOneMenu>
 
-				<h:commandButton value="Register"
-					action="#{editFormationBean.editFormation()}" />
-				<h:commandButton value="Clear"
-					action="#{editFormationBean.showEditFormation(editFormationBean.editFormaVm.formationId)}" />
+				<p:row>
+				<span></span>
+					<h:commandButton value="Modifier"
+						action="#{editFormationBean.editFormation()}"
+						class="btn btn-success" />
+					<h:commandButton value="Reset"
+						action="#{editFormationBean.showEditFormation(editFormationBean.editFormaVm.formationId)}"
+						class="btn btn-warning" />
+				</p:row>
 
-			</h:panelGrid>
-			<ul>
-				<li><h:link outcome="index.xhtml">Index</h:link></li>
-			</ul>
+
+
+			</p:panelGrid>
 
 		</h:form>
 	</ui:define>

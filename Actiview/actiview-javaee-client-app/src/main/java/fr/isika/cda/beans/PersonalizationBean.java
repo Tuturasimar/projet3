@@ -16,10 +16,12 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
 import fr.isika.cda.repository.ColorConfigRepository;
+import fr.isika.cda.repository.FontConfigRepository;
 import fr.isika.cda.repository.ImageConfigRepository;
 import fr.isika.cda.repository.UserRepository;
 import fr.isika.cda.utils.FileUploadUtils;
 import fr.isika.cda.viewmodels.ColorConfigViewModel;
+import fr.isika.cda.viewmodels.FontConfigViewModel;
 import fr.isika.cda.viewmodels.ImageConfigViewModel;
 
 @ManagedBean
@@ -34,10 +36,14 @@ public class PersonalizationBean {
 	
 	@Inject
 	private UserRepository userRepo;
+	
+	@Inject
+	private FontConfigRepository fontConfigRepo;
 
 
 	private ImageConfigViewModel imgConfigVm = new ImageConfigViewModel();
 	private ColorConfigViewModel colorConfigVm = new ColorConfigViewModel();
+	private FontConfigViewModel fontConfigVm = new FontConfigViewModel();
 	
 	private UploadedFile logo;
 	private UploadedFile banner;
@@ -46,6 +52,8 @@ public class PersonalizationBean {
 	private String colorTitle;
 	private String colorButton;
 	private String colorText;
+	
+	private String font;
 
 	private String template;
 
@@ -75,6 +83,11 @@ public class PersonalizationBean {
 		Long companyId = userRepo.findCompanyByUserConnected().getId();
 		colorConfigVm.setCompanyId(companyId);
 		colorConfigRepo.update(colorConfigVm);
+		
+		fontConfigVm.setCompanyId(companyId);
+		fontConfigRepo.update(fontConfigVm);
+		
+		fontConfigVm = new FontConfigViewModel();
 		colorConfigVm = new ColorConfigViewModel();
 		return "TestCustomizeColor.xhtml";
 	}
@@ -103,6 +116,11 @@ public class PersonalizationBean {
 	public void saveTemplateChoice(AjaxBehaviorEvent e) {
 		String templateChoice = onTemplateChoice(e);
 		imgConfigVm.setTemplateChoice(templateChoice);
+	}
+	
+	public void saveFontChoice(AjaxBehaviorEvent e) {
+		String fontChoice = onFontChoice(e);
+		fontConfigVm.setFontFamily(fontChoice);
 	}
 
 	public String onColorChange(AjaxBehaviorEvent e) {
@@ -136,6 +154,16 @@ public class PersonalizationBean {
 		FacesContext.getCurrentInstance().addMessage(null, message);
 
 		return templateChoice;
+	}
+	
+	public String onFontChoice(AjaxBehaviorEvent e) {
+		UIInput input = (UIInput) e.getSource();
+		String fontChoice = input.getValue().toString();
+		
+		FacesMessage message = new FacesMessage("Successful choice font", fontChoice);
+		FacesContext.getCurrentInstance().addMessage(null, message);
+
+		return fontChoice;
 	}
 
 	public UploadedFile getBanner() {
@@ -193,6 +221,25 @@ public class PersonalizationBean {
 	public void setTemplate(String template) {
 		this.template = template;
 	}
+
+	public String getFont() {
+		return font;
+	}
+
+	public void setFont(String font) {
+		this.font = font;
+	}
+
+	public FontConfigViewModel getFontConfigVm() {
+		return fontConfigVm;
+	}
+
+	public void setFontConfigVm(FontConfigViewModel fontConfigVm) {
+		this.fontConfigVm = fontConfigVm;
+	}
+
+
 	
 
+	
 }

@@ -1,15 +1,22 @@
 package fr.isika.cda.viewmodels;
 
-public class CompanyViewModel {
-
+public class ShowCompanyViewModel {
+	
 	// Données de la table Company
-
-	private Long companyId;
-	private int phone;
-	private int siren;
-
+	private String phone;
+	private String siren;
 	private String adress;
 	private String name;
+	
+	private final Long companyId;
+	
+	public ShowCompanyViewModel(Long companyId) {
+		this.companyId = companyId;
+	}
+
+	public Long getCompanyId() {
+		return companyId;
+	}
 
 	public String getPhone() {
 		return phone;
@@ -41,14 +48,6 @@ public class CompanyViewModel {
 	
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Long getCompanyId() {
-		return companyId;
-	}
-
-	public void setCompanyId(Long companyId) {
-		this.companyId = companyId;
 	}
 
 }

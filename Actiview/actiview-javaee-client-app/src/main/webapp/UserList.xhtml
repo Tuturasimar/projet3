@@ -13,50 +13,32 @@
 
 	<ui:define name="content">
 		<p:dataTable value="#{showUserBean.users}" var="user">
+			
 			<p:column>
-				<f:facet name="header">login</f:facet>
-				#{user.login}
-			</p:column>
-			<p:column>
-				<f:facet name="header">Status</f:facet>
-				#{user.status}
-			</p:column>
-			<p:column>
-				<f:facet name="header">Date de création</f:facet>
-				<h:outputText value="#{user.createdAt}">
-					<f:convertDateTime type="localDate" pattern="dd.MM.yyyy" />
-				</h:outputText>
-			</p:column>
-			<p:column>
-				<f:facet name="header">Email</f:facet>
-				#{user.userData.email}
+				<f:facet name="header">Nom</f:facet>
+				#{user.userData.lastname}
 			</p:column>
 			<p:column>
 				<f:facet name="header">Prénom</f:facet>
 				#{user.userData.firstname}
 			</p:column>
 			<p:column>
-				<f:facet name="header">Nom</f:facet>
-				#{user.userData.lastname}
-			</p:column>
-			<p:column>
-				<f:facet name="header">Date de naissance</f:facet>
-				<h:outputText value="#{user.userData.birthday}">
-					<f:convertDateTime type="localDate" pattern="dd.MM.yyyy" />
-				</h:outputText>
+				<f:facet name="header">Status</f:facet>
+				#{user.status.label}
 			</p:column>
 			<p:column>
 				<f:facet name="header">Poste</f:facet>
 				#{user.userData.jobEnum.label}
 			</p:column>
 			<p:column>
-				<f:facet name="header">Rôle</f:facet>
+				<f:facet name="header">Rôle(s)</f:facet>
 				#{showUserBean.getListUserRoleByUserId(user.id)}
 			</p:column>
 			<p:column>
 				<f:facet name="header">Voir le profil</f:facet>
 				<h:form>
-					<p:commandButton action="#{seeProfileBean.showSeeProfile(user.id)}"
+					<p:commandButton
+						action="#{seeProfileBean.showSeeProfile(user.id)}"
 						value="Voir le profil" />
 				</h:form>
 			</p:column>

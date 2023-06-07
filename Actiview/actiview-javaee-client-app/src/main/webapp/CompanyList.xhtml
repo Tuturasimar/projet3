@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="header">
+		<h1 style="text-align: center">Liste des ESN inscrites</h1>
+	</ui:define>
+
+	<ui:define name="content">
+	
+		<p:dataTable value="#{showCompanyBean.companies}" var="company">
+
+			<p:column>
+				<f:facet name="header">Nom</f:facet>
+				#{company.name}
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header">Adresse</f:facet>
+				#{company.adress}
+			</p:column>
+			<p:column>
+				<f:facet name="header">Numéro de téléphone</f:facet>
+				#{company.phone}
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">Numéro SIREN</f:facet>
+				#{company.siren}
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">Status</f:facet>
+				#{company.status}
+			</p:column>
+			<p:column>
+				<f:facet name="header">Voir le détail</f:facet>
+				<h:form>
+					<p:commandButton
+						action="#{seeCompanyProfileBean.showCompanyProfile(company.id)}"
+						value="Détail" />
+				</h:form>
+			</p:column>
+			
+
+		</p:dataTable>
+	</ui:define>
+
+</ui:composition>

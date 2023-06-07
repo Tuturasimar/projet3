@@ -3,6 +3,7 @@ package fr.isika.cda.entities.config;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +21,7 @@ public class FontConfig implements Serializable {
 	private long id;
 
 	private String fontFamily;
+	
 
 	public String getFontFamily() {
 		return fontFamily;
@@ -32,6 +34,10 @@ public class FontConfig implements Serializable {
 	public long getId() {
 		return id;
 	}
+
+
+	
+	
 
 
 }

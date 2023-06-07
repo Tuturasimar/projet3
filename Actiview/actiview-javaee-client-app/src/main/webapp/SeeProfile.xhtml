@@ -3,65 +3,73 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 
 <ui:composition template="/WEB-INF/templates/default.xhtml">
-	<ui:define name="Entete">
-		<h2 style="color: red">Page de profil</h2>
-	</ui:define>
+
 
 	<ui:define name="content">
+		<h2 class="text-center mt-3">Page de profil</h2>
+		<div class="row d-flex justify-content-between align-items-center">
+			<div class="col-8">
+				<h3 class="m-3">Informations personnelles</h3>
+				<p:dataTable value="#{seeProfileBean.user}" var="user">
+					<p:column>
+						<f:facet name="header">Prénom et Nom</f:facet> #{user.userData.firstname} #{user.userData.lastname}
+			</p:column>
 
-		<div class="card col-4" >
-			<p:donutChart model="#{seeProfileBean.model}"
-				style="width: 100%" />
+					<p:column>
+						<f:facet name="header">Date de naissance</f:facet>
+						<h:outputText value="#{user.userData.birthday}">
+							<f:convertDateTime type="localDate" pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+				</p:dataTable>
+			</div>
+			<c:if test="#{loginBean.userASalarie}">
+
+				<div class="card col-4">
+					<h5 class="text-center">Diagramme d'activité</h5>
+					<p:donutChart model="#{seeProfileBean.model}" style="width: 100%" />
+				</div>
+
+
+			</c:if>
 		</div>
-
-		<h2>Informations du compte</h2>
-		<h:dataTable value="#{seeProfileBean.user}" var="user">
-			<h:column>
+		<h3 class="m-3">Informations du compte</h3>
+		<p:dataTable value="#{seeProfileBean.user}" var="user">
+			<p:column>
 				<f:facet name="header">Login</f:facet> #{user.login}
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">Date de création du compte</f:facet>
 				<h:outputText value="#{user.createdAt}">
-					<f:convertDateTime type="localDate" pattern="dd.MM.yyyy" />
+					<f:convertDateTime type="localDate" pattern="dd/MM/yyyy" />
 				</h:outputText>
-			</h:column>
+			</p:column>
 
-			<h:column>
-				<f:facet name="header">Statut du compte</f:facet> #{user.status}
-			</h:column>
+			<p:column>
+				<f:facet name="header">Statut du compte</f:facet> #{user.status.label}
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">Rôle de l'utilisateur</f:facet> #{seeProfileBean.getListUserRoleByUserId(user.id)}
-			</h:column>
-		</h:dataTable>
-		<h2>Informations personnelles</h2>
-		<h:dataTable value="#{seeProfileBean.user}" var="user">
-			<h:column>
-				<f:facet name="header">Prénom et Nom</f:facet> #{user.userData.firstname} #{user.userData.lastname}
-			</h:column>
+			</p:column>
+		</p:dataTable>
 
-			<h:column>
-				<f:facet name="header">Date de naissance</f:facet>
-				<h:outputText value="#{user.userData.birthday}">
-					<f:convertDateTime type="localDate" pattern="dd.MM.yyyy" />
-				</h:outputText>
-			</h:column>
-		</h:dataTable>
-		<h2>Informations professionnelles</h2>
-		<h:dataTable value="#{seeProfileBean.user}" var="user">
-			<h:column>
-				<f:facet name="header">Poste</f:facet> #{user.userData.jobEnum} 
-			</h:column>
+		<h3 class="m-3">Informations professionnelles</h3>
+		<p:dataTable value="#{seeProfileBean.user}" var="user">
+			<p:column>
+				<f:facet name="header">Poste</f:facet> #{user.userData.jobEnum.label} 
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">Email</f:facet> #{user.userData.email}
-			</h:column>
-		</h:dataTable>
+			</p:column>
+		</p:dataTable>
 	</ui:define>
 </ui:composition>
 

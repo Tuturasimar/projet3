@@ -136,6 +136,7 @@ public class RegisterActivityDateFromArBean implements Serializable {
 
 	/**
 	 * Méthode qui va retourner la classe CSS correspondante au type d'activité
+	 * 
 	 * @param activityDateAsEvent ActivityDate
 	 * @return String
 	 */
@@ -233,7 +234,8 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	}
 
 	/**
-	 * Méthode qui supprime toutes les ActivityDate du mois en cours pour le salarié connecté
+	 * Méthode qui supprime toutes les ActivityDate du mois en cours pour le salarié
+	 * connecté
 	 */
 	public void deleteAllExistingActivityDate() {
 
@@ -247,7 +249,8 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	}
 
 	/**
-	 * Méthode pour créer la liste de toutes les dates possibles dans le mois du CRA en cours
+	 * Méthode pour créer la liste de toutes les dates possibles dans le mois du CRA
+	 * en cours
 	 */
 	public void addAllMonth() {
 
@@ -281,7 +284,8 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	}
 
 	/**
-	 * Méthode pour ajouter plusieurs dates dans un intervalle choisi par l'utilisateur
+	 * Méthode pour ajouter plusieurs dates dans un intervalle choisi par
+	 * l'utilisateur
 	 */
 	public void addRangeDate() {
 
@@ -320,7 +324,9 @@ public class RegisterActivityDateFromArBean implements Serializable {
 	}
 
 	/**
-	 * Méthode pour vérifier si la date est bien du mois et de l'année du CRA en cours
+	 * Méthode pour vérifier si la date est bien du mois et de l'année du CRA en
+	 * cours
+	 * 
 	 * @return
 	 */
 	public boolean checkDateMonthAndYear() {
@@ -334,6 +340,59 @@ public class RegisterActivityDateFromArBean implements Serializable {
 		}
 		return false;
 
+	}
+
+	public String getMonth() {
+		Ar actualAr = arRepo.findById(arDateVm.getArId());
+
+		int montValue = actualAr.getCreatedAt().getMonthValue();
+		String month = "";
+
+		switch (montValue) {
+		case 1:
+			month = "Janvier";
+			break;
+		case 2:
+			month = "Février";
+			break;
+		case 3:
+			month = "Mars";
+			break;
+		case 4:
+			month = "Avril";
+			break;
+		case 5:
+			month = "Mai";
+			break;
+		case 6:
+			month = "Juin";
+			break;
+		case 7:
+			month = "Juillet";
+			break;
+		case 8:
+			month = "Août";
+			break;
+		case 9:
+			month = "Septembre";
+			break;
+		case 10:
+			month = "Octobre";
+			break;
+		case 11:
+			month = "Novembre";
+			break;
+		case 12:
+			month = "Décembre";
+			break;
+		}
+		return month;
+	}
+	
+	public int getYear() {
+		Ar actualAr = arRepo.findById(arDateVm.getArId());
+		return actualAr.getCreatedAt().getYear();
+		
 	}
 
 	// Getters & setters

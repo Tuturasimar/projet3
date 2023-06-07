@@ -6,58 +6,63 @@
 	template="/WEB-INF/templates/default.xhtml"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="header">
-		<h1 style="text-align: center">Liste des missions</h1>
-	</ui:define>
-
 	<ui:define name="content">
-	
-		<h:dataTable value="#{showMissionsBean.missions}" var="mission">
 
-			<h:column>
+		<h2 class="text-center my-4">Liste des missions</h2>
+
+		<div class="row d-flex justify-content-end">
+			<div class="col-2 my-3 mx-0">
+				<h:link outcome="createMission" class="btn btn-success w-100"
+					value="Ajouter mission" />
+			</div>
+		</div>
+
+		<p:dataTable value="#{showMissionsBean.missions}" var="mission">
+
+			<p:column>
 				<f:facet name="header">Nom</f:facet>
 				#{mission.labelActivity}
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Date de début</f:facet>
 				#{mission.missionStart}
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">Date de fin</f:facet>
 				#{mission.missionEnd}
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">Status</f:facet>
 				#{mission.status}
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Type de mission</f:facet>
 				#{mission.missionType.label}
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Mettre à jour</f:facet>
 
 				<h:form>
 					<h:commandButton
 						action="#{editMissionBean.showEditMission(mission.id)}"
-						value="Modifier" />
+						value="Modifier" class="btn btn-primary" />
 				</h:form>
 
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Notes de mission</f:facet>
 
 				<h:form>
 					<h:commandButton
 						action="#{showMissionUserFeedbackBean.showView(mission.id)}"
-						value="Voir" />
+						value="Voir" class="btn btn-primary" />
 				</h:form>
 
-			</h:column>
+			</p:column>
 
-		</h:dataTable>
+		</p:dataTable>
 	</ui:define>
 
 </ui:composition>

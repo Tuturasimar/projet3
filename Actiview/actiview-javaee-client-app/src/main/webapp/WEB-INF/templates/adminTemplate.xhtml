@@ -8,9 +8,6 @@
 <h:head>
 	<title>ActiView</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link
-		href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&amp;family=Libre+Baskerville&amp;family=Roboto&amp;family=Source+Code+Pro&amp;display=swap"
-		rel="stylesheet"></link>
 	<h:outputStylesheet name="bootstrap-5.0.2-dist/css/bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="stylesheet.css" />
 	<h:outputScript library="js" name="CustomizeColor.js" />
@@ -21,7 +18,7 @@
 
 	<div id="container">
 		<div id="header">
-			<ui:include src="header.xhtml" />
+			<ui:include src="headerAdmin.xhtml" />
 			<ui:insert name="Entete"></ui:insert>
 		</div>
 	</div>
@@ -34,12 +31,11 @@
                 [Template content will be inserted here]
          	</ui:insert>
 			</div>
-			<div class="col-sm-2">
+			<div class="col-sm-2 sidenav">
 				<h:panelGrid col="1" rendered="#{notificationBean.notification}">
-				<h3 class="text-center">Notifications</h3>
 					<ui:repeat var="notification"
 						value="#{notificationBean.notifications}">
-						<div class="alert alert-#{notification.classContext.label} w-100">
+						<div class="alert alert-#{notification.classContext.label}">
 							<h:outputText value="#{notification.messageContent}" />
 						</div>
 					</ui:repeat>
@@ -47,7 +43,7 @@
 				<h:form rendered="#{notificationBean.notification}">
 					<h:commandButton
 						action="#{notificationBean.deleteAllNotifications()}"
-						value="Supprimer" class="btn btn-danger w-75" />
+						value="Supprimer les notifications" />
 				</h:form>
 			</div>
 		</div>

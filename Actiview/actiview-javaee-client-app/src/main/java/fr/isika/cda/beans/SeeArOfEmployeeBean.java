@@ -36,6 +36,8 @@ public class SeeArOfEmployeeBean {
 	
 	@ManagedProperty(value="#{notificationBean}")
 	private NotificationBean notifBean;
+	
+	
 
 	private SeeArOfEmployeeViewModel arOfEmployeeVM = new SeeArOfEmployeeViewModel();
 
@@ -122,6 +124,61 @@ public class SeeArOfEmployeeBean {
 		}
 	
 	}
+	
+	public String getMonth() {
+		Ar actualAr = arRepo.findById(arOfEmployeeVM.getArId());
+
+		int montValue = actualAr.getCreatedAt().getMonthValue();
+		String month = "";
+
+		switch (montValue) {
+		case 1:
+			month = "Janvier";
+			break;
+		case 2:
+			month = "Février";
+			break;
+		case 3:
+			month = "Mars";
+			break;
+		case 4:
+			month = "Avril";
+			break;
+		case 5:
+			month = "Mai";
+			break;
+		case 6:
+			month = "Juin";
+			break;
+		case 7:
+			month = "Juillet";
+			break;
+		case 8:
+			month = "Août";
+			break;
+		case 9:
+			month = "Septembre";
+			break;
+		case 10:
+			month = "Octobre";
+			break;
+		case 11:
+			month = "Novembre";
+			break;
+		case 12:
+			month = "Décembre";
+			break;
+		}
+		return month;
+	}
+	
+	public int getYear() {
+		Ar actualAr = arRepo.findById(arOfEmployeeVM.getArId());
+		return actualAr.getCreatedAt().getYear();
+		
+	}
+	
+	
 
 	public String acceptAr(Long arId) {
 		arRepo.acceptAr(arId);
@@ -191,4 +248,7 @@ public class SeeArOfEmployeeBean {
 	public void setNotifBean(NotificationBean notifBean) {
 		this.notifBean = notifBean;
 	}
+	
+	
+	
 }

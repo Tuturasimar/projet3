@@ -15,34 +15,40 @@ public class LoginBean {
 
 	@Inject
 	private UserRepository userRepository;
-	
+
 	private LoginViewModel loginVm = new LoginViewModel();
-	
-	public String login () {
+
+	public String login() {
 		// 1 - vérifier que les données saisies sont valides
-		if(loginVm.isValid()) {
-			
-			// 2 - Vérifier que le user existe dans le système 
+		if (loginVm.isValid()) {
+
+			// 2 - Vérifier que le user existe dans le système
 			User user = userRepository.checkIfUserExists(loginVm);
-			if(user != null) {
-				// 3 - Si oui => mémoriser le user en session 
+			if (user != null) {
+				// 3 - Si oui => mémoriser le user en session
 				SessionUtils.setUserLoginIntoSession(user.getLogin());
 				SessionUtils.setUserIdIntoSession(user.getId());
-				// + rediriger vers index
-				return "index";
-				
+
+				// TODO Check ici si celui qui se connecte est superAdmin
+				if (isUserASuperAdmin()) {
+					return "indexAdmin.xhtml";
+				} else {
+					return "homePageConnected";
+				}
+				// Sinon rediriger vers homePageConnected
+
 			} else {
 				System.err.println("user not found with data : " + loginVm);
-				return "";
+				return "LoginView";
 			}
 		} else {
 			// 4 - Sinon => Erreurs sur le frmulaire + rester sur la même page
 			System.err.println("user login data are not valid : " + loginVm);
-			return "";
+			return "LoginView";
 		}
 	}
-	
-	public String logout () {
+
+	public String logout() {
 		SessionUtils.resetSession();
 		return "index";
 	}
@@ -50,10 +56,31 @@ public class LoginBean {
 	public boolean isUserLoggedIn() {
 		return SessionUtils.isUserLoggedIn();
 	}
-	
+
+	public boolean isUserASalarie() {
+		return userRepository.isUserLoggedASalarie();
+	}
+
+	public boolean isUserAManager() {
+		return userRepository.isUserLoggedAManager();
+	}
+
+	public boolean isUserAEsnAdmin() {
+		return userRepository.isUserLoggedAnEsnAdmin();
+	}
+
+	public boolean isUserASuperAdmin() {
+		return userRepository.isUserLoggedASuperAdmin();
+	}
+
+	public Long getUserConnectedId() {
+		return SessionUtils.getUserIdFromSession();
+	}
+
 	public LoginViewModel getLoginVm() {
 		return loginVm;
 	}
+
 	public void setLoginVm(LoginViewModel loginVm) {
 		this.loginVm = loginVm;
 	}

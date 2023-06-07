@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<ui:composition>
+	<nav class="navbar navbar-default">
+		<div class="navbar-header w-100">
+			<h:link class="navbar-brand" outcome="index.xhtml"
+				rendered="#{not loginBean.isUserLoggedIn()}">
+				<h:graphicImage library="images" name="logo.png" id="logoNotCo"
+					class="logo" width="15%" height="15%" />
+			</h:link>
+			<h:link class="navbar-brand" outcome="homePageConnected.xhtml"
+				rendered="#{loginBean.isUserLoggedIn()}">
+				<h:graphicImage library="images" name="logo.png" id="logoCo"
+					class="logo" width="15%" height="15%" />
+			</h:link>
+			<h:form>
+				<p:menubar>
+					<p:submenu label="Formations" rendered="#{loginBean.userAManager}">
+						<p:menuitem value="Créer une formation"
+							outcome="CreateFormation.xhtml" />
+						<p:menuitem value="Liste des formations"
+							outcome="FormationList.xhtml" />
+						<p:menuitem value="Affectations Formations"
+							outcome="formationUserList.xhtml" />
+					</p:submenu>
+
+					<p:submenu label="Missions" rendered="#{loginBean.userAManager}">
+						<p:menuitem value="Créer une mission"
+							outcome="createMission.xhtml" />
+						<p:menuitem value="Liste des missions" outcome="missionList.xhtml" />
+						<p:menuitem value="Affectations Missions"
+							outcome="missionUserList.xhtml" />
+					</p:submenu>
+
+					<p:submenu label="Informations ESN"
+						rendered="#{loginBean.userAEsnAdmin}">
+						<p:menuitem value="Formulaire de création d'un utilisateur"
+							outcome="RegisterUserForm.xhtml" />
+						<p:menuitem value="Liste des utilisateurs"
+							outcome="UserList.xhtml" />
+						<p:menuitem value="Détails du forfait"
+							outcome="DetailsFeature.xhtml"></p:menuitem>
+					</p:submenu>
+
+					<p:submenu label="Personnalisation"
+						rendered="#{loginBean.userAEsnAdmin}">
+						<p:menuitem value="Identité" outcome="adminPersonalization.xhtml" />
+						<p:menuitem value="Tests couleurs"
+							outcome="TestCustomizeColor.xhtml" />
+
+						<p:menuitem value="Thème"
+							outcome="adminPersonalizationColor.xhtml" />
+					</p:submenu>
+
+					<p:submenu label="Compte rendu d'activité"
+						rendered="#{loginBean.isUserLoggedIn()}">
+						<p:menuitem value="CRA" outcome="showAr.xhtml"
+							rendered="#{loginBean.userASalarie}" />
+						<p:menuitem value="Note de mission en cours"
+							outcome="salarieUserFeedbackView.xhtml"
+							rendered="#{loginBean.userASalarie}" />
+						<p:menuitem value="Note des missions"
+							outcome="showUserFeedbackSalarie.xhtml"
+							rendered="#{loginBean.userASalarie}" />
+						<p:menuitem value="CRA des collaborateurs"
+							rendered="#{loginBean.userAManager}" outcome="SeeArTeam.xhtml" />
+					</p:submenu>
+
+					<p:menuitem value="Devenez client"
+						rendered="#{not loginBean.isUserLoggedIn()}"
+						outcome="CompanyRegisterForm.xhtml" />
+
+					<p:divider layout="vertical" />
+
+
+					<p:menuitem value="Déjà client ? Connectez-vous"
+						outcome="LoginView.xhtml"
+						rendered="#{not loginBean.isUserLoggedIn()}">
+					</p:menuitem>
+
+					<!-- // Gérer le login pour ceux qui ne sont pas salariés -->
+					<p:menuitem rendered="#{loginBean.userASalarie}"
+						action="#{seeProfileBean.showSeeProfileWithStats(loginBean.loginVm.login)}"
+						value="Voir le profil">
+					</p:menuitem>
+					<c:if test="#{loginBean.userLoggedIn}">
+						<p:menuitem rendered="#{!loginBean.userASalarie}"
+							action="#{seeProfileBean.showSeeProfile(loginBean.getUserConnectedId())}"
+							value="Voir le profil">
+						</p:menuitem>
+					</c:if>
+
+					<p:menuitem label="Logout" action="#{loginBean.logout()}"
+						value="Déconnexion" rendered="#{loginBean.isUserLoggedIn()}">
+					</p:menuitem>
+
+				</p:menubar>
+			</h:form>
+		</div>
+	</nav>
+</ui:composition>
+</html>

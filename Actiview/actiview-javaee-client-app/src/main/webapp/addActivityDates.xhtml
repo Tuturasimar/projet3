@@ -4,7 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="/WEB-INF/templates/default.xhtml">
 	<f:metadata>
@@ -14,91 +15,159 @@
 			type="preRenderView"></f:event>
 	</f:metadata>
 
-	<ui:define name="Entete">
-		<h2 style="color: red">test des dates</h2>
 
-	</ui:define>
 
 	<ui:define name="content">
 
+
+		<c:if test="#{showArBean.isArADraft()}">
+			<h2 class="text-center my-4">Remplissage du Compte Rendu
+				d'Activité</h2>
+		</c:if>
+		<c:if test="#{!showArBean.isArADraft()}">
+			<h2 class="text-center my-4">Visualisation du Compte Rendu
+				d'Activité</h2>
+		</c:if>
 		<!-- Formulaire d'ajout d'activité -->
 		<h:form rendered="#{showArBean.isArADraft()}">
-			<h:selectOneMenu id="partDayMenu"
-				value="#{registerActivityDateFromArBean.arDateVm.partOfDay}">
-				<f:selectItems value="#{enumData.partDay}" var="enum"
-					itemValue="#{enum}" itemLabel="#{enum.label}"></f:selectItems>
-			</h:selectOneMenu>
-			<h:selectOneMenu id="activityMenu"
-				value="#{registerActivityDateFromArBean.arDateVm.activityId}">
 
-				<f:selectItem itemLabel="-- Missions en cours --"
-					itemDisabled="true" />
-				<f:selectItems value="#{showActivityBean.missions}" var="mission"
-					itemValue="#{mission.id}" itemLabel="#{mission.labelActivity}"></f:selectItems>
+			<div class="card p-2">
+				<div class="row m-3">
 
-				<f:selectItem itemLabel="-- Formation en cours --"
-					itemDisabled="true" />
-				<f:selectItems value="#{showActivityBean.formations}"
-					var="formation" itemValue="#{formation.id}"
-					itemLabel="#{formation.labelActivity}"></f:selectItems>
+					<div class="col-sm-4">
+						<h:selectOneMenu id="partDayMenu"
+							value="#{registerActivityDateFromArBean.arDateVm.partOfDay}">
+							<f:selectItems value="#{enumData.partDay}" var="enum"
+								itemValue="#{enum}" itemLabel="#{enum.label}"></f:selectItems>
+						</h:selectOneMenu>
+					</div>
+					<div class="col-sm-4">
+						<h:selectOneMenu id="activityMenu"
+							value="#{registerActivityDateFromArBean.arDateVm.activityId}">
 
-				<f:selectItem itemLabel="-- Motif d'absence --" itemDisabled="true" />
-				<f:selectItems value="#{showActivityBean.absences}" var="absence"
-					itemValue="#{absence.id}" itemLabel="#{absence.labelActivity}"></f:selectItems>
+							<f:selectItem itemLabel="-- Missions en cours --"
+								itemDisabled="true" />
+							<f:selectItems value="#{showActivityBean.missions}" var="mission"
+								itemValue="#{mission.id}" itemLabel="#{mission.labelActivity}"></f:selectItems>
 
-				<f:selectItem itemLabel="-- Autres --" itemDisabled="true" />
-				<f:selectItems value="#{showActivityBean.customActivities}"
-					var="customActivity" itemValue="#{customActivity.id}"
-					itemLabel="#{customActivity.labelActivity}"></f:selectItems>
+							<f:selectItem itemLabel="-- Formation en cours --"
+								itemDisabled="true" />
+							<f:selectItems value="#{showActivityBean.formations}"
+								var="formation" itemValue="#{formation.id}"
+								itemLabel="#{formation.labelActivity}"></f:selectItems>
 
-			</h:selectOneMenu>
-			<h:outputLabel value="Télétravail" for="remote" />
-			<h:selectBooleanCheckbox id="remote"
-				value="#{registerActivityDateFromArBean.arDateVm.remote}" />
-			<p:datePicker id="datePicker"
-				value="#{registerActivityDateFromArBean.arDateVm.date}"
-				showIcon="true" />
-			<h:commandButton id="addDate"
-				action="#{registerActivityDateFromArBean.addDate()}"
-				value="Ajouter l'activité">
-				<!-- 				<f:ajax execute="@form" render="schedule" event="click"></f:ajax> -->
-			</h:commandButton>
-			<p:datePicker id="datePickerDateFirst"
-				value="#{registerActivityDateFromArBean.arDateVm.dateFirst}"
-				showIcon="true" />
-			<p:datePicker id="datePickerDateLast"
-				value="#{registerActivityDateFromArBean.arDateVm.dateLast}"
-				showIcon="true" />
-			<h:commandButton id="addRangeDate"
-				action="#{registerActivityDateFromArBean.addRangeDate()}"
-				value="Ajouter les activités">
-				<!-- 				<f:ajax execute="@form" render="schedule" event="click"></f:ajax> -->
-			</h:commandButton>
-			<h:commandButton
-				action="#{registerActivityDateFromArBean.addAllMonth()}"
-				value="Remplir le mois">
-			</h:commandButton>
-			<h:commandButton
-				action="#{registerActivityDateFromArBean.deleteAllExistingActivityDate()}"
-				value="Vider le mois">
-			</h:commandButton>
+							<f:selectItem itemLabel="-- Motif d'absence --"
+								itemDisabled="true" />
+							<f:selectItems value="#{showActivityBean.absences}" var="absence"
+								itemValue="#{absence.id}" itemLabel="#{absence.labelActivity}"></f:selectItems>
+
+							<f:selectItem itemLabel="-- Autres --" itemDisabled="true" />
+							<f:selectItems value="#{showActivityBean.customActivities}"
+								var="customActivity" itemValue="#{customActivity.id}"
+								itemLabel="#{customActivity.labelActivity}"></f:selectItems>
+						</h:selectOneMenu>
+					</div>
+					<div class="col-sm-4">
+						<h:outputLabel value="Télétravail" for="remote" class="mx-2" />
+						<h:selectBooleanCheckbox id="remote"
+							value="#{registerActivityDateFromArBean.arDateVm.remote}" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<h:outputLabel value="Date de l'activité" for="datePicker"
+							class="mx-4" />
+						<p:datePicker id="datePicker"
+							value="#{registerActivityDateFromArBean.arDateVm.date}" />
+					</div>
+					<div class="col-sm-2"></div>
+					<div class="col-sm-4">
+						<h:commandButton id="addDate"
+							action="#{registerActivityDateFromArBean.addDate()}"
+							value="Ajouter l'activité" class="btn btn-primary">
+						</h:commandButton>
+					</div>
+				</div>
+			</div>
+			<div class="card p-2 my-4">
+				<div class="row">
+					<h:outputLabel value="Date de début" for="datePickerDateFirst"
+						class="mx-4 col-sm-2" />
+					<p:datePicker id="datePickerDateFirst"
+						value="#{registerActivityDateFromArBean.arDateVm.dateFirst}"
+						class="col-sm-3" />
+					<div class="col-sm-1"></div>
+
+					<h:outputLabel value="Date de fin" for="datePickerDateLast"
+						class="mx-4 col-sm-2" />
+					<p:datePicker id="datePickerDateLast"
+						value="#{registerActivityDateFromArBean.arDateVm.dateLast}"
+						class="col-sm-3" />
+				</div>
+				<div class="row my-4 d-flex justify-content-around">
+
+					<h:commandButton id="addRangeDate"
+						action="#{registerActivityDateFromArBean.addRangeDate()}"
+						value="Ajouter les activités"
+						class="col-sm-3 mx-2 btn btn-primary">
+					</h:commandButton>
+					<h:commandButton
+						action="#{registerActivityDateFromArBean.addAllMonth()}"
+						value="Remplir le mois" class="col-sm-3 mx-2 btn btn-primary">
+					</h:commandButton>
+
+					<h:commandButton
+						action="#{registerActivityDateFromArBean.deleteAllExistingActivityDate()}"
+						value="Vider le mois" class="col-sm-3 mx-2 btn btn-danger">
+					</h:commandButton>
+				</div>
+			</div>
 		</h:form>
 
 		<!-- Affichage du calendrier -->
-		<p:outputLabel
-			value="CRA du mois de #{registerActivityDateFromArBean.arCalendarVM.createdAt.month}"></p:outputLabel>
+		<div class="row">
+			<p:outputLabel
+				value="CRA du mois de #{registerActivityDateFromArBean.getMonth()} #{registerActivityDateFromArBean.getYear()}"
+				class="text-center mb-3" style="font-size: 20px !important"></p:outputLabel>
+		</div>
 		<p:growl id="messages" showDetail="true" />
 
-		<p:schedule id="schedule"
-			value="#{registerActivityDateFromArBean.calendar}"
-			initialDate="#{registerActivityDateFromArBean.arCalendarVM.createdAt}"
-			draggable="false" showHeader="false"></p:schedule>
-		<!-- Affichage en tableau des dates (se rafraichit automatiquement) à remplacer par le calendrier !-->
+		<div class="row px-2">
+			<div
+				class="col-sm-4 d-flex flex-column justify-content-around card p-3">
+				<h3 class="text-center">Légende</h3>
+				<div class="row">
+					<div class="col-sm-6">Mission</div>
+					<div class="col-sm-5 redCalendarItem rounded"></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">Absence</div>
+					<div class="col-sm-5 blueCalendarItem rounded"></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">Formation</div>
+					<div class="col-sm-5 purpleCalendarItem rounded"></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6"></div>
+					<div class="col-sm-6">
+						<h:form>
+							<p:commandButton action="#{showArBean.arSentToValidation()}"
+								value="Soumettre le CRA" rendered="#{showArBean.isArADraft()}"
+								styleClass="btn btn-success" />
+						</h:form>
+					</div>
 
-		<h:form>
-			<p:commandButton action="#{showArBean.arSentToValidation()}"
-				value="Soumettre le CRA" rendered="#{showArBean.isArADraft()}" />
-		</h:form>
+				</div>
+			</div>
+			<p:schedule id="schedule"
+				value="#{registerActivityDateFromArBean.calendar}"
+				initialDate="#{registerActivityDateFromArBean.arCalendarVM.createdAt}"
+				draggable="false" showHeader="false" class="col-sm-8"></p:schedule>
+			<!-- Affichage en tableau des dates (se rafraichit automatiquement) à remplacer par le calendrier !-->
+
+		</div>
+
 	</ui:define>
 </ui:composition>
 </html>

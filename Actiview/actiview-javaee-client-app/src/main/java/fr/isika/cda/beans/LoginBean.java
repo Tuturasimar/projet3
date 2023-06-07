@@ -30,10 +30,12 @@ public class LoginBean {
 				SessionUtils.setUserIdIntoSession(user.getId());
 
 				// TODO Check ici si celui qui se connecte est superAdmin
-				// Si oui, rediriger vers "indexAdmin"
-
+				if (isUserASuperAdmin()) {
+					return "indexAdmin.xhtml";
+				} else {
+					return "homePageConnected";
+				}
 				// Sinon rediriger vers homePageConnected
-				return "homePageConnected";
 
 			} else {
 				System.err.println("user not found with data : " + loginVm);
@@ -70,7 +72,7 @@ public class LoginBean {
 	public boolean isUserASuperAdmin() {
 		return userRepository.isUserLoggedASuperAdmin();
 	}
-	
+
 	public Long getUserConnectedId() {
 		return SessionUtils.getUserIdFromSession();
 	}

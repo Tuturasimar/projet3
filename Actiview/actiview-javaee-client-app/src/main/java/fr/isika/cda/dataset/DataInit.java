@@ -158,11 +158,18 @@ public class DataInit {
 		userSalarie2.setUserData(dataSalarie2);
 		userSalarie2.setManager(manager);
 		userSalarie2.setCompany(company);
+		
+		User superAdmin = new User();
+		superAdmin.setLogin("admin");
+		superAdmin.setPassword("admin");
+		superAdmin.setCreatedAt(LocalDateTime.now());
+		superAdmin.setStatus(StatusEnum.ACTIVE);
 
 		em.persist(manager);
 		em.persist(user);
 		em.persist(userSalarie1);
 		em.persist(userSalarie2);
+		em.persist(superAdmin);
 
 		// Mock donnée UserRole liée à user
 		UserRole role = new UserRole();
@@ -184,12 +191,17 @@ public class DataInit {
 		UserRole role2Salarie2 = new UserRole();
 		role2Salarie2.setRoleTypeEnum(RoleTypeEnum.ADMINESN);
 		role2Salarie2.setUser(userSalarie2);
+		
+		UserRole superAdminRole = new UserRole();
+		superAdminRole.setRoleTypeEnum(RoleTypeEnum.SUPERADMIN);
+		superAdminRole.setUser(superAdmin);
 
 		em.persist(role);
 		em.persist(managerRole);
 		em.persist(roleSalarie1);
 		em.persist(roleSalarie2);
 		em.persist(role2Salarie2);
+		em.persist(superAdminRole);
 		
 
 		// Mock donnée d'un CRA

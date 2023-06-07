@@ -76,6 +76,11 @@ public class LoginBean {
 	public Long getUserConnectedId() {
 		return SessionUtils.getUserIdFromSession();
 	}
+	
+	public Long getCompanyIdFromUserConnected() {
+		Long idCompany = userRepository.findCompanyByUserConnected().getId();
+		return idCompany;
+	}
 
 	public LoginViewModel getLoginVm() {
 		return loginVm;

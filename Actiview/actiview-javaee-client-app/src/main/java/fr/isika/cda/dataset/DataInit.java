@@ -106,8 +106,8 @@ public class DataInit {
 		
 		//Mock données ImageConfig liées à l'ESN
 		ImageConfig imageConfigDefault = new ImageConfig();
-		imageConfigDefault.setBanner("BannerDefault");
-		imageConfigDefault.setLogo("logoDefaut");
+		imageConfigDefault.setBanner("BannerDefault.png");
+		imageConfigDefault.setLogo("logoDefaut.png");
 		
 		//configuration par défault des ESN
 		Config config = new Config();

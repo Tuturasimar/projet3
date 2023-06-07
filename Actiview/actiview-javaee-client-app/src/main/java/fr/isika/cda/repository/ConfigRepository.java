@@ -28,10 +28,14 @@ public class ConfigRepository {
 		FontConfig fontConfig = new FontConfig();
 		fontConfig.setFontFamily("sans-serif");
 		
+		ImageConfig imgConfig = new ImageConfig();
+		imgConfig.setBanner("BannerDefault");
+		imgConfig.setLogo("logoDefaut");
+		
 		Company company = em.getReference(Company.class, id);
 		
 		Config config = new Config();
-		config.setImageConfig(imageConfig);
+		config.setImageConfig(imgConfig);
 		config.setColorConfig(colorConfig);
 		config.setFontConfig(fontConfig);
 

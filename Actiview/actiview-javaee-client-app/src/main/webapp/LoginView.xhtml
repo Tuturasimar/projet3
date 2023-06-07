@@ -2,19 +2,50 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:form id="loginForm">
-	
-	<h:messages for="loginForm"/>
-	
-	<h:outputLabel value="login" for="login" />
-	<h:inputText value="#{loginBean.loginVm.login}" id="login" />
+<h:head>
+	<title>ActiView</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&amp;family=Libre+Baskerville&amp;family=Roboto&amp;family=Source+Code+Pro&amp;display=swap"
+		rel="stylesheet"></link>
+	<h:outputStylesheet name="bootstrap-5.0.2-dist/css/bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="stylesheet.css" />
+	<h:outputScript library="js" name="CustomizeColor.js" />
 
-	<h:outputLabel value="Mot de passe" for="password" />
-	<h:inputSecret value="#{loginBean.loginVm.password}" id="password" />
+</h:head>
 
-	<h:commandButton action="#{loginBean.login()}" value="valider" />
-</h:form>
+<h:body>
 
+	<h:form>
+
+		<h2 class="text-center my-4">Connectez-vous</h2>
+
+		<div class="row d-flex justify-content-center">
+			<div class="col-6">
+				<div class="card">
+					<p:panelGrid columns="2"
+						columnClasses="ui-grid-col-4,ui-grid-col-6" layout="grid"
+						styleClass="ui-panelgrid-blank ui-fluid"
+						style="border:0px none;background-color: transparent;">
+
+						<p:outputLabel value="Login" for="login" />
+						<p:inputText value="#{loginBean.loginVm.login}" id="login" />
+
+						<p:outputLabel value="Mot de passe" for="password" />
+						<h:inputSecret value="#{loginBean.loginVm.password}" id="password"
+							class="ui-fluid ui-inputtext ui-inputfield passwordInput" />
+
+						<span></span>
+						<h:commandButton action="#{loginBean.login()}" value="Valider"
+							class="btn btn-success" />
+					</p:panelGrid>
+				</div>
+			</div>
+		</div>
+	</h:form>
+
+</h:body>
 </html>

@@ -36,6 +36,7 @@
 			</div>
 			<div class="col-sm-2 sidenav">
 				<h:panelGrid col="1" rendered="#{notificationBean.notification}">
+				<h3 class="text-center">Notifications</h3>
 					<ui:repeat var="notification"
 						value="#{notificationBean.notifications}">
 						<div class="alert alert-#{notification.classContext.label}">

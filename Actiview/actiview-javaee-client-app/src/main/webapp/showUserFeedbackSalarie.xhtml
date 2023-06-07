@@ -7,39 +7,53 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="header">
-		<h1 style="text-align: center">Liste des appréciations des missions</h1>
+		<h1 style="text-align: center">Liste des appréciations des
+			missions</h1>
 	</ui:define>
 
 	<ui:define name="content">
 
-		<ui:repeat var="assignement" value="#{showSalarieUserFeedbackBean.missionUsers}"
-			varStatus="status">
-			
-				<h3>#{assignement.mission.labelActivity}</h3>
+		<h2 class="text-center">Visualisation des notes de mission</h2>
+		<div class="row d-flex justify-content-between m-4">
+			<ui:repeat var="assignement"
+				value="#{showSalarieUserFeedbackBean.missionUsers}"
+				varStatus="status">
 
-				<h5>Note de la relation client</h5>
 
-				<p:rating value="#{assignement.userFeedback.gradeClientRelation}" readonly="true">
-				</p:rating>
+				<div class="card col-sm-5 my-3">
 
-				<h5>Note de l'accompagnement du manager</h5>
-				<p:rating value="#{assignement.userFeedback.gradeManager}" readonly="true">
-				</p:rating>
+					<h3 class="text-center">#{assignement.mission.labelActivity}</h3>
 
-				<h5>Note de la mission</h5>
-				<p:rating value="#{assignement.userFeedback.gradeMission}" readonly="true">
-				</p:rating>
+					<h5>Note de la relation client</h5>
 
-				<h5>Note du confort de l'employé</h5>
-				<p:rating value="#{assignement.userFeedback.gradeUserComfort}" readonly="true">
-				</p:rating>
+					<p:rating value="#{assignement.userFeedback.gradeClientRelation}"
+						readonly="true">
+					</p:rating>
 
-				<h:outputLabel value="Commentaires supplémentaires"
-					for="commentInput" />
-				#{assignement.userFeedback.comment}
+					<h5>Note de l'accompagnement du manager</h5>
+					<p:rating value="#{assignement.userFeedback.gradeManager}"
+						readonly="true">
+					</p:rating>
 
-		</ui:repeat>
-		
+					<h5>Note de la mission</h5>
+					<p:rating value="#{assignement.userFeedback.gradeMission}"
+						readonly="true">
+					</p:rating>
+
+					<h5>Note du confort de l'employé</h5>
+					<p:rating value="#{assignement.userFeedback.gradeUserComfort}"
+						readonly="true">
+					</p:rating>
+
+					<h:outputLabel value="Commentaires supplémentaires"
+						for="commentInput" />
+					#{assignement.userFeedback.comment}
+
+				</div>
+			</ui:repeat>
+
+		</div>
+
 	</ui:define>
 
 </ui:composition>

@@ -30,45 +30,45 @@ public class SeeProfileBean {
 
 	@Inject
 	private UserRepository userRepo;
-	
+
 	@Inject
 	private ActivityDateRepository activityDateRepo;
-	
+
 	@Inject
 	private MissionRepository missionRepo;
-	
+
 	@Inject
 	private FormationRepository formationRepo;
-	
+
 	@Inject
 	private AbsenceRepository absenceRepo;
-	
-	
+
 	private StatEmployeeViewModel statEmployeeVM = new StatEmployeeViewModel();
-	
+
 	private DonutChartModel model;
-	
+
 	private User user;
 
 	/**
-	 * Méthode qui retourne la vue du profil d'un Salarié 
-	 * avec les stats d'activité du mois en cours
+	 * Méthode qui retourne la vue du profil d'un Salarié avec les stats d'activité
+	 * du mois en cours
 	 * 
-	 * @param userId   permet de récupérer l'info du user
+	 * @param userId permet de récupérer l'info du user
 	 */
 	public String showSeeProfileWithStats(String login) {
+		
 		user = userRepo.findUserByLogin(login);
 		Ar ar = userRepo.findLatestArByUserId(user.getId());
 		Long companyId = userRepo.findCompanyByUserConnected().getId();
 		statEmployeeVM.setArId(ar.getId());
 		statEmployeeVM.setAllActivityDates(activityDateRepo.getAllActivityDateByArId(ar.getId()));
 
-		//Méthode qui mériterait d'être factorisée (mais manque de temps...)
-		
+		// Méthode qui mériterait d'être factorisée (mais manque de temps...)
+
 		// Liste des missions :
-		//On récupère dans un premier temps toutes les missions proposées par l'ESN
+		// On récupère dans un premier temps toutes les missions proposées par l'ESN
 		List<Mission> missions = missionRepo.findAllMissionsByCompanyId(companyId);
-		//On récupère ensuite les activityDate qui correspondent à ces missions
+		// On récupère ensuite les activityDate qui correspondent à ces missions
 		List<ActivityDate> allMissionDates = new ArrayList<ActivityDate>();
 		for (Mission mission : missions) {
 			// génère la liste des ActivityDate correspondant à une mission
@@ -76,14 +76,14 @@ public class SeeProfileBean {
 			// récupère les résultats des query dans une liste globale
 			allMissionDates.addAll(missionDates);
 		}
-		//Enfin, on ne garde que les ActivityDate correspondant au CRA choisi
+		// Enfin, on ne garde que les ActivityDate correspondant au CRA choisi
 		List<ActivityDate> finalmissionDate = new ArrayList<ActivityDate>();
 		for (ActivityDate missionDate : allMissionDates) {
 			if (missionDate.getArActivity().getAr().getId() == ar.getId()) {
 				finalmissionDate.add(missionDate);
 			}
 		}
-		//On ajoute cette liste finale au viewModel
+		// On ajoute cette liste finale au viewModel
 		statEmployeeVM.setMissionActivityDates(finalmissionDate);
 
 		// Liste des formations :
@@ -112,7 +112,7 @@ public class SeeProfileBean {
 			// récupère les résultats des query dans une liste globale
 			allAbsenceDates.addAll(absenceDates);
 		}
-		
+
 		List<ActivityDate> finalabsenceDate = new ArrayList<ActivityDate>();
 		for (ActivityDate absenceDate : allAbsenceDates) {
 			if (absenceDate.getArActivity().getAr().getId() == ar.getId()) {
@@ -129,7 +129,7 @@ public class SeeProfileBean {
 
 		return "SeeProfile.xhtml";
 	}
-	
+
 	public void ratios() {
 		statEmployeeVM.setMissionHours(countHours(statEmployeeVM.getMissionActivityDates()));
 		statEmployeeVM.setFormationHours(countHours(statEmployeeVM.getFormationActivityDates()));
@@ -137,7 +137,7 @@ public class SeeProfileBean {
 		statEmployeeVM.setTotalHours(statEmployeeVM.getAbsenceHours() + statEmployeeVM.getFormationHours()
 				+ statEmployeeVM.getMissionHours());
 	}
-	
+
 	public int countHours(List<ActivityDate> activityDate) {
 		List<ActivityDate> allDayDate = activityDateRepo.getActivityDateDependingOnPartOfDay(activityDate,
 				PartDayEnum.ALLDAY);
@@ -148,7 +148,7 @@ public class SeeProfileBean {
 		int result = allDayDate.size() * 8 + morningDate.size() * 4 + afternoonDate.size() * 4;
 		return result;
 	}
-	
+
 	public void createDonutModel() {
 		model = new DonutChartModel();
 		ChartData data = new ChartData();
@@ -175,30 +175,33 @@ public class SeeProfileBean {
 
 		model.setData(data);
 	}
-	
-	//valable avant l'ajout des stats
-//	public String showSeeProfile(Long id) {
-//		user = userRepo.findUserById(id);
-//		return "SeeProfile.xhtml";
-//	}
+
+	// valable avant l'ajout des stats
+	public String showSeeProfile(Long id) {
+		user = userRepo.findUserById(id);
+		return "SeeProfile.xhtml";
+	}
 //	
 //	public String showSeeProfile(String login) {
 //		user = userRepo.findUserByLogin(login);
 //		return "SeeProfile.xhtml";
 //	}
-	
+
 	public String getListUserRoleByUserId(Long id) {
 		List<UserRole> roles = userRepo.getAllUserRolesByUserId(id);
 		String rolesString = "";
-		for(UserRole role : roles) {
+		for (UserRole role : roles) {
 			rolesString += role.toStringLabel();
-			rolesString+= " ";
+			rolesString += " ";
 		}
 		return rolesString;
 	}
-	
-	
-	//Getters & setters
+
+	public boolean checkModel() {
+		return model != null ? true : false;
+	}
+
+	// Getters & setters
 	public UserRepository getUserRepo() {
 		return userRepo;
 	}

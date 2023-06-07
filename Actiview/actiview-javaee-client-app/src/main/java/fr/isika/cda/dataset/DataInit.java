@@ -141,11 +141,7 @@ public class DataInit {
 		dataSalarie2.setEmail("lucie.fer@actiview.com");
 		dataSalarie2.setJobEnum(JobEnum.DEV);
 		
-		UserData dataSuperUser = new UserData();
-		dataSuperUser.setFirstname("Clark");
-		dataSuperUser.setLastname("Kent");
-		dataSuperUser.setBirthday(LocalDate.of(1985, 5, 2));
-		dataSuperUser.setEmail("clark.kent@actiview.com");
+		
 
 		em.persist(data);
 		em.persist(dataManager);
@@ -190,19 +186,20 @@ public class DataInit {
 		userSalarie2.setManager(manager);
 		userSalarie2.setCompany(company);
 		
-		User superUser = new User();
-		superUser.setLogin("clarkk");
-		superUser.setPassword("clark");
-		superUser.setCreatedAt(LocalDateTime.now());
-		superUser.setStatus(StatusEnum.ACTIVE);
-		superUser.setUserData(dataSuperUser);
-		superUser.setCompany(alten);
+		User superAdmin = new User();
+		superAdmin.setLogin("admin");
+		superAdmin.setPassword("admin");
+		superAdmin.setCreatedAt(LocalDateTime.now());
+		superAdmin.setStatus(StatusEnum.ACTIVE);
+
 
 		em.persist(manager);
 		em.persist(user);
 		em.persist(userSalarie1);
 		em.persist(userSalarie2);
-		em.persist(superUser);
+
+		em.persist(superAdmin);
+
 
 		// Mock donnée UserRole liée à user
 		UserRole role = new UserRole();
@@ -225,16 +222,20 @@ public class DataInit {
 		role2Salarie2.setRoleTypeEnum(RoleTypeEnum.ADMINESN);
 		role2Salarie2.setUser(userSalarie2);
 		
-		UserRole roleSuperUser = new UserRole();
-		roleSuperUser.setRoleTypeEnum(RoleTypeEnum.SUPERADMIN);
-		roleSuperUser.setUser(superUser);
+
+		UserRole superAdminRole = new UserRole();
+		superAdminRole.setRoleTypeEnum(RoleTypeEnum.SUPERADMIN);
+		superAdminRole.setUser(superAdmin);
+
 
 		em.persist(role);
 		em.persist(managerRole);
 		em.persist(roleSalarie1);
 		em.persist(roleSalarie2);
 		em.persist(role2Salarie2);
-		em.persist(roleSuperUser);
+
+		em.persist(superAdminRole);
+
 		
 
 		// Mock donnée d'un CRA

@@ -13,7 +13,7 @@
 				<h:graphicImage library="images" name="logo.png" id="logoNotCo"
 					class="logo" width="15%" height="15%" />
 			</h:link>
-			<h:link class="navbar-brand" outcome="homePageConnected.xhtml"
+			<h:link class="navbar-brand" outcome="indexAdmin.xhtml"
 				rendered="#{loginBean.isUserLoggedIn()}">
 				<h:graphicImage library="images" name="logo.png" id="logoCo"
 					class="logo" width="15%" height="15%" />
@@ -25,11 +25,9 @@
 						<p:menuitem value="Voir les forfaits" outcome="FeatureList.xhtml"></p:menuitem>
 						<p:menuitem value="Créer un forfait"
 							outcome="RegisterFeature.xhtml"></p:menuitem>
-						<p:menuitem value="Modifier un forfait"
-							outcome="UpdateFeature.xhtml"></p:menuitem>
 					</p:submenu>
 					
-					<p:menuitem value="Liste des ESN inscrites" outcome=""></p:menuitem>
+					<p:menuitem value="Liste des ESN inscrites"></p:menuitem>
 
 					<p:menuitem label="Logout" action="#{loginBean.logout()}"
 						value="Déconnexion" rendered="#{loginBean.isUserLoggedIn()}">

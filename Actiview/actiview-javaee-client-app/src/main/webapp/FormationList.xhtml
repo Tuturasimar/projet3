@@ -6,40 +6,48 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/templates/default.xhtml">
 
-	<ui:define name="header">
-		<h1 style="text-align: center">Liste des formations</h1>
-	</ui:define>
+	
 	<ui:define name="content">
-		<h:dataTable value="#{showFormationsBeans.formations}" var="formation">
-			<h:column>
+	
+	<h2 class="text-center my-4">Liste des formations</h2>
+
+		<div class="row d-flex justify-content-end">
+			<div class="col-2 my-3 mx-0">
+				<h:link outcome="CreateFormation" class="btn btn-success w-100"
+					value="Ajouter formation" />
+			</div>
+		</div>
+	
+		<p:dataTable value="#{showFormationsBeans.formations}" var="formation">
+			<p:column>
 				<f:facet name="header">Nom</f:facet>
 				#{formation.labelActivity}
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Nombre de jours</f:facet>
 				#{formation.nbOfDays}
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">Description</f:facet>
 				#{formation.description}
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Localisation</f:facet>
 				#{formation.location}
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<f:facet name="header">Statut</f:facet>
 				#{formation.status}
-			</h:column>
-			<h:column>
+			</p:column>
+			<p:column>
 				<h:form id="actionsForm">
 					<f:facet name="header">Mettre à jour</f:facet>
 					<h:commandButton
 						action="#{editFormationBean.showEditFormation(formation.id)}"
-						value="Update" />
+						value="Modifier" class="btn btn-primary" />
 				</h:form>
-			</h:column>
-		</h:dataTable>
+			</p:column>
+		</p:dataTable>
 	</ui:define>
 </ui:composition>

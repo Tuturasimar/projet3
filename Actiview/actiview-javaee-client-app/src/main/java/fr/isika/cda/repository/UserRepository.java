@@ -329,7 +329,7 @@ public class UserRepository {
 			try {
 				Query query = em.createQuery(QUERY_USER_BY_ROLE, User.class);
 				query.setParameter("id", userId);
-				query.setParameter("role", RoleTypeEnum.ADMINESN);
+				query.setParameter("role", RoleTypeEnum.SUPERADMIN);
 				User user = (User) query.getSingleResult();
 
 				return user != null ? true : false;

@@ -13,18 +13,74 @@
 
 	<ui:define name="content">
 
+
+
+		<h2>Logo de l'ESN</h2>
+		<p:dataTable value="#{seeCompanyProfileBean.imgConfig}"
+			var="imgConfig">
+
+			<p:column>
+				<f:facet name="header">Logo</f:facet>
+				<ui:repeat var="imgConfig"
+					value="#{seeCompanyProfileBean.imgConfig}">
+					<h:graphicImage id="logoImage" name="#{imgConfig.logo}"
+						library="images" rendered="#{!seeCompanyProfileBean.checkDefaultLogo(seeCompanyProfileBean.company.id)}"/>
+						<h:graphicImage id="logoDefault" name="logoDefaut.png"
+						library="images" rendered="#{seeCompanyProfileBean.checkDefaultLogo(seeCompanyProfileBean.company.id)}"/>
+				</ui:repeat>
+			</p:column>
+
+		</p:dataTable>
+
 		<h2>Informations de l'ESN</h2>
-		<h:dataTable value="#{seeCompanyProfileBean.company}" var="company">
+		<p:dataTable value="#{seeCompanyProfileBean.company}" var="company">
 
-			<h:column>
-				<f:facet name="header">Nom de l'ESN</f:facet>
-				<h:outputText value="#{company.name}">
-
+			<p:column>
+				<f:facet name="header">Nom de l'ESN</f:facet> #{company.name}
+				<h:outputText value="#{seeCompanyProfileBean.companyVm.name}">
 				</h:outputText>
-			</h:column>
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">Adresse</f:facet> #{company.adress}
+				<h:outputText value="#{seeCompanyProfileBean.companyVm.adress}">
+				</h:outputText>
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">Numéro de téléphone</f:facet> #{company.phone}
+				<h:outputText value="#{seeCompanyProfileBean.companyVm.phone}">
+				</h:outputText>
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">Numéro SIREN</f:facet> #{company.siren}
+				<h:outputText value="#{seeCompanyProfileBean.companyVm.siren}">
+				</h:outputText>
+			</p:column>
 
 
-		</h:dataTable>
+		</p:dataTable>
+		
+
+		<h2>Bannière de l'ESN</h2>
+		<p:dataTable value="#{seeCompanyProfileBean.imgConfig}"
+			var="imgConfig">
+
+			<p:column>
+				<f:facet name="header">Bannière</f:facet>
+				<ui:repeat var="imgConfig"
+					value="#{seeCompanyProfileBean.imgConfig}">
+					<h:graphicImage id="bannerImage" name="#{imgConfig.banner}"
+						library="images" rendered="#{!seeCompanyProfileBean.checkDefaultBanner(seeCompanyProfileBean.company.id)}" />
+						<h:graphicImage id="bannerImageDefault" name="BannerDefault.png"
+						library="images" rendered="#{seeCompanyProfileBean.checkDefaultBanner(seeCompanyProfileBean.company.id)}" />
+				</ui:repeat>
+			</p:column>
+
+		</p:dataTable>
+
+
 	</ui:define>
 </ui:composition>
 

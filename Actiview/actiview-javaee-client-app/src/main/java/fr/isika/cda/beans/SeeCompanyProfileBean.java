@@ -4,7 +4,10 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.config.Company;
+import fr.isika.cda.entities.config.ImageConfig;
 import fr.isika.cda.repository.CompanyRepository;
+import fr.isika.cda.repository.ImageConfigRepository;
+import fr.isika.cda.viewmodels.ImageConfigViewModel;
 import fr.isika.cda.viewmodels.ShowCompanyViewModel;
 
 
@@ -13,20 +16,31 @@ public class SeeCompanyProfileBean {
 	
 	private ShowCompanyViewModel showCompanyVm;
 	
+	private ImageConfigViewModel imgConfigVm;
+	
 	@Inject
 	private CompanyRepository companyRepo;
 	
+	@Inject
+	private ImageConfigRepository imgConfigRepo;
+	
 	private Company company;
 	
+	private ImageConfig imgConfig;
+	
 	public String showCompanyProfile(Long id) {
-		Company companyProfile = companyRepo.findById(id);
-		showCompanyVm = new ShowCompanyViewModel(companyProfile.getId());
-		showCompanyVm.setAdress(companyProfile.getAdress());
-		showCompanyVm.setName(companyProfile.getName());
-		showCompanyVm.setPhone(companyProfile.getPhone());
-		showCompanyVm.setSiren(companyProfile.getSiren());
+		company = companyRepo.findById(id);
+		imgConfig = imgConfigRepo.getImageConfigByCompanyId(id);
 		
 		return "SeeProfileCompany.xhtml";
+	}
+	
+	public boolean checkDefaultLogo(Long id) {
+		return ("logoDefaut".equals(imgConfigRepo.getImageConfigByCompanyId(id).getLogo()));
+	}
+	
+	public boolean checkDefaultBanner(Long id) {
+		return ("BannerDefault".equals(imgConfigRepo.getImageConfigByCompanyId(id).getBanner()));
 	}
 
 	public ShowCompanyViewModel getCompanyVm() {
@@ -44,6 +58,24 @@ public class SeeCompanyProfileBean {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
+
+	public ImageConfig getImgConfig() {
+		return imgConfig;
+	}
+
+	public void setImgConfig(ImageConfig imgConfig) {
+		this.imgConfig = imgConfig;
+	}
+
+	public ImageConfigViewModel getImgConfigVm() {
+		return imgConfigVm;
+	}
+
+	public void setImgConfigVm(ImageConfigViewModel imgConfigVm) {
+		this.imgConfigVm = imgConfigVm;
+	}
+	
+	
 	
 
 }

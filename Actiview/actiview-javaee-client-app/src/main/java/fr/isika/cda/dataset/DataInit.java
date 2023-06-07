@@ -100,17 +100,44 @@ public class DataInit {
 		colorConfigDefault.setTextColor("000000");
 		colorConfigDefault.setTitleColor("FFFFFF");
 		
-		//Mock donnée FontCOnfig liée à l'ESN
+		//Mock données FontCOnfig liées à l'ESN
 		FontConfig fontConfigDefault = new FontConfig();
 		fontConfigDefault.setFontFamily("sans-serif");
 		
+		//Mock données ImageConfig liées à l'ESN
+		ImageConfig imageConfigDefault = new ImageConfig();
+		imageConfigDefault.setBanner("BannerDefault");
+		imageConfigDefault.setLogo("logoDefaut");
+		
+		//configuration par défault des ESN
 		Config config = new Config();
 		config.setColorConfig(colorConfigDefault);
 		config.setCompany(company);
 		config.setFontConfig(fontConfigDefault);
-		config.setImageConfig(new ImageConfig());
+		config.setImageConfig(imageConfigDefault);
+		
+		Config configOrange = new Config();
+		configOrange.setColorConfig(colorConfigDefault);
+		configOrange.setCompany(orange);
+		configOrange.setFontConfig(fontConfigDefault);
+		configOrange.setImageConfig(imageConfigDefault);
+		
+		Config configAlten = new Config();
+		configAlten.setColorConfig(colorConfigDefault);
+		configAlten.setCompany(alten);
+		configAlten.setFontConfig(fontConfigDefault);
+		configAlten.setImageConfig(imageConfigDefault);
+		
+		Config configSopra = new Config();
+		configSopra.setColorConfig(colorConfigDefault);
+		configSopra.setCompany(sopra);
+		configSopra.setFontConfig(fontConfigDefault);
+		configSopra.setImageConfig(imageConfigDefault);
 		
 		em.persist(config);
+		em.persist(configOrange);
+		em.persist(configAlten);
+		em.persist(configSopra);
 
 		// Mock donnée UserData liée à user
 		UserData data = new UserData();

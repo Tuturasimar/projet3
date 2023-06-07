@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import fr.isika.cda.entities.common.StatusEnum;
 import fr.isika.cda.entities.config.Company;
@@ -38,7 +39,13 @@ public class ContractRepository {
 		entityManager.merge(company);
 		//entityManager.persist(contract);
 		
-		return contract.getId();
+		return company.getContract().getId();
+	}
+	
+	public Contract findById(Long id) {
+		Query query = entityManager.createQuery("SELECT c FROM Contract c WHERE c.id = :id");
+		query.setParameter("id", id);
+		return (Contract) query.getSingleResult();
 	}
 
 	public List<Options> findOptions(long id) {

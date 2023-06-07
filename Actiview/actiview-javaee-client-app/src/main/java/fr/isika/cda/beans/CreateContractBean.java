@@ -12,7 +12,6 @@ import javax.inject.Inject;
 
 import fr.isika.cda.entities.config.Feature;
 import fr.isika.cda.repository.CompanyRepository;
-import fr.isika.cda.repository.ConfigRepository;
 import fr.isika.cda.repository.ContractRepository;
 import fr.isika.cda.repository.FeatureRepository;
 import fr.isika.cda.viewmodels.ContractCreationViewModel;
@@ -25,46 +24,41 @@ public class CreateContractBean {
 	CompanyRepository companyRepo;
 
 	@Inject
-	ConfigRepository configRepo;
-
-	@Inject
 	ContractRepository contractRepo;
 
 	@Inject
 	FeatureRepository featureRepo;
-	
-	@ManagedProperty(value="#{registerCompanyBean}")
+
+	@ManagedProperty(value = "#{registerCompanyBean}")
 	private RegisterCompanyBean registerCompanyBean;
+	
+	
 
 	private ContractCreationViewModel contractVM;
-	
-	private Long companyId ;
+
+	private Long companyId;
 
 	@PostConstruct
 	public void init() {
 		contractVM = new ContractCreationViewModel();
-		
-		// Récup un paramètre de requête 
-		Map<String, String> requestParameter = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+
+		// Récup un paramètre de requête
+		Map<String, String> requestParameter = FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap();
 		String companyIdParam = requestParameter.get("id");
-		if(companyIdParam != null) {
+		if (companyIdParam != null) {
 			this.companyId = Long.valueOf(companyIdParam);
 		}
 		// cas ou pas de param => erreur
 		this.companyId = registerCompanyBean.getCompanyViewModel().getCompanyId();
 	}
-	
-//	public String showContractCreationForm(Long companyId) {
-//		this.setCompanyId(companyId);
-//		return "CreateContract";
-//	}
 
 	public String register() {
-		
+
 		contractVM.setCompany(companyRepo.findById(companyId));
 		contractVM.setFeature(featureRepo.findByFeatureId(contractVM.getFeatureId()));
 		Long id = contractRepo.register(contractVM);
-
+		contractVM.setContractId(id);
 		System.out.println("Id du contract créé : " + id);
 		return "index";
 	}
@@ -72,19 +66,6 @@ public class CreateContractBean {
 	public List<Feature> findAllFeatures() {
 		return featureRepo.findAll();
 	}
-
-	//	public List<Feature> getFeatures() {
-//		return featureRepo.findAll();
-//	}
-//
-//	public List<String> getLabelOfFeatures() {
-//		List<Feature> features = featureRepo.findAll();
-//		List<String> labels = new ArrayList<String>();
-//		for (Feature feature : features) {
-//			labels.add(feature.getLabel());
-//		}
-//		return labels;
-//	}
 
 	// getters & setters
 

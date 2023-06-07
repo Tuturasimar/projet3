@@ -19,19 +19,45 @@ public class RegisterFormationUserBean {
 
 	@Inject
 	FormationUserRepository formationUserRepo;
-	
+
 	@Inject
 	UserRepository userRepo;
-	
+
 	@Inject
 	FormationRepository formationRepo;
 	
 	private List<User> users;
-	
+
 	private List<Formation> formations;
-	
+
 	private FormationUserViewModel formationUserVm = new FormationUserViewModel();
 
+	@PostConstruct
+	public void init() {
+		String login = SessionUtils.getUserLoginFromSession();
+
+		users = userRepo.findUserByManagerLogin(login);
+
+		Long idCompany = userRepo.findCompanyByUserConnected().getId();
+
+		formations = formationRepo.getAllActiveFormationsFromCompany(idCompany);
+	}
+
+	public String register() {
+		if (!formationUserRepo.checkExistingFormationUser(formationUserVm)) {
+			formationUserRepo.register(formationUserVm);
+
+			// TODO ajout d'une notification
+		} else {
+			// TODO ajout d'une notification "La formation a déjà été attribuée pour cet
+			// utilisateur
+		}
+
+		return "formationUserList";
+	}
+
+	
+	//Getters & setters
 	public List<User> getUsers() {
 		return users;
 	}
@@ -55,29 +81,4 @@ public class RegisterFormationUserBean {
 	public void setFormationUserVm(FormationUserViewModel formationUserVm) {
 		this.formationUserVm = formationUserVm;
 	}
-	
-	@PostConstruct
-	public void init() {
-		String login = SessionUtils.getUserLoginFromSession();
-		
-		users = userRepo.findUserByManagerLogin(login);
-		
-		Long idCompany = userRepo.findCompanyByUserConnected().getId();
-		
-		formations = formationRepo.getAllActiveFormationsFromCompany(idCompany);
-	}
-	
-	public String register() {
-		if(!formationUserRepo.checkExistingFormationUser(formationUserVm)) {
-			formationUserRepo.register(formationUserVm);
-			
-			// TODO ajout d'une notification
-		} else {
-			// TODO ajout d'une notification "La formation a déjà été attribuée pour cet utilisateur
-		}
-		
-		return "formationUserList";
-	}
-	
-	
 }

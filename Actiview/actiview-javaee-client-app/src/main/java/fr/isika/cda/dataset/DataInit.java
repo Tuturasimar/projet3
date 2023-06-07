@@ -61,12 +61,36 @@ public class DataInit {
 		// Mock donnée d'une ESN 
 
 		Company company = new Company();
-		company.setAdress("Je suis une adresse");
+		company.setAdress("Paris");
 		company.setName("BeMyTech");
 		company.setStatus(StatusEnum.ACTIVE);
-		company.setPhone(0606060606);
-		company.setSiren(123456789);		
+		company.setPhone("0606060606");
+		company.setSiren("123456789");		
 
+		Company orange = new Company();
+		orange.setAdress("Genève");
+		orange.setName("Orange");
+		orange.setStatus(StatusEnum.ACTIVE);
+		orange.setPhone("0450463027");
+		orange.setSiren("123456987");		
+		
+		Company alten = new Company();
+		alten.setAdress("Nimes");
+		alten.setName("Alten");
+		alten.setStatus(StatusEnum.ACTIVE);
+		alten.setPhone("0450461327");
+		alten.setSiren("673456987");		
+		
+		Company sopra = new Company();
+		sopra.setAdress("Annecy");
+		sopra.setName("Sopra Steria");
+		sopra.setStatus(StatusEnum.ACTIVE);
+		sopra.setPhone("0445461313");
+		sopra.setSiren("673946987");		
+
+		em.persist(orange);
+		em.persist(alten);
+		em.persist(sopra);
 		em.persist(company);
 		
 		//Mock donnée ColorConfig liée à l'ESN
@@ -116,11 +140,14 @@ public class DataInit {
 		dataSalarie2.setBirthday(LocalDate.of(1988, 6, 1));
 		dataSalarie2.setEmail("lucie.fer@actiview.com");
 		dataSalarie2.setJobEnum(JobEnum.DEV);
+		
+		
 
 		em.persist(data);
 		em.persist(dataManager);
 		em.persist(dataSalarie1);
 		em.persist(dataSalarie2);
+		em.persist(dataSuperUser);
 
 		// Mock donnée User
 
@@ -165,11 +192,14 @@ public class DataInit {
 		superAdmin.setCreatedAt(LocalDateTime.now());
 		superAdmin.setStatus(StatusEnum.ACTIVE);
 
+
 		em.persist(manager);
 		em.persist(user);
 		em.persist(userSalarie1);
 		em.persist(userSalarie2);
+
 		em.persist(superAdmin);
+
 
 		// Mock donnée UserRole liée à user
 		UserRole role = new UserRole();
@@ -192,16 +222,20 @@ public class DataInit {
 		role2Salarie2.setRoleTypeEnum(RoleTypeEnum.ADMINESN);
 		role2Salarie2.setUser(userSalarie2);
 		
+
 		UserRole superAdminRole = new UserRole();
 		superAdminRole.setRoleTypeEnum(RoleTypeEnum.SUPERADMIN);
 		superAdminRole.setUser(superAdmin);
+
 
 		em.persist(role);
 		em.persist(managerRole);
 		em.persist(roleSalarie1);
 		em.persist(roleSalarie2);
 		em.persist(role2Salarie2);
+
 		em.persist(superAdminRole);
+
 		
 
 		// Mock donnée d'un CRA

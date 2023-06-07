@@ -59,7 +59,7 @@
 					</p:submenu>
 
 					<p:submenu label="Compte rendu d'activité"
-						rendered="#{loginBean.isUserLoggedIn()}">
+						rendered="#{loginBean.userASalarie}">
 						<p:menuitem value="CRA" outcome="showAr.xhtml"
 							rendered="#{loginBean.userASalarie}" />
 						<p:menuitem value="Note de mission en cours"
@@ -68,16 +68,17 @@
 						<p:menuitem value="Note des missions"
 							outcome="showUserFeedbackSalarie.xhtml"
 							rendered="#{loginBean.userASalarie}" />
-						<p:menuitem value="CRA des collaborateurs"
-							rendered="#{loginBean.userAManager}" outcome="SeeArTeam.xhtml" />
+
 					</p:submenu>
+
+					<p:menuitem value="CRA des collaborateurs"
+						rendered="#{loginBean.userAManager}" outcome="SeeArTeam.xhtml" />
 
 					<p:menuitem value="Devenez client"
 						rendered="#{not loginBean.isUserLoggedIn()}"
 						outcome="CompanyRegisterForm.xhtml" />
 
 					<p:divider layout="vertical" />
-
 
 					<p:menuitem value="Déjà client ? Connectez-vous"
 						outcome="LoginView.xhtml"

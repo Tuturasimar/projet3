@@ -266,6 +266,7 @@ public class UserRepository {
 
 	}
 
+
 	public boolean isUserLoggedASalarie() {
 		Long userId = SessionUtils.getUserIdFromSession();
 		if (userId != null) {

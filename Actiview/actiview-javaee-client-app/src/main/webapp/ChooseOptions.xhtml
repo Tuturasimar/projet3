@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/WEB-INF/templates/default.xhtml">
+	<f:metadata>
+		<f:viewParam name="id" />
+		<f:event listener="#{chooseOptionsBean.showView(id)}" type="preRenderView"></f:event>
+	</f:metadata>
+	<ui:define name="Entete">
+		<h2>Veuillez choisir vos options</h2>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:panelGrid columns="3">
+				<h:outputLabel id="optionLabel" value="Options" />
+				<h:selectManyCheckbox id="optionCB"
+					value="#{chooseOptionsBean.contractOptionsVM.optionsId}">
+					<f:selectItems value="#{chooseOptionsBean.findAllOptions()}"
+						var="option" itemLabel="#{option.label}" itemValue="#{option.id}" />
+
+				</h:selectManyCheckbox>
+				<h:message for="checkbox" style="color: red" />
+
+				<p:commandButton value="Valider"
+					action="#{chooseOptionsBean.register()}" />
+			</h:panelGrid>
+		</h:form>
+		<p>
+			<h:link outcome="index.html">Index (à enlever)</h:link>
+		</p>
+	</ui:define>
+</ui:composition>
+
+</html>

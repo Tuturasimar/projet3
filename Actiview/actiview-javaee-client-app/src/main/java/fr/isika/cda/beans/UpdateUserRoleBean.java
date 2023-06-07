@@ -1,6 +1,6 @@
 package fr.isika.cda.beans;
 
-
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,44 +21,53 @@ public class UpdateUserRoleBean {
 
 	@Inject
 	private UserRepository userRepo;
-	
+
 	/**
-	 * Méthode qui permet de renvoyer sur un formulaire de modification du rôle d'un user
-	 * @param id du userVM de la vue UserList qui sert à retrouver le user et le userData en bdd
+	 * Méthode qui permet de renvoyer sur un formulaire de modification du rôle d'un
+	 * user
+	 * 
+	 * @param id du userVM de la vue UserList qui sert à retrouver le user et le
+	 *           userData en bdd
 	 * @return la vue du formulaire de modif du userRole
 	 */
 	public String showUpdateUserRole(Long id) {
-		//liste des userRole qui sont récupérés à partir de l'id du user
-		List<UserRole> rolesToUpdate =  userRepo.getAllUserRolesByUserId(id);
-			
-		
+		// liste des userRole qui sont récupérés à partir de l'id du user
+		List<UserRole> rolesToUpdate = userRepo.getAllUserRolesByUserId(id);
+
 		// Java 8 Stream API
-		// on prend les roles, on fait un flux parallele dessus puis on map chaque role à l'enum et on collecte le tout
-		List<RoleTypeEnum> roleTypesFromRoles = rolesToUpdate.parallelStream()
-				.map(role -> role.getRoleTypeEnum())
+		// on prend les roles, on fait un flux parallele dessus puis on map chaque role
+		// à l'enum et on collecte le tout
+		List<RoleTypeEnum> roleTypesFromRoles = rolesToUpdate.parallelStream().map(role -> role.getRoleTypeEnum())
 				.collect(Collectors.toList());
-		
+
 		updateUserRoleVM = new UpdateUserRoleViewModel(id);
 		updateUserRoleVM.setRoleTypes(roleTypesFromRoles);
 		return "UpdateUserRole.xhtml";
 	}
-	
+
 	/**
 	 * Méthode qui permet d'enregistrer la modification d'un userRole en bdd
+	 * 
 	 * @return la vue UserList
 	 */
 	public String updateUserRole() {
-		
+
 		Long id = updateUserRoleVM.getUserId();
 		userRepo.updateUserRole(updateUserRoleVM);
-		
+
 		updateUserRoleVM = new UpdateUserRoleViewModel(id);
-		
+
 		return "UserList.xhtml";
 	}
-	
+
 	public RoleTypeEnum[] roleTypeEnumValues() {
-		return RoleTypeEnum.values();
+		RoleTypeEnum[] allRole = RoleTypeEnum.values();
+		RoleTypeEnum roleToExclude = RoleTypeEnum.SUPERADMIN;
+
+		RoleTypeEnum[] customerRoles = Arrays.stream(allRole).filter(role -> role != roleToExclude)
+				.toArray(RoleTypeEnum[]::new);
+
+		return customerRoles;
 	}
 
 	public UpdateUserRoleViewModel getUpdateUserRoleVM() {
@@ -68,5 +77,5 @@ public class UpdateUserRoleBean {
 	public void setUpdateUserRoleVM(UpdateUserRoleViewModel updateUserRoleVM) {
 		this.updateUserRoleVM = updateUserRoleVM;
 	}
-	
+
 }

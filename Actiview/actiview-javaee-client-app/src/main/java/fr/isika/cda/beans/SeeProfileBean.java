@@ -56,7 +56,7 @@ public class SeeProfileBean {
 	 * @param userId permet de récupérer l'info du user
 	 */
 	public String showSeeProfileWithStats(String login) {
-		
+
 		user = userRepo.findUserByLogin(login);
 		Ar ar = userRepo.findLatestArByUserId(user.getId());
 		Long companyId = userRepo.findCompanyByUserConnected().getId();
@@ -180,6 +180,10 @@ public class SeeProfileBean {
 	public String showSeeProfile(Long id) {
 		user = userRepo.findUserById(id);
 		return "SeeProfile.xhtml";
+	}
+
+	public boolean checkUserSalarie(Long id) {
+		return userRepo.isUserASalarie(id);
 	}
 //	
 //	public String showSeeProfile(String login) {

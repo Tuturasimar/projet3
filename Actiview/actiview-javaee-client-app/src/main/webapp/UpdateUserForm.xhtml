@@ -7,53 +7,61 @@
 
 
 <ui:composition template="/WEB-INF/templates/default.xhtml">
-	<ui:define name="Entete">
-		<h2 style="color: red">Formulaire de modification d'utilisateur</h2>
-	</ui:define>
+
 
 	<ui:define name="content">
+
+		<h2 class="text-center my-4">Création d'un utilisateur</h2>
+
 		<h:form>
-			<h:panelGrid columns="3">
-											
-				<h:outputLabel id="emailLabel" value="Email" />
-				<p:inputText id="emailInput" value="#{updateUserBean.updateUserViewModel.email}" />
-				<h:message for="emailInput"/>
-				
-				<h:outputLabel id="firstnameLabel" value="Prénom" />
-				<p:inputText id="firstnameInput" value="#{updateUserBean.updateUserViewModel.firstname}" />
-				<h:message for="firstnameInput"/>
-	
-				<h:outputLabel id="nameLabel" value="Nom de famille" />
-				<p:inputText id="nameInput" value="#{updateUserBean.updateUserViewModel.lastname}" />
-				<h:message for="nameInput"/>
-				
-				<h:outputLabel id="birthdayLabel" value="Date de naissance" />
-				<p:datePicker id="birthdayInput" value="#{updateUserBean.updateUserViewModel.birthday}" />
-				<h:message for="birthdayInput"/>
-				
-				<h:outputLabel id="jobLabel" value="Poste" />
-				<p:selectOneMenu id="jobSelectMenu" value="#{updateUserBean.updateUserViewModel.jobEnum}">
-					<f:selectItem itemLabel="Sélectionner un poste" itemValue=""  noSelectionOption="true" />
-					<f:selectItems value="#{updateUserBean.jobEnumValues()}" var="job" itemLabel="#{job.label}" itemValue="#{job}" />
+			<p:panelGrid columns="4"
+				columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+				layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
+				style="border:0px none;background-color: transparent;">
+
+
+				<p:outputLabel id="firstnameLabel" value="Prénom" />
+				<p:inputText id="firstnameInput"
+					value="#{updateUserBean.updateUserViewModel.firstname}" />
+
+				<p:outputLabel id="nameLabel" value="Nom de famille" />
+				<p:inputText id="nameInput"
+					value="#{updateUserBean.updateUserViewModel.lastname}" />
+
+				<p:outputLabel id="emailLabel" value="Email" />
+				<p:inputText id="emailInput"
+					value="#{updateUserBean.updateUserViewModel.email}" />
+
+
+				<p:outputLabel id="birthdayLabel" value="Date de naissance" />
+				<p:datePicker id="birthdayInput"
+					value="#{updateUserBean.updateUserViewModel.birthday}" />
+
+				<p:outputLabel id="jobLabel" value="Poste" />
+				<p:selectOneMenu id="jobSelectMenu"
+					value="#{updateUserBean.updateUserViewModel.jobEnum}">
+					<f:selectItem itemLabel="Sélectionner un poste" itemValue=""
+						noSelectionOption="true" />
+					<f:selectItems value="#{updateUserBean.jobEnumValues()}" var="job"
+						itemLabel="#{job.label}" itemValue="#{job}" />
 				</p:selectOneMenu>
-				<h:message for="jobSelectMenu"/>
-				
-				<h:outputLabel id="managerLabel" value="Manager" />
+
+				<p:outputLabel id="managerLabel" value="Manager" />
 				<p:selectOneMenu id="managerSelectMenu"
 					value="#{updateUserBean.updateUserViewModel.managerId}">
-					<f:selectItem itemLabel="Sélectionner un manager" itemValue="" noSelectionOption="true"/>
+					<f:selectItem itemLabel="Sélectionner un manager" itemValue=""
+						noSelectionOption="true" />
 					<f:selectItem itemLabel="Aucun Manager" itemValue="null" />
-					<f:selectItems value="#{updateUserBean.managers}" var="manager" itemLabel="#{manager.login}" itemValue="#{manager.id.toString()}"/>
+					<f:selectItems value="#{updateUserBean.managers}" var="manager"
+						itemLabel="#{manager.login}" itemValue="#{manager.id.toString()}" />
 				</p:selectOneMenu>
-				<h:message for="managerSelectMenu"/>
-				
+
 				<span></span>
-				<p:commandButton value="Submit" action="#{updateUserBean.updateUser()}" />
-			</h:panelGrid>
+				<h:commandButton value="Modifier"
+					action="#{updateUserBean.updateUser()}" class="btn btn-success" />
+			</p:panelGrid>
 		</h:form>
-		<p>
-			<h:link outcome="index.html">Index</h:link>
-		</p>
+
 	</ui:define>
 </ui:composition>
 

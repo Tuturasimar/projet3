@@ -99,6 +99,11 @@
 	outline: 0 none;
 	box-shadow : 0 0 0 0.2em #a6d5fa;
 	}
+	
+	.btnNoColor .ui-button {
+	background: white !important;
+	border: 1px solid black !important;
+	}
       
       .footer {
 	width: 100%;

@@ -58,7 +58,7 @@ public class LoginBean {
 	}
 
 	public boolean isUserASalarie() {
-		return userRepository.isUserLoggedASalarie();
+		return userRepository.isUserASalarie(SessionUtils.getUserIdFromSession());
 	}
 
 	public boolean isUserAManager() {

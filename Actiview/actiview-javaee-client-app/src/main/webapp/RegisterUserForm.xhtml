@@ -7,45 +7,43 @@
 
 
 <ui:composition template="/WEB-INF/templates/default.xhtml">
-	<ui:define name="Entete">
-		<h2 style="color: red">Formulaire de création d'utilisateur</h2>
-	</ui:define>
+
 
 	<ui:define name="content">
-		<h:form>
-			<h:panelGrid columns="3">
 
-				<h:outputLabel id="loginLabel" value="Login" />
+		<h2 class="text-center my-4">Création d'un utilisateur</h2>
+
+		<h:form>
+			<p:panelGrid columns="4"
+				columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+				layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
+				style="border:0px none;background-color: transparent;">
+
+				<p:outputLabel id="loginLabel" value="Login" />
 				<p:inputText id="loginInput"
 					value="#{registerUserBean.userViewModel.login}" />
-				<h:message for="loginInput" />
 
-				<h:outputLabel id="passwordLabel" value="Mot de passe" />
+				<p:outputLabel id="passwordLabel" value="Mot de passe" />
 				<p:password id="passwordInput"
 					value="#{registerUserBean.userViewModel.password}" />
-				<h:message for="passwordInput" />
 
-				<h:outputLabel id="emailLabel" value="Email" />
-				<p:inputText id="emailInput"
-					value="#{registerUserBean.userViewModel.email}" />
-				<h:message for="emailInput" />
-
-				<h:outputLabel id="firstnameLabel" value="Prénom" />
+				<p:outputLabel id="firstnameLabel" value="Prénom" />
 				<p:inputText id="firstnameInput"
 					value="#{registerUserBean.userViewModel.firstname}" />
-				<h:message for="firstnameInput" />
 
-				<h:outputLabel id="nameLabel" value="Nom de famille" />
+				<p:outputLabel id="nameLabel" value="Nom de famille" />
 				<p:inputText id="nameInput"
 					value="#{registerUserBean.userViewModel.lastname}" />
-				<h:message for="nameInput" />
 
-				<h:outputLabel id="birthdayLabel" value="Date de naissance" />
+				<p:outputLabel id="emailLabel" value="Email" />
+				<p:inputText id="emailInput"
+					value="#{registerUserBean.userViewModel.email}" />
+
+				<p:outputLabel id="birthdayLabel" value="Date de naissance" />
 				<p:datePicker id="birthdayInput"
 					value="#{registerUserBean.userViewModel.birthday}" />
-				<h:message for="birthdayInput" />
 
-				<h:outputLabel id="jobLabel" value="Poste" />
+				<p:outputLabel id="jobLabel" value="Poste" />
 				<p:selectOneMenu id="jobSelectMenu"
 					value="#{registerUserBean.userViewModel.jobEnum}">
 					<f:selectItem itemLabel="Sélectionner un poste" itemValue=""
@@ -53,35 +51,37 @@
 					<f:selectItems value="#{registerUserBean.jobEnumValues()}"
 						var="job" itemLabel="#{job.label}" itemValue="#{job}" />
 				</p:selectOneMenu>
-				<h:message for="jobSelectMenu" />
 
-				<h:outputLabel id="managerLabel" value="Manager" />
+				<p:outputLabel id="managerLabel" value="Manager" />
 				<p:selectOneMenu id="managerSelectMenu"
 					value="#{registerUserBean.userViewModel.managerId}">
 					<f:selectItem itemLabel="Sélectionner un manager" itemValue=""
 						noSelectionOption="true" />
-						
+
 					<f:selectItem itemLabel="Aucun Manager" itemValue="null" />
-					<f:selectItems value="#{registerUserBean.managers}" var="manager" itemLabel="#{manager.login}" itemValue="#{manager.id.toString()}"/>
+					<f:selectItems value="#{registerUserBean.managers}" var="manager"
+						itemLabel="#{manager.login}" itemValue="#{manager.id.toString()}" />
 				</p:selectOneMenu>
-				<h:message for="managerSelectMenu" />
 
-				<h:outputLabel id="roleLabel" value="Rôle"/>
-				<p:selectManyCheckbox id="roleCB" value="#{registerUserBean.userViewModel.roleTypes}">
-					<f:selectItems value="#{registerUserBean.roleTypeEnumValues()}" var="role" itemLabel="#{role.label}" itemValue="#{role}" />
+				<p:outputLabel id="roleLabel" value="Rôle" />
+				<p:selectManyCheckbox id="roleCB"
+					value="#{registerUserBean.userViewModel.roleTypes}">
+					<f:selectItems value="#{updateUserRoleBean.roleTypeEnumValues()}"
+						var="role" itemLabel="#{role.label}" itemValue="#{role}" />
 				</p:selectManyCheckbox>
-				<h:message for="roleCheckBox" />
 
-				<span/>
+				<p:row>
+					<span />
 
-				<p:commandButton value="Submit"
-					action="#{registerUserBean.registerUser()}" />
-				<p:commandButton value="Reset" action="#{registerUserBean.clear()}" />
-			</h:panelGrid>
+					<h:commandButton value="Valider"
+						action="#{registerUserBean.registerUser()}"
+						class="btn btn-success" />
+					<h:commandButton value="Reset" action="#{registerUserBean.clear()}"
+						class="btn btn-warning" />
+				</p:row>
+			</p:panelGrid>
 		</h:form>
-		<p>
-			<h:link outcome="index.html">Index</h:link>
-		</p>
+
 	</ui:define>
 </ui:composition>
 

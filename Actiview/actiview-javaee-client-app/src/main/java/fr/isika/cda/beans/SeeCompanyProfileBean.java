@@ -34,6 +34,14 @@ public class SeeCompanyProfileBean {
 		
 		return "SeeProfileCompany.xhtml";
 	}
+	
+	public boolean checkDefaultLogo(Long id) {
+		return ("logoDefaut".equals(imgConfigRepo.getImageConfigByCompanyId(id).getLogo()));
+	}
+	
+	public boolean checkDefaultBanner(Long id) {
+		return ("BannerDefault".equals(imgConfigRepo.getImageConfigByCompanyId(id).getBanner()));
+	}
 
 	public ShowCompanyViewModel getCompanyVm() {
 		return showCompanyVm;

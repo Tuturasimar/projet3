@@ -100,15 +100,20 @@ public class DataInit {
 		colorConfigDefault.setTextColor("000000");
 		colorConfigDefault.setTitleColor("FFFFFF");
 		
-		//Mock donnée FontCOnfig liée à l'ESN
+		//Mock données FontCOnfig liées à l'ESN
 		FontConfig fontConfigDefault = new FontConfig();
 		fontConfigDefault.setFontFamily("sans-serif");
+		
+		//Mock données ImageConfi liées à l'ESN
+		ImageConfig imageConfigDefault = new ImageConfig();
+		imageConfigDefault.setBanner("BannerDefault");
+		imageConfigDefault.setLogo("logoDefaut");
 		
 		Config config = new Config();
 		config.setColorConfig(colorConfigDefault);
 		config.setCompany(company);
 		config.setFontConfig(fontConfigDefault);
-		config.setImageConfig(new ImageConfig());
+		config.setImageConfig(imageConfigDefault);
 		
 		em.persist(config);
 

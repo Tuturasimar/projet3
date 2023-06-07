@@ -5,8 +5,8 @@ public class CompanyViewModel {
 	// Données de la table Company
 
 	private Long companyId;
-	private int phone;
-	private int siren;
+	private String phone;
+	private String siren;
 
 	private String adress;
 	private String name;

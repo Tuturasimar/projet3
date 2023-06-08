@@ -18,7 +18,7 @@
 				<p:dataTable value="#{seeProfileBean.user}" var="user">
 					<p:column>
 						<f:facet name="header">Prénom et Nom</f:facet> #{user.userData.firstname} #{user.userData.lastname}
-			</p:column>
+					</p:column>
 
 					<p:column>
 						<f:facet name="header">Date de naissance</f:facet>
@@ -27,8 +27,10 @@
 						</h:outputText>
 					</p:column>
 				</p:dataTable>
+				<p:commandButton value="Changer mon mot de passe" action="#{updatePasswordBean.showUpdatePassword(seeProfileBean.user.id)}"/>
 			</div>
-			<c:if test="#{seeProfileBean.checkUserSalarie(seeProfileBean.user.id)}">
+			<c:if
+				test="#{seeProfileBean.checkUserSalarie(seeProfileBean.user.id)}">
 
 				<div class="card col-4">
 					<h5 class="text-center">Diagramme d'activité</h5>

@@ -17,15 +17,24 @@ public class UpdatePasswordBean {
 	@Inject
 	private UserRepository userRepo;
 
-	public String showUpdatePassword(String login) {
-		User userToUpdate = userRepo.findUserByLogin(login);
+//	public String showUpdatePassword(String login) {
+//		User userToUpdate = userRepo.findUserByLogin(login);
+//
+//		updatePasswordVM = new UpdatePasswordViewModel(userToUpdate.getId());
+//		updatePasswordVM.setPassword(userToUpdate.getPassword());
+//
+//		return "UpdatePassword.xhtml";
+//	}
+
+	public String showUpdatePassword(Long id) {
+		User userToUpdate = userRepo.findUserById(id);
 
 		updatePasswordVM = new UpdatePasswordViewModel(userToUpdate.getId());
 		updatePasswordVM.setPassword(userToUpdate.getPassword());
 
 		return "UpdatePassword.xhtml";
 	}
-
+	
 	public String updatePassword() {
 
 		Long id = updatePasswordVM.getUserId();

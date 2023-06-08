@@ -111,10 +111,22 @@
 					</div>
 				</div>
 			</p:fieldset>
+			
+			<p:row>
+					
 			<h:form id="configSpaceColorForm">
 				<h:commandButton action="#{personalizationBean.saveColor()}"
 					value="Enregistrer" class="btn btn-success" />
+					
+					
 			</h:form>
+			<h:form id="configSpaceColorFormDefault">
+				<h:commandButton 
+					value="Par défault" class="btn btn-success" action="#{personalizationBean.saveColor()}"/>
+			</h:form>
+			
+				</p:row>
+				
 		</body>
 
 	</ui:define>

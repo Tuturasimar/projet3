@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import org.primefaces.model.charts.ChartData;
@@ -26,6 +27,7 @@ import fr.isika.cda.repository.UserRepository;
 import fr.isika.cda.viewmodels.StatEmployeeViewModel;
 
 @ManagedBean
+@SessionScoped
 public class SeeProfileBean {
 
 	@Inject

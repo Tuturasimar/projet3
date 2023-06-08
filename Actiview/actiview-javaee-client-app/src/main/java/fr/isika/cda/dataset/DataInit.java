@@ -104,12 +104,17 @@ public class DataInit {
 		imageConfigDefault.setBanner("BannerDefault.png");
 		imageConfigDefault.setLogo("logoDefaut.png");
 		
+		//Mock données de la config de BeMyTech
+		ImageConfig imageConfig2 = new ImageConfig();
+		imageConfig2.setBanner("WhiteBanner.png");
+		imageConfig2.setLogo("LogoBeMyTech.png");
+		
 		//configuration par défault des ESN
 		Config config = new Config();
 		config.setColorConfig(colorConfigDefault);
 		config.setCompany(company);
 		config.setFontConfig(fontConfigDefault);
-		config.setImageConfig(imageConfigDefault);
+		config.setImageConfig(imageConfig2);
 
 		Config configOrange = new Config();
 		configOrange.setColorConfig(colorConfigDefault);
@@ -358,13 +363,13 @@ public class DataInit {
 		ar2Salarie1.setUser(userSalarie1);
 		em.persist(ar2Salarie1);
 
-		Ar ar3Salarie1 = new Ar();
-		ar3Salarie1.setCreatedAt(LocalDate.of(2023, 06, 1));
-		ar3Salarie1.setArConfig(ArConfigEnum.MONTH);
-		ar3Salarie1.setStateArEnum(StateAr.DRAFT);
-		ar3Salarie1.setUpdatedAt(LocalDate.of(2023, 06, 8));
-		ar3Salarie1.setUser(userSalarie1);
-		em.persist(ar3Salarie1);
+//		Ar ar3Salarie1 = new Ar();
+//		ar3Salarie1.setCreatedAt(LocalDate.of(2023, 06, 1));
+//		ar3Salarie1.setArConfig(ArConfigEnum.MONTH);
+//		ar3Salarie1.setStateArEnum(StateAr.DRAFT);
+//		ar3Salarie1.setUpdatedAt(LocalDate.of(2023, 06, 8));
+//		ar3Salarie1.setUser(userSalarie1);
+//		em.persist(ar3Salarie1);
 
 		// Pour le salarié 2 : avril mai juin
 		Ar arSalarie2 = new Ar();
@@ -973,11 +978,16 @@ public class DataInit {
 		ContractOptions co2 = new ContractOptions();
 		co2.setContract(contract);
 		co2.setOption(option2);
+		
+		ContractOptions co3 = new ContractOptions();
+		co3.setContract(contract);
+		co3.setOption(option3);
 
 		company.setContract(contract);
 
 		em.persist(co);
 		em.persist(co2);
+		em.persist(co3);
 		em.persist(contract);
 		em.merge(company);
 	}

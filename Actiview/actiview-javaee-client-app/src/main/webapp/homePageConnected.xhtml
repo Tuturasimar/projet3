@@ -6,13 +6,32 @@
 
 <ui:composition template="/WEB-INF/templates/default.xhtml">
 
-	<ui:define name="Entete">
-		<h2 style="color: red; text-align: center">Courage, derniere semaine, derniers jours</h2>
 
-	</ui:define>
 
 	<ui:define name="content">
-		<h2>Page d'accueil du site (connecté)</h2>
+
+		<h2 class="text-center my-4">Page d'accueil de l'application
+			Actiview</h2>
+
+		<div class="row d-flex justify-content-center align-items-center">
+			<div class="col-5">
+				<h:graphicImage library="images" name="logo.png" class="logo" />
+			</div>
+			<div class="col-5">
+				<h:outputText
+					value="Pour une meilleure gestion et écoute de vos collaborateurs"
+					class="my-4" style="display:block;" />
+				<h:outputText
+					value="Actiview permet aux employés de transmettre des retours de leurs missions"
+					class="my-4" style="display:block;" />
+				<h:outputText
+					value="Actiview permet aux managers de consulter rapidement des Comptes Rendus d'Activités"
+					class="my-4" style="display:block;" />
+				<h:outputText
+					value="Actiview permet à votre ESN de personnaliser et de gérer vos effectifs"
+					class="my-4" style="display:block;" />
+			</div>
+		</div>
 
 	</ui:define>
 

@@ -7,86 +7,162 @@
 	xmlns:pe="http://primefaces.org/ui/extensions"
 	template="/WEB-INF/templates/homeTemplate.xhtml">
 	<h:head>
-	<link href="https://fonts.googleapis.com/css?family=Montserrat"
+		<link href="https://fonts.googleapis.com/css?family=Montserrat"
 			rel="stylesheet" type="text/css"></link>
 		<link href="https://fonts.googleapis.com/css?family=Lato"
 			rel="stylesheet" type="text/css"></link>
 	</h:head>
-	
+
 	<ui:define name="content">
-	
-	<h2 class="text-center">Bienvenue sur</h2>
-	<div class="row d-flex justify-content-center mb-4">
-	<h:graphicImage library="images" name="logo.png" class="homeBannerImg" />
-	</div>
-	
-				<div class="row" id="about">
-					<div class="col-sm-8">
-						<h2 class="text-center">Qui sommes-nous?</h2>
-						<br />
-						<h4>
-							ActiView est une entreprise de services numériques (ESN)
-							spécialisée dans l'hébergement des Comptes Rendus d'Activité
-							(CRA) pour les autres ESN.<br />À ActiView, nous comprenons
-							l'importance critique des données pour votre entreprise et les
-							défis des ESN, dans un environnement en constante évolution, nous
-							sommes là pour vous accompagner vers le succès. C'est pourquoi
-							nous avons développé une infrastructure hautement fiable et
-							sécurisée pour garantir la confidentialité, l'intégrité et la
-							disponibilité des informations hébergées sur notre plateforme.
-							Grâce à notre expertise en matière d'infrastructure et de
-							sécurité, vous pouvez avoir l'esprit tranquille en confiant vos
-							Comptes Rendus d'Activité à ActiView. <br />Rejoignez-nous dès
-							aujourd'hui et découvrez comment ActiView peut faire une
-							différence significative dans la gestion de vos Comptes Rendus
-							d'Activité.<br /> Nous sommes impatients de vous accompagner
-							dans votre croissance et de contribuer à votre réussite.<br />Rejoindre
-							notre plateforme vous permet de prendre des décisions éclairées,
-							d'optimiser vos performances, que vous soyez une startup en
-							pleine expansion ou une grande entreprise.<br />Avec notre
-							plateforme conviviale, vous pouvez facilement visualiser vos
-							données clés, suivre les performances de vos projets et évaluer
-							l'efficacité de vos équipes.<br />Rejoignez-nous dès aujourd'hui
-							pour transformer la gestion de vos activités avec transparence,
-							précision et efficacité, et bâtir un avenir prometteur pour votre
-							entreprise.
-						</h4>
-						<br />
-						<h2>Nos principaux services comprennent:</h2>
-						<br />
-						<h4>
-							Hébergement des CRA<br /> Plateforme de gestion des CRA<br />
-							Sécurité avancée<br /> Support technique fiable<br />Personaliser
-							votre espace<br />Remplir facilement vos CRA
-						</h4>
-						<p></p>
-						<br />
 
-					</div>
-					<div class="col-sm-4">
-						<h:graphicImage library="images" name="Signal.png" />
-					</div>
-				</div>
-			
-			<div class="container-fluid bg-grey">
-				<div class="row">
-					<div class="col-sm-4">
-						<h:graphicImage library="images" name="timeManagement.jpg" />
-					</div>
+		<h2 class="text-center">Bienvenue sur</h2>
+		<div class="row d-flex justify-content-center mb-4">
 
+			<h:graphicImage library="images" name="logo.png"
+				class="homeBannerImg" />
+		</div>
 
-					<h2>Nos Valeurs</h2>
-					<br />
-					<h4>
-						<strong>MISSION:</strong> Fournir une plateforme avancée et
-						sécurisée pour faciliter la gestion des CRA, offrant ainsi un
-						soutien précieux à nos clients<br /> Fournir des solutions
-						d'hébergement de pointe.<br /> <strong>NOTRE OBJECTIF:</strong>
-						Vous aider à optimiser vos opérations, à améliorer votre
-						productivité et à assurer la sécurité de vos données critiques.
-					</h4>
-					<br />
+		<div class="row border-top my-3 d-flex align-items-center" id="about">
+			<div class="col-md-8  my-4 about">
+				<h2 class="text-center my-4">Qui sommes-nous?</h2>
+
+				<p>ActiView est une entreprise de services numériques (ESN)
+					spécialisée dans l'hébergement des Comptes Rendus d'Activité (CRA)
+					pour les autres ESN.</p>
+				<p>À ActiView, nous comprenons l'importance critique des données
+					pour votre entreprise et les défis des ESN, dans un environnement
+					en constante évolution, nous sommes là pour vous accompagner vers
+					le succès. C'est pourquoi nous avons développé une infrastructure
+					hautement fiable et sécurisée pour garantir la confidentialité,
+					l'intégrité et la disponibilité des informations hébergées sur
+					notre plateforme.</p>
+
+			</div>
+
+			<div class="col-md-4">
+				<h:graphicImage library="images" name="homeImgAbout.jpg"
+					style="width: 100%" />
+			</div>
+		</div>
+
+		<div class="row my-3 d-flex align-items-center">
+			<div class="col-md-4">
+				<h:graphicImage library="images" name="homeImgAbout2.jpg"
+					style="width: 100%" />
+			</div>
+			<div class="col-md-8  my-4 about">
+
+				<p>Grâce à notre expertise en matière d'infrastructure et de
+					sécurité, vous pouvez avoir l'esprit tranquille en confiant vos
+					Comptes Rendus d'Activité à ActiView.</p>
+
+				<p>Rejoignez-nous dès aujourd'hui et découvrez comment ActiView
+					peut faire une différence significative dans la gestion de vos
+					Comptes Rendus d'Activité.</p>
+
+				<p>Nous sommes impatients de vous accompagner dans votre
+					croissance et de contribuer à votre réussite.</p>
+
+				<p>Rejoindre notre plateforme vous permet de prendre des
+					décisions éclairées, d'optimiser vos performances, que vous soyez
+					une startup en pleine expansion ou une grande entreprise.</p>
+			</div>
+		</div>
+
+		<div class="row border-bottom my-3 d-flex align-items-center py-2">
+			<div class="col-md-8  my-4 about">
+				<p>Avec notre plateforme conviviale, vous pouvez facilement
+					visualiser vos données clés, suivre les performances de vos projets
+					et évaluer l'efficacité de vos équipes.</p>
+				<p>Rejoignez-nous dès aujourd'hui pour transformer la gestion de
+					vos activités avec transparence, précision et efficacité, et bâtir
+					un avenir prometteur pour votre entreprise.</p>
+			</div>
+
+			<div class="col-md-4">
+				<h:graphicImage library="images" name="homeImgAbout3.jpg"
+					style="width: 100%" />
+			</div>
+
+		</div>
+
+		<h2 class="text-center my-3">Nos principaux services</h2>
+
+		<div class="row d-flex justify-content-between my-4">
+			<div class="card col-sm-3">
+				<h:graphicImage library="images" name="homeImgService.jpg"
+					style="width: 100%" />
+				<div class="card-body d-flex align-items-end justify-content-center">
+					<h5 class="text-center">Hébergement des CRA</h5>
 				</div>
 			</div>
+
+			<div class="card col-sm-3">
+				<h:graphicImage library="images" name="homeImgService2.png"
+					style="width: 100%" />
+				<div class="card-body d-flex align-items-end justify-content-center">
+					<h5 class="text-center">Plateforme de gestion des CRA</h5>
+				</div>
+			</div>
+
+			<div class="card col-sm-3">
+				<h:graphicImage library="images" name="homeImgService3.png"
+					style="width: 100%" />
+				<div class="card-body d-flex align-items-end justify-content-center">
+					<h5 class="text-center">Remplir facilement vos CRA</h5>
+				</div>
+			</div>
+
+
+		</div>
+
+		<div class="row d-flex justify-content-between my-4 border-bottom">
+			<div
+				class="card col-sm-3 d-flex flex-column justify-content-between my-2 mb-4">
+				<h:graphicImage library="images" name="homeImgService4.jpg"
+					style="width: 100%" />
+				<div class="card-body d-flex align-items-end justify-content-center">
+					<h5 class="text-center">Support technique fiable</h5>
+				</div>
+			</div>
+
+			<div
+				class="card col-sm-3 d-flex flex-column justify-content-between my-2 mb-4">
+				<h:graphicImage library="images" name="homeImgService5.png"
+					style="width: 100%" />
+				<div class="card-body d-flex align-items-end justify-content-center">
+					<h5 class="text-center">Personnalisation de l'espace</h5>
+				</div>
+			</div>
+
+			<div
+				class="card col-sm-3 d-flex flex-column justify-content-between my-2 mb-4">
+				<h:graphicImage library="images" name="homeImgService6.png"
+					style="width: 100%" />
+				<div class="card-body d-flex align-items-end justify-content-center">
+					<h5 class="text-center">Retour de missions</h5>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="row my-3">
+			<h2 class="text-center">Nos Valeurs</h2>
+			<div class="col-sm-6 border-end">
+				<h4 class="text-center">Mission</h4>
+				<p>Fournir une plateforme avancée et sécurisée pour faciliter la
+					gestion des CRA, offrant ainsi un soutien précieux à nos clients</p>
+				<p>Fournir des solutions d'hébergement de pointe.</p>
+			</div>
+
+			<div class="col-sm-6">
+				<h4 class="text-center">Objectif</h4>
+				<p>Vous aider à optimiser vos opérations, à améliorer votre
+					productivité et à assurer la sécurité de vos données critiques.</p>
+			</div>
+
+		</div>
+
 	</ui:define>
 </ui:composition>

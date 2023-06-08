@@ -49,14 +49,14 @@ h1 {
 	color: var(--primary-color);
 }
 
-p {
-	color: var(--secondary-color);
-	font-family: sans-serif;
-	font-family: "Roboto", Baskerville, Source;
-	font-family: "Baskerville", Roboto, Source;
-	font-family: "Source", Baskerville, Roboto;
-	font-family: "Dancing", Baskerville, Roboto;
-}
+/* p { */
+/* 	color: var(--secondary-color); */
+/* 	font-family: sans-serif; */
+/* 	font-family: "Roboto", Baskerville, Source; */
+/* 	font-family: "Baskerville", Roboto, Source; */
+/* 	font-family: "Source", Baskerville, Roboto; */
+/* 	font-family: "Dancing", Baskerville, Roboto; */
+/* } */
 
 
 .dark-theme { --primary-color: #81c784; 
@@ -97,11 +97,6 @@ p {
 	font-weight: bold;
 }
 
-body {
-	font: 400 15px Lato, sans-serif;
-	line-height: 1.8;
-	color: #818181;
-}
 
 h2 {
 	font-size: 24px;
@@ -110,7 +105,7 @@ h2 {
 	font-weight: 600;
 }
 
-h4 {
+.about p {
 	font-size: 19px;
 	line-height: 1.375em;
 	color: #303030;
@@ -156,12 +151,12 @@ h4 {
 }
 
 .panel {
-	border: 1px solid #f4511e;
+	border: 1px solid #61023C !important;
 	border-radius: 0 !important;
 	transition: box-shadow 0.5s;
 }
 
-.panel:hover {
+.panel:hover, .card:hover {
 	box-shadow: 5px 0px 40px rgba(0, 0, 0, .2);
 }
 
@@ -173,7 +168,7 @@ h4 {
 
 .panel-heading {
 	color: #fff !important;
-	background-color: #f4511e !important;
+	background-color: #61023C !important;
 	padding: 25px;
 	border-bottom: 1px solid transparent;
 	border-top-left-radius: 0px;

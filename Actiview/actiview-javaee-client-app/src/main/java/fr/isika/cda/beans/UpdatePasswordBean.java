@@ -42,7 +42,7 @@ public class UpdatePasswordBean {
 
 		updatePasswordVM = new UpdatePasswordViewModel(id);
 
-		return "index.xhtml";
+		return "homePageConnected";
 	}
 
 	public UpdatePasswordViewModel getUpdatePasswordVM() {

@@ -28,7 +28,7 @@
 					</p:column>
 				</p:dataTable>
 			</div>
-			<c:if test="#{loginBean.userASalarie}">
+			<c:if test="#{seeProfileBean.checkUserSalarie(seeProfileBean.user.id)}">
 
 				<div class="card col-4">
 					<h5 class="text-center">Diagramme d'activité</h5>

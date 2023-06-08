@@ -6,91 +6,135 @@
 	template="/WEB-INF/templates/default.xhtml"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="header">
-		<h1>Page de personnalisation</h1>
-	</ui:define>
-
 	<ui:define name="content">
 		<body>
-			<h1>Bienvenue sur la page de personnalisation détaillée</h1>
-			<h2>Police d'écriture :</h2>
-			
+			<h2 class="text-center my-3">Bienvenue sur la page de
+				personnalisation détaillée</h2>
+
 			<p:growl id="customizeColor" showDetail="true"></p:growl>
 
-			<div class="field col-12 md:col-4">
-				<h:form>
-					<p:selectOneMenu id="option" value="#{personalizationBean.font}">
-						<f:selectItem itemLabel="Sélectionnez une option" itemValue="" />
-						<f:selectItem itemLabel="Roboto" itemValue="Roboto" />
-						<f:selectItem itemLabel="Baskerville" itemValue="Baskerville" />
-						<f:selectItem itemLabel="Par défaut" itemValue="Sans-serif" />
-						<f:facet name="footer">
-							<p:divider styleClass="mt-0" />
-							<h:outputText value="2 options" style="font-weight:bold;" />
-						</f:facet>
-						<p:ajax process="@this" update="customizeColor"
-        listener="#{personalizationBean.saveFontChoice}"/>
-					</p:selectOneMenu>
-				</h:form>
+			<p:fieldset class="my-3">
+				<div class="row d-flex justify-content-between align-items-center">
+					<div class="col-5">
+						<h2>Police d'écriture :</h2>
+					</div>
+					<div class="field col-5 ">
+						<h:form>
+							<p:selectOneMenu id="option" value="#{personalizationBean.font}">
+								<f:selectItem itemLabel="Sélectionnez une option" itemValue="" />
+								<f:selectItem itemLabel="Roboto" itemValue="Roboto" />
+								<f:selectItem itemLabel="Baskerville" itemValue="Baskerville" />
+								<f:selectItem itemLabel="Par défaut" itemValue="Sans-serif" />
+								<f:facet name="footer">
+									<p:divider styleClass="mt-0" />
+									<h:outputText value="2 options" style="font-weight:bold;" />
+								</f:facet>
+								<p:ajax process="@this" update="customizeColor"
+									listener="#{personalizationBean.saveFontChoice}" />
+							</p:selectOneMenu>
+						</h:form>
+					</div>
+				</div>
+			</p:fieldset>
+
+
+			<p:fieldset class="my-3">
+				<div class="row d-flex justify-content-between align-items-center">
+
+					<div class="col-5">
+						<h2>Arrière-plan :</h2>
+					</div>
+					<div class="colorBackground col-5">
+						<div class="btnNoColor">
+							<h:form>
+
+								<p:colorPicker value="#{personalizationBean.colorBackground}">
+									<p:ajax listener="#{personalizationBean.saveColorBackground}"
+										process="@this" update="customizeColor" />
+								</p:colorPicker>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</p:fieldset>
+
+			<p:fieldset class="my-3">
+				<div class="row d-flex justify-content-between align-items-center">
+					<div class="col-5">
+						<h2>Couleur du titre :</h2>
+					</div>
+					<div class="colorTitle col-5">
+						<div class="btnNoColor">
+							<h:form>
+								<p:colorPicker value="#{personalizationBean.colorTitle}">
+									<p:ajax listener="#{personalizationBean.saveColorTitle}"
+										process="@this" update="customizeColor" />
+								</p:colorPicker>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</p:fieldset>
+
+			<p:fieldset class="my-3">
+				<div class="row d-flex justify-content-between align-items-center">
+					<div class="col-5">
+						<h2>Couleur du texte :</h2>
+					</div>
+					<div class="colorText col-5">
+						<div class="btnNoColor">
+							<h:form>
+								<p:colorPicker value="#{personalizationBean.colorText}">
+									<p:ajax listener="#{personalizationBean.saveColorText}"
+										process="@this" update="customizeColor" />
+								</p:colorPicker>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</p:fieldset>
+
+			<p:fieldset class="my-3">
+				<div class="row d-flex justify-content-between align-items-center">
+					<div class="col-5">
+						<h2>Couleur des boutons :</h2>
+					</div>
+					<div class="colorButton col-5">
+						<div class="btnNoColor">
+							<h:form>
+								<p:colorPicker value="#{personalizationBean.colorButton}">
+									<p:ajax listener="#{personalizationBean.saveColorButton}"
+										process="@this" update="customizeColor" />
+								</p:colorPicker>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</p:fieldset>
+
+			<div class="row">
+				<div class="col-md-2">
+					<h:form id="configSpaceColorForm">
+						<h:commandButton action="#{personalizationBean.saveColor()}"
+							value="Enregistrer" class="btn btn-success" />
+
+					</h:form>
+				</div>
+				<div class="col-md-2 offset-md-2">
+					<h:form id="configSpaceColorFormDefault">
+						<h:commandButton value="Par défault" class="btn btn-success"
+							action="#{personalizationBean.saveColor()}" />
+					</h:form>
+				</div>
 			</div>
 
 
-   
 
-			<h2>Arrière-plan :</h2>
 
-			
 
-			<div class="colorBackground">
-				<h:form>
-					<h5 class="mt-0">Popup</h5>
-					<p:colorPicker value="#{personalizationBean.colorBackground}">
-						<p:ajax listener="#{personalizationBean.saveColorBackground}"
-							process="@this" update="customizeColor" />
-					</p:colorPicker>
-				</h:form>
-			</div>
 
-			<h2>Couleur du titre :</h2>
 
-			<div class="colorTitle">
-				<h:form>
-					<h5 class="mt-0">Popup</h5>
-					<p:colorPicker value="#{personalizationBean.colorTitle}">
-						<p:ajax listener="#{personalizationBean.saveColorTitle}"
-							process="@this" update="customizeColor" />
-					</p:colorPicker>
-				</h:form>
-			</div>
 
-			<h2>Couleur du texte :</h2>
-
-			<div class="colorText">
-				<h:form>
-					<h5 class="mt-0">Popup</h5>
-					<p:colorPicker value="#{personalizationBean.colorText}">
-						<p:ajax listener="#{personalizationBean.saveColorText}"
-							process="@this" update="customizeColor" />
-					</p:colorPicker>
-				</h:form>
-			</div>
-
-			<h2>Couleur des boutons :</h2>
-
-			<div class="colorButton">
-				<h:form>
-					<h5 class="mt-0">Popup</h5>
-					<p:colorPicker value="#{personalizationBean.colorButton}">
-						<p:ajax listener="#{personalizationBean.saveColorButton}"
-							process="@this" update="customizeColor" />
-					</p:colorPicker>
-				</h:form>
-			</div>
-
-			<h:form id="configSpaceColorForm">
-				<h:commandButton action="#{personalizationBean.saveColor()}"
-					value="Save" />
-			</h:form>
 
 
 		</body>

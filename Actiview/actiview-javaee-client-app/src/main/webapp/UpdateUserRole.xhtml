@@ -7,27 +7,33 @@
 
 
 <ui:composition template="/WEB-INF/templates/default.xhtml">
-	<ui:define name="Entete">
-		<h2 style="color: red">Formulaire de modification du rôle de l'utilisateur</h2>
-	</ui:define>
 
 	<ui:define name="content">
+		<h2 class="text-center mt-3">Affectation des rôles</h2>
+
 		<h:form>
-			<h:panelGrid columns="3">
-<!-- 				il faudrait une function en JS pour vérifier qu'au moins un role est coché 		 -->
-				<h:outputLabel id="roleLabel" value="Rôle"/>
-				<p:selectManyCheckbox id="roleCB" value="#{updateUserRoleBean.updateUserRoleVM.roleTypes}">
-					<f:selectItems value="#{updateUserRoleBean.roleTypeEnumValues()}" var="role" itemLabel="#{role.label}" itemValue="#{role}" />
+			<p:panelGrid columns="3"
+				columnClasses="ui-grid-col-2,ui-grid-col-5,ui-grid-col-2"
+				layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
+				style="border:0px none;background-color: transparent;">
+
+				<p:outputLabel id="roleLabel" value="Rôle" />
+				<p:selectManyCheckbox id="roleCB"
+					value="#{updateUserRoleBean.updateUserRoleVM.roleTypes}">
+					<f:selectItems value="#{updateUserRoleBean.roleTypeEnumValues()}"
+						var="role" itemLabel="#{role.label}" itemValue="#{role}" />
 				</p:selectManyCheckbox>
 				<h:message for="roleCheckBox" />
+
+
 				
 				<span></span>
-				<p:commandButton value="Submit" action="#{updateUserRoleBean.updateUserRole()}" />
-			</h:panelGrid>
+					<h:commandButton value="Modifier"
+						action="#{updateUserRoleBean.updateUserRole()}" class="btn btn-success" />
+				
+			</p:panelGrid>
 		</h:form>
-		<p>
-			<h:link outcome="index.html">Index</h:link>
-		</p>
+
 	</ui:define>
 </ui:composition>
 

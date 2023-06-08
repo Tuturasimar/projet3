@@ -17,8 +17,6 @@ public class ConfigRepository {
 	private EntityManager em;
 	
 	public Long initConfig(Long id) {
-		ImageConfig imageConfig = new ImageConfig();
-		
 		ColorConfig colorConfig = new ColorConfig();
 		colorConfig.setBackgroundColor("7FB2AE");
 		colorConfig.setButtonColor("8FBCB8");
@@ -28,10 +26,14 @@ public class ConfigRepository {
 		FontConfig fontConfig = new FontConfig();
 		fontConfig.setFontFamily("sans-serif");
 		
+		ImageConfig imgConfig = new ImageConfig();
+		imgConfig.setBanner("BannerDefault.png");
+		imgConfig.setLogo("logoDefaut.png");
+		
 		Company company = em.getReference(Company.class, id);
 		
 		Config config = new Config();
-		config.setImageConfig(imageConfig);
+		config.setImageConfig(imgConfig);
 		config.setColorConfig(colorConfig);
 		config.setFontConfig(fontConfig);
 

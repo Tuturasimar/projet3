@@ -7,28 +7,62 @@
 	xmlns:pe="http://primefaces.org/ui/extensions"
 	template="/WEB-INF/templates/homeTemplate.xhtml">
 
-	<ui:define name="Entete">
-		<h2 style="color: red; text-align: center">Contactez Nous</h2>
-	</ui:define>
+
 	<ui:define name="content">
-		<div id="contact" class="container-fluid bg-grey">
-			<h2 class="text-center">CONTACT</h2>
 
-			<p>Contactez-nous</p>
+		<h2 class="text-center my-3">Coordonnées</h2>
 
-			<div class="col-sm-6">
-				<p>Contactez-nous</p>
-				<p>
+		<div class="card-group">
+			<div id="contactAdress" class="card my-3">
 
-					<i class="pi pi-map-marker"></i>Paris, FRANCE
-				</p>
-				<p>
-					<i class="pi pi-phone"></i> +33 123456789
-				</p>
-				<p>
-					<i class="pi pi-at"></i> myemail@Actiview.com
-				</p>
+				<div class="card-body d-flex flex-column justify-content-between">
+
+					<h5 class="card-text">Où nous retrouver ?</h5>
+
+					<p class="card-title">
+						Adresse <i class="pi pi-map-marker mx-2"></i>
+					</p>
+
+					<p class="card-text">47 rue des Volontaires</p>
+
+					<p class="card-text">Paris, FRANCE</p>
+
+				</div>
+			</div>
+			<div id="contactPhone" class="card my-3">
+
+				<div class="card-body d-flex flex-column justify-content-between">
+
+					<h5 class="card-title">
+						Contact par téléphone <i class="pi pi-phone mx-2"></i>
+					</h5>
+
+
+					<p class="card-text">Rapide et efficace, nous sommes là pour
+						répondre à vos questions</p>
+
+					<p class="card-text">+33 123456789</p>
+
+				</div>
+			</div>
+
+			<div id="contactEmail" class="card my-3">
+
+				<div class="card-body d-flex flex-column justify-content-between">
+
+					<h5 class="card-title">
+						Contact par mail <i class="pi pi-at mx-2"></i>
+					</h5>
+
+
+					<p class="card-text">Si vous préférez un contact par mail, nous
+						vous répondrons dans les moindres délais</p>
+
+					<p class="card-text">myemail@Actiview.com</p>
+
+				</div>
 			</div>
 		</div>
+
 	</ui:define>
 </ui:composition>

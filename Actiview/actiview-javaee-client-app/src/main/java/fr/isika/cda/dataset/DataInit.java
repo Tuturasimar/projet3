@@ -94,42 +94,40 @@ public class DataInit {
 		colorConfigDefault.setTextColor("000000");
 		colorConfigDefault.setTitleColor("FFFFFF");
 
-		
-		//Mock données FontCOnfig liées à l'ESN
+		// Mock données FontCOnfig liées à l'ESN
 		FontConfig fontConfigDefault = new FontConfig();
 		fontConfigDefault.setFontFamily("sans-serif");
-		
-		//Mock données ImageConfig liées à l'ESN
+
+		// Mock données ImageConfig liées à l'ESN
 		ImageConfig imageConfigDefault = new ImageConfig();
 		imageConfigDefault.setBanner("BannerDefault");
 		imageConfigDefault.setLogo("logoDefaut");
-		
-		//configuration par défault des ESN
+
+		// configuration par défault des ESN
 
 		Config config = new Config();
 		config.setColorConfig(colorConfigDefault);
 		config.setCompany(company);
 		config.setFontConfig(fontConfigDefault);
 		config.setImageConfig(imageConfigDefault);
-		
+
 		Config configOrange = new Config();
 		configOrange.setColorConfig(colorConfigDefault);
 		configOrange.setCompany(orange);
 		configOrange.setFontConfig(fontConfigDefault);
 		configOrange.setImageConfig(imageConfigDefault);
-		
+
 		Config configAlten = new Config();
 		configAlten.setColorConfig(colorConfigDefault);
 		configAlten.setCompany(alten);
 		configAlten.setFontConfig(fontConfigDefault);
 		configAlten.setImageConfig(imageConfigDefault);
-		
+
 		Config configSopra = new Config();
 		configSopra.setColorConfig(colorConfigDefault);
 		configSopra.setCompany(sopra);
 		configSopra.setFontConfig(fontConfigDefault);
 		configSopra.setImageConfig(imageConfigDefault);
-		
 
 		em.persist(config);
 		em.persist(configOrange);
@@ -339,7 +337,7 @@ public class DataInit {
 		// Mock donnée d'un CRA
 		// Pour le salarié 1 : avril mai juin à utiliser pour l'exemple
 		Ar arSalarie1 = new Ar();
-		arSalarie1.setCreatedAt(LocalDate.of(2023, 04, 01));
+		arSalarie1.setCreatedAt(LocalDate.of(2023, 04, 1));
 		arSalarie1.setArConfig(ArConfigEnum.MONTH);
 		arSalarie1.setStateArEnum(StateAr.VALIDATED);
 		arSalarie1.setUpdatedAt(LocalDate.of(2023, 04, 30));
@@ -364,7 +362,7 @@ public class DataInit {
 
 		// Pour le salarié 2 : avril mai juin
 		Ar arSalarie2 = new Ar();
-		arSalarie2.setCreatedAt(LocalDate.of(2023, 04, 01));
+		arSalarie2.setCreatedAt(LocalDate.of(2023, 04, 1));
 		arSalarie2.setArConfig(ArConfigEnum.MONTH);
 		arSalarie2.setStateArEnum(StateAr.VALIDATED);
 		arSalarie2.setUpdatedAt(LocalDate.of(2023, 04, 29));
@@ -372,7 +370,7 @@ public class DataInit {
 		em.persist(arSalarie2);
 
 		Ar ar2Salarie2 = new Ar();
-		ar2Salarie2.setCreatedAt(LocalDate.of(2023, 05, 01));
+		ar2Salarie2.setCreatedAt(LocalDate.of(2023, 05, 1));
 		ar2Salarie2.setArConfig(ArConfigEnum.MONTH);
 		ar2Salarie2.setStateArEnum(StateAr.VALIDATED);
 		ar2Salarie2.setUpdatedAt(LocalDate.of(2023, 05, 30));
@@ -380,7 +378,7 @@ public class DataInit {
 		em.persist(ar2Salarie2);
 
 		Ar ar3Salarie2 = new Ar();
-		ar3Salarie2.setCreatedAt(LocalDate.of(2023, 06, 1));
+		ar3Salarie2.setCreatedAt(LocalDate.of(2023, 06, 2));
 		ar3Salarie2.setArConfig(ArConfigEnum.MONTH);
 		ar3Salarie2.setStateArEnum(StateAr.DRAFT);
 		ar3Salarie2.setUpdatedAt(LocalDate.of(2023, 06, 3));
@@ -397,7 +395,7 @@ public class DataInit {
 		em.persist(arSalarie3);
 
 		Ar ar2Salarie3 = new Ar();
-		ar2Salarie3.setCreatedAt(LocalDate.of(2023, 05, 01));
+		ar2Salarie3.setCreatedAt(LocalDate.of(2023, 05, 1));
 		ar2Salarie3.setArConfig(ArConfigEnum.MONTH);
 		ar2Salarie3.setStateArEnum(StateAr.VALIDATED);
 		ar2Salarie3.setUpdatedAt(LocalDate.of(2023, 05, 30));
@@ -414,7 +412,7 @@ public class DataInit {
 
 		// Pour le salarié 4 : avril mai juin
 		Ar arSalarie4 = new Ar();
-		arSalarie4.setCreatedAt(LocalDate.of(2023, 04, 01));
+		arSalarie4.setCreatedAt(LocalDate.of(2023, 04, 1));
 		arSalarie4.setArConfig(ArConfigEnum.MONTH);
 		arSalarie4.setStateArEnum(StateAr.VALIDATED);
 		arSalarie4.setUpdatedAt(LocalDate.of(2023, 04, 29));
@@ -422,7 +420,7 @@ public class DataInit {
 		em.persist(arSalarie4);
 
 		Ar ar2Salarie4 = new Ar();
-		ar2Salarie4.setCreatedAt(LocalDate.of(2023, 05, 01));
+		ar2Salarie4.setCreatedAt(LocalDate.of(2023, 05, 1));
 		ar2Salarie4.setArConfig(ArConfigEnum.MONTH);
 		ar2Salarie4.setStateArEnum(StateAr.VALIDATED);
 		ar2Salarie4.setUpdatedAt(LocalDate.of(2023, 05, 30));
@@ -430,7 +428,7 @@ public class DataInit {
 		em.persist(ar2Salarie4);
 
 		Ar ar3Salarie4 = new Ar();
-		ar3Salarie4.setCreatedAt(LocalDate.of(2023, 06, 1));
+		ar3Salarie4.setCreatedAt(LocalDate.of(2023, 06, 2));
 		ar3Salarie4.setArConfig(ArConfigEnum.MONTH);
 		ar3Salarie4.setStateArEnum(StateAr.DRAFT);
 		ar3Salarie4.setUpdatedAt(LocalDate.of(2023, 06, 3));
@@ -439,7 +437,7 @@ public class DataInit {
 
 		// Pour le salarié 5 : avril mai juin
 		Ar arSalarie5 = new Ar();
-		arSalarie5.setCreatedAt(LocalDate.of(2023, 04, 01));
+		arSalarie5.setCreatedAt(LocalDate.of(2023, 04, 1));
 		arSalarie5.setArConfig(ArConfigEnum.MONTH);
 		arSalarie5.setStateArEnum(StateAr.VALIDATED);
 		arSalarie5.setUpdatedAt(LocalDate.of(2023, 04, 29));
@@ -455,7 +453,7 @@ public class DataInit {
 		em.persist(ar2Salarie5);
 
 		Ar ar3Salarie5 = new Ar();
-		ar3Salarie5.setCreatedAt(LocalDate.of(2023, 06, 1));
+		ar3Salarie5.setCreatedAt(LocalDate.of(2023, 06, 2));
 		ar3Salarie5.setArConfig(ArConfigEnum.MONTH);
 		ar3Salarie5.setStateArEnum(StateAr.DRAFT);
 		ar3Salarie5.setUpdatedAt(LocalDate.of(2023, 06, 3));
@@ -486,7 +484,7 @@ public class DataInit {
 		mission3.setMissionEnd(LocalDate.of(2026, 12, 31));
 		mission3.setStatus(StatusEnum.ACTIVE);
 		mission3.setMissionType(MissionTypeEnum.FPC);
-		
+
 		Mission mission4 = new Mission();
 		mission4.setCreator(manager);
 		mission4.setLabelActivity("Régie Crédit Mutuel");
@@ -503,11 +501,11 @@ public class DataInit {
 		Absence absence = new Absence();
 		absence.setCreator(manager);
 		absence.setLabelActivity("Congés payés");
-		
+
 		Absence absence2 = new Absence();
 		absence2.setCreator(manager);
 		absence2.setLabelActivity("Arrêt maladie");
-		
+
 		Absence absence3 = new Absence();
 		absence3.setCreator(manager);
 		absence3.setLabelActivity("Absence injustifiée");
@@ -541,7 +539,7 @@ public class DataInit {
 
 		// Mock donnée de MissionUser pour le salarié 1
 		UserFeedback userFeedback = new UserFeedback();
-		userFeedback.setComment("Test de mission");
+		userFeedback.setComment("");
 		userFeedback.setGradeClientRelation(4);
 		userFeedback.setGradeManager(3);
 		userFeedback.setGradeMission(2);
@@ -557,19 +555,36 @@ public class DataInit {
 		missionUser.setUserFeedback(userFeedback);
 
 		em.persist(missionUser);
+		
+		UserFeedback userFeedback2 = new UserFeedback();
+		userFeedback2.setComment("Tout se passe bien, rien à signaler");
+		userFeedback2.setGradeClientRelation(3);
+		userFeedback2.setGradeManager(5);
+		userFeedback2.setGradeMission(4);
+		userFeedback2.setGradeUserComfort(4);
 
+		em.persist(userFeedback2);
 
-		//Pour le salarié 5
 		MissionUser missionUser2 = new MissionUser();
-		missionUser2.setUser(userSalarie5);
-		missionUser2.setMissionState(StatusEnum.ACTIVE);
-		missionUser2.setAdr(280.30f);
-		missionUser2.setMission(mission4);
+		missionUser2.setUser(userSalarie1);
+		missionUser2.setMissionState(StatusEnum.INACTIVE);
+		missionUser2.setAdr(180.25f);
+		missionUser2.setMission(mission2);
+		missionUser.setUserFeedback(userFeedback2);
 
-		em.persist(missionUser);
+		em.persist(missionUser2);
+
+		// Pour le salarié 5
+		MissionUser missionUser3 = new MissionUser();
+		missionUser3.setUser(userSalarie5);
+		missionUser3.setMissionState(StatusEnum.ACTIVE);
+		missionUser3.setAdr(280.30f);
+		missionUser3.setMission(mission4);
+
+		em.persist(missionUser3);
 		// Mock donnée d'une ArActivity
 
-		//Correspond au CRA de mai du salarié 1
+		// Correspond au CRA de mai du salarié 1
 		ArActivity arActivity1 = new ArActivity();
 		arActivity1.setAr(ar2Salarie1);
 		arActivity1.setActivity(mission);
@@ -578,7 +593,7 @@ public class DataInit {
 		arActivity2.setAr(ar2Salarie1);
 		arActivity2.setActivity(absence);
 
-		//Correspond au CRA de mai du salarié 5
+		// Correspond au CRA de mai du salarié 5
 		ArActivity arActivity3 = new ArActivity();
 		arActivity3.setAr(ar2Salarie5);
 		arActivity3.setActivity(formation);
@@ -586,7 +601,7 @@ public class DataInit {
 		ArActivity arActivity4 = new ArActivity();
 		arActivity4.setAr(ar2Salarie5);
 		arActivity4.setActivity(absence);
-		
+
 		ArActivity arActivity5 = new ArActivity();
 		arActivity5.setAr(ar2Salarie5);
 		arActivity5.setActivity(mission4);
@@ -598,7 +613,7 @@ public class DataInit {
 		em.persist(arActivity5);
 
 		// Mock donnée d'une ActivityDate
-		//CRA de mai du salarié 1
+		// CRA de mai du salarié 1
 		ActivityDate activityDate = new ActivityDate();
 		activityDate.setArActivity(arActivity1);
 		activityDate.setDate(LocalDate.of(2023, 5, 2));
@@ -612,14 +627,14 @@ public class DataInit {
 		activityDate2.setPartOfDay(PartDayEnum.ALLDAY);
 		activityDate2.setRemote(false);
 		em.persist(activityDate2);
-		
+
 		ActivityDate activityDate3 = new ActivityDate();
 		activityDate3.setArActivity(arActivity1);
 		activityDate3.setDate(LocalDate.of(2023, 5, 4));
 		activityDate3.setPartOfDay(PartDayEnum.ALLDAY);
 		activityDate3.setRemote(false);
 		em.persist(activityDate3);
-		
+
 		ActivityDate activityDate4 = new ActivityDate();
 		activityDate4.setArActivity(arActivity1);
 		activityDate4.setDate(LocalDate.of(2023, 5, 5));
@@ -647,15 +662,226 @@ public class DataInit {
 		activityDate7.setPartOfDay(PartDayEnum.ALLDAY);
 		activityDate7.setRemote(false);
 		em.persist(activityDate7);
-		
+
 		ActivityDate activityDate8 = new ActivityDate();
 		activityDate8.setArActivity(arActivity1);
 		activityDate8.setDate(LocalDate.of(2023, 5, 12));
 		activityDate8.setPartOfDay(PartDayEnum.ALLDAY);
 		activityDate8.setRemote(false);
 		em.persist(activityDate8);
-		
-		
+
+		ActivityDate activityDate9 = new ActivityDate();
+		activityDate9.setArActivity(arActivity1);
+		activityDate9.setDate(LocalDate.of(2023, 5, 15));
+		activityDate9.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate9.setRemote(false);
+		em.persist(activityDate9);
+
+		ActivityDate activityDate10 = new ActivityDate();
+		activityDate10.setArActivity(arActivity1);
+		activityDate10.setDate(LocalDate.of(2023, 5, 16));
+		activityDate10.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate10.setRemote(false);
+		em.persist(activityDate10);
+
+		ActivityDate activityDate11 = new ActivityDate();
+		activityDate11.setArActivity(arActivity1);
+		activityDate11.setDate(LocalDate.of(2023, 5, 17));
+		activityDate11.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate11.setRemote(false);
+		em.persist(activityDate11);
+
+		ActivityDate activityDate12 = new ActivityDate();
+		activityDate12.setArActivity(arActivity2);
+		activityDate12.setDate(LocalDate.of(2023, 5, 19));
+		activityDate12.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate12.setRemote(false);
+		em.persist(activityDate12);
+
+		ActivityDate activityDate13 = new ActivityDate();
+		activityDate13.setArActivity(arActivity1);
+		activityDate13.setDate(LocalDate.of(2023, 5, 22));
+		activityDate13.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate13.setRemote(false);
+		em.persist(activityDate13);
+
+		ActivityDate activityDate14 = new ActivityDate();
+		activityDate14.setArActivity(arActivity1);
+		activityDate14.setDate(LocalDate.of(2023, 5, 23));
+		activityDate14.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate14.setRemote(false);
+		em.persist(activityDate14);
+
+
+		ActivityDate activityDate16 = new ActivityDate();
+		activityDate16.setArActivity(arActivity1);
+		activityDate16.setDate(LocalDate.of(2023, 5, 24));
+		activityDate16.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate16.setRemote(false);
+		em.persist(activityDate16);
+
+		ActivityDate activityDate17 = new ActivityDate();
+		activityDate17.setArActivity(arActivity1);
+		activityDate17.setDate(LocalDate.of(2023, 5, 25));
+		activityDate17.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate17.setRemote(false);
+		em.persist(activityDate17);
+
+		ActivityDate activityDate18 = new ActivityDate();
+		activityDate18.setArActivity(arActivity1);
+		activityDate18.setDate(LocalDate.of(2023, 5, 26));
+		activityDate18.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate18.setRemote(false);
+		em.persist(activityDate18);
+
+		ActivityDate activityDate19 = new ActivityDate();
+		activityDate19.setArActivity(arActivity1);
+		activityDate19.setDate(LocalDate.of(2023, 5, 30));
+		activityDate19.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate19.setRemote(false);
+		em.persist(activityDate19);
+
+		ActivityDate activityDate20 = new ActivityDate();
+		activityDate20.setArActivity(arActivity1);
+		activityDate20.setDate(LocalDate.of(2023, 5, 31));
+		activityDate20.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate20.setRemote(false);
+		em.persist(activityDate20);
+
+		// CRA de mai du salarié 2
+		ActivityDate activityDate21 = new ActivityDate();
+		activityDate21.setArActivity(arActivity3);
+		activityDate21.setDate(LocalDate.of(2023, 5, 2));
+		activityDate21.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate21.setRemote(false);
+		em.persist(activityDate21);
+
+		ActivityDate activityDate22 = new ActivityDate();
+		activityDate22.setArActivity(arActivity3);
+		activityDate22.setDate(LocalDate.of(2023, 5, 3));
+		activityDate22.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate22.setRemote(false);
+		em.persist(activityDate22);
+
+		ActivityDate activityDate23 = new ActivityDate();
+		activityDate23.setArActivity(arActivity3);
+		activityDate23.setDate(LocalDate.of(2023, 5, 4));
+		activityDate23.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate23.setRemote(false);
+		em.persist(activityDate23);
+
+		ActivityDate activityDate24 = new ActivityDate();
+		activityDate24.setArActivity(arActivity3);
+		activityDate24.setDate(LocalDate.of(2023, 5, 5));
+		activityDate24.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate24.setRemote(false);
+		em.persist(activityDate24);
+
+		ActivityDate activityDate25 = new ActivityDate();
+		activityDate25.setArActivity(arActivity3);
+		activityDate25.setDate(LocalDate.of(2023, 5, 9));
+		activityDate25.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate25.setRemote(false);
+		em.persist(activityDate25);
+
+		ActivityDate activityDate26 = new ActivityDate();
+		activityDate26.setArActivity(arActivity3);
+		activityDate26.setDate(LocalDate.of(2023, 5, 10));
+		activityDate26.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate26.setRemote(false);
+		em.persist(activityDate26);
+
+		ActivityDate activityDate27 = new ActivityDate();
+		activityDate27.setArActivity(arActivity3);
+		activityDate27.setDate(LocalDate.of(2023, 5, 11));
+		activityDate27.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate27.setRemote(false);
+		em.persist(activityDate27);
+
+		ActivityDate activityDate28 = new ActivityDate();
+		activityDate28.setArActivity(arActivity3);
+		activityDate28.setDate(LocalDate.of(2023, 5, 12));
+		activityDate28.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate28.setRemote(false);
+		em.persist(activityDate28);
+
+		ActivityDate activityDate29 = new ActivityDate();
+		activityDate29.setArActivity(arActivity4);
+		activityDate29.setDate(LocalDate.of(2023, 5, 15));
+		activityDate29.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate29.setRemote(false);
+		em.persist(activityDate29);
+
+		ActivityDate activityDate30 = new ActivityDate();
+		activityDate30.setArActivity(arActivity4);
+		activityDate30.setDate(LocalDate.of(2023, 5, 16));
+		activityDate30.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate30.setRemote(false);
+		em.persist(activityDate30);
+
+		ActivityDate activityDate31 = new ActivityDate();
+		activityDate31.setArActivity(arActivity4);
+		activityDate31.setDate(LocalDate.of(2023, 5, 17));
+		activityDate31.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate31.setRemote(false);
+		em.persist(activityDate31);
+
+		ActivityDate activityDate32 = new ActivityDate();
+		activityDate32.setArActivity(arActivity4);
+		activityDate32.setDate(LocalDate.of(2023, 5, 19));
+		activityDate32.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate32.setRemote(false);
+		em.persist(activityDate32);
+
+		ActivityDate activityDate33 = new ActivityDate();
+		activityDate33.setArActivity(arActivity5);
+		activityDate33.setDate(LocalDate.of(2023, 5, 22));
+		activityDate33.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate33.setRemote(false);
+		em.persist(activityDate33);
+
+		ActivityDate activityDate34 = new ActivityDate();
+		activityDate34.setArActivity(arActivity5);
+		activityDate34.setDate(LocalDate.of(2023, 5, 23));
+		activityDate34.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate34.setRemote(false);
+		em.persist(activityDate34);
+
+
+		ActivityDate activityDate36 = new ActivityDate();
+		activityDate36.setArActivity(arActivity5);
+		activityDate36.setDate(LocalDate.of(2023, 5, 24));
+		activityDate36.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate36.setRemote(false);
+		em.persist(activityDate36);
+
+		ActivityDate activityDate37 = new ActivityDate();
+		activityDate37.setArActivity(arActivity5);
+		activityDate37.setDate(LocalDate.of(2023, 5, 25));
+		activityDate37.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate37.setRemote(false);
+		em.persist(activityDate37);
+
+		ActivityDate activityDate38 = new ActivityDate();
+		activityDate38.setArActivity(arActivity5);
+		activityDate38.setDate(LocalDate.of(2023, 5, 26));
+		activityDate38.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate38.setRemote(false);
+		em.persist(activityDate38);
+
+		ActivityDate activityDate39 = new ActivityDate();
+		activityDate39.setArActivity(arActivity5);
+		activityDate39.setDate(LocalDate.of(2023, 5, 30));
+		activityDate39.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate39.setRemote(false);
+		em.persist(activityDate39);
+
+		ActivityDate activityDate40 = new ActivityDate();
+		activityDate40.setArActivity(arActivity5);
+		activityDate40.setDate(LocalDate.of(2023, 5, 31));
+		activityDate40.setPartOfDay(PartDayEnum.ALLDAY);
+		activityDate40.setRemote(false);
+		em.persist(activityDate40);
 
 		// Mock donnée OptionsForfait
 

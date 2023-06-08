@@ -6,46 +6,87 @@
 
 <ui:composition template="/WEB-INF/templates/default.xhtml">
 
-	<ui:define name="Entete">
-		<h2 style="color: red; text-align: center">Details des forfaits</h2>
-	</ui:define>
 
 	<ui:define name="content">
 
-		<style>
-.label {
-	font-weight: bold;
-}
-</style>
-		<p>
+		<h2 class="text-center my-4">Détail du forfait</h2>
 
-			<label class="label">Nom de l'entreprise :</label>#{detailsFeatureBean.company.name}
-			<br /> <label class="label">Date de création du contrat: </label>#{detailsFeatureBean.company.contract.createdAt}
-			<br /> <label class="label">Nom du contrat souscrit: </label>#{detailsFeatureBean.company.contract.feature.label}
-			<br /> <label class="label">Prix du contrat: </label>#{detailsFeatureBean.company.contract.price}€
-		</p>
+		<div class="card p-3 m-3">
+			<div class="row d-flex justify-content-between">
 
+				<h3 class="text-center my-2">Détails du contrat</h3>
+
+				<div class="col-5">
+					<div class="row my-2">
+						<h:outputLabel value="Nom de l'entreprise : " />
+					</div>
+					<div class="row my-2">
+						<h:outputLabel value="Date de création du contrat : " />
+					</div>
+					<div class="row my-2">
+						<h:outputLabel value="Type du contrat souscrit : " />
+					</div>
+					<div class="row my-2">
+						<h:outputLabel value="Prix total du contrat : " />
+					</div>
+				</div>
+				<div class="col-5">
+					<div class="row my-2">
+						<h:outputLabel value="#{detailsFeatureBean.company.name} " />
+					</div>
+					<div class="row my-2">
+						<h:outputLabel
+							value="#{detailsFeatureBean.company.contract.createdAt}">
+							<f:convertDateTime type="localDate" pattern="dd/MM/yyyy" />
+						</h:outputLabel>
+					</div>
+					<div class="row my-2">
+						<h:outputLabel
+							value="#{detailsFeatureBean.company.contract.feature.label}" />
+					</div>
+					<div class="row my-2">
+						<h:outputLabel
+							value="#{detailsFeatureBean.company.contract.price}€" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<h3 class="text-center">Détails des options</h3>
 		<ui:fragment rendered="#{detailsFeatureBean.hasOptions()}">
+
 			<ui:repeat var="option" value="#{detailsFeatureBean.options}">
-				<p>
-					<label class="label">Nom de l'option: </label>#{option.label} <br />
-					<label class="label">Prix de l'option: </label>#{option.price}€ <br />
-					<label class="label">Description du forfait: </label>#{option.description}
-				</p>
+				<div class="card m-3 p-3">
+					<div class="row d-flex justify-content-between">
+						<div class="col-5">
+							<div class="row my-2">
+								<h:outputLabel value="Nom de l'option : " />
+							</div>
+							<div class="row my-2">
+								<h:outputLabel value="Prix de l'option : " />
+							</div>
+							<div class="row my-2">
+								<h:outputLabel value="Description du forfait : " />
+							</div>
+
+						</div>
+						<div class="col-5">
+							<div class="row my-2">
+								<h:outputLabel value="#{option.label}" />
+							</div>
+							<div class="row my-2">
+								<h:outputLabel value="#{option.price}€" />
+							</div>
+							<div class="row my-2">
+								<h:outputLabel value="#{option.description}" />
+							</div>
+						</div>
+					</div>
+				</div>
 			</ui:repeat>
+
 		</ui:fragment>
-
-		<!-- 		<div style="text-align: center;"> -->
-		<!-- 			<a href="DetailsFeature.xhtml"> -->
-		<!-- 				<button type="button" style="font-size: 16px;">Details -->
-		<!-- 					forfait</button> -->
-		<!-- 			</a> -->
-		<!-- 		</div> -->
-		
-		<p>
-			<h:link outcome="index.html">Accueil</h:link>
-		</p>
-
 	</ui:define>
 </ui:composition>
 </html>

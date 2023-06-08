@@ -2,66 +2,63 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/WEB-INF/templates/adminTemplate.xhtml">
 
-	<ui:define name="Entete">
-		<h2 style="color: red; text-align: center">Liste des forfaits</h2>
-	</ui:define>
+
 
 	<ui:define name="content">
-		<h:dataTable value="#{showFeaturesBean.feature}" var="feature">
-			<h:column>
+
+		<h2 class="text-center my-4">Liste des forfaits</h2>
+
+		<div class="row d-flex justify-content-end">
+			<div class="col-2 my-3 mx-0">
+				<h:link outcome="RegisterFeature.html" class="btn btn-success w-100"
+					value="Ajouter forfait" />
+			</div>
+		</div>
+
+
+		<p:dataTable value="#{showFeaturesBean.feature}" var="feature">
+			<p:column>
 				<f:facet name="header">Forfait</f:facet>
-		#{feature.label}
-	</h:column>
+				#{feature.label}
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">Nombre de collaborateurs Maximum</f:facet>
-		#{feature.nbOfCollaborators}
-	</h:column>
+				#{feature.nbOfCollaborators}
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">Format du CRA</f:facet>
-		#{feature.arConfig.label}
-	</h:column>
+				#{feature.arConfig.label}
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">Nombre d'options</f:facet>
-		#{feature.nbOfOptions}
-	</h:column>
+				#{feature.nbOfOptions}
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">Prix(euros)</f:facet>
-		#{feature.price}
-	</h:column>
+				#{feature.price}
+			</p:column>
 
-<h:column>
+			<p:column>
 				<f:facet name="header">Mettre à jour</f:facet>
 
 				<h:form>
 					<h:commandButton
 						action="#{updateFeatureBean.showUpdateFeature(feature.id)}"
-						value="Update" />
+						value="Modifier" class="btn btn-primary" />
 				</h:form>
 
-			</h:column>
-			
-		</h:dataTable>
+			</p:column>
 
-		<div style="text-align: center;">
-			<a href="RegisterFeature.xhtml">
-				<button type="button" style="font-size: 16px;">Créer un
-					forfait</button>
-			</a>
-		</div>
-
-		<p>
-			<h:link outcome="index.html">Accueil</h:link>
-		</p>
-
-
+		</p:dataTable>
 
 	</ui:define>
 </ui:composition>

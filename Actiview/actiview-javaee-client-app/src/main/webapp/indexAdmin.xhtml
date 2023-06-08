@@ -6,13 +6,28 @@
 
 <ui:composition template="/WEB-INF/templates/adminTemplate.xhtml">
 
-	<ui:define name="Entete">
-		<h2 style="color: red; text-align: center">Courage, derniere semaine, derniers jours</h2>
-
-	</ui:define>
 
 	<ui:define name="content">
-		<h2>Page d'accueil du site (superAdmin)</h2>
+		<h2 class="text-center my-4">Back Office de l'application
+			Actiview</h2>
+
+		<div class="row d-flex justify-content-center align-items-center">
+			<div class="col-5">
+				<h:graphicImage library="images" name="logo.png" class="logo" />
+			</div>
+			<div class="col-5">
+				<h:outputText
+					value="Visibilité sur les ESN inscrites"
+					class="my-4" style="display:block;" />
+				<h:outputText
+					value="Création et gestion des divers forfaits"
+					class="my-4" style="display:block;" />
+				<h:outputText
+					value="Profils détaillés de chaque ESN"
+					class="my-4" style="display:block;" />
+			
+			</div>
+		</div>
 
 	</ui:define>
 

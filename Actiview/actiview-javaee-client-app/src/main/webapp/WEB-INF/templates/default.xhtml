@@ -26,7 +26,7 @@
 		</div>
 	</div>
 
-	<div id="content" class="container-fluid">
+	<div id="content" class="container-fluid content" >
 		<div class="row">
 			<div class="col-sm-10 text-left">
 				<ui:insert name="content">
@@ -35,7 +35,7 @@
          	</ui:insert>
 			</div>
 			<div class="col-sm-2">
-				<h:panelGrid col="1" rendered="#{notificationBean.notification}">
+				<h:panelGrid col="1" rendered="#{notificationBean.notification}" class="my-3">
 				<h3 class="text-center">Notifications</h3>
 					<ui:repeat var="notification"
 						value="#{notificationBean.notifications}">
@@ -53,7 +53,7 @@
 		</div>
 	</div>
 
-	<div id="footer">
+	<div id="footer" class="footer">
 		<ui:include src="footer.xhtml" />
 	</div>
 

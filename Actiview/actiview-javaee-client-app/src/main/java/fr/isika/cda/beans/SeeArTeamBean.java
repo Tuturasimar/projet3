@@ -63,6 +63,7 @@ public class SeeArTeamBean {
 	 * pour le mois et l'année sélectionnés
 	 */
 	public void getAr() {
+		ars.clear();
 		Long managerId = SessionUtils.getUserIdFromSession();
 		setEmployees(userRepo.getAllEmployeesByManagerId(managerId));
 

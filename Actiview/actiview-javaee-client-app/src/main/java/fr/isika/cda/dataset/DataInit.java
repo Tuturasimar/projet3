@@ -575,7 +575,7 @@ public class DataInit {
 		missionUser2.setMissionState(StatusEnum.INACTIVE);
 		missionUser2.setAdr(180.25f);
 		missionUser2.setMission(mission2);
-		missionUser.setUserFeedback(userFeedback2);
+		missionUser2.setUserFeedback(userFeedback2);
 
 		em.persist(missionUser2);
 

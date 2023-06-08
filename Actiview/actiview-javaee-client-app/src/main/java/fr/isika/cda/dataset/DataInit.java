@@ -17,6 +17,7 @@ import fr.isika.cda.entities.ar.Ar;
 import fr.isika.cda.entities.ar.ArActivity;
 import fr.isika.cda.entities.ar.PartDayEnum;
 import fr.isika.cda.entities.ar.StateAr;
+import fr.isika.cda.entities.assignement.FormationUser;
 import fr.isika.cda.entities.assignement.MissionUser;
 import fr.isika.cda.entities.assignement.UserFeedback;
 import fr.isika.cda.entities.common.ArConfigEnum;
@@ -100,11 +101,10 @@ public class DataInit {
 
 		// Mock données ImageConfig liées à l'ESN
 		ImageConfig imageConfigDefault = new ImageConfig();
-		imageConfigDefault.setBanner("BannerDefault");
-		imageConfigDefault.setLogo("logoDefaut");
-
-		// configuration par défault des ESN
-
+		imageConfigDefault.setBanner("BannerDefault.png");
+		imageConfigDefault.setLogo("logoDefaut.png");
+		
+		//configuration par défault des ESN
 		Config config = new Config();
 		config.setColorConfig(colorConfigDefault);
 		config.setCompany(company);
@@ -328,6 +328,12 @@ public class DataInit {
 		superAdmin.setCreatedAt(LocalDateTime.of(2019, 12, 14, 8, 0));
 		superAdmin.setStatus(StatusEnum.ACTIVE);
 		em.persist(superAdmin);
+
+		
+		UserRole role2Salarie2 = new UserRole();
+		role2Salarie2.setRoleTypeEnum(RoleTypeEnum.ADMINESN);
+		role2Salarie2.setUser(userSalarie2);
+		
 
 		UserRole superAdminRole = new UserRole();
 		superAdminRole.setRoleTypeEnum(RoleTypeEnum.SUPERADMIN);
@@ -571,9 +577,14 @@ public class DataInit {
 		missionUser2.setAdr(180.25f);
 		missionUser2.setMission(mission2);
 		missionUser2.setUserFeedback(userFeedback2);
-
 		em.persist(missionUser2);
-
+		
+		FormationUser formationUser = new FormationUser();
+		formationUser.setUser(userSalarie5);
+		formationUser.setFormationState(StatusEnum.ACTIVE);
+		formationUser.setFormation(formation);
+		em.persist(formationUser);
+		
 		// Pour le salarié 5
 		MissionUser missionUser3 = new MissionUser();
 		missionUser3.setUser(userSalarie5);

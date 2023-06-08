@@ -56,6 +56,11 @@ public class LoginBean {
 	public boolean isUserLoggedIn() {
 		return SessionUtils.isUserLoggedIn();
 	}
+	
+	public boolean isUserLoggedInEqualsToUser(Long userId) {
+		Long connectedId = getUserConnectedId();
+		return connectedId==userId;
+	}
 
 	public boolean isUserASalarie() {
 		return userRepository.isUserASalarie(SessionUtils.getUserIdFromSession());

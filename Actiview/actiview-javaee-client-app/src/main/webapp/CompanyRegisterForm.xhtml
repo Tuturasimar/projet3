@@ -6,75 +6,80 @@
 	xmlns:p="http://primefaces.org/ui">
 
 
-<ui:composition template="/WEB-INF/templates/default.xhtml">
+<ui:composition template="/WEB-INF/templates/homeTemplate.xhtml">
 
 	<ui:define name="content">
 
-		<h:form>
 
-			<h2 class="text-center my-4">Création de l'entreprise</h2>
+		<h2 class="text-center my-4">Création de l'entreprise</h2>
 
-			<p:panelGrid columns="3"
-				columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2"
-				layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
-				style="border:0px none;background-color: transparent;">
+		<div class="row d-flex justify-content-center">
 
-				<p:outputLabel id="brandNameLabel" value="Nom de l'entreprise" />
-				<p:inputText id="brandNameInput"
-					value="#{registerCompanyBean.companyViewModel.name}" />
-				<h:message for="brandNameInput" />
+			<h:form>
+				<p:panelGrid columns="3"
+					columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2"
+					layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
+					style="border:0px none;background-color: transparent;">
 
-				<p:outputLabel id="adressLabel" value="Adresse" />
-				<p:inputText id="adressInput"
-					value="#{registerCompanyBean.companyViewModel.adress}" />
-				<h:message for="adressInput" />
+					<p:outputLabel id="brandNameLabel" value="Nom de l'entreprise" />
+					<p:inputText id="brandNameInput"
+						value="#{registerCompanyBean.companyViewModel.name}" />
+					<h:message for="brandNameInput" />
 
-				<p:outputLabel id="phoneLabel" value="Téléphone" />
-				<p:inputText id="phoneInput"
-					value="#{registerCompanyBean.companyViewModel.phone}" />
-				<h:message for="phoneInput" />
+					<p:outputLabel id="adressLabel" value="Adresse" />
+					<p:inputText id="adressInput"
+						value="#{registerCompanyBean.companyViewModel.adress}" />
+					<h:message for="adressInput" />
 
-				<p:outputLabel id="sirenLabel" value="Siren" />
-				<p:inputText id="sirenInput"
-					value="#{registerCompanyBean.companyViewModel.siren}" />
-				<h:message for="sirenInput" />
-			</p:panelGrid>
+					<p:outputLabel id="phoneLabel" value="Téléphone" />
+					<p:inputText id="phoneInput"
+						value="#{registerCompanyBean.companyViewModel.phone}" />
+					<h:message for="phoneInput" />
 
-			<h2 class="text-center my-4">Données de l'administrateur</h2>
+					<p:outputLabel id="sirenLabel" value="Siren" />
+					<p:inputText id="sirenInput"
+						value="#{registerCompanyBean.companyViewModel.siren}" />
+					<h:message for="sirenInput" />
+				</p:panelGrid>
 
-			<p:panelGrid columns="3"
-				columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2"
-				layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
-				style="border:0px none;background-color: transparent;">
+				<h2 class="text-center my-4">Données de l'administrateur</h2>
+
+				<p:panelGrid columns="3"
+					columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2"
+					layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
+					style="border:0px none;background-color: transparent;">
 
 
-				<p:outputLabel id="emailLabel" value="Email" />
-				<p:inputText id="emailInput"
-					value="#{registerCompanyBean.userVm.email}" />
-				<h:message for="emailInput" />
+					<p:outputLabel id="emailLabel" value="Email" />
+					<p:inputText id="emailInput"
+						value="#{registerCompanyBean.userVm.email}" />
+					<h:message for="emailInput" />
 
-				<p:outputLabel id="firstnameLabel" value="Prénom" />
-				<p:inputText id="firstnameInput"
-					value="#{registerCompanyBean.userVm.firstname}" />
-				<h:message for="firstnameInput" />
+					<p:outputLabel id="firstnameLabel" value="Prénom" />
+					<p:inputText id="firstnameInput"
+						value="#{registerCompanyBean.userVm.firstname}" />
+					<h:message for="firstnameInput" />
 
-				<p:outputLabel id="nameLabel" value="Nom de famille" />
-				<p:inputText id="nameInput"
-					value="#{registerCompanyBean.userVm.lastname}" />
-				<h:message for="nameInput" />
+					<p:outputLabel id="nameLabel" value="Nom de famille" />
+					<p:inputText id="nameInput"
+						value="#{registerCompanyBean.userVm.lastname}" />
+					<h:message for="nameInput" />
 
-				<p:outputLabel id="birthdayLabel" value="Date de naissance" />
-				<p:datePicker id="birthdayInput"
-					value="#{registerCompanyBean.userVm.birthday}" />
-				<h:message for="birthdayInput" />
+					<p:outputLabel id="birthdayLabel" value="Date de naissance" />
+					<p:datePicker id="birthdayInput"
+						value="#{registerCompanyBean.userVm.birthday}" />
+					<h:message for="birthdayInput" />
 
-				<span />
-				<h:commandButton value="S'inscrire"
-					action="#{registerCompanyBean.register()}" class="btn btn-success" />
-				<h:commandButton value="Reset"
-					action="#{registerCompanyBean.clear()}" class="btn btn-warning" />
-			</p:panelGrid>
-		</h:form>
+					<span />
+					<h:commandButton value="S'inscrire"
+						action="#{registerCompanyBean.register()}" class="btn btn-success" />
+					<h:commandButton value="Reset"
+						action="#{registerCompanyBean.clear()}" class="btn btn-warning" />
+				</p:panelGrid>
+			</h:form>
+		</div>
+
+
 	</ui:define>
 </ui:composition>
 

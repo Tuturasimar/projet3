@@ -71,19 +71,29 @@
 						<p:menuitem value="CRA des collaborateurs"
 							rendered="#{loginBean.userAManager}" outcome="SeeArTeam.xhtml" />
 					</p:submenu>
-
+					
+					<p:menuitem value="Nos Services"
+						outcome="ourServices.xhtml" />
+					
+					<p:divider layout="vertical" />
+					
 					<p:menuitem value="Devenez client"
 						rendered="#{not loginBean.isUserLoggedIn()}"
 						outcome="CompanyRegisterForm.xhtml" />
 
 					<p:divider layout="vertical" />
 
-
 					<p:menuitem value="Déjà client ? Connectez-vous"
 						outcome="LoginView.xhtml"
 						rendered="#{not loginBean.isUserLoggedIn()}">
 					</p:menuitem>
+					
+					<p:menuitem value="Contactez Nous"
+						outcome="contact.xhtml" />
 
+					<p:divider layout="vertical" />
+					
+					
 					<!-- // Gérer le login pour ceux qui ne sont pas salariés -->
 					<p:menuitem rendered="#{loginBean.userASalarie}"
 						action="#{seeProfileBean.showSeeProfileWithStats(loginBean.loginVm.login)}"
@@ -95,11 +105,11 @@
 							value="Voir le profil">
 						</p:menuitem>
 					</c:if>
-
+					
 					<p:menuitem label="Logout" action="#{loginBean.logout()}"
 						value="Déconnexion" rendered="#{loginBean.isUserLoggedIn()}">
 					</p:menuitem>
-
+					
 				</p:menubar>
 			</h:form>
 		</div>

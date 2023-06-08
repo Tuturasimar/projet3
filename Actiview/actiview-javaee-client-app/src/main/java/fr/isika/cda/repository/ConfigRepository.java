@@ -27,8 +27,8 @@ public class ConfigRepository {
 		fontConfig.setFontFamily("sans-serif");
 		
 		ImageConfig imgConfig = new ImageConfig();
-		imgConfig.setBanner("BannerDefault");
-		imgConfig.setLogo("logoDefaut");
+		imgConfig.setBanner("BannerDefault.png");
+		imgConfig.setLogo("logoDefaut.png");
 		
 		Company company = em.getReference(Company.class, id);
 		

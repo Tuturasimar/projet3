@@ -56,9 +56,15 @@
 					<p:menuitem value="Identité" outcome="adminPersonalization.xhtml" />
 					<p:menuitem value="Tests couleurs"
 						outcome="TestCustomizeColor.xhtml" />
-
-					<p:menuitem value="Thème" outcome="adminPersonalizationColor.xhtml" />
+	        <p:menuitem value="Thème" outcome="adminPersonalizationColor.xhtml" />
 				</p:submenu>
+
+					<p:menuitem value="Nos Services"
+						outcome="ourServices.xhtml" />
+					
+					<p:divider layout="vertical" />
+					
+				
 
 				<p:submenu label="Compte rendu d'activité"
 					rendered="#{loginBean.userASalarie}">
@@ -70,9 +76,13 @@
 					<p:menuitem value="Note des missions"
 						outcome="showUserFeedbackSalarie.xhtml"
 						rendered="#{loginBean.userASalarie}" />
-
 				</p:submenu>
 
+					<p:menuitem value="Contactez Nous"
+						outcome="contact.xhtml" />
+
+					<p:divider layout="vertical" />
+				
 				<p:menuitem value="CRA des collaborateurs"
 					rendered="#{loginBean.userAManager}" outcome="SeeArTeam.xhtml" />
 
@@ -106,6 +116,5 @@
 			</p:menubar>
 		</h:form>
 	</div>
-
 </ui:composition>
 </html>

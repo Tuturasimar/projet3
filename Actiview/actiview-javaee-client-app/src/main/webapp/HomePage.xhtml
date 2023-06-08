@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="/WEB-INF/templates/default.xhtml">
+	
+	<head>
+  <title>Ma Navbar</title>
+  <style type="text/css">
+    /* Style de base pour la navbar */
+    .navbar {
+      background-color: #f8f8f8;
+      overflow: hidden;
+    }
+    
+    /* Style pour les liens de la navbar */
+    .navbar a {
+      float: left;
+      display: block;
+      color: #555;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    
+    /* Style pour les liens actifs */
+    .navbar a.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+    
+    /* Style pour le logo */
+    .navbar .logo {
+      float: left;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <img class="logo" src="chemin_vers_votre_logo" alt="Logo" />
+    <a href="#" class="active">A propos</a>
+    <a href="#">Nos offres</a>
+    <a href="#">Nous rejoindre</a>
+    <a href="#">Connectez-vous</a>
+    <a href="#">Inscrivez-vous</a>
+    <a href="#">Contactez-nous</a>
+  </div>
+</body>
+	</ui:composition>	
+</html>

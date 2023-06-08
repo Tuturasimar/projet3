@@ -17,6 +17,7 @@ import fr.isika.cda.entities.ar.Ar;
 import fr.isika.cda.entities.ar.ArActivity;
 import fr.isika.cda.entities.ar.PartDayEnum;
 import fr.isika.cda.entities.ar.StateAr;
+import fr.isika.cda.entities.assignement.FormationUser;
 import fr.isika.cda.entities.assignement.MissionUser;
 import fr.isika.cda.entities.assignement.UserFeedback;
 import fr.isika.cda.entities.common.ArConfigEnum;
@@ -576,9 +577,14 @@ public class DataInit {
 		missionUser2.setAdr(180.25f);
 		missionUser2.setMission(mission2);
 		missionUser2.setUserFeedback(userFeedback2);
-
 		em.persist(missionUser2);
-
+		
+		FormationUser formationUser = new FormationUser();
+		formationUser.setUser(userSalarie5);
+		formationUser.setFormationState(StatusEnum.ACTIVE);
+		formationUser.setFormation(formation);
+		em.persist(formationUser);
+		
 		// Pour le salarié 5
 		MissionUser missionUser3 = new MissionUser();
 		missionUser3.setUser(userSalarie5);

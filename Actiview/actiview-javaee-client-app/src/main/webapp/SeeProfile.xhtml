@@ -27,7 +27,11 @@
 						</h:outputText>
 					</p:column>
 				</p:dataTable>
-				<p:commandButton value="Changer mon mot de passe" action="#{updatePasswordBean.showUpdatePassword(seeProfileBean.user.id)}"/>
+				<c:if
+					test="#{loginBean.isUserLoggedInEqualsToUser(seeProfileBean.user.id)}">
+					<p:commandButton class="my-3" value="Changer mon mot de passe"
+						action="#{updatePasswordBean.showUpdatePassword(seeProfileBean.user.id)}" />
+				</c:if>
 			</div>
 			<c:if
 				test="#{seeProfileBean.checkUserSalarie(seeProfileBean.user.id)}">

@@ -108,7 +108,6 @@ h2 {
 	text-transform: uppercase;
 	color: #303030;
 	font-weight: 600;
-	margin-bottom: 30px;
 }
 
 h4 {
@@ -257,6 +256,10 @@ footer .glyphicon {
 	width: 100vw;
 	max-height: 70px;
 	position: relative;
+}
+
+.homeBannerImg {
+	width: 45%;
 }
 
 .content {

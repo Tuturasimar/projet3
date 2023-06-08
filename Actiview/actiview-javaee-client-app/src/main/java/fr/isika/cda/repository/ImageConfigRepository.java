@@ -20,9 +20,6 @@ public class ImageConfigRepository {
 		ImageConfig imageConfig = getImageConfigByCompanyId(imgConfigVm.getCompanyId());
 		imageConfig.setLogo(imgConfigVm.getLogo());
 		imageConfig.setBanner(imgConfigVm.getBanner());
-		
-//		TemplateConfig templateConfig = new TemplateConfig();
-//		templateConfig.setTemplateChoice(imgConfigVm.getTemplateChoice());
 
 	}
 

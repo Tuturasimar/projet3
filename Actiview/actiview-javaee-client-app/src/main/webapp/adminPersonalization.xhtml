@@ -11,13 +11,15 @@
 
 		<h1>Bienvenue sur la page de personnalisation</h1>
 
-		<h2>Pour commencer, choisissez un thème :</h2>
-		
-		<p:growl id="customize" showDetail="true"></p:growl>
 
 		<h2>Choisissez un logo :</h2>
 
+		<p:growl id="customize" showDetail="true"></p:growl>
+
+		
+
 		<div class="cardLogo my-3">
+
 			<h:form enctype="multipart/form-data">
 				<p:fileUpload listener="#{personalizationBean.uploadLogo}"
 					mode="advanced" dragDropSupport="false" update="customize" />

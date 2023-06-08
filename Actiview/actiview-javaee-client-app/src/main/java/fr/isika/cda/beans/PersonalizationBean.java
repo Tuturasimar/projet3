@@ -55,8 +55,6 @@ public class PersonalizationBean {
 	
 	private String font;
 
-	private String template;
-
 	public String save() {
 
 		Long companyId = userRepo.findCompanyByUserConnected().getId();
@@ -113,11 +111,6 @@ public class PersonalizationBean {
 		System.out.println(color);
 	}
 	
-	public void saveTemplateChoice(AjaxBehaviorEvent e) {
-		String templateChoice = onTemplateChoice(e);
-		imgConfigVm.setTemplateChoice(templateChoice);
-	}
-	
 	public void saveFontChoice(AjaxBehaviorEvent e) {
 		String fontChoice = onFontChoice(e);
 		fontConfigVm.setFontFamily(fontChoice);
@@ -144,16 +137,6 @@ public class PersonalizationBean {
 		FacesMessage message = new FacesMessage("Successful file upload", uploadedFile.getFileName() + " is uploaded.");
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		return fileName;
-	}
-	
-	public String onTemplateChoice(AjaxBehaviorEvent e) {
-		UIInput input = (UIInput) e.getSource();
-		String templateChoice = input.getValue().toString();
-		
-		FacesMessage message = new FacesMessage("Successful choice template", templateChoice);
-		FacesContext.getCurrentInstance().addMessage(null, message);
-
-		return templateChoice;
 	}
 	
 	public String onFontChoice(AjaxBehaviorEvent e) {
@@ -212,14 +195,6 @@ public class PersonalizationBean {
 
 	public void setColorText(String colorText) {
 		this.colorText = colorText;
-	}
-
-	public String getTemplate() {
-		return template;
-	}
-
-	public void setTemplate(String template) {
-		this.template = template;
 	}
 
 	public String getFont() {

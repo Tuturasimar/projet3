@@ -591,13 +591,24 @@ public class DataInit {
 		em.persist(formationUser);
 		
 		// Pour le salarié 5
+		UserFeedback userFeedback3 = new UserFeedback();
+		userFeedback3.setComment("C'est la meilleure mission que j'ai effectuée pendant ma carrière !");
+		userFeedback3.setGradeClientRelation(5);
+		userFeedback3.setGradeManager(4);
+		userFeedback3.setGradeMission(5);
+		userFeedback3.setGradeUserComfort(5);
+		em.persist(userFeedback3);
+		
 		MissionUser missionUser3 = new MissionUser();
 		missionUser3.setUser(userSalarie5);
 		missionUser3.setMissionState(StatusEnum.ACTIVE);
 		missionUser3.setAdr(280.30f);
 		missionUser3.setMission(mission4);
-
+		missionUser3.setUserFeedback(userFeedback3);
 		em.persist(missionUser3);
+		
+			
+		
 		// Mock donnée d'une ArActivity
 
 		// Correspond au CRA de mai du salarié 1

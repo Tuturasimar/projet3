@@ -15,8 +15,8 @@
 		<h1>Bienvenue sur la page de personnalisation</h1>
 		
 		<ui:repeat var="imgConfig" value="#{previewBean.configList}">
-			<h:graphicImage id="logoImage" name="#{imgConfig.logo}" library="images" />
-			<h:graphicImage id="bannerImage" name="#{imgConfig.banner}" library="images" />
+			<h:graphicImage id="logoImage" name="#{imgConfig.logo}" library="images" class="logo" />
+			<h:graphicImage id="bannerImage" name="#{imgConfig.banner}" library="images" class="banner" />
 		</ui:repeat>
 		
 	</ui:define>

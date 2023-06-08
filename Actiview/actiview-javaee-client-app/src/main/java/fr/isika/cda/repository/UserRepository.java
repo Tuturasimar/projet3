@@ -266,22 +266,19 @@ public class UserRepository {
 
 	}
 
+	public boolean isUserASalarie(Long id) {
 
-	public boolean isUserLoggedASalarie() {
-		Long userId = SessionUtils.getUserIdFromSession();
-		if (userId != null) {
-			try {
-				Query query = em.createQuery(QUERY_USER_BY_ROLE, User.class);
-				query.setParameter("id", userId);
-				query.setParameter("role", RoleTypeEnum.SALARIE);
-				User user = (User) query.getSingleResult();
+		try {
+			Query query = em.createQuery(QUERY_USER_BY_ROLE, User.class);
+			query.setParameter("id", id);
+			query.setParameter("role", RoleTypeEnum.SALARIE);
+			User user = (User) query.getSingleResult();
 
-				return user != null ? true : false;
-			} catch (Exception e) {
-
-			}
+			return user != null ? true : false;
+		} catch (Exception e) {
 
 		}
+
 		return false;
 	}
 
@@ -342,7 +339,5 @@ public class UserRepository {
 		return false;
 
 	}
-	
-
 
 }

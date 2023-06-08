@@ -58,7 +58,7 @@ public class LoginBean {
 	}
 
 	public boolean isUserASalarie() {
-		return userRepository.isUserLoggedASalarie();
+		return userRepository.isUserASalarie(SessionUtils.getUserIdFromSession());
 	}
 
 	public boolean isUserAManager() {
@@ -75,6 +75,11 @@ public class LoginBean {
 
 	public Long getUserConnectedId() {
 		return SessionUtils.getUserIdFromSession();
+	}
+	
+	public Long getCompanyIdFromUserConnected() {
+		Long idCompany = userRepository.findCompanyByUserConnected().getId();
+		return idCompany;
 	}
 
 	public LoginViewModel getLoginVm() {

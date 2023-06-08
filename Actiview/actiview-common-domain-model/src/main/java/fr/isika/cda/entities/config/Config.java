@@ -34,10 +34,6 @@ public class Config implements Serializable {
 	@JoinColumn(name="imageConfig_id")
 	private ImageConfig imageConfig;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="templateConfig_id")
-	private TemplateConfig templateConfig;
-	
 	@OneToOne
 	@JoinColumn(name="company_id")
 	private Company company;
@@ -80,13 +76,6 @@ public class Config implements Serializable {
 		this.fontConfig = fontConfig;
 	}
 
-	public TemplateConfig getTemplateConfig() {
-		return templateConfig;
-	}
-
-	public void setTemplateConfig(TemplateConfig templateConfig) {
-		this.templateConfig = templateConfig;
-	}
 	
 	
 

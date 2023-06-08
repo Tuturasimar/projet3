@@ -99,6 +99,34 @@
 	outline: 0 none;
 	box-shadow : 0 0 0 0.2em #a6d5fa;
 	}
+	
+	.btnNoColor .ui-button {
+	background: white !important;
+	border: 1px solid black !important;
+	}
+	
+	.logo, .logoClient {
+	height : 70px;
+	
+	}
+	
+	.logoClient {
+	position : absolute;
+	top:0;
+	left:0;
+	z-index:1;
+	}
+	
+	
+	
+	.banner {
+	width: 100vw;
+	max-height: 70px;
+	position: relative;
+	}
+	
+
+	
       
       .footer {
 	width: 100%;

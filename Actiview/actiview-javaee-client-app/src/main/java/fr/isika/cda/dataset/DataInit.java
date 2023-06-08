@@ -100,11 +100,10 @@ public class DataInit {
 
 		// Mock données ImageConfig liées à l'ESN
 		ImageConfig imageConfigDefault = new ImageConfig();
-		imageConfigDefault.setBanner("BannerDefault");
-		imageConfigDefault.setLogo("logoDefaut");
-
-		// configuration par défault des ESN
-
+		imageConfigDefault.setBanner("BannerDefault.png");
+		imageConfigDefault.setLogo("logoDefaut.png");
+		
+		//configuration par défault des ESN
 		Config config = new Config();
 		config.setColorConfig(colorConfigDefault);
 		config.setCompany(company);
@@ -328,6 +327,12 @@ public class DataInit {
 		superAdmin.setCreatedAt(LocalDateTime.of(2019, 12, 14, 8, 0));
 		superAdmin.setStatus(StatusEnum.ACTIVE);
 		em.persist(superAdmin);
+
+		
+		UserRole role2Salarie2 = new UserRole();
+		role2Salarie2.setRoleTypeEnum(RoleTypeEnum.ADMINESN);
+		role2Salarie2.setUser(userSalarie2);
+		
 
 		UserRole superAdminRole = new UserRole();
 		superAdminRole.setRoleTypeEnum(RoleTypeEnum.SUPERADMIN);

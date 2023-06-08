@@ -36,11 +36,22 @@ public class SeeCompanyProfileBean {
 	}
 	
 	public boolean checkDefaultLogo(Long id) {
+		
 		return ("logoDefaut".equals(imgConfigRepo.getImageConfigByCompanyId(id).getLogo()));
 	}
 	
 	public boolean checkDefaultBanner(Long id) {
 		return ("BannerDefault".equals(imgConfigRepo.getImageConfigByCompanyId(id).getBanner()));
+	}
+	
+	public String findLogoNameByCompanyId(Long id) {
+	String logo = imgConfigRepo.getImageConfigByCompanyId(id).getLogo();
+		return logo != null ? logo : "logoDefaut.png";
+	}
+	
+	public String findBannerNameByCompanyId(Long id) {
+		String banner = imgConfigRepo.getImageConfigByCompanyId(id).getBanner();
+		return banner != null ? banner : "BannerDefault.png";
 	}
 
 	public ShowCompanyViewModel getCompanyVm() {

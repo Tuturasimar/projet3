@@ -82,13 +82,13 @@
 						<h2>Couleur du texte :</h2>
 					</div>
 					<div class="colorText col-5">
-					<div class="btnNoColor">
-						<h:form>
-							<p:colorPicker value="#{personalizationBean.colorText}">
-								<p:ajax listener="#{personalizationBean.saveColorText}"
-									process="@this" update="customizeColor" />
-							</p:colorPicker>
-						</h:form>
+						<div class="btnNoColor">
+							<h:form>
+								<p:colorPicker value="#{personalizationBean.colorText}">
+									<p:ajax listener="#{personalizationBean.saveColorText}"
+										process="@this" update="customizeColor" />
+								</p:colorPicker>
+							</h:form>
 						</div>
 					</div>
 				</div>
@@ -100,21 +100,43 @@
 						<h2>Couleur des boutons :</h2>
 					</div>
 					<div class="colorButton col-5">
-					<div class="btnNoColor">
-						<h:form>
-							<p:colorPicker value="#{personalizationBean.colorButton}">
-								<p:ajax listener="#{personalizationBean.saveColorButton}"
-									process="@this" update="customizeColor" />
-							</p:colorPicker>
-						</h:form>
+						<div class="btnNoColor">
+							<h:form>
+								<p:colorPicker value="#{personalizationBean.colorButton}">
+									<p:ajax listener="#{personalizationBean.saveColorButton}"
+										process="@this" update="customizeColor" />
+								</p:colorPicker>
+							</h:form>
 						</div>
 					</div>
 				</div>
 			</p:fieldset>
-			<h:form id="configSpaceColorForm">
-				<h:commandButton action="#{personalizationBean.saveColor()}"
-					value="Enregistrer" class="btn btn-success" />
-			</h:form>
+
+			<div class="row">
+				<div class="col-md-2">
+					<h:form id="configSpaceColorForm">
+						<h:commandButton action="#{personalizationBean.saveColor()}"
+							value="Enregistrer" class="btn btn-success" />
+
+					</h:form>
+				</div>
+				<div class="col-md-2 offset-md-2">
+					<h:form id="configSpaceColorFormDefault">
+						<h:commandButton value="Par défault" class="btn btn-success"
+							action="#{personalizationBean.saveColor()}" />
+					</h:form>
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+
+
 		</body>
 
 	</ui:define>

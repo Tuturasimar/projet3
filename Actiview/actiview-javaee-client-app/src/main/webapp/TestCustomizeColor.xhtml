@@ -14,25 +14,22 @@
 
 	<ui:define name="content">
 
-		<h2 style="color: #{cSSDynamicBean.colorTitle}">Test des couleurs</h2>
+		<h1 style="color: #{cSSDynamicBean.colorTitle}">Test des couleurs</h1>
 
-		<h1 style="color: #{cSSDynamicBean.colorTitle}">Je suis un titre pour tester le choix des couleurs</h1>
+		<h2 style="color: #{cSSDynamicBean.colorTitle}">Je suis un titre pour tester le choix des couleurs</h2>
 
-		<p:button value="Submit" style="background-color: #{cSSDynamicBean.colorButton}"/>
+		
 
 		<p:growl id="customize" showDetail="true"></p:growl>
 
 		<h:body style="background-color: #{cSSDynamicBean.backgroundColor}">
-			
-			<p style="color: #{cSSDynamicBean.colorText}"><font face="Roboto">You can change this page, by modifying the global color with
-				the following input.</font></p>
 				
-				<p style="color: #{cSSDynamicBean.colorText}"><FONT face="#{cSSDynamicBean.fontChoice}">Ce texte est écrit avec Roboto. VRAIMENT</FONT></p>
+				<p style="color: #{cSSDynamicBean.colorText}"><FONT face="#{cSSDynamicBean.fontChoice}">Ce texte est écrit avec la police que vous avez sélectionnée.</FONT></p>
 				
 		</h:body>
-
-		<h:form id="configSpaceForm">
-			<p:commandButton value="Save" />
+		
+		<h:form id="ResetconfigSpaceForm">
+			<p:commandButton value="Annuler" style="background-color: #{cSSDynamicBean.colorButton}" action="adminPersonalizationColor.xhtml"></p:commandButton>
 		</h:form>
 
 
